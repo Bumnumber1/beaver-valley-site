@@ -412,6 +412,30 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .gtile figcaption span{color:var(--gold); font-size:.82rem}
 .gallery-count{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.16em; color:var(--muted); font-size:.82rem; margin-top:8px}
 
+/* ---------- Cast (characters page) ---------- */
+.fcast{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:22px}
+.fcard{position:relative; border:1px solid var(--line); border-radius:8px; overflow:hidden; background:var(--panel); box-shadow:var(--shadow); transition:transform .3s var(--ease), border-color .3s; cursor:zoom-in}
+.fcard:hover{transform:translateY(-6px); border-color:rgba(233,176,82,.5)}
+.fcard .fig{aspect-ratio:3/4; overflow:hidden; background:radial-gradient(circle at 50% 30%, #241f16, #0b0907)}
+.fcard .fig img{width:100%; height:100%; object-fit:cover; object-position:center top; transition:transform .5s var(--ease)}
+.fcard:hover .fig img{transform:scale(1.04)}
+.fcard .meta{padding:18px 18px 22px}
+.fcard h3{font-family:var(--f-display); text-transform:uppercase; font-size:1.5rem; letter-spacing:.5px; margin:0 0 .1em}
+.fcard .role{color:var(--gold); font-family:var(--f-head); text-transform:uppercase; letter-spacing:.12em; font-size:.72rem; margin-bottom:.7em}
+.fcard p{margin:0; color:var(--muted); font-size:.95rem; line-height:1.45}
+
+.cast{display:grid; grid-template-columns:repeat(auto-fill,minmax(186px,1fr)); gap:18px}
+.castcard{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:linear-gradient(180deg,var(--panel),var(--bg-2)); text-align:center; transition:transform .25s var(--ease), border-color .25s; cursor:zoom-in}
+.castcard:hover{transform:translateY(-4px); border-color:rgba(233,176,82,.45)}
+.castcard .por{aspect-ratio:1; overflow:hidden; background:radial-gradient(circle at 50% 35%, #201c15, #0c0a07)}
+.castcard .por img{width:100%; height:100%; object-fit:cover; object-position:center 20%; transition:transform .5s var(--ease)}
+.castcard:hover .por img{transform:scale(1.06)}
+.castcard .meta{padding:13px 12px 16px}
+.castcard h4{font-family:var(--f-head); font-weight:600; text-transform:uppercase; letter-spacing:.02em; font-size:1rem; color:var(--cream); margin:0 0 .3em}
+.castcard p{margin:0; color:var(--muted); font-size:.82rem; line-height:1.35}
+.cast-group{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.16em; font-size:.82rem; color:var(--gold); margin:52px 0 18px; display:flex; align-items:center; gap:14px}
+.cast-group::after{content:""; flex:1; height:1px; background:linear-gradient(90deg,var(--line),transparent)}
+
 /* ---------- Activities / things-to-do ---------- */
 .todo{columns:3; column-gap:34px; margin:0; padding:0; list-style:none}
 .todo li{break-inside:avoid; padding:11px 0 11px 26px; position:relative; border-bottom:1px solid var(--line-soft); color:var(--text); font-size:1.02rem}
