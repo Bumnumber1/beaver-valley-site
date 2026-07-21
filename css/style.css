@@ -428,7 +428,7 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .castcard{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:linear-gradient(180deg,var(--panel),var(--bg-2)); text-align:center; transition:transform .25s var(--ease), border-color .25s; cursor:zoom-in}
 .castcard:hover{transform:translateY(-4px); border-color:rgba(233,176,82,.45)}
 .castcard .por{aspect-ratio:1; overflow:hidden; background:radial-gradient(circle at 50% 35%, #201c15, #0c0a07)}
-.castcard .por img{width:100%; height:100%; object-fit:cover; object-position:center 20%; transition:transform .5s var(--ease)}
+.castcard .por img{width:100%; height:100%; object-fit:contain; transition:transform .5s var(--ease)}
 .castcard:hover .por img{transform:scale(1.06)}
 .castcard .meta{padding:13px 12px 16px}
 .castcard h4{font-family:var(--f-head); font-weight:600; text-transform:uppercase; letter-spacing:.02em; font-size:1rem; color:var(--cream); margin:0 0 .3em}
