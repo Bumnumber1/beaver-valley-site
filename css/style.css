@@ -194,6 +194,7 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .marquee:hover .marquee-track{animation-play-state:paused}
 .marquee-track span b{color:var(--gold)}
 .marquee-track span{opacity:.85}
+.marquee-track span.mq-quote{color:var(--gold); opacity:1; font-style:italic}
 @keyframes scroll-x{to{transform:translateX(-50%)}}
 
 /* ---------- What-is block (text + image) ---------- */
