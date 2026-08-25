@@ -60,6 +60,101 @@
     { id: 'porcupine', label: 'Porcupine Experimental Fighter Pilot', count: 1, ranks: 'AF' }
   ];
 
+  /* ---------------- starting structure (pre-filled ranks & billets) ----------------
+     Each slot arrives pre-assigned in Beaver Valley Navy rank order — CO down to the
+     deck — so Sam has a place to start. These are only suggestions: a slot he has
+     touched keeps his data untouched, and every rank and role stays editable. */
+  var PREFILL = {
+    frigate: [
+      { rank: 'Commander (CO)', role: 'Commanding Officer' },
+      { rank: 'Lieutenant Commander (XO)', role: 'Executive Officer' },
+      { rank: 'Lieutenant', role: 'Weapons Officer (WEPS)' },
+      { rank: 'Lieutenant', role: 'ASW Helicopter Pilot' },
+      { rank: 'Lieutenant (JG)', role: 'Navigator' },
+      { rank: 'Ensign', role: 'Communications Officer' },
+      { rank: 'Master Chief Petty Officer (COB)', role: 'Command Master Chief' },
+      { rank: 'Chief Petty Officer', role: 'Sonar Chief' },
+      { rank: 'Petty Officer 1st Class', role: 'Gunner’s Mate (Deck Gun & CIWS)' },
+      { rank: 'Petty Officer 2nd Class', role: 'Radar / CIC Operator' },
+      { rank: 'Seaman', role: 'Deckhand & Lookout' }
+    ],
+    bvsub: [
+      { rank: 'Commander (CO)', role: 'Commanding Officer' },
+      { rank: 'Lieutenant Commander (XO)', role: 'Executive Officer' },
+      { rank: 'Lieutenant', role: 'Weapons Officer (WEPS)' },
+      { rank: 'Lieutenant', role: 'Navigator / Operations Officer' },
+      { rank: 'Lieutenant (JG)', role: 'Engineering Officer' },
+      { rank: 'Ensign', role: 'Sonar Officer' },
+      { rank: 'Master Chief Petty Officer (COB)', role: 'Chief of the Boat' },
+      { rank: 'Chief Petty Officer', role: 'Sonar Chief' },
+      { rank: 'Petty Officer 1st Class', role: 'Torpedoman' },
+      { rank: 'Petty Officer 2nd Class', role: 'Helmsman / Planesman' },
+      { rank: 'Seaman', role: 'Mess & Auxiliary' }
+    ],
+    ferret: [
+      { rank: 'Kapitan 2nd Rank', role: 'Commanding Officer' },
+      { rank: 'Kapitan 3rd Rank', role: 'Executive Officer (Starpom)' },
+      { rank: 'Kapitan-Leytenant', role: 'Weapons Officer' },
+      { rank: 'Senior Leytenant', role: 'Air-Defense Officer' },
+      { rank: 'Senior Leytenant', role: 'Navigator' },
+      { rank: 'Leytenant', role: 'Communications Officer' },
+      { rank: 'Michman', role: 'Missile Systems Technician' },
+      { rank: 'Chief Ship Starshina', role: 'Senior NCO of the Ship' },
+      { rank: 'Starshina 1st Class', role: 'Gun Crew Chief' },
+      { rank: 'Starshina 2nd Class', role: 'Radar Operator' },
+      { rank: 'Matros', role: 'Deckhand' }
+    ],
+    otter: [
+      { rank: 'Kapitan 1st Rank', role: 'Commanding Officer' },
+      { rank: 'Kapitan 3rd Rank', role: 'Executive Officer (Starpom)' },
+      { rank: 'Kapitan-Leytenant', role: 'Torpedo & Weapons Officer' },
+      { rank: 'Senior Leytenant', role: 'Engineering Officer' },
+      { rank: 'Leytenant', role: 'Navigator' },
+      { rank: 'Leytenant', role: 'Sonar Officer' },
+      { rank: 'Michman', role: 'Torpedo Technician' },
+      { rank: 'Chief Ship Starshina', role: 'Senior NCO of the Boat' },
+      { rank: 'Starshina 1st Class', role: 'Helmsman / Planesman' },
+      { rank: 'Starshina 2nd Class', role: 'Electrician' },
+      { rank: 'Senior Matros', role: 'Cook & Auxiliary' }
+    ],
+    tankers: [
+      { rank: 'Captain (Master)', role: 'Ship’s Master', ship: 'Tanker 1' },
+      { rank: 'Chief Mate', role: 'Cargo & Deck Officer', ship: 'Tanker 1' },
+      { rank: 'Second Mate', role: 'Navigation Watch Officer', ship: 'Tanker 1' },
+      { rank: 'Chief Engineer', role: 'Chief of the Engine Room', ship: 'Tanker 1' },
+      { rank: 'Second Engineer', role: 'Pump & Engine Watch', ship: 'Tanker 1' },
+      { rank: 'Bosun', role: 'Deck Boss', ship: 'Tanker 1' },
+      { rank: 'Able Seaman', role: 'Helm & Deck Watch', ship: 'Tanker 1' },
+      { rank: 'Cook', role: 'Ship’s Cook', ship: 'Tanker 1' },
+      { rank: 'Captain (Master)', role: 'Ship’s Master', ship: 'Tanker 2' },
+      { rank: 'Chief Mate', role: 'Cargo & Deck Officer', ship: 'Tanker 2' },
+      { rank: 'Second Mate', role: 'Navigation Watch Officer', ship: 'Tanker 2' },
+      { rank: 'Chief Engineer', role: 'Chief of the Engine Room', ship: 'Tanker 2' },
+      { rank: 'Second Engineer', role: 'Pump & Engine Watch', ship: 'Tanker 2' },
+      { rank: 'Bosun', role: 'Deck Boss', ship: 'Tanker 2' },
+      { rank: 'Able Seaman', role: 'Helm & Deck Watch', ship: 'Tanker 2' },
+      { rank: 'Cook', role: 'Ship’s Cook', ship: 'Tanker 2' }
+    ],
+    ferry: [
+      { rank: 'Captain (Master)', role: 'Ferry Master' },
+      { rank: 'Chief Mate', role: 'Mate & Loading Officer' },
+      { rank: 'Chief Engineer', role: 'Engineer' },
+      { rank: 'Deckhand', role: 'Deckhand & Passenger Wrangler' }
+    ],
+    coastguard: [
+      { rank: 'Lieutenant', role: 'Commanding Officer' },
+      { rank: 'Chief Petty Officer', role: 'Executive Petty Officer' },
+      { rank: 'Petty Officer 2nd Class', role: 'Boatswain’s Mate (Boarding Team)' },
+      { rank: 'Seaman', role: 'Crewman' }
+    ],
+    scientist: [
+      { rank: 'Civilian — Lead Scientist', role: 'Experimental Weapons Program Lead' }
+    ],
+    porcupine: [
+      { rank: 'Major', role: 'Porcupine Experimental Test Pilot' }
+    ]
+  };
+
   /* ---------------- state ---------------- */
   var user = null;
   var data = null;       // { groupId: [ {name, rank, rankCustom, role, ship, desc, personality, goal} ] }
@@ -95,6 +190,14 @@
         var s = arr[i] || {};
         var slot = blankSlot();
         Object.keys(slot).forEach(function (k) { if (typeof s[k] === 'string') slot[k] = s[k]; });
+        // untouched slot → seed the suggested rank/billet (BV Navy rank order)
+        var untouched = Object.keys(slot).every(function (k) { return slot[k] === ''; });
+        var pf = PREFILL[g.id] && PREFILL[g.id][i];
+        if (untouched && pf) {
+          slot.rank = pf.rank || '';
+          slot.role = pf.role || '';
+          if (pf.ship) slot.ship = pf.ship;
+        }
         data[g.id].push(slot);
       }
     });
