@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Staff Only &mdash; Beaver Valley Crew Manifest</title>
+<link rel="stylesheet" href="css/style.css">
+<style>
+/* ---------- crew portal page styles (scoped to this page) ---------- */
+.crew-wrap{max-width:var(--maxw); margin:0 auto; padding:110px 22px 80px;}
+.gate{max-width:420px; margin:16vh auto 0; background:var(--panel); border:1px solid var(--line);
+  border-radius:var(--radius); padding:34px 30px; box-shadow:var(--shadow-lg);}
+.gate h1{font-family:var(--f-display); color:var(--cream); font-size:1.9rem; letter-spacing:.04em; margin:0 0 4px;}
+.gate p{color:var(--muted); margin:0 0 22px; font-size:.95rem;}
+.gate label{display:block; font-family:var(--f-head); text-transform:uppercase; letter-spacing:.12em;
+  font-size:.72rem; color:var(--gold); margin:14px 0 6px;}
+.gate input{width:100%; background:var(--bg-2); color:var(--cream); border:1px solid var(--line);
+  border-radius:var(--radius); padding:11px 12px; font-size:1rem; font-family:var(--f-body);}
+.gate input:focus{outline:none; border-color:var(--gold-deep);}
+.gate .err{color:var(--blood-bright); font-size:.9rem; min-height:1.3em; margin-top:10px;}
+.gate button{margin-top:18px; width:100%;}
+
+.crew-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:14px; margin-bottom:6px;}
+.crew-head h1{font-family:var(--f-display); color:var(--cream); font-size:clamp(1.8rem,4vw,2.6rem);
+  letter-spacing:.04em; margin:0;}
+.userchip{margin-left:auto; display:flex; align-items:center; gap:10px; color:var(--muted); font-size:.9rem;}
+.userchip b{color:var(--gold);}
+.standing-orders{background:linear-gradient(180deg, rgba(233,176,82,.10), rgba(233,176,82,.04));
+  border:1px solid var(--line); border-left:3px solid var(--gold); border-radius:var(--radius);
+  padding:16px 20px; margin:18px 0 26px; color:var(--cream); font-size:1rem; line-height:1.6;}
+.standing-orders b{color:var(--gold-bright); font-family:var(--f-head); letter-spacing:.06em;}
+
+.toolbar{position:sticky; top:64px; z-index:40; display:flex; flex-wrap:wrap; gap:10px; align-items:center;
+  background:rgba(22,19,13,.96); border:1px solid var(--line); border-radius:var(--radius);
+  padding:10px 14px; margin-bottom:26px; box-shadow:var(--shadow);}
+.toolbar .prog{font-family:var(--f-head); color:var(--cream); letter-spacing:.05em;}
+.toolbar .prog b{color:var(--gold-bright);}
+.toolbar .savestate{color:var(--muted); font-size:.85rem; margin-left:2px;}
+.toolbar .spacer{flex:1;}
+.btn-sm{display:inline-block; cursor:pointer; font-family:var(--f-head); text-transform:uppercase;
+  letter-spacing:.1em; font-size:.72rem; padding:8px 14px; border-radius:var(--radius);
+  border:1px solid var(--line); background:var(--panel-2); color:var(--cream);}
+.btn-sm:hover{border-color:var(--gold-deep); color:var(--gold-bright);}
+.btn-sm.gold{background:var(--gold-deep); border-color:var(--gold-deep); color:#181307; font-weight:600;}
+.btn-sm.gold:hover{background:var(--gold); color:#181307;}
+
+.group{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+  margin-bottom:22px; overflow:hidden;}
+.group > summary{list-style:none; cursor:pointer; display:flex; flex-wrap:wrap; align-items:center; gap:12px;
+  padding:16px 20px; background:var(--panel-2);}
+.group > summary::-webkit-details-marker{display:none;}
+.group > summary h2{font-family:var(--f-head); font-weight:600; color:var(--cream); font-size:1.15rem;
+  letter-spacing:.05em; margin:0; text-transform:uppercase;}
+.group > summary .gcount{font-family:var(--f-head); color:var(--gold); font-size:.85rem; letter-spacing:.08em;}
+.group > summary .gdone{margin-left:auto; font-family:var(--f-head); font-size:.8rem; letter-spacing:.08em;
+  color:var(--muted);}
+.group > summary .gdone.full{color:var(--green-core);}
+.group .gbody{padding:8px 18px 20px;}
+.group .gtools{display:flex; gap:8px; margin:8px 0 4px; justify-content:flex-end;}
+
+.slot{border:1px solid var(--line-soft); border-radius:var(--radius); background:var(--bg-2);
+  padding:16px 16px 14px; margin:14px 0;}
+.slot.done{border-color:rgba(99,192,137,.35);}
+.slot .row1{display:grid; grid-template-columns:52px 1fr 1fr; gap:10px; align-items:center;}
+.slot .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;}
+.slot .idx{font-family:var(--f-display); color:var(--gold-deep); font-size:1.3rem; text-align:center;}
+.slot.done .idx{color:var(--green-core);}
+.slot label{display:block; font-family:var(--f-head); text-transform:uppercase; letter-spacing:.1em;
+  font-size:.66rem; color:var(--muted); margin:0 0 4px;}
+.slot input, .slot select, .slot textarea{width:100%; background:var(--bg-3); color:var(--cream);
+  border:1px solid var(--line-soft); border-radius:var(--radius); padding:9px 10px; font-size:.97rem;
+  font-family:var(--f-body);}
+.slot textarea{resize:vertical; line-height:1.55;}
+.slot input:focus, .slot select:focus, .slot textarea:focus{outline:none; border-color:var(--gold-deep);}
+.slot .full{margin-top:12px;}
+.slot .hint{color:var(--muted-2); font-size:.78rem; margin-top:3px;}
+
+.review{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; margin-top:30px;}
+.review h2{font-family:var(--f-head); color:var(--cream); text-transform:uppercase; letter-spacing:.08em; margin:0 0 12px;}
+.dropzone{border:2px dashed var(--line); border-radius:var(--radius); padding:34px; text-align:center;
+  color:var(--muted); cursor:pointer; transition:border-color .2s;}
+.dropzone.hover{border-color:var(--gold);}
+.review table{width:100%; border-collapse:collapse; margin:14px 0 22px; font-size:.9rem;}
+.review th{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.08em; font-size:.7rem;
+  color:var(--gold); text-align:left; padding:8px 10px; border-bottom:1px solid var(--line);}
+.review td{padding:9px 10px; border-bottom:1px solid var(--line-soft); vertical-align:top; color:var(--text);}
+.review td.namecell{color:var(--cream); font-weight:600; white-space:nowrap;}
+.review .timepanel{background:var(--bg-2); border:1px solid var(--line-soft); border-radius:var(--radius);
+  padding:14px 18px; margin:14px 0;}
+.review .timepanel b{color:var(--gold-bright);}
+.review .grouphead{display:flex; align-items:center; gap:12px; margin-top:22px;}
+.review .grouphead h3{font-family:var(--f-head); color:var(--cream); text-transform:uppercase;
+  letter-spacing:.07em; margin:0; font-size:1rem;}
+.hidden{display:none !important;}
+@media (max-width:760px){
+  .slot .row1{grid-template-columns:40px 1fr;}
+  .slot .row2{grid-template-columns:1fr;}
+  .toolbar{top:0;}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
+    <li><a href="index.html">The Valley</a></li>
+    <li><a href="features.html">Features</a></li>
+    <li><a href="world.html">The World</a></li>
+    <li><a href="characters.html">Cast</a></li>
+    <li><a href="roadmap.html">Roadmap</a></li>
+    <li><a href="donate.html">Support</a></li>
+  </ul>
+</nav>
+
+<!-- ===== LOGIN GATE ===== -->
+<section id="gate" class="gate">
+  <h1>STAFF ONLY</h1>
+  <p>Beaver Valley crew manifest. Authorized personnel.</p>
+  <form id="gateForm" autocomplete="off">
+    <label for="gateUser">Name</label>
+    <input id="gateUser" type="text" spellcheck="false" autofocus>
+    <label for="gatePass">Password</label>
+    <input id="gatePass" type="password">
+    <div class="err" id="gateErr"></div>
+    <button class="btn btn-primary" type="submit">Enter</button>
+  </form>
+</section>
+
+<!-- ===== APP ===== -->
+<main id="app" class="crew-wrap hidden">
+  <div class="crew-head">
+    <h1>CREW MANIFEST</h1>
+    <div class="userchip">Signed in as <b id="whoami"></b>
+      <a class="btn-sm" id="logoutBtn">Log out</a></div>
+  </div>
+
+  <div class="standing-orders">
+    <b>STANDING ORDERS:</b> In Beaver Valley, these crews get shore leave &mdash; but they never go
+    off duty and never change out of uniform, unless they visit a clothing store&hellip; or defect.
+    Write every personality, relationship, and world goal with that life in mind.
+  </div>
+
+  <div class="toolbar">
+    <span class="prog">Complete: <b id="progTotal">0 / 70</b></span>
+    <span class="savestate" id="saveState">All changes save automatically in this browser.</span>
+    <span class="spacer"></span>
+    <a class="btn-sm" id="importBtn" title="Resume from a previously exported file">Import previous export</a>
+    <a class="btn-sm" id="copyAllBtn">Copy all (JSON)</a>
+    <a class="btn-sm gold" id="exportBtn">Export &amp; send to Jeremy</a>
+  </div>
+
+  <div id="groups"></div>
+
+  <!-- ===== REVIEW & EXTRACT (Jeremy only) ===== -->
+  <section id="review" class="review hidden">
+    <h2>Review &amp; Extract</h2>
+    <p style="color:var(--muted); margin-top:0">Drop a submission file below (or click to browse).
+      Everything renders as tables with one-click CSV / JSON extraction per role group.</p>
+    <div class="dropzone" id="dropzone">Drop a <b>beaver-valley-crew-*.json</b> file here</div>
+    <input type="file" id="fileInput" accept="application/json,.json" class="hidden">
+    <div id="reviewOut"></div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
+      <span class="sat">Loose lips sink ships. So does the Beaver Eater.</span>
+    </div>
+  </div>
+</footer>
+
+<script src="js/site.js"></script>
+<script src="js/crew.js"></script>
+</body>
+</html>
