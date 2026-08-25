@@ -2,9 +2,11 @@
    BEAVER VALLEY — Staff-only crew manifest portal
    Static-site app: trivial login gate, autosaving contract form
    (70 crew characters per the Sept 2026 creative-services
-   agreement), JSON export for hand-off, and a review/extract
-   console for Jeremy. No server: data lives in the contributor's
-   browser until exported.
+   agreement), optional portraits, Sam's completed prior work
+   (50 BVPD/A.S.S. officers pulled from the game records) shown
+   read-only for reference, JSON export for hand-off, an
+   optional cloud-sync endpoint, and a review/extract console
+   for Jeremy.
    ============================================================ */
 (function () {
   'use strict';
@@ -13,6 +15,16 @@
   var ACCOUNTS = { SAM: 'Nutsack', JEREMY: 'Nutlick', MALCOLM: 'Dumpster' };
   var REVIEWERS = { JEREMY: true };
   var CONTACT_EMAIL = 'bumnumber1@gmail.com';
+
+  /* ---------------- cloud sync (VITAL storage) ----------------
+     When SYNC_URL is set to a deployed Google Apps Script web-app URL
+     (see sync/README.md in this repo), every contributor's text data is
+     pushed automatically ~60 s after each change and on export — so the
+     work is stored server-side in Jeremy's Google Sheet, not only in the
+     contributor's browser. Portraits stay in the export file (too heavy
+     to push on every keystroke). Empty string = local + export-file only. */
+  var SYNC_URL = '';
+  var SYNC_DEBOUNCE_MS = 60000;
 
   /* ---------------- rank vocabularies ---------------- */
   var RANKS = {
@@ -50,14 +62,16 @@
 
   /* ---------------- state ---------------- */
   var user = null;
-  var data = null;       // { groupId: [ {name, rank, rankCustom, role, ship, personality, goal} ] }
+  var data = null;       // { groupId: [ {name, rank, rankCustom, role, ship, desc, personality, goal} ] }
   var saveTimer = null;
 
   function dataKey() { return 'bvcrew.v1.' + user + '.data'; }
   function timeKey() { return 'bvcrew.v1.' + user + '.time'; }
+  function snapKey() { return 'bvcrew.v1.' + user + '.snapshots'; }
 
   function blankSlot() {
-    return { name: '', rank: '', rankCustom: '', role: '', ship: '', personality: '', goal: '' };
+    return { name: '', rank: '', rankCustom: '', role: '', ship: '', desc: '',
+      personality: '', goal: '' };
   }
 
   function loadData() {
@@ -65,6 +79,14 @@
     try { raw = localStorage.getItem(dataKey()); } catch (e) { }
     var parsed = null;
     if (raw) { try { parsed = JSON.parse(raw); } catch (e) { parsed = null; } }
+    if (!parsed) {
+      // main record missing or corrupt — offer the newest local snapshot
+      var snaps = loadSnapshots();
+      if (snaps.length && confirm('No current entry data was found, but a local backup snapshot from ' +
+        new Date(snaps[snaps.length - 1].t).toLocaleString() + ' exists. Restore it?')) {
+        parsed = snaps[snaps.length - 1].data;
+      }
+    }
     data = {};
     GROUPS.forEach(function (g) {
       var arr = (parsed && Array.isArray(parsed[g.id])) ? parsed[g.id] : [];
@@ -78,8 +100,27 @@
     });
   }
 
+  function loadSnapshots() {
+    try {
+      var s = JSON.parse(localStorage.getItem(snapKey()) || '[]');
+      return Array.isArray(s) ? s : [];
+    } catch (e) { return []; }
+  }
+
+  var lastSnapshotAt = 0;
+  function maybeSnapshot() {
+    var now = Date.now();
+    if (now - lastSnapshotAt < 5 * 60 * 1000) return;
+    lastSnapshotAt = now;
+    var snaps = loadSnapshots();
+    snaps.push({ t: now, data: data });
+    if (snaps.length > 8) snaps = snaps.slice(-8);
+    try { localStorage.setItem(snapKey(), JSON.stringify(snaps)); } catch (e) { }
+  }
+
   function saveData() {
     try { localStorage.setItem(dataKey(), JSON.stringify(data)); } catch (e) { }
+    maybeSnapshot();
     var el = document.getElementById('saveState');
     if (el) {
       el.textContent = 'Saved ' + new Date().toLocaleTimeString();
@@ -93,6 +134,73 @@
   function queueSave() {
     clearTimeout(saveTimer);
     saveTimer = setTimeout(function () { saveData(); refreshProgress(); }, 400);
+    scheduleSync();
+  }
+
+  /* ---------------- portrait store (IndexedDB; too big for localStorage) ---------------- */
+  var idb = null;
+  function openIdb() {
+    return new Promise(function (resolve) {
+      if (idb) return resolve(idb);
+      if (!window.indexedDB) return resolve(null);
+      var req = indexedDB.open('bvcrew', 1);
+      req.onupgradeneeded = function () {
+        if (!req.result.objectStoreNames.contains('portraits'))
+          req.result.createObjectStore('portraits');
+      };
+      req.onsuccess = function () { idb = req.result; resolve(idb); };
+      req.onerror = function () { resolve(null); };
+    });
+  }
+  function portraitKey(groupId, i) { return user + ':' + groupId + ':' + i; }
+  function idbPut(key, value) {
+    return openIdb().then(function (db) {
+      if (!db) return;
+      return new Promise(function (resolve) {
+        var tx = db.transaction('portraits', 'readwrite');
+        tx.objectStore('portraits').put(value, key);
+        tx.oncomplete = resolve; tx.onerror = resolve;
+      });
+    });
+  }
+  function idbGet(key) {
+    return openIdb().then(function (db) {
+      if (!db) return null;
+      return new Promise(function (resolve) {
+        var req = db.transaction('portraits').objectStore('portraits').get(key);
+        req.onsuccess = function () { resolve(req.result || null); };
+        req.onerror = function () { resolve(null); };
+      });
+    });
+  }
+  function idbDelete(key) {
+    return openIdb().then(function (db) {
+      if (!db) return;
+      return new Promise(function (resolve) {
+        var tx = db.transaction('portraits', 'readwrite');
+        tx.objectStore('portraits').delete(key);
+        tx.oncomplete = resolve; tx.onerror = resolve;
+      });
+    });
+  }
+
+  /* Downscale an uploaded image to a sane portrait (max 512 px, JPEG). */
+  function shrinkImage(file) {
+    return new Promise(function (resolve, reject) {
+      var url = URL.createObjectURL(file);
+      var img = new Image();
+      img.onload = function () {
+        var scale = Math.min(1, 512 / Math.max(img.width, img.height));
+        var c = document.createElement('canvas');
+        c.width = Math.max(1, Math.round(img.width * scale));
+        c.height = Math.max(1, Math.round(img.height * scale));
+        c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+        URL.revokeObjectURL(url);
+        resolve(c.toDataURL('image/jpeg', 0.85));
+      };
+      img.onerror = function () { URL.revokeObjectURL(url); reject(new Error('bad image')); };
+      img.src = url;
+    });
   }
 
   /* ---------------- engagement telemetry (session analytics) ----------------
@@ -139,12 +247,8 @@
     return b64(JSON.stringify(payload));
   }
 
-  function b64(str) {
-    return btoa(unescape(encodeURIComponent(str)));
-  }
-  function unb64(str) {
-    return decodeURIComponent(escape(atob(str)));
-  }
+  function b64(str) { return btoa(unescape(encodeURIComponent(str))); }
+  function unb64(str) { return decodeURIComponent(escape(atob(str))); }
 
   /* ---------------- login ---------------- */
   function tryAuthFromSession() {
@@ -163,7 +267,9 @@
     loadData();
     loadTele();
     renderGroups();
+    renderPrior();
     refreshProgress();
+    refreshSyncChip('idle');
   }
 
   function logout() {
@@ -172,7 +278,7 @@
     location.reload();
   }
 
-  /* ---------------- form rendering ---------------- */
+  /* ---------------- dom helper ---------------- */
   function el(tag, attrs, parent) {
     var n = document.createElement(tag);
     if (attrs) Object.keys(attrs).forEach(function (k) {
@@ -184,6 +290,7 @@
     return n;
   }
 
+  /* ---------------- form rendering ---------------- */
   function renderGroups() {
     var host = document.getElementById('groups');
     host.innerHTML = '';
@@ -203,7 +310,7 @@
       for (var i = 0; i < g.count; i++) body.appendChild(renderSlot(g, i));
     });
 
-    document.getElementById('groups').addEventListener('focusin', function (ev) {
+    host.addEventListener('focusin', function (ev) {
       var d = ev.target.closest('[data-group]');
       if (d) currentGroup = d.getAttribute('data-group');
     });
@@ -214,13 +321,51 @@
     var card = el('div', { 'class': 'slot', 'data-group': g.id });
 
     var row1 = el('div', { 'class': 'row1' }, card);
-    el('div', { 'class': 'idx', text: '#' + (i + 1) }, row1);
 
-    var nameWrap = el('div', null, row1);
+    /* portrait uploader */
+    var porBox = el('div', { 'class': 'porbox' }, row1);
+    var porImg = el('img', { 'class': 'por-thumb hidden', alt: 'portrait' }, porBox);
+    var porEmpty = el('div', { 'class': 'por-empty', text: '#' + (i + 1) }, porBox);
+    var porFile = el('input', { type: 'file', accept: 'image/*', 'class': 'hidden' }, porBox);
+    var porBtns = el('div', { 'class': 'porbtns' }, porBox);
+    var porAdd = el('a', { 'class': 'btn-xs', text: 'Portrait' }, porBtns);
+    var porDel = el('a', { 'class': 'btn-xs hidden', text: 'Remove' }, porBtns);
+    function showPortrait(dataUrl) {
+      if (dataUrl) {
+        porImg.src = dataUrl;
+        porImg.classList.remove('hidden');
+        porEmpty.classList.add('hidden');
+        porDel.classList.remove('hidden');
+        porAdd.textContent = 'Replace';
+      } else {
+        porImg.removeAttribute('src');
+        porImg.classList.add('hidden');
+        porEmpty.classList.remove('hidden');
+        porDel.classList.add('hidden');
+        porAdd.textContent = 'Portrait';
+      }
+    }
+    idbGet(portraitKey(g.id, i)).then(showPortrait);
+    porAdd.addEventListener('click', function () { porFile.click(); });
+    porFile.addEventListener('change', function () {
+      var f = porFile.files && porFile.files[0];
+      if (!f) return;
+      shrinkImage(f).then(function (dataUrl) {
+        idbPut(portraitKey(g.id, i), dataUrl).then(function () { showPortrait(dataUrl); });
+      }).catch(function () { alert('That file could not be read as an image.'); });
+      porFile.value = '';
+    });
+    porDel.addEventListener('click', function () {
+      idbDelete(portraitKey(g.id, i)).then(function () { showPortrait(null); });
+    });
+
+    var fields = el('div', { 'class': 'fields' }, row1);
+    var line1 = el('div', { 'class': 'line2' }, fields);
+    var nameWrap = el('div', null, line1);
     el('label', { text: 'Character name' }, nameWrap);
     var name = el('input', { type: 'text', placeholder: 'Full name', value: s.name }, nameWrap);
 
-    var rankWrap = el('div', null, row1);
+    var rankWrap = el('div', null, line1);
     el('label', { text: 'Rank' }, rankWrap);
     var rank = el('select', null, rankWrap);
     el('option', { value: '', text: '— select rank —' }, rank);
@@ -231,14 +376,14 @@
     var oc = el('option', { value: CUSTOM, text: CUSTOM }, rank);
     if (s.rank === CUSTOM) oc.selected = true;
 
-    var row2 = el('div', { 'class': 'row2' }, card);
-    var roleWrap = el('div', null, row2);
+    var line2 = el('div', { 'class': 'line2' }, fields);
+    var roleWrap = el('div', null, line2);
     el('label', { text: 'Role / billet aboard' }, roleWrap);
     var role = el('input', { type: 'text',
       placeholder: 'e.g., Helm, Sonar, Weapons, Cook, Corpsman', value: s.role }, roleWrap);
 
-    var extraWrap = el('div', null, row2);
-    var rankCustom = null, ship = null;
+    var extraWrap = el('div', null, line2);
+    var rankCustom, ship = null;
     if (g.ship) {
       el('label', { text: 'Which tanker' }, extraWrap);
       ship = el('select', null, extraWrap);
@@ -246,16 +391,21 @@
         var o = el('option', { value: v, text: v === '' ? '— assign ship —' : v }, ship);
         if (s.ship === v) o.selected = true;
       });
-      var rcWrap = el('div', { 'class': (s.rank === CUSTOM ? '' : 'hidden') }, card);
+      var rcWrap = el('div', { 'class': (s.rank === CUSTOM ? '' : 'hidden') }, fields);
       el('label', { text: 'Custom rank' }, rcWrap);
       rankCustom = el('input', { type: 'text', placeholder: 'Custom rank', value: s.rankCustom }, rcWrap);
       rankCustom._wrap = rcWrap;
     } else {
       el('label', { text: 'Custom rank (when "Other" is selected)' }, extraWrap);
-      rankCustom = el('input', { type: 'text', placeholder: 'Custom rank',
-        value: s.rankCustom }, extraWrap);
+      rankCustom = el('input', { type: 'text', placeholder: 'Custom rank', value: s.rankCustom }, extraWrap);
       rankCustom.disabled = s.rank !== CUSTOM;
     }
+
+    var descWrap = el('div', { 'class': 'full' }, card);
+    el('label', { text: 'Physical description' }, descWrap);
+    var desc = el('textarea', { rows: '2',
+      placeholder: 'Build, face, hair, scars, bearing — what the artist and the game should show.' }, descWrap);
+    desc.value = s.desc;
 
     var persWrap = el('div', { 'class': 'full' }, card);
     el('label', { text: 'Personality & relationship notes' }, persWrap);
@@ -269,7 +419,7 @@
       placeholder: 'What do they want out of the world? (Remember the standing orders above.)' }, goalWrap);
     goal.value = s.goal;
     el('div', { 'class': 'hint',
-      text: 'A character counts as complete once it has a name, personality notes, and a world goal.' }, goalWrap);
+      text: 'A character counts as complete once it has a name, personality notes, and a world goal. Portrait and physical description welcome.' }, goalWrap);
 
     function sync() {
       s.name = name.value;
@@ -277,6 +427,7 @@
       s.rankCustom = rankCustom ? rankCustom.value : '';
       s.role = role.value;
       s.ship = ship ? ship.value : '';
+      s.desc = desc.value;
       s.personality = pers.value;
       s.goal = goal.value;
       if (rankCustom) {
@@ -286,7 +437,7 @@
       card.classList.toggle('done', slotDone(s));
       queueSave();
     }
-    [name, rank, role, pers, goal].concat(rankCustom ? [rankCustom] : [])
+    [name, rank, role, desc, pers, goal].concat(rankCustom ? [rankCustom] : [])
       .concat(ship ? [ship] : [])
       .forEach(function (inp) { inp.addEventListener('input', sync); inp.addEventListener('change', sync); });
 
@@ -314,16 +465,66 @@
     if (p) p.textContent = done + ' / ' + total;
   }
 
+  /* ---------------- prior work (read-only reference, from the game records) ---------------- */
+  function renderPrior() {
+    var host = document.getElementById('prior');
+    if (!host || !window.BV_PRIOR) return;
+    host.innerHTML = '';
+    el('h2', { 'class': 'prior-title',
+      text: 'Delivered prior work — for reference' }, host);
+    el('p', { 'class': 'prior-sub',
+      text: 'Sam’s 50 completed officers, exactly as they live in the game today. Read-only.' }, host);
+
+    window.BV_PRIOR.forEach(function (g) {
+      var det = el('details', { 'class': 'group ref' }, host);
+      var sum = el('summary', null, det);
+      el('h2', { text: g.label }, sum);
+      el('span', { 'class': 'gcount', text: g.characters.length + ' characters' }, sum);
+      el('span', { 'class': 'gdone full', text: 'COMPLETED ✓' }, sum);
+      var body = el('div', { 'class': 'gbody' }, det);
+
+      g.characters.forEach(function (c, i) {
+        var card = el('div', { 'class': 'slot done refslot' }, body);
+        var row1 = el('div', { 'class': 'row1' }, card);
+        var porBox = el('div', { 'class': 'porbox' }, row1);
+        if (c.portrait) el('img', { 'class': 'por-thumb', src: c.portrait, alt: c.name, loading: 'lazy' }, porBox);
+        else el('div', { 'class': 'por-empty', text: '#' + (i + 1) }, porBox);
+
+        var fields = el('div', { 'class': 'fields' }, row1);
+        var line1 = el('div', { 'class': 'line2' }, fields);
+        var nw = el('div', null, line1);
+        el('label', { text: 'Character name' }, nw);
+        el('input', { type: 'text', value: c.name, disabled: 'disabled' }, nw);
+        var rw = el('div', null, line1);
+        el('label', { text: 'Rank' + (c.badge ? ' · badge ' + c.badge : '') }, rw);
+        el('input', { type: 'text', value: c.rank, disabled: 'disabled' }, rw);
+        var line2 = el('div', { 'class': 'line2' }, fields);
+        var dw = el('div', null, line2);
+        el('label', { text: 'Department' }, dw);
+        el('input', { type: 'text', value: c.role, disabled: 'disabled' }, dw);
+
+        var pw = el('div', { 'class': 'full' }, card);
+        el('label', { text: 'Personality (as written into the game)' }, pw);
+        var pt = el('textarea', { rows: '4', disabled: 'disabled' }, pw);
+        pt.value = c.personality;
+        var gw = el('div', { 'class': 'full' }, card);
+        el('label', { text: 'World goal' }, gw);
+        var gt = el('textarea', { rows: '2', disabled: 'disabled' }, gw);
+        gt.value = c.goal;
+      });
+    });
+  }
+
   /* ---------------- export / import ---------------- */
   function effectiveRank(s) {
     return s.rank === CUSTOM ? (s.rankCustom || 'Custom') : s.rank;
   }
 
-  function buildPayload() {
+  function buildPayloadText() {
     saveData(); saveTele();
     return {
       format: 'beaver-valley-crew-submission',
-      version: 1,
+      version: 2,
       exported: new Date().toISOString(),
       contributor: user,
       groups: GROUPS.map(function (g) {
@@ -332,7 +533,7 @@
           slots: data[g.id].map(function (s, i) {
             var out = {
               n: i + 1, name: s.name, rank: effectiveRank(s), role: s.role,
-              personality: s.personality, goal: s.goal
+              desc: s.desc, personality: s.personality, goal: s.goal
             };
             if (g.ship) out.ship = s.ship;
             return out;
@@ -343,8 +544,22 @@
     };
   }
 
+  /* Full payload including portraits (async: reads IndexedDB). */
+  function buildPayloadFull() {
+    var p = buildPayloadText();
+    var jobs = [];
+    p.groups.forEach(function (g) {
+      g.slots.forEach(function (s, i) {
+        jobs.push(idbGet(portraitKey(g.id, i)).then(function (img) {
+          if (img) s.portrait = img;
+        }));
+      });
+    });
+    return Promise.all(jobs).then(function () { return p; });
+  }
+
   function groupJson(g) {
-    var p = buildPayload();
+    var p = buildPayloadText();
     var grp = p.groups.filter(function (x) { return x.id === g.id; })[0];
     return JSON.stringify(grp, null, 2);
   }
@@ -378,13 +593,15 @@
   }
 
   function exportAll() {
-    var p = buildPayload();
-    var stamp = p.exported.slice(0, 10);
-    download('beaver-valley-crew-' + user + '-' + stamp + '.json', JSON.stringify(p, null, 2));
-    setTimeout(function () {
-      alert('Your submission file has downloaded.\n\nEmail it to Jeremy at ' + CONTACT_EMAIL +
-        ' (subject: "Beaver Valley crew — ' + user + '").\n\nYou can keep working and export again any time — the newest file always contains everything.');
-    }, 250);
+    buildPayloadFull().then(function (p) {
+      var stamp = p.exported.slice(0, 10);
+      download('beaver-valley-crew-' + user + '-' + stamp + '.json', JSON.stringify(p, null, 2));
+      syncNow('export');
+      setTimeout(function () {
+        alert('Your submission file has downloaded (portraits included).\n\nEmail it to Jeremy at ' + CONTACT_EMAIL +
+          ' (subject: "Beaver Valley crew — ' + user + '").\n\nYou can keep working and export again any time — the newest file always contains everything.');
+      }, 250);
+    });
   }
 
   function importPrevious() {
@@ -400,6 +617,7 @@
           var p = JSON.parse(String(r.result));
           if (p.format !== 'beaver-valley-crew-submission') throw new Error('wrong format');
           if (!confirm('Replace everything currently in this browser with the contents of "' + f.name + '"?')) return;
+          var portraitJobs = [];
           p.groups.forEach(function (grp) {
             var g = GROUPS.filter(function (x) { return x.id === grp.id; })[0];
             if (!g || !Array.isArray(grp.slots)) return;
@@ -408,17 +626,22 @@
               var slot = data[g.id][i];
               slot.name = sl.name || '';
               slot.role = sl.role || '';
+              slot.desc = sl.desc || '';
               slot.personality = sl.personality || '';
               slot.goal = sl.goal || '';
               slot.ship = sl.ship || '';
               var rk = sl.rank || '';
               if (rk && RANKS[g.ranks].indexOf(rk) === -1) { slot.rank = CUSTOM; slot.rankCustom = rk; }
               else { slot.rank = rk; slot.rankCustom = ''; }
+              if (sl.portrait) portraitJobs.push(idbPut(portraitKey(g.id, i), sl.portrait));
+              else portraitJobs.push(idbDelete(portraitKey(g.id, i)));
             });
           });
-          saveData();
-          renderGroups();
-          refreshProgress();
+          Promise.all(portraitJobs).then(function () {
+            saveData();
+            renderGroups();
+            refreshProgress();
+          });
         } catch (e) {
           alert('That does not look like a Beaver Valley crew submission file.');
         }
@@ -426,6 +649,36 @@
       r.readAsText(f);
     });
     inp.click();
+  }
+
+  /* ---------------- cloud sync ---------------- */
+  var syncTimer = null;
+  function scheduleSync() {
+    if (!SYNC_URL) return;
+    clearTimeout(syncTimer);
+    syncTimer = setTimeout(function () { syncNow('auto'); }, SYNC_DEBOUNCE_MS);
+  }
+
+  function syncNow(reason) {
+    if (!SYNC_URL || !user) return;
+    var body = JSON.stringify(buildPayloadText());
+    refreshSyncChip('saving');
+    fetch(SYNC_URL, { method: 'POST', body: body,
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' } })
+      .then(function (r) {
+        refreshSyncChip(r.ok ? 'saved' : 'failed');
+      })
+      .catch(function () { refreshSyncChip('failed'); });
+  }
+
+  function refreshSyncChip(state) {
+    var chip = document.getElementById('syncState');
+    if (!chip) return;
+    if (!SYNC_URL) { chip.textContent = 'Cloud storage: off (use Export to hand work over)'; return; }
+    if (state === 'saving') chip.textContent = 'Cloud: saving…';
+    else if (state === 'saved') chip.textContent = 'Cloud: saved ' + new Date().toLocaleTimeString();
+    else if (state === 'failed') chip.textContent = 'Cloud: offline (kept locally, will retry)';
+    else chip.textContent = 'Cloud storage: on';
   }
 
   /* ---------------- reviewer console ---------------- */
@@ -442,10 +695,12 @@
   }
 
   function buildCsv(p) {
-    var rows = [['Group', '#', 'Name', 'Rank', 'Role', 'Ship', 'Personality & Relationships', 'World Goal']];
+    var rows = [['Group', '#', 'Name', 'Rank', 'Role', 'Ship', 'Physical Description',
+      'Personality & Relationships', 'World Goal', 'Has Portrait']];
     p.groups.forEach(function (g) {
       g.slots.forEach(function (s) {
-        rows.push([g.label, s.n, s.name, s.rank, s.role, s.ship || '', s.personality, s.goal]);
+        rows.push([g.label, s.n, s.name, s.rank, s.role, s.ship || '', s.desc || '',
+          s.personality, s.goal, s.portrait ? 'yes' : '']);
       });
     });
     return rows.map(function (r) { return r.map(csvEscape).join(','); }).join('\r\n');
@@ -498,20 +753,27 @@
       var gBtn = el('a', { 'class': 'btn-sm', text: 'Copy group JSON' }, gh);
       gBtn.addEventListener('click', function () { copyText(JSON.stringify(g, null, 2), gBtn); });
 
+      var hasShip = g.slots.some(function (s) { return s.ship; });
+      var hasPor = g.slots.some(function (s) { return s.portrait; });
       var table = el('table', null, out);
       var tr = el('tr', null, el('thead', null, table));
-      ['#', 'Name', 'Rank', 'Role'].concat(g.slots.some(function (s) { return s.ship; }) ? ['Ship'] : [])
-        .concat(['Personality & Relationships', 'World Goal'])
+      (hasPor ? ['Portrait'] : []).concat(['#', 'Name', 'Rank', 'Role'])
+        .concat(hasShip ? ['Ship'] : [])
+        .concat(['Physical Description', 'Personality & Relationships', 'World Goal'])
         .forEach(function (h) { el('th', { text: h }, tr); });
       var tbody = el('tbody', null, table);
-      var hasShip = g.slots.some(function (s) { return s.ship; });
       g.slots.forEach(function (s) {
         var row = el('tr', null, tbody);
+        if (hasPor) {
+          var td = el('td', null, row);
+          if (s.portrait) el('img', { src: s.portrait, 'class': 'rev-por', alt: s.name }, td);
+        }
         el('td', { text: s.n }, row);
         el('td', { 'class': 'namecell', text: s.name || '—' }, row);
         el('td', { text: s.rank || '—' }, row);
         el('td', { text: s.role || '—' }, row);
         if (hasShip) el('td', { text: s.ship || '—' }, row);
+        el('td', { text: s.desc || '—' }, row);
         el('td', { text: s.personality || '—' }, row);
         el('td', { text: s.goal || '—' }, row);
       });
@@ -558,7 +820,7 @@
   document.getElementById('logoutBtn').addEventListener('click', logout);
   document.getElementById('exportBtn').addEventListener('click', exportAll);
   document.getElementById('copyAllBtn').addEventListener('click', function () {
-    copyText(JSON.stringify(buildPayload(), null, 2), document.getElementById('copyAllBtn'));
+    copyText(JSON.stringify(buildPayloadText(), null, 2), document.getElementById('copyAllBtn'));
   });
   document.getElementById('importBtn').addEventListener('click', importPrevious);
 
@@ -566,11 +828,18 @@
     document.addEventListener(ev, function () { lastInput = Date.now(); }, true);
   });
   setInterval(teleTick, TICK * 1000);
-  window.addEventListener('beforeunload', function () { if (tele) saveTele(); });
+  window.addEventListener('beforeunload', function () {
+    if (tele) saveTele();
+    if (SYNC_URL && user && navigator.sendBeacon) {
+      try { navigator.sendBeacon(SYNC_URL, JSON.stringify(buildPayloadText())); } catch (e) { }
+    }
+  });
 
   wireReview();
   tryAuthFromSession();
 
-  /* verification seam for automated checks */
-  window.__bvcrewExport = function () { return user ? JSON.stringify(buildPayload()) : null; };
+  /* verification seam for automated checks (returns a Promise of the full payload) */
+  window.__bvcrewExport = function () {
+    return user ? buildPayloadFull().then(function (p) { return JSON.stringify(p); }) : null;
+  };
 })();

@@ -62,10 +62,21 @@
 .slot{border:1px solid var(--line-soft); border-radius:var(--radius); background:var(--bg-2);
   padding:16px 16px 14px; margin:14px 0;}
 .slot.done{border-color:rgba(99,192,137,.35);}
-.slot .row1{display:grid; grid-template-columns:52px 1fr 1fr; gap:10px; align-items:center;}
-.slot .row2{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:10px;}
-.slot .idx{font-family:var(--f-display); color:var(--gold-deep); font-size:1.3rem; text-align:center;}
-.slot.done .idx{color:var(--green-core);}
+.slot .row1{display:grid; grid-template-columns:104px 1fr; gap:14px; align-items:start;}
+.slot .fields{display:grid; gap:10px;}
+.slot .line2{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+.porbox{display:flex; flex-direction:column; align-items:center; gap:6px;}
+.por-thumb{width:96px; height:96px; object-fit:cover; border-radius:var(--radius);
+  border:1px solid var(--line); background:var(--bg-3);}
+.por-empty{width:96px; height:96px; display:flex; align-items:center; justify-content:center;
+  border:1px dashed var(--line-soft); border-radius:var(--radius);
+  font-family:var(--f-display); color:var(--gold-deep); font-size:1.3rem;}
+.slot.done .por-empty{color:var(--green-core);}
+.porbtns{display:flex; gap:6px;}
+.btn-xs{cursor:pointer; font-family:var(--f-head); text-transform:uppercase; letter-spacing:.08em;
+  font-size:.62rem; padding:4px 8px; border-radius:var(--radius); border:1px solid var(--line-soft);
+  color:var(--muted);}
+.btn-xs:hover{color:var(--gold-bright); border-color:var(--gold-deep);}
 .slot label{display:block; font-family:var(--f-head); text-transform:uppercase; letter-spacing:.1em;
   font-size:.66rem; color:var(--muted); margin:0 0 4px;}
 .slot input, .slot select, .slot textarea{width:100%; background:var(--bg-3); color:var(--cream);
@@ -75,6 +86,15 @@
 .slot input:focus, .slot select:focus, .slot textarea:focus{outline:none; border-color:var(--gold-deep);}
 .slot .full{margin-top:12px;}
 .slot .hint{color:var(--muted-2); font-size:.78rem; margin-top:3px;}
+
+.prior-title{font-family:var(--f-head); color:var(--cream); text-transform:uppercase;
+  letter-spacing:.08em; margin:38px 0 2px; font-size:1.3rem;}
+.prior-sub{color:var(--muted); margin:0 0 16px; font-size:.92rem;}
+.group.ref > summary{background:linear-gradient(180deg, rgba(99,192,137,.08), transparent);}
+.refslot input:disabled, .refslot textarea:disabled{opacity:.85; color:var(--text);
+  -webkit-text-fill-color:var(--text); cursor:default;}
+.rev-por{width:52px; height:52px; object-fit:cover; border-radius:var(--radius);
+  border:1px solid var(--line-soft);}
 
 .review{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); padding:22px; margin-top:30px;}
 .review h2{font-family:var(--f-head); color:var(--cream); text-transform:uppercase; letter-spacing:.08em; margin:0 0 12px;}
@@ -146,6 +166,7 @@
   <div class="toolbar">
     <span class="prog">Complete: <b id="progTotal">0 / 70</b></span>
     <span class="savestate" id="saveState">All changes save automatically in this browser.</span>
+    <span class="savestate" id="syncState"></span>
     <span class="spacer"></span>
     <a class="btn-sm" id="importBtn" title="Resume from a previously exported file">Import previous export</a>
     <a class="btn-sm" id="copyAllBtn">Copy all (JSON)</a>
@@ -153,6 +174,8 @@
   </div>
 
   <div id="groups"></div>
+
+  <div id="prior"></div>
 
   <!-- ===== REVIEW & EXTRACT (Jeremy only) ===== -->
   <section id="review" class="review hidden">
@@ -175,6 +198,7 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/crew-prior.js"></script>
 <script src="js/crew.js"></script>
 </body>
 </html>
