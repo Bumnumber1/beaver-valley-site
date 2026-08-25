@@ -21,9 +21,9 @@
      (see sync/README.md in this repo), every contributor's text data is
      pushed automatically ~60 s after each change and on export — so the
      work is stored server-side in Jeremy's Google Sheet, not only in the
-     contributor's browser. Portraits stay in the export file (too heavy
-     to push on every keystroke). Empty string = local + export-file only. */
-  var SYNC_URL = '';
+     contributor's browser. Portrait uploads push separately the moment
+     they change. Empty string = local + export-file only. */
+  var SYNC_URL = 'https://script.google.com/macros/s/AKfycbzDjBaJwX6OwThFY3JI9zlw-cOdHGuBLNv8YGcrjBW5wz2A2Ndv2WYGajWa-S8Gmshf/exec';
   var SYNC_DEBOUNCE_MS = 60000;
 
   /* ---------------- rank vocabularies ---------------- */
