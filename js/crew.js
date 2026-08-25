@@ -351,12 +351,18 @@
       var f = porFile.files && porFile.files[0];
       if (!f) return;
       shrinkImage(f).then(function (dataUrl) {
-        idbPut(portraitKey(g.id, i), dataUrl).then(function () { showPortrait(dataUrl); });
+        idbPut(portraitKey(g.id, i), dataUrl).then(function () {
+          showPortrait(dataUrl);
+          markDirtyPortrait(g.id, i);   // pushed (and emailed) right away
+        });
       }).catch(function () { alert('That file could not be read as an image.'); });
       porFile.value = '';
     });
     porDel.addEventListener('click', function () {
-      idbDelete(portraitKey(g.id, i)).then(function () { showPortrait(null); });
+      idbDelete(portraitKey(g.id, i)).then(function () {
+        showPortrait(null);
+        markDirtyPortrait(g.id, i);
+      });
     });
 
     var fields = el('div', { 'class': 'fields' }, row1);
@@ -597,6 +603,7 @@
       var stamp = p.exported.slice(0, 10);
       download('beaver-valley-crew-' + user + '-' + stamp + '.json', JSON.stringify(p, null, 2));
       syncNow('export');
+      syncPortraitsNow(true);
       setTimeout(function () {
         alert('Your submission file has downloaded (portraits included).\n\nEmail it to Jeremy at ' + CONTACT_EMAIL +
           ' (subject: "Beaver Valley crew — ' + user + '").\n\nYou can keep working and export again any time — the newest file always contains everything.');
@@ -641,6 +648,7 @@
             saveData();
             renderGroups();
             refreshProgress();
+            syncPortraitsNow(true);
           });
         } catch (e) {
           alert('That does not look like a Beaver Valley crew submission file.');
@@ -657,6 +665,71 @@
     if (!SYNC_URL) return;
     clearTimeout(syncTimer);
     syncTimer = setTimeout(function () { syncNow('auto'); }, SYNC_DEBOUNCE_MS);
+  }
+
+  /* Portraits push IMMEDIATELY on upload (a 2 s batcher so a burst of uploads
+     arrives as one push/one email). Failed pushes stay in the dirty list and
+     retry on the next portrait change or export. */
+  var porSyncTimer = null;
+  function dirtyKey() { return 'bvcrew.v1.' + user + '.dirtyPortraits'; }
+  function loadDirty() {
+    try {
+      var d = JSON.parse(localStorage.getItem(dirtyKey()) || '[]');
+      return Array.isArray(d) ? d : [];
+    } catch (e) { return []; }
+  }
+  function markDirtyPortrait(groupId, i) {
+    var k = groupId + ':' + i;
+    var d = loadDirty();
+    if (d.indexOf(k) === -1) d.push(k);
+    try { localStorage.setItem(dirtyKey(), JSON.stringify(d)); } catch (e) { }
+    if (!SYNC_URL) return;
+    clearTimeout(porSyncTimer);
+    porSyncTimer = setTimeout(function () { syncPortraitsNow(false); }, 2000);
+  }
+  function syncPortraitsNow(all) {
+    if (!SYNC_URL || !user) return Promise.resolve();
+    var keys;
+    if (all) {
+      keys = [];
+      GROUPS.forEach(function (g) {
+        for (var i = 0; i < g.count; i++) keys.push(g.id + ':' + i);
+      });
+    } else {
+      keys = loadDirty();
+    }
+    if (!keys.length) return Promise.resolve();
+    var images = [];
+    return Promise.all(keys.map(function (k) {
+      var parts = k.split(':');
+      var gid = parts[0], idx = parseInt(parts[1], 10);
+      var g = GROUPS.filter(function (x) { return x.id === gid; })[0];
+      if (!g || isNaN(idx)) return Promise.resolve();
+      return idbGet(portraitKey(gid, idx)).then(function (img) {
+        if (all && !img) return; // full pushes skip empty slots
+        images.push({
+          group: gid, label: g.label, n: idx + 1,
+          name: (data[gid] && data[gid][idx]) ? data[gid][idx].name : '',
+          data: img || ''
+        });
+      });
+    })).then(function () {
+      if (!images.length) return;
+      refreshSyncChip('saving');
+      return fetch(SYNC_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+        body: JSON.stringify({
+          format: 'beaver-valley-crew-portraits', version: 1,
+          contributor: user, exported: new Date().toISOString(), images: images
+        })
+      }).then(function (r) {
+        if (r.ok) {
+          try { localStorage.setItem(dirtyKey(), '[]'); } catch (e) { }
+          refreshSyncChip('saved');
+        } else refreshSyncChip('failed');
+      }).catch(function () { refreshSyncChip('failed'); });
+    });
   }
 
   function syncNow(reason) {

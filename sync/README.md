@@ -22,11 +22,15 @@ That's it. A spreadsheet named **"Beaver Valley Crew Submissions"** appears in y
   name, rank, role, ship, physical description, personality, world goal. Read or
   File → Download → CSV straight from Sheets.
 
+Portraits: the moment a contributor uploads (or replaces/removes) a character portrait, the
+image is pushed to the script, saved as a real file in Drive under
+**"Beaver Valley Crew Portraits/&lt;USER&gt;/"** (always the newest version per character),
+logged with its link on the **Portraits** sheet tab — and **emailed to
+bumnumber1@gmail.com immediately with the images attached**. Export also re-pushes the full
+portrait set as a safety net.
+
 Notes:
 
 - The portal shows the contributor a small "Cloud: saved" note; while offline it says work is
   kept locally and retries on the next change.
-- Portraits are **not** pushed on every change (too heavy) — they travel inside the
-  "Export & send to Jeremy" file, which the Review console on the portal renders and
-  converts to CSV.
 - Until the URL is set, nothing breaks: the portal simply runs in local + export-file mode.
