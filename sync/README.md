@@ -1,5 +1,18 @@
 # Crew portal cloud storage — 2-minute setup
 
+**The portal is ONE SHARED LIVE DOCUMENT.** All three logins (SAM / JEREMY / MALCOLM) work on
+the same manifest: every slot carries a last-edited timestamp, edits push to the receiver
+~15 s after typing stops (45 s max during continuous typing), and every open portal pulls the
+merged copy on login, after each push, on tab focus, and once a minute. Per slot the newest
+edit wins; a slot someone is actively typing in is never overwritten under them. Portraits are
+shared the same way (Drive file ids), and the **Crew Dispatches** board at the top is a shared
+notes feed — that's the built-in way to leave each other messages.
+
+Maintenance: `POST {"format":"beaver-valley-crew-admin","key":"<JEREMY's password>",
+"op":"clear-messages"}` to the /exec URL wipes the dispatch board. The receiver also keeps
+rolling document backups (`bvcrew-shared-doc.backup-*.json`, newest 20, one per 30 min of
+activity) in the "Beaver Valley Crew Data" Drive folder for disaster recovery.
+
 The Staff Only crew portal saves everything in the contributor's browser and hands work over
 as export files. To ALSO store every keystroke server-side (a Google Sheet in your Drive that
 updates itself about a minute after Sam types), do this once:
@@ -16,18 +29,18 @@ updates itself about a minute after Sam types), do this once:
 
 That's it. A spreadsheet named **"Beaver Valley Crew Submissions"** appears in your Drive:
 
-- **Log** — every push, timestamped (full history; nothing is ever lost).
-- **Latest** — each contributor's newest complete data as JSON.
-- **Roster SAM** (etc.) — the newest data unpacked to one row per character: group, number,
-  name, rank, role, ship, physical description, personality, world goal. Read or
-  File → Download → CSV straight from Sheets.
+- **Log** — every push, timestamped, with who sent it (full history).
+- **Roster** — the shared document unpacked to one row per character: group, number,
+  name, rank, role, ship, physical description, personality, world goal, last-edited time.
+  Read or File → Download → CSV straight from Sheets. Rebuilt at most every 2 minutes.
 
 Portraits: the moment a contributor uploads (or replaces/removes) a character portrait, the
 image is pushed to the script, saved as a real file in Drive under
-**"Beaver Valley Crew Portraits/&lt;USER&gt;/"** (always the newest version per character),
+**"Beaver Valley Crew Portraits/SHARED/"** (always the newest version per character),
 logged with its link on the **Portraits** sheet tab — and **emailed to
-bumnumber1@gmail.com immediately with the images attached**. Export also re-pushes the full
-portrait set as a safety net.
+bumnumber1@gmail.com immediately with the images attached**. Every other open portal picks
+the new portrait up within about a minute. Export also re-pushes the full portrait set as a
+safety net.
 
 Notes:
 

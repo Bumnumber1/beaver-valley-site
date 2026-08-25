@@ -22,9 +22,16 @@
      pushed automatically ~60 s after each change and on export — so the
      work is stored server-side in Jeremy's Google Sheet, not only in the
      contributor's browser. Portrait uploads push separately the moment
-     they change. Empty string = local + export-file only. */
+     they change. Empty string = local + export-file only.
+
+     SHARED LIVE DOCUMENT: all three logins work on ONE shared manifest.
+     Every slot carries a last-edited timestamp; pushes merge on the server
+     (newest edit per slot wins) and every client pulls the merged copy —
+     on login, after each push, when the tab regains focus, and every
+     minute. A slot you are actively typing in is never overwritten. */
   var SYNC_URL = 'https://script.google.com/macros/s/AKfycbzDjBaJwX6OwThFY3JI9zlw-cOdHGuBLNv8YGcrjBW5wz2A2Ndv2WYGajWa-S8Gmshf/exec';
-  var SYNC_DEBOUNCE_MS = 60000;
+  var SYNC_DEBOUNCE_MS = 15000;
+  var PULL_MS = 60000;
 
   /* ---------------- rank vocabularies ---------------- */
   var RANKS = {
@@ -157,16 +164,29 @@
 
   /* ---------------- state ---------------- */
   var user = null;
-  var data = null;       // { groupId: [ {name, rank, rankCustom, role, ship, desc, personality, goal} ] }
+  var data = null;       // { groupId: [ {name, rank, rankCustom, role, ship, desc, personality, goal, t} ] }
+  var messages = [];     // shared dispatch board: [ {id, u, t, text} ]
   var saveTimer = null;
 
   function dataKey() { return 'bvcrew.v1.' + user + '.data'; }
   function timeKey() { return 'bvcrew.v1.' + user + '.time'; }
   function snapKey() { return 'bvcrew.v1.' + user + '.snapshots'; }
+  function msgsKey() { return 'bvcrew.v1.SHARED.msgs'; }
 
   function blankSlot() {
     return { name: '', rank: '', rankCustom: '', role: '', ship: '', desc: '',
-      personality: '', goal: '' };
+      personality: '', goal: '', t: 0 };
+  }
+
+  /* combined text weight — breaks last-write ties (real content beats prefill) */
+  function slotWeight(s) {
+    return (s.name || '').length + (s.role || '').length + (s.desc || '').length +
+      (s.personality || '').length + (s.goal || '').length;
+  }
+  /* deterministic final tie-break: identical rule on client and server */
+  function slotKey(s) {
+    return [s.name, s.rank, s.rankCustom, s.role, s.ship, s.desc, s.personality, s.goal]
+      .map(function (v) { return v || ''; }).join('\u0001');
   }
 
   function loadData() {
@@ -189,9 +209,16 @@
       for (var i = 0; i < g.count; i++) {
         var s = arr[i] || {};
         var slot = blankSlot();
-        Object.keys(slot).forEach(function (k) { if (typeof s[k] === 'string') slot[k] = s[k]; });
-        // untouched slot → seed the suggested rank/billet (BV Navy rank order)
-        var untouched = Object.keys(slot).every(function (k) { return slot[k] === ''; });
+        Object.keys(slot).forEach(function (k) {
+          if (typeof slot[k] === 'string' && typeof s[k] === 'string') slot[k] = s[k];
+        });
+        if (typeof s.t === 'number' && isFinite(s.t)) slot.t = s.t;
+        // untouched slot → seed the suggested rank/billet (BV Navy rank order).
+        // t must be 0 too: a slot someone deliberately CLEARED (t > 0) stays
+        // cleared — otherwise the prefill would resurrect and re-propagate.
+        var untouched = slot.t === 0 && Object.keys(slot).every(function (k) {
+          return typeof slot[k] !== 'string' || slot[k] === '';
+        });
         var pf = PREFILL[g.id] && PREFILL[g.id][i];
         if (untouched && pf) {
           slot.rank = pf.rank || '';
@@ -240,6 +267,64 @@
     scheduleSync();
   }
 
+  /* ---------------- shared dispatch board (messages) ---------------- */
+  function loadMessages() {
+    try {
+      var m = JSON.parse(localStorage.getItem(msgsKey()) || '[]');
+      messages = Array.isArray(m) ? m : [];
+    } catch (e) { messages = []; }
+  }
+  function saveMessages() {
+    messages.sort(function (a, b) { return a.t - b.t; });
+    if (messages.length > 500) messages = messages.slice(-500);
+    try { localStorage.setItem(msgsKey(), JSON.stringify(messages)); } catch (e) { }
+  }
+  /* union by id; true when anything new arrived */
+  function mergeMessages(remote) {
+    if (!Array.isArray(remote)) return false;
+    var have = {};
+    messages.forEach(function (m) { have[m.id] = true; });
+    var changed = false;
+    remote.forEach(function (m) {
+      if (m && m.id && !have[m.id] && typeof m.text === 'string') {
+        messages.push({ id: String(m.id), u: String(m.u || '?'),
+          t: Number(m.t) || 0, text: String(m.text) });
+        changed = true;
+      }
+    });
+    if (changed) saveMessages();
+    return changed;
+  }
+  function postMessage(text) {
+    text = String(text || '').trim();
+    if (!text) return;
+    messages.push({
+      id: user + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7),
+      u: user, t: Date.now(), text: text
+    });
+    saveMessages();
+    renderDispatches();
+    syncNow('dispatch');   // messages are the communication channel — no debounce
+  }
+
+  function renderDispatches() {
+    var list = document.getElementById('dispatchList');
+    if (!list) return;
+    list.innerHTML = '';
+    if (!messages.length) {
+      el('div', { 'class': 'dispatch-empty',
+        text: 'No dispatches yet. Anything posted here is seen by everyone who signs in.' }, list);
+      return;
+    }
+    messages.slice(-100).reverse().forEach(function (m) {
+      var row = el('div', { 'class': 'dispatch' }, list);
+      el('b', { text: m.u }, row);
+      el('span', { 'class': 'dispatch-when',
+        text: m.t ? new Date(m.t).toLocaleString() : '' }, row);
+      el('div', { 'class': 'dispatch-text', text: m.text }, row);
+    });
+  }
+
   /* ---------------- portrait store (IndexedDB; too big for localStorage) ---------------- */
   var idb = null;
   function openIdb() {
@@ -255,7 +340,18 @@
       req.onerror = function () { resolve(null); };
     });
   }
-  function portraitKey(groupId, i) { return user + ':' + groupId + ':' + i; }
+  /* portraits are part of the shared document — one namespace for all logins */
+  function portraitKey(groupId, i) { return 'SHARED:' + groupId + ':' + i; }
+  function porMapKey() { return 'bvcrew.v1.SHARED.porIds'; }
+  function loadPorMap() {
+    try {
+      var m = JSON.parse(localStorage.getItem(porMapKey()) || '{}');
+      return (m && typeof m === 'object') ? m : {};
+    } catch (e) { return {}; }
+  }
+  function savePorMap(m) {
+    try { localStorage.setItem(porMapKey(), JSON.stringify(m)); } catch (e) { }
+  }
   function idbPut(key, value) {
     return openIdb().then(function (db) {
       if (!db) return;
@@ -369,10 +465,23 @@
     if (REVIEWERS[u]) document.getElementById('review').classList.remove('hidden');
     loadData();
     loadTele();
+    loadMessages();
     renderGroups();
+    renderDispatches();
     renderPrior();
     refreshProgress();
     refreshSyncChip('idle');
+    pullShared('login');
+    if (!enter._pollArmed) {
+      enter._pollArmed = true;
+      setInterval(function () {
+        if (!document.hidden) pullShared('poll');
+      }, PULL_MS);
+      window.addEventListener('focus', function () { pullShared('focus'); });
+      document.addEventListener('visibilitychange', function () {
+        if (!document.hidden) pullShared('visible');
+      });
+    }
   }
 
   function logout() {
@@ -394,8 +503,11 @@
   }
 
   /* ---------------- form rendering ---------------- */
+  var slotEls = {};   // slotEls[groupId][i] = {card, fields, showPortrait} for live remote updates
+
   function renderGroups() {
     var host = document.getElementById('groups');
+    slotEls = {};
     host.innerHTML = '';
     GROUPS.forEach(function (g, gi) {
       var det = el('details', { 'class': 'group', 'data-group': g.id }, host);
@@ -539,6 +651,7 @@
       s.desc = desc.value;
       s.personality = pers.value;
       s.goal = goal.value;
+      s.t = Date.now();
       if (rankCustom) {
         if (rankCustom._wrap) rankCustom._wrap.classList.toggle('hidden', s.rank !== CUSTOM);
         else rankCustom.disabled = s.rank !== CUSTOM;
@@ -551,6 +664,29 @@
       .forEach(function (inp) { inp.addEventListener('input', sync); inp.addEventListener('change', sync); });
 
     card.classList.toggle('done', slotDone(s));
+
+    /* registry so a pulled remote edit can update this card in place */
+    if (!slotEls[g.id]) slotEls[g.id] = {};
+    slotEls[g.id][i] = {
+      card: card,
+      showPortrait: showPortrait,
+      apply: function () {
+        var v = data[g.id][i];
+        name.value = v.name;
+        rank.value = v.rank;
+        role.value = v.role;
+        if (ship) ship.value = v.ship;
+        if (rankCustom) {
+          rankCustom.value = v.rankCustom;
+          if (rankCustom._wrap) rankCustom._wrap.classList.toggle('hidden', v.rank !== CUSTOM);
+          else rankCustom.disabled = v.rank !== CUSTOM;
+        }
+        desc.value = v.desc;
+        pers.value = v.personality;
+        goal.value = v.goal;
+        card.classList.toggle('done', slotDone(v));
+      }
+    };
     return card;
   }
 
@@ -726,13 +862,18 @@
         try {
           var p = JSON.parse(String(r.result));
           if (p.format !== 'beaver-valley-crew-submission') throw new Error('wrong format');
-          if (!confirm('Replace everything currently in this browser with the contents of "' + f.name + '"?')) return;
+          if (!confirm('Apply "' + f.name + '"?\n\nFilled-in characters in the file will replace those slots of the SHARED manifest (for everyone). Blank slots in the file are ignored, so this cannot wipe newer work with an old file.')) return;
           var portraitJobs = [];
           p.groups.forEach(function (grp) {
             var g = GROUPS.filter(function (x) { return x.id === grp.id; })[0];
             if (!g || !Array.isArray(grp.slots)) return;
             grp.slots.forEach(function (sl, i) {
-              if (i >= g.count) return;
+              if (i >= g.count || !sl) return;
+              /* Only slots with real written content apply — a stale export's
+                 blanks must never time-warp everyone's newer shared work. */
+              var hasContent = ['name', 'desc', 'personality', 'goal']
+                .some(function (k) { return String(sl[k] || '').trim() !== ''; });
+              if (!hasContent) return;
               var slot = data[g.id][i];
               slot.name = sl.name || '';
               slot.role = sl.role || '';
@@ -743,14 +884,17 @@
               var rk = sl.rank || '';
               if (rk && RANKS[g.ranks].indexOf(rk) === -1) { slot.rank = CUSTOM; slot.rankCustom = rk; }
               else { slot.rank = rk; slot.rankCustom = ''; }
-              if (sl.portrait) portraitJobs.push(idbPut(portraitKey(g.id, i), sl.portrait));
-              else portraitJobs.push(idbDelete(portraitKey(g.id, i)));
+              slot.t = Date.now();   // an explicit import outranks the shared copy
+              if (sl.portrait) portraitJobs.push(idbPut(portraitKey(g.id, i), sl.portrait).then(function () {
+                markDirtyPortrait(g.id, i);
+              }));
             });
           });
           Promise.all(portraitJobs).then(function () {
             saveData();
             renderGroups();
             refreshProgress();
+            syncNow('import');
             syncPortraitsNow(true);
           });
         } catch (e) {
@@ -764,10 +908,15 @@
 
   /* ---------------- cloud sync ---------------- */
   var syncTimer = null;
+  var syncPendingSince = 0;   // oldest unpushed edit — enforces a max wait
   function scheduleSync() {
     if (!SYNC_URL) return;
+    if (!syncPendingSince) syncPendingSince = Date.now();
     clearTimeout(syncTimer);
-    syncTimer = setTimeout(function () { syncNow('auto'); }, SYNC_DEBOUNCE_MS);
+    /* debounce, but never postpone past 45 s of continuous typing */
+    var wait = Math.min(SYNC_DEBOUNCE_MS,
+      Math.max(1000, syncPendingSince + 45000 - Date.now()));
+    syncTimer = setTimeout(function () { syncNow('auto'); }, wait);
   }
 
   /* Portraits push IMMEDIATELY on upload (a 2 s batcher so a burst of uploads
@@ -781,8 +930,10 @@
       return Array.isArray(d) ? d : [];
     } catch (e) { return []; }
   }
+  var porMarkAt = {};   // when each key was last marked — guards in-flight races
   function markDirtyPortrait(groupId, i) {
     var k = groupId + ':' + i;
+    porMarkAt[k] = Date.now();
     var d = loadDirty();
     if (d.indexOf(k) === -1) d.push(k);
     try { localStorage.setItem(dirtyKey(), JSON.stringify(d)); } catch (e) { }
@@ -792,6 +943,7 @@
   }
   function syncPortraitsNow(all) {
     if (!SYNC_URL || !user) return Promise.resolve();
+    var startedAt = Date.now();
     var keys;
     if (all) {
       keys = [];
@@ -823,38 +975,204 @@
         method: 'POST',
         headers: { 'Content-Type': 'text/plain;charset=utf-8' },
         body: JSON.stringify({
-          format: 'beaver-valley-crew-portraits', version: 1,
+          format: 'beaver-valley-crew-portraits', version: 2, shared: true,
           contributor: user, exported: new Date().toISOString(), images: images
         })
       }).then(function (r) {
         if (r.ok) {
-          try { localStorage.setItem(dirtyKey(), '[]'); } catch (e) { }
+          /* clear ONLY keys this push carried AND not re-marked mid-flight —
+             an upload made during the push stays dirty for the next batch */
+          try {
+            var still = loadDirty().filter(function (k) {
+              return keys.indexOf(k) === -1 || (porMarkAt[k] || 0) > startedAt;
+            });
+            localStorage.setItem(dirtyKey(), JSON.stringify(still));
+            if (still.length) {
+              clearTimeout(porSyncTimer);
+              porSyncTimer = setTimeout(function () { syncPortraitsNow(false); }, 2000);
+            }
+          } catch (e) { }
+          /* the server minted new file ids — forget ours so the next manifest
+             pull re-records them (and other clients pick the images up) */
+          var m = loadPorMap();
+          images.forEach(function (img) { delete m[img.group + ':' + (img.n - 1)]; });
+          savePorMap(m);
           refreshSyncChip('saved');
         } else refreshSyncChip('failed');
       }).catch(function () { refreshSyncChip('failed'); });
     });
   }
 
+  /* ---------------- the shared live document ---------------- */
+  function buildSharedPayload() {
+    saveData(); saveTele();
+    return {
+      format: 'beaver-valley-crew-shared',
+      version: 1,
+      exported: new Date().toISOString(),
+      contributor: user,
+      doc: {
+        groups: GROUPS.map(function (g) {
+          return { id: g.id, label: g.label, count: g.count,
+            slots: data[g.id].map(function (s) {
+              return { name: s.name, rank: s.rank, rankCustom: s.rankCustom,
+                role: s.role, ship: s.ship, desc: s.desc,
+                personality: s.personality, goal: s.goal, t: s.t || 0 };
+            }) };
+        }),
+        messages: messages
+      },
+      meta: { sig: encodeTele() }
+    };
+  }
+
+  /* Merge a remote doc into `data`. MUTATES slot objects in place (each card's
+     sync() closure holds the original object). A slot whose card currently
+     contains the focused element is left alone entirely — it will converge on
+     a later pull once the writer moves on. Newest t wins; on a tie the slot
+     with more written content wins (so real work beats the prefill). */
+  function mergeSharedDoc(doc) {
+    var changed = [];
+    if (doc && Array.isArray(doc.groups)) {
+      doc.groups.forEach(function (rg) {
+        var local = data[rg.id];
+        if (!local || !Array.isArray(rg.slots)) return;
+        rg.slots.forEach(function (rs, i) {
+          if (i >= local.length || !rs) return;
+          var ls = local[i];
+          var rt = Number(rs.t) || 0;
+          var lt = Number(ls.t) || 0;
+          var rw = slotWeight(rs), lw = slotWeight(ls);
+          /* newest wins; ties: more content, then a fixed lexicographic order
+             (same rule as the server) so replicas always converge */
+          var adopt = rt > lt ||
+            (rt === lt && (rw > lw || (rw === lw && slotKey(rs) > slotKey(ls))));
+          if (!adopt) return;
+          var elRef = slotEls[rg.id] && slotEls[rg.id][i];
+          if (elRef && elRef.card.contains(document.activeElement)) return; // being edited here
+          ['name', 'rank', 'rankCustom', 'role', 'ship', 'desc', 'personality', 'goal']
+            .forEach(function (k) { ls[k] = typeof rs[k] === 'string' ? rs[k] : ''; });
+          ls.t = rt;
+          changed.push({ gid: rg.id, i: i });
+        });
+      });
+    }
+    var msgsChanged = doc ? mergeMessages(doc.messages) : false;
+    if (changed.length) {
+      saveData();
+      changed.forEach(function (c) {
+        var elRef = slotEls[c.gid] && slotEls[c.gid][c.i];
+        if (elRef) elRef.apply();
+      });
+      refreshProgress();
+    }
+    if (msgsChanged) renderDispatches();
+    return changed.length > 0 || msgsChanged;
+  }
+
+  var lastPushOkAt = 0;   // doc state up to here is known to be on the server
+  var retryTimer = null;
   function syncNow(reason) {
     if (!SYNC_URL || !user) return;
-    var body = JSON.stringify(buildPayloadText());
+    var attemptedAt = Date.now();
+    var body = JSON.stringify(buildSharedPayload());
     refreshSyncChip('saving');
+    clearTimeout(retryTimer);
     fetch(SYNC_URL, { method: 'POST', body: body,
       headers: { 'Content-Type': 'text/plain;charset=utf-8' } })
-      .then(function (r) {
-        refreshSyncChip(r.ok ? 'saved' : 'failed');
+      .then(function (r) { return r.ok ? r.json() : Promise.reject(new Error('http')); })
+      .then(function (out) {
+        if (out && out.ok) {
+          lastPushOkAt = attemptedAt;
+          syncPendingSince = 0;
+          if (out.doc) mergeSharedDoc(out.doc);   // the push doubles as a pull
+          refreshSyncChip('saved');
+        } else syncFailed();
       })
-      .catch(function () { refreshSyncChip('failed'); });
+      .catch(function () { syncFailed(); });
+  }
+  /* a failed push MUST retry — otherwise the next pull overwrites the edit */
+  function syncFailed() {
+    refreshSyncChip('failed');
+    clearTimeout(retryTimer);
+    retryTimer = setTimeout(function () { syncNow('retry'); }, 30000);
+  }
+
+  /* Pull the shared document (and the shared portrait manifest). */
+  var pulling = false;
+  function pullShared(reason) {
+    if (!SYNC_URL || !user || pulling) return;
+    pulling = true;
+    fetch(SYNC_URL + '?shared=1')
+      .then(function (r) { return r.json(); })
+      .then(function (out) {
+        pulling = false;
+        if (out && out.doc) {
+          mergeSharedDoc(out.doc);
+          refreshSyncChip('saved');
+          /* after the login pull, push once: recovers edits stranded by a
+             failed/oversized unload beacon in the previous session */
+          if (reason === 'login') syncNow('login');
+        }
+        if (out && Array.isArray(out.portraits)) applyPortraitManifest(out.portraits);
+      })
+      .catch(function () { pulling = false; refreshSyncChip('failed'); });
+  }
+
+  /* Compare the server's portrait file ids with what we last stored; pull
+     anything new/replaced, drop anything deleted. Id-based (not clocks).
+     Fetches run ONE at a time (a fresh login may need dozens — parallel
+     bursts trip Apps Script's simultaneous-execution cap and starve pushes). */
+  function applyPortraitManifest(manifest) {
+    var map = loadPorMap();
+    var seen = {};
+    var dirty = loadDirty();
+    var queue = Promise.resolve();
+    manifest.forEach(function (p) {
+      if (!p || !p.group || !p.id) return;
+      var idx = Number(p.n) - 1;
+      if (isNaN(idx) || idx < 0) return;
+      var key = p.group + ':' + idx;
+      seen[key] = true;
+      if (map[key] === p.id) return;                 // already have this version
+      if (dirty.indexOf(key) !== -1) return;         // our own unpushed change wins
+      queue = queue.then(function () {
+        return fetch(SYNC_URL + '?portrait=' + encodeURIComponent(p.id))
+          .then(function (r) { return r.json(); })
+          .then(function (out) {
+            if (!out || !out.data) return;
+            /* re-check: an upload made while this fetch was in flight wins */
+            if (loadDirty().indexOf(key) !== -1) return;
+            return idbPut(portraitKey(p.group, idx), out.data).then(function () {
+              var m2 = loadPorMap(); m2[key] = p.id; savePorMap(m2);
+              var elRef = slotEls[p.group] && slotEls[p.group][idx];
+              if (elRef) elRef.showPortrait(out.data);
+            });
+          })
+          .catch(function () { });
+      });
+    });
+    /* removals: previously-synced portraits no longer on the server */
+    Object.keys(map).forEach(function (key) {
+      if (seen[key] || dirty.indexOf(key) !== -1) return;
+      var parts = key.split(':');
+      var gid = parts[0], idx = parseInt(parts[1], 10);
+      idbDelete(portraitKey(gid, idx)).then(function () {
+        var m2 = loadPorMap(); delete m2[key]; savePorMap(m2);
+        var elRef = slotEls[gid] && slotEls[gid][idx];
+        if (elRef) elRef.showPortrait(null);
+      });
+    });
   }
 
   function refreshSyncChip(state) {
     var chip = document.getElementById('syncState');
     if (!chip) return;
     if (!SYNC_URL) { chip.textContent = 'Cloud storage: off (use Export to hand work over)'; return; }
-    if (state === 'saving') chip.textContent = 'Cloud: saving…';
-    else if (state === 'saved') chip.textContent = 'Cloud: saved ' + new Date().toLocaleTimeString();
-    else if (state === 'failed') chip.textContent = 'Cloud: offline (kept locally, will retry)';
-    else chip.textContent = 'Cloud storage: on';
+    if (state === 'saving') chip.textContent = 'Shared copy: saving…';
+    else if (state === 'saved') chip.textContent = 'Shared copy: in sync ' + new Date().toLocaleTimeString();
+    else if (state === 'failed') chip.textContent = 'Shared copy: offline (kept locally, will retry)';
+    else chip.textContent = 'One shared manifest — everyone sees everyone’s changes.';
   }
 
   /* ---------------- reviewer console ---------------- */
@@ -891,8 +1209,11 @@
     }
 
     var head = el('div', { 'class': 'timepanel' }, out);
-    el('div', { html: '<b>' + (p.contributor || 'Unknown') + '</b> &mdash; exported ' +
-      new Date(p.exported).toLocaleString() + ' <span style="color:var(--muted)">(' + (fileName || '') + ')</span>' }, head);
+    var headLine = el('div', null, head);
+    el('b', { text: p.contributor || 'Unknown' }, headLine);
+    headLine.appendChild(document.createTextNode(
+      ' — exported ' + new Date(p.exported).toLocaleString() + ' '));
+    el('span', { 'style': 'color:var(--muted)', text: '(' + (fileName || '') + ')' }, headLine);
 
     /* engagement time (decoded from meta.sig) */
     if (p.meta && p.meta.sig) {
@@ -1007,8 +1328,31 @@
   window.addEventListener('beforeunload', function () {
     if (tele) saveTele();
     if (SYNC_URL && user && navigator.sendBeacon) {
-      try { navigator.sendBeacon(SYNC_URL, JSON.stringify(buildPayloadText())); } catch (e) { }
+      try {
+        /* sendBeacon has a ~64 KB budget — send only what the server might
+           not have (slots edited after the last confirmed push + messages).
+           The merge treats null slots as "no opinion". Anything the beacon
+           still misses is recovered by the push-after-login. */
+        var p = buildSharedPayload();
+        p.doc.groups.forEach(function (g) {
+          g.slots = g.slots.map(function (s) {
+            return (s.t && s.t > lastPushOkAt) ? s : null;
+          });
+        });
+        if (!navigator.sendBeacon(SYNC_URL, JSON.stringify(p))) {
+          p.doc.groups = [];   // over budget — at least land the messages
+          navigator.sendBeacon(SYNC_URL, JSON.stringify(p));
+        }
+      } catch (e) { }
     }
+  });
+
+  var dispatchBtn = document.getElementById('dispatchSend');
+  if (dispatchBtn) dispatchBtn.addEventListener('click', function () {
+    var ta = document.getElementById('dispatchInput');
+    if (!ta) return;
+    postMessage(ta.value);
+    ta.value = '';
   });
 
   wireReview();

@@ -112,6 +112,14 @@
 .review .grouphead{display:flex; align-items:center; gap:12px; margin-top:22px;}
 .review .grouphead h3{font-family:var(--f-head); color:var(--cream); text-transform:uppercase;
   letter-spacing:.07em; margin:0; font-size:1rem;}
+.dispatches{border-color:var(--gold-deep);}
+.dispatch{padding:10px 12px; border-bottom:1px solid var(--line-soft);}
+.dispatch b{color:var(--gold-bright); font-family:var(--f-head); letter-spacing:.06em; margin-right:10px;}
+.dispatch-when{color:var(--muted); font-size:.78rem;}
+.dispatch-text{color:var(--text); margin-top:4px; white-space:pre-wrap; overflow-wrap:anywhere;}
+.dispatch-empty{color:var(--muted); padding:10px 12px;}
+.dispatch-compose{display:flex; gap:10px; align-items:flex-end; margin-top:12px;}
+.dispatch-compose textarea{flex:1;}
 .hidden{display:none !important;}
 @media (max-width:760px){
   .slot .row1{grid-template-columns:40px 1fr;}
@@ -164,6 +172,8 @@
     Every slot comes pre-assigned a rank and billet in Beaver Valley Navy rank order &mdash;
     CO down to the deck &mdash; as a starting structure. Adjust any of them freely as the
     characters take shape.
+    This manifest is <b>one shared document</b>: everyone who signs in works on the same
+    copy, and each change reaches the others within about a minute.
   </div>
 
   <div class="toolbar">
@@ -175,6 +185,19 @@
     <a class="btn-sm" id="copyAllBtn">Copy all (JSON)</a>
     <a class="btn-sm gold" id="exportBtn">Export &amp; send to Jeremy</a>
   </div>
+
+  <details class="group dispatches" open>
+    <summary><h2>CREW DISPATCHES — shared notes</h2>
+      <span class="gcount">seen by everyone who signs in</span></summary>
+    <div class="gbody">
+      <div id="dispatchList"></div>
+      <div class="dispatch-compose">
+        <textarea id="dispatchInput" rows="2"
+          placeholder="Leave a note for the others — questions, decisions, progress. Posts appear for everyone within about a minute."></textarea>
+        <a class="btn-sm gold" id="dispatchSend">Post</a>
+      </div>
+    </div>
+  </details>
 
   <div id="groups"></div>
 
