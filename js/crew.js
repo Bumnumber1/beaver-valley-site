@@ -50,7 +50,15 @@
     SCI: ['Civilian — Lead Scientist', 'Civilian — Scientist', 'Civilian — Research Engineer',
       'Civilian — Lab Technician'],
     AF: ['Colonel', 'Lieutenant Colonel', 'Major', 'Captain', 'First Lieutenant',
-      'Second Lieutenant', 'Civilian Test Pilot']
+      'Second Lieutenant', 'Civilian Test Pilot'],
+    /* Band members use the same slot as a crew character — the rank field
+       carries the instrument instead. */
+    BAND: ['Lead Vocals', 'Vocals & Guitar', 'Vocals & Bass', 'Vocals & Keyboards',
+      'Backing Vocals', 'Lead Guitar', 'Rhythm Guitar', 'Bass Guitar', 'Drums',
+      'Percussion', 'Keyboards / Piano', 'Organ', 'Synthesizer', 'Accordion',
+      'Harmonica', 'Banjo', 'Mandolin', 'Fiddle / Violin', 'Cello', 'Saxophone',
+      'Trumpet', 'Trombone', 'Flute', 'Turntables / DJ', 'Sampler / Programming',
+      'Bagpipes', 'Kazoo', 'Whatever is lying around']
   };
   var CUSTOM = 'Other / custom…';
 
@@ -66,6 +74,72 @@
     { id: 'scientist', label: 'Experimental Weapons Scientist', count: 1, ranks: 'SCI' },
     { id: 'porcupine', label: 'Porcupine Experimental Fighter Pilot', count: 1, ranks: 'AF' }
   ];
+
+  /* ================= BANDS & ALBUMS =================
+     One collapsible block per band: the band's name, front and back album
+     art, 3–5 member profiles (identical in shape to a crew character, with
+     the instrument in place of the rank), a track list whose length the
+     contributor sets, and one lyrics box per track.
+
+     TO ADD ANOTHER BAND: add one entry to BANDS below. Everything else —
+     storage, the shared live document, portraits, export, CSV and the
+     reviewer console — is derived from it. Two rules for the id:
+       • letters only, a–z (the server parses shared portrait filenames as
+         <group>-<nn>-<name>.jpg with an [a-z]+ group — a digit would make
+         album art invisible to every other signed-in browser), and
+       • never reuse or rename an existing id: it is the storage key, so a
+         rename orphans everything already written under the old one.
+
+     WHY BAND DATA IS SHAPED LIKE CREW SLOTS: the sync server merges any
+     group of {name, rank, role, ship, desc, personality, goal, t} records,
+     newest edit per slot winning. Modelling bands on that shape means the
+     shared document, the merge, the Drive backups, the Roster sheet and the
+     portrait pipeline all handle bands with NO server-side change:
+       <id>        → member profiles (rank = instrument)
+       <id>meta    → slot 0 only: name = band name, role = member count,
+                     ship = track count
+       <id>tracks  → slot i: name = track title, personality = lyrics
+       <id>cover   → album art only (no text): 0 = front, 1 = back
+     The friendly, readable shape is rebuilt for the export and the reviewer
+     console by buildPayloadText(); this is only how it travels and stores. */
+  var BANDS = [
+    { id: 'bandone', label: 'The Band' }
+  ];
+
+  var MIN_MEMBERS = 3, MAX_MEMBERS = 5, DEFAULT_MEMBERS = 4;
+  var MAX_TRACKS = 30, DEFAULT_TRACKS = 10;
+
+  BANDS.forEach(function (b) {
+    GROUPS.push({
+      id: b.id, label: b.label + ' — Members', count: MAX_MEMBERS, ranks: 'BAND',
+      band: b.id, kind: 'members',
+      rankLabel: 'Instrument', rankCustomLabel: 'Other instrument (when "Other" is selected)',
+      rankPlaceholder: 'Their instrument', rankEmpty: '— select instrument —',
+      roleLabel: 'Role in the band',
+      rolePlaceholder: 'e.g., Frontman, Songwriter, Founder, Hired gun',
+      persPlaceholder: 'Who are they? Temperament, quirks, history, and how they get on with the rest of the band and the wider Valley.',
+      goalHint: 'A member counts as complete once they have a name, personality notes, and a world goal. Portrait, instrument and physical description welcome.'
+    });
+    GROUPS.push({ id: b.id + 'meta', label: b.label + ' — Details', count: 1,
+      ranks: 'BAND', band: b.id, kind: 'meta' });
+    GROUPS.push({ id: b.id + 'tracks', label: b.label + ' — Tracks', count: MAX_TRACKS,
+      ranks: 'BAND', band: b.id, kind: 'tracks' });
+  });
+
+  /* Album art is images with no text record, so it is a portrait-only
+     pseudo-group: it never enters `data`, only the portrait pipeline. */
+  var COVER_GROUPS = BANDS.map(function (b) {
+    return { id: b.id + 'cover', label: b.label + ' — Album Art', count: 2,
+      names: ['Front Cover', 'Back Cover'], band: b.id, kind: 'cover' };
+  });
+
+  function crewGroups() {
+    return GROUPS.filter(function (g) { return !g.band; });
+  }
+  function portraitGroups() { return GROUPS.concat(COVER_GROUPS); }
+  function groupById(id) {
+    return GROUPS.filter(function (g) { return g.id === id; })[0];
+  }
 
   /* ---------------- starting structure (pre-filled ranks & billets) ----------------
      Each slot arrives pre-assigned in Beaver Valley Navy rank order — CO down to the
@@ -188,6 +262,25 @@
     return [s.name, s.rank, s.rankCustom, s.role, s.ship, s.desc, s.personality, s.goal]
       .map(function (v) { return v || ''; }).join('\u0001');
   }
+
+  /* ---------------- band accessors ----------------
+     A band's three scalars live in its single `<id>meta` slot (see the BANDS
+     comment above). Counts are read through a clamp, so a corrupt or
+     hand-edited value can never render a negative or absurd number of rows. */
+  function metaSlot(b) { return data[b.id + 'meta'][0]; }
+  function bandNameOf(b) { return (metaSlot(b).name || '').trim(); }
+  function clampCount(raw, min, max, dflt) {
+    var n = parseInt(raw, 10);
+    if (!isFinite(n)) n = dflt;
+    return Math.max(min, Math.min(max, n));
+  }
+  function memberCountOf(b) {
+    return clampCount(metaSlot(b).role, MIN_MEMBERS, MAX_MEMBERS, DEFAULT_MEMBERS);
+  }
+  function trackCountOf(b) {
+    return clampCount(metaSlot(b).ship, 1, MAX_TRACKS, DEFAULT_TRACKS);
+  }
+  function trackNamed(s) { return (s.name || '').trim() !== ''; }
 
   function loadData() {
     var raw = null;
@@ -383,13 +476,15 @@
     });
   }
 
-  /* Downscale an uploaded image to a sane portrait (max 512 px, JPEG). */
-  function shrinkImage(file) {
+  /* Downscale an uploaded image to a sane size (JPEG). Portraits are thumbnails
+     at 512 px; album art is looked at full-size, so it is given more room. */
+  function shrinkImage(file, maxPx) {
+    maxPx = maxPx || 512;
     return new Promise(function (resolve, reject) {
       var url = URL.createObjectURL(file);
       var img = new Image();
       img.onload = function () {
-        var scale = Math.min(1, 512 / Math.max(img.width, img.height));
+        var scale = Math.min(1, maxPx / Math.max(img.width, img.height));
         var c = document.createElement('canvas');
         c.width = Math.max(1, Math.round(img.width * scale));
         c.height = Math.max(1, Math.round(img.height * scale));
@@ -466,7 +561,8 @@
     loadData();
     loadTele();
     loadMessages();
-    renderGroups();
+    renderGroups();   // resets slotEls — bands must register after it
+    renderBands();
     renderDispatches();
     renderPrior();
     refreshProgress();
@@ -509,7 +605,9 @@
     var host = document.getElementById('groups');
     slotEls = {};
     host.innerHTML = '';
-    GROUPS.forEach(function (g, gi) {
+    /* band groups render in their own section (renderBands) — they are in
+       GROUPS only so storage, sync, portraits and export cover them too */
+    crewGroups().forEach(function (g, gi) {
       var det = el('details', { 'class': 'group', 'data-group': g.id }, host);
       if (gi === 0) det.setAttribute('open', '');
       var sum = el('summary', null, det);
@@ -587,9 +685,9 @@
     var name = el('input', { type: 'text', placeholder: 'Full name', value: s.name }, nameWrap);
 
     var rankWrap = el('div', null, line1);
-    el('label', { text: 'Rank' }, rankWrap);
+    el('label', { text: g.rankLabel || 'Rank' }, rankWrap);
     var rank = el('select', null, rankWrap);
-    el('option', { value: '', text: '— select rank —' }, rank);
+    el('option', { value: '', text: g.rankEmpty || '— select rank —' }, rank);
     RANKS[g.ranks].forEach(function (r) {
       var o = el('option', { value: r, text: r }, rank);
       if (s.rank === r) o.selected = true;
@@ -599,9 +697,10 @@
 
     var line2 = el('div', { 'class': 'line2' }, fields);
     var roleWrap = el('div', null, line2);
-    el('label', { text: 'Role / billet aboard' }, roleWrap);
+    el('label', { text: g.roleLabel || 'Role / billet aboard' }, roleWrap);
     var role = el('input', { type: 'text',
-      placeholder: 'e.g., Helm, Sonar, Weapons, Cook, Corpsman', value: s.role }, roleWrap);
+      placeholder: g.rolePlaceholder || 'e.g., Helm, Sonar, Weapons, Cook, Corpsman',
+      value: s.role }, roleWrap);
 
     var extraWrap = el('div', null, line2);
     var rankCustom, ship = null;
@@ -617,8 +716,9 @@
       rankCustom = el('input', { type: 'text', placeholder: 'Custom rank', value: s.rankCustom }, rcWrap);
       rankCustom._wrap = rcWrap;
     } else {
-      el('label', { text: 'Custom rank (when "Other" is selected)' }, extraWrap);
-      rankCustom = el('input', { type: 'text', placeholder: 'Custom rank', value: s.rankCustom }, extraWrap);
+      el('label', { text: g.rankCustomLabel || 'Custom rank (when "Other" is selected)' }, extraWrap);
+      rankCustom = el('input', { type: 'text',
+        placeholder: g.rankPlaceholder || 'Custom rank', value: s.rankCustom }, extraWrap);
       rankCustom.disabled = s.rank !== CUSTOM;
     }
 
@@ -631,7 +731,8 @@
     var persWrap = el('div', { 'class': 'full' }, card);
     el('label', { text: 'Personality & relationship notes' }, persWrap);
     var pers = el('textarea', { rows: '7',
-      placeholder: 'Who are they? Temperament, quirks, history, and how they relate to their crewmates and the wider Valley.' }, persWrap);
+      placeholder: g.persPlaceholder ||
+        'Who are they? Temperament, quirks, history, and how they relate to their crewmates and the wider Valley.' }, persWrap);
     pers.value = s.personality;
 
     var goalWrap = el('div', { 'class': 'full' }, card);
@@ -640,7 +741,8 @@
       placeholder: 'What do they want out of the world? (Remember the standing orders above.)' }, goalWrap);
     goal.value = s.goal;
     el('div', { 'class': 'hint',
-      text: 'A character counts as complete once it has a name, personality notes, and a world goal. Portrait and physical description welcome.' }, goalWrap);
+      text: g.goalHint ||
+        'A character counts as complete once it has a name, personality notes, and a world goal. Portrait and physical description welcome.' }, goalWrap);
 
     function sync() {
       s.name = name.value;
@@ -696,7 +798,9 @@
 
   function refreshProgress() {
     var total = 0, done = 0;
-    GROUPS.forEach(function (g) {
+    /* the contract total counts CREW only — a band is separate work and must
+       not quietly inflate or dilute the 70 */
+    crewGroups().forEach(function (g) {
       var gd = 0;
       data[g.id].forEach(function (s) { if (slotDone(s)) gd++; });
       total += g.count; done += gd;
@@ -708,6 +812,320 @@
     });
     var p = document.getElementById('progTotal');
     if (p) p.textContent = done + ' / ' + total;
+    BANDS.forEach(refreshBandChips);
+    refreshBandProgress();
+  }
+
+  /* toolbar chip: band members written / tracks named, across every band */
+  function refreshBandProgress() {
+    var p = document.getElementById('progBand');
+    if (!p || !BANDS.length || !data) return;
+    var mDone = 0, mTotal = 0, tNamed = 0, tTotal = 0;
+    BANDS.forEach(function (b) {
+      var mc = memberCountOf(b), tc = trackCountOf(b);
+      mTotal += mc; tTotal += tc;
+      for (var i = 0; i < mc; i++) if (slotDone(data[b.id][i])) mDone++;
+      for (var j = 0; j < tc; j++) if (trackNamed(data[b.id + 'tracks'][j])) tNamed++;
+    });
+    p.innerHTML = '';
+    p.appendChild(document.createTextNode('Band: '));
+    el('b', { text: mDone + ' / ' + mTotal }, p);
+    p.appendChild(document.createTextNode(' members · '));
+    el('b', { text: tNamed + ' / ' + tTotal }, p);
+    p.appendChild(document.createTextNode(' tracks'));
+  }
+
+  /* ---------------- bands: rendering ---------------- */
+  var bandEls = {};   // bandEls[bandId] = summary chips + redraw handles
+
+  function renderBands() {
+    var host = document.getElementById('bands');
+    if (!host) return;
+    bandEls = {};
+    host.innerHTML = '';
+    if (!BANDS.length) return;
+
+    el('h2', { 'class': 'prior-title', text: 'Bands & albums' }, host);
+    el('p', { 'class': 'prior-sub',
+      text: 'Beaver Valley’s bands play real songs on real stages, and the town hears every ' +
+        'word. Give the band a name, its members the same treatment as a crew character, ' +
+        'and the album a track list with the lyrics to match.' }, host);
+
+    BANDS.forEach(function (b) { renderBand(b, host); });
+
+    /* one delegated listener for the life of the page — the section is
+       re-rendered on import, and re-binding here would stack duplicates */
+    if (!renderBands._wired) {
+      renderBands._wired = true;
+      host.addEventListener('focusin', function (ev) {
+        var d = ev.target.closest('[data-group]');
+        if (d) currentGroup = d.getAttribute('data-group');
+      });
+    }
+  }
+
+  function renderBand(b, host) {
+    var det = el('details', { 'class': 'group bandgroup', 'data-group': b.id }, host);
+    det.setAttribute('open', '');
+    var sum = el('summary', null, det);
+    var titleEl = el('h2', { text: bandNameOf(b) || b.label }, sum);
+    var countEl = el('span', { 'class': 'gcount' }, sum);
+    var doneEl = el('span', { 'class': 'gdone' }, sum);
+    var body = el('div', { 'class': 'gbody' }, det);
+
+    var tools = el('div', { 'class': 'gtools' }, body);
+    var copyBtn = el('a', { 'class': 'btn-sm', text: 'Copy this band (JSON)' }, tools);
+    copyBtn.addEventListener('click', function () { copyText(bandJson(b), copyBtn); });
+
+    /* ---- band name (the collapsed header shows it) ---- */
+    var s1 = el('div', { 'class': 'bandsec' }, body);
+    el('h3', { text: 'Band name' }, s1);
+    var nameInput = el('input', { 'class': 'bandname', type: 'text',
+      placeholder: 'What are they called?' }, s1);
+    nameInput.value = metaSlot(b).name || '';
+    nameInput.addEventListener('input', function () {
+      var m = metaSlot(b);
+      m.name = nameInput.value;
+      m.t = Date.now();
+      titleEl.textContent = bandNameOf(b) || b.label;
+      refreshBandChips(b);
+      queueSave();
+    });
+
+    /* ---- album art ---- */
+    var s2 = el('div', { 'class': 'bandsec' }, body);
+    el('h3', { text: 'Album cover' }, s2);
+    var covers = el('div', { 'class': 'covers' }, s2);
+    renderCover(b, 0, 'Front cover', covers);
+    renderCover(b, 1, 'Back cover', covers);
+
+    /* ---- members ---- */
+    var s3 = el('div', { 'class': 'bandsec' }, body);
+    el('h3', { text: 'Members' }, s3);
+    var mCtl = el('div', { 'class': 'countctl' }, s3);
+    el('label', { text: 'How many members' }, mCtl);
+    var mSel = el('select', null, mCtl);
+    for (var mi = MIN_MEMBERS; mi <= MAX_MEMBERS; mi++)
+      el('option', { value: String(mi), text: String(mi) }, mSel);
+    mSel.value = String(memberCountOf(b));
+    el('span', { 'class': 'hint',
+      text: 'Lowering this hides the extra members — anything already written about them is ' +
+        'kept, and comes back if you raise it again.' }, mCtl);
+    var mHost = el('div', null, s3);
+
+    function drawMembers() {
+      var g = groupById(b.id);
+      slotEls[g.id] = {};          // drop handles to the cards being replaced
+      mHost.innerHTML = '';
+      var n = memberCountOf(b);
+      for (var i = 0; i < n; i++) mHost.appendChild(renderSlot(g, i));
+    }
+    mSel.addEventListener('change', function () {
+      var m = metaSlot(b);
+      m.role = mSel.value;
+      m.t = Date.now();
+      drawMembers();
+      refreshBandChips(b);
+      refreshBandProgress();
+      queueSave();
+    });
+
+    /* ---- track list ---- */
+    var s4 = el('div', { 'class': 'bandsec' }, body);
+    el('h3', { text: 'Track list' }, s4);
+    var tCtl = el('div', { 'class': 'countctl' }, s4);
+    el('label', { text: 'How many tracks' }, tCtl);
+    var tSel = el('select', null, tCtl);
+    for (var ti = 1; ti <= MAX_TRACKS; ti++)
+      el('option', { value: String(ti), text: String(ti) }, tSel);
+    tSel.value = String(trackCountOf(b));
+    var addTrack = el('a', { 'class': 'btn-sm', text: '+ Add a track' }, tCtl);
+    el('span', { 'class': 'hint',
+      text: 'The lyrics sheet below follows this list. Lowering the count hides the extra ' +
+        'tracks — their titles and lyrics are kept, and come back if you raise it again.' }, tCtl);
+    var tHost = el('div', null, s4);
+
+    /* ---- lyrics (one box per track above) ---- */
+    var s5 = el('div', { 'class': 'bandsec' }, body);
+    el('h3', { text: 'Lyrics' }, s5);
+    var lHost = el('div', null, s5);
+
+    function drawTracks() {
+      var g = groupById(b.id + 'tracks');
+      slotEls[g.id] = {};
+      tHost.innerHTML = '';
+      lHost.innerHTML = '';
+      var n = trackCountOf(b);
+      for (var i = 0; i < n; i++) renderTrack(b, g, i, tHost, lHost);
+    }
+    function setTrackCount(n) {
+      n = clampCount(n, 1, MAX_TRACKS, DEFAULT_TRACKS);
+      var m = metaSlot(b);
+      m.ship = String(n);
+      m.t = Date.now();
+      tSel.value = String(n);
+      drawTracks();
+      refreshBandChips(b);
+      refreshBandProgress();
+      queueSave();
+    }
+    tSel.addEventListener('change', function () { setTrackCount(tSel.value); });
+    addTrack.addEventListener('click', function () { setTrackCount(trackCountOf(b) + 1); });
+
+    bandEls[b.id] = { title: titleEl, count: countEl, done: doneEl };
+
+    drawMembers();
+    drawTracks();
+    refreshBandChips(b);
+
+    /* Registry entry for the meta slot, so a name or count someone else
+       changed lands here on the next pull (and redraws the rows it governs). */
+    slotEls[b.id + 'meta'] = {
+      0: {
+        hasFocus: function () {
+          return document.activeElement === nameInput ||
+            document.activeElement === mSel || document.activeElement === tSel;
+        },
+        showPortrait: function () { },
+        apply: function () {
+          var m = metaSlot(b);
+          nameInput.value = m.name || '';
+          titleEl.textContent = bandNameOf(b) || b.label;
+          var mc = String(memberCountOf(b)), tc = String(trackCountOf(b));
+          if (mSel.value !== mc) { mSel.value = mc; drawMembers(); }
+          if (tSel.value !== tc) { tSel.value = tc; drawTracks(); }
+          refreshBandChips(b);
+          refreshBandProgress();
+        }
+      }
+    };
+  }
+
+  /* Album art rides the shared-portrait pipeline (IndexedDB → Drive → the
+     other browsers), so it needs no storage of its own — only a bigger
+     downscale, because a cover is looked at rather than thumbnailed. */
+  function renderCover(b, idx, title, parent) {
+    var gid = b.id + 'cover';
+    var box = el('div', { 'class': 'cover-box' }, parent);
+    el('div', { 'class': 'cover-label', text: title }, box);
+    var img = el('img', { 'class': 'cover-thumb hidden', alt: title }, box);
+    var empty = el('div', { 'class': 'cover-empty',
+      text: 'No ' + title.toLowerCase() + ' yet' }, box);
+    var file = el('input', { type: 'file', accept: 'image/*', 'class': 'hidden' }, box);
+    var btns = el('div', { 'class': 'porbtns' }, box);
+    var add = el('a', { 'class': 'btn-xs', text: 'Upload' }, btns);
+    var del = el('a', { 'class': 'btn-xs hidden', text: 'Remove' }, btns);
+
+    function show(dataUrl) {
+      if (dataUrl) {
+        img.src = dataUrl;
+        img.classList.remove('hidden');
+        empty.classList.add('hidden');
+        del.classList.remove('hidden');
+        add.textContent = 'Replace';
+      } else {
+        img.removeAttribute('src');
+        img.classList.add('hidden');
+        empty.classList.remove('hidden');
+        del.classList.add('hidden');
+        add.textContent = 'Upload';
+      }
+    }
+    idbGet(portraitKey(gid, idx)).then(show);
+
+    add.addEventListener('click', function () { file.click(); });
+    file.addEventListener('change', function () {
+      var f = file.files && file.files[0];
+      if (!f) return;
+      shrinkImage(f, 1024).then(function (dataUrl) {
+        idbPut(portraitKey(gid, idx), dataUrl).then(function () {
+          show(dataUrl);
+          markDirtyPortrait(gid, idx);   // pushed (and emailed) right away
+        });
+      }).catch(function () { alert('That file could not be read as an image.'); });
+      file.value = '';
+    });
+    del.addEventListener('click', function () {
+      idbDelete(portraitKey(gid, idx)).then(function () {
+        show(null);
+        markDirtyPortrait(gid, idx);
+      });
+    });
+
+    if (!slotEls[gid]) slotEls[gid] = {};
+    slotEls[gid][idx] = { card: box, showPortrait: show, apply: function () { } };
+  }
+
+  /* One track = a title row up in the list and a lyrics box below it. Both
+     halves are the same record, so the lyrics heading always names the track
+     the contributor just typed. */
+  function renderTrack(b, g, i, tHost, lHost) {
+    var s = data[g.id][i];
+
+    var row = el('div', { 'class': 'track-row', 'data-group': g.id }, tHost);
+    el('div', { 'class': 'track-num', text: (i + 1) + '.' }, row);
+    var title = el('input', { 'class': 'bandfield', type: 'text',
+      placeholder: 'Title of track ' + (i + 1) }, row);
+    title.value = s.name;
+
+    var block = el('div', { 'class': 'lyric-block', 'data-group': g.id }, lHost);
+    var head = el('div', { 'class': 'lyric-head' }, block);
+    var ta = el('textarea', { 'class': 'bandfield', rows: '10',
+      placeholder: 'Lyrics for track ' + (i + 1) + '…' }, block);
+    ta.value = s.personality;
+
+    function relabel() {
+      head.innerHTML = '';
+      head.appendChild(document.createTextNode('Track ' + (i + 1) + ' — '));
+      var t = (title.value || '').trim();
+      if (t) el('b', { text: t }, head);
+      else el('i', { text: 'untitled' }, head);
+    }
+    function sync() {
+      s.name = title.value;
+      s.personality = ta.value;
+      s.t = Date.now();
+      relabel();
+      refreshBandChips(b);
+      refreshBandProgress();
+      queueSave();
+    }
+    title.addEventListener('input', sync);
+    ta.addEventListener('input', sync);
+    relabel();
+
+    slotEls[g.id][i] = {
+      hasFocus: function () {
+        return row.contains(document.activeElement) || block.contains(document.activeElement);
+      },
+      showPortrait: function () { },
+      apply: function () {
+        var v = data[g.id][i];
+        title.value = v.name;
+        ta.value = v.personality;
+        relabel();
+      }
+    };
+  }
+
+  function refreshBandChips(b) {
+    var refs = bandEls[b.id];
+    if (!refs) return;
+    var mc = memberCountOf(b), tc = trackCountOf(b);
+    var mDone = 0, tNamed = 0, i;
+    for (i = 0; i < mc; i++) if (slotDone(data[b.id][i])) mDone++;
+    for (i = 0; i < tc; i++) if (trackNamed(data[b.id + 'tracks'][i])) tNamed++;
+    refs.count.textContent = mc + (mc === 1 ? ' member · ' : ' members · ') +
+      tc + (tc === 1 ? ' track' : ' tracks');
+    refs.done.textContent = mDone + ' / ' + mc + ' written · ' + tNamed + ' / ' + tc + ' titled';
+    refs.done.classList.toggle('full',
+      mDone === mc && tNamed === tc && bandNameOf(b) !== '');
+  }
+
+  function bandJson(b) {
+    var p = buildPayloadText();
+    var bp = (p.bands || []).filter(function (x) { return x.id === b.id; })[0];
+    return JSON.stringify(bp, null, 2);
   }
 
   /* ---------------- prior work (read-only reference, from the game records) ---------------- */
@@ -772,7 +1190,7 @@
       version: 2,
       exported: new Date().toISOString(),
       contributor: user,
-      groups: GROUPS.map(function (g) {
+      groups: crewGroups().map(function (g) {
         return {
           id: g.id, label: g.label, count: g.count,
           slots: data[g.id].map(function (s, i) {
@@ -785,11 +1203,32 @@
           })
         };
       }),
+      /* Bands leave in the shape a reader expects, not the slot shape they
+         are stored and synced in. Only the rows in play are exported: rows
+         hidden behind a lowered count stay in the browser and the shared
+         document, but a hand-off file should be the album as it stands. */
+      bands: BANDS.map(function (b) {
+        var mc = memberCountOf(b), tc = trackCountOf(b);
+        return {
+          id: b.id,
+          label: b.label,
+          name: bandNameOf(b),
+          memberCount: mc,
+          trackCount: tc,
+          members: data[b.id].slice(0, mc).map(function (s, i) {
+            return { n: i + 1, name: s.name, instrument: effectiveRank(s), role: s.role,
+              desc: s.desc, personality: s.personality, goal: s.goal };
+          }),
+          tracks: data[b.id + 'tracks'].slice(0, tc).map(function (s, i) {
+            return { n: i + 1, title: s.name, lyrics: s.personality };
+          })
+        };
+      }),
       meta: { sig: encodeTele() }
     };
   }
 
-  /* Full payload including portraits (async: reads IndexedDB). */
+  /* Full payload including portraits and album art (async: reads IndexedDB). */
   function buildPayloadFull() {
     var p = buildPayloadText();
     var jobs = [];
@@ -799,6 +1238,20 @@
           if (img) s.portrait = img;
         }));
       });
+    });
+    (p.bands || []).forEach(function (bp) {
+      bp.members.forEach(function (m, i) {
+        jobs.push(idbGet(portraitKey(bp.id, i)).then(function (img) {
+          if (img) m.portrait = img;
+        }));
+      });
+      bp.covers = {};
+      jobs.push(idbGet(portraitKey(bp.id + 'cover', 0)).then(function (img) {
+        if (img) bp.covers.front = img;
+      }));
+      jobs.push(idbGet(portraitKey(bp.id + 'cover', 1)).then(function (img) {
+        if (img) bp.covers.back = img;
+      }));
     });
     return Promise.all(jobs).then(function () { return p; });
   }
@@ -890,9 +1343,63 @@
               }));
             });
           });
+          /* Bands (absent from files exported before bands existed). Same
+             rule as the crew above: only rows with something written apply. */
+          if (Array.isArray(p.bands)) {
+            p.bands.forEach(function (bp) {
+              var b = BANDS.filter(function (x) { return x.id === bp.id; })[0];
+              if (!b || !bp) return;
+              var m = metaSlot(b);
+              if (String(bp.name || '').trim()) { m.name = bp.name; m.t = Date.now(); }
+              if (bp.memberCount) {
+                m.role = String(clampCount(bp.memberCount, MIN_MEMBERS, MAX_MEMBERS, DEFAULT_MEMBERS));
+                m.t = Date.now();
+              }
+              if (bp.trackCount) {
+                m.ship = String(clampCount(bp.trackCount, 1, MAX_TRACKS, DEFAULT_TRACKS));
+                m.t = Date.now();
+              }
+              (bp.members || []).forEach(function (mm, i) {
+                if (i >= MAX_MEMBERS || !mm) return;
+                var hasContent = ['name', 'desc', 'personality', 'goal']
+                  .some(function (k) { return String(mm[k] || '').trim() !== ''; });
+                if (!hasContent) return;
+                var slot = data[b.id][i];
+                slot.name = mm.name || '';
+                slot.role = mm.role || '';
+                slot.desc = mm.desc || '';
+                slot.personality = mm.personality || '';
+                slot.goal = mm.goal || '';
+                slot.ship = '';
+                var ins = mm.instrument || '';
+                if (ins && RANKS.BAND.indexOf(ins) === -1) { slot.rank = CUSTOM; slot.rankCustom = ins; }
+                else { slot.rank = ins; slot.rankCustom = ''; }
+                slot.t = Date.now();
+                if (mm.portrait) portraitJobs.push(idbPut(portraitKey(b.id, i), mm.portrait)
+                  .then(function () { markDirtyPortrait(b.id, i); }));
+              });
+              (bp.tracks || []).forEach(function (tt, i) {
+                if (i >= MAX_TRACKS || !tt) return;
+                if (String(tt.title || '').trim() === '' &&
+                  String(tt.lyrics || '').trim() === '') return;
+                var slot = data[b.id + 'tracks'][i];
+                slot.name = tt.title || '';
+                slot.personality = tt.lyrics || '';
+                slot.t = Date.now();
+              });
+              [['front', 0], ['back', 1]].forEach(function (c) {
+                var img = bp.covers && bp.covers[c[0]];
+                if (!img) return;
+                portraitJobs.push(idbPut(portraitKey(b.id + 'cover', c[1]), img)
+                  .then(function () { markDirtyPortrait(b.id + 'cover', c[1]); }));
+              });
+            });
+          }
+
           Promise.all(portraitJobs).then(function () {
             saveData();
             renderGroups();
+            renderBands();
             refreshProgress();
             syncNow('import');
             syncPortraitsNow(true);
@@ -930,6 +1437,13 @@
       return Array.isArray(d) ? d : [];
     } catch (e) { return []; }
   }
+  /* What the image is called in Drive and in the notification email. Album
+     art has no text record behind it, so the cover group names its slots. */
+  function portraitSlotName(g, idx) {
+    if (g.names) return g.names[idx] || ('#' + (idx + 1));
+    return (data[g.id] && data[g.id][idx]) ? data[g.id][idx].name : '';
+  }
+
   var porMarkAt = {};   // when each key was last marked — guards in-flight races
   function markDirtyPortrait(groupId, i) {
     var k = groupId + ':' + i;
@@ -947,7 +1461,7 @@
     var keys;
     if (all) {
       keys = [];
-      GROUPS.forEach(function (g) {
+      portraitGroups().forEach(function (g) {
         for (var i = 0; i < g.count; i++) keys.push(g.id + ':' + i);
       });
     } else {
@@ -958,13 +1472,13 @@
     return Promise.all(keys.map(function (k) {
       var parts = k.split(':');
       var gid = parts[0], idx = parseInt(parts[1], 10);
-      var g = GROUPS.filter(function (x) { return x.id === gid; })[0];
+      var g = portraitGroups().filter(function (x) { return x.id === gid; })[0];
       if (!g || isNaN(idx)) return Promise.resolve();
       return idbGet(portraitKey(gid, idx)).then(function (img) {
         if (all && !img) return; // full pushes skip empty slots
         images.push({
           group: gid, label: g.label, n: idx + 1,
-          name: (data[gid] && data[gid][idx]) ? data[gid][idx].name : '',
+          name: portraitSlotName(g, idx),
           data: img || ''
         });
       });
@@ -1031,6 +1545,14 @@
      contains the focused element is left alone entirely — it will converge on
      a later pull once the writer moves on. Newest t wins; on a tie the slot
      with more written content wins (so real work beats the prefill). */
+  /* A crew card is one element; a track is two (its title row and its lyrics
+     box, in different sections), so band entries answer for themselves. */
+  function elRefFocused(elRef) {
+    if (!elRef) return false;
+    if (typeof elRef.hasFocus === 'function') return elRef.hasFocus();
+    return !!(elRef.card && elRef.card.contains(document.activeElement));
+  }
+
   function mergeSharedDoc(doc) {
     var changed = [];
     if (doc && Array.isArray(doc.groups)) {
@@ -1049,7 +1571,7 @@
             (rt === lt && (rw > lw || (rw === lw && slotKey(rs) > slotKey(ls))));
           if (!adopt) return;
           var elRef = slotEls[rg.id] && slotEls[rg.id][i];
-          if (elRef && elRef.card.contains(document.activeElement)) return; // being edited here
+          if (elRefFocused(elRef)) return;   // being edited here
           ['name', 'rank', 'rankCustom', 'role', 'ship', 'desc', 'personality', 'goal']
             .forEach(function (k) { ls[k] = typeof rs[k] === 'string' ? rs[k] : ''; });
           ls.t = rt;
@@ -1197,6 +1719,23 @@
           s.personality, s.goal, s.portrait ? 'yes' : '']);
       });
     });
+    /* band members are characters too — same columns, instrument as rank */
+    (p.bands || []).forEach(function (b) {
+      (b.members || []).forEach(function (m) {
+        rows.push([(b.name || b.label) + ' (band)', m.n, m.name, m.instrument, m.role, '',
+          m.desc || '', m.personality, m.goal, m.portrait ? 'yes' : '']);
+      });
+    });
+    return rows.map(function (r) { return r.map(csvEscape).join(','); }).join('\r\n');
+  }
+
+  function buildLyricsCsv(p) {
+    var rows = [['Band', '#', 'Track title', 'Lyrics']];
+    (p.bands || []).forEach(function (b) {
+      (b.tracks || []).forEach(function (t) {
+        rows.push([b.name || b.label, t.n, t.title, t.lyrics]);
+      });
+    });
     return rows.map(function (r) { return r.map(csvEscape).join(','); }).join('\r\n');
   }
 
@@ -1244,6 +1783,8 @@
     var jsonBtn = el('a', { 'class': 'btn-sm', text: 'Copy raw JSON' }, bar);
     jsonBtn.addEventListener('click', function () { copyText(JSON.stringify(p, null, 2), jsonBtn); });
 
+    renderReviewBands(p, out);
+
     p.groups.forEach(function (g) {
       var gh = el('div', { 'class': 'grouphead' }, out);
       el('h3', { text: g.label }, gh);
@@ -1273,6 +1814,73 @@
         el('td', { text: s.desc || '—' }, row);
         el('td', { text: s.personality || '—' }, row);
         el('td', { text: s.goal || '—' }, row);
+      });
+    });
+  }
+
+  /* Bands in the reviewer console: the album as delivered — art, the line-up,
+     then every track with its lyrics in full. */
+  function renderReviewBands(p, out) {
+    if (!Array.isArray(p.bands) || !p.bands.length) return;
+
+    p.bands.forEach(function (b) {
+      var written = (b.members || []).some(function (m) { return (m.name || '').trim(); }) ||
+        (b.tracks || []).some(function (t) { return (t.title || '').trim() || (t.lyrics || '').trim(); }) ||
+        (b.name || '').trim() || (b.covers && (b.covers.front || b.covers.back));
+      if (!written) return;   // an untouched band is not worth a panel
+
+      var gh = el('div', { 'class': 'grouphead' }, out);
+      el('h3', { text: (b.name || b.label) + ' — band' }, gh);
+      var jb = el('a', { 'class': 'btn-sm', text: 'Copy band JSON' }, gh);
+      jb.addEventListener('click', function () { copyText(JSON.stringify(b, null, 2), jb); });
+      var lb = el('a', { 'class': 'btn-sm', text: 'Download lyrics (CSV)' }, gh);
+      lb.addEventListener('click', function () {
+        download('beaver-valley-lyrics-' + (p.contributor || 'unknown') + '.csv',
+          buildLyricsCsv({ bands: [b] }));
+      });
+
+      if (b.covers && (b.covers.front || b.covers.back)) {
+        var art = el('div', { 'class': 'timepanel', 'style': 'display:flex; gap:16px; align-items:center' }, out);
+        ['front', 'back'].forEach(function (side) {
+          if (!b.covers[side]) return;
+          var wrap = el('div', null, art);
+          el('img', { src: b.covers[side], 'class': 'rev-cover', alt: side + ' cover' }, wrap);
+          el('div', { 'style': 'color:var(--muted); font-size:.78rem; text-align:center',
+            text: side + ' cover' }, wrap);
+        });
+      }
+
+      var mTable = el('table', null, out);
+      var mHasPor = (b.members || []).some(function (m) { return m.portrait; });
+      var mtr = el('tr', null, el('thead', null, mTable));
+      (mHasPor ? ['Portrait'] : []).concat(['#', 'Name', 'Instrument', 'Role in the band',
+        'Physical Description', 'Personality & Relationships', 'World Goal'])
+        .forEach(function (h) { el('th', { text: h }, mtr); });
+      var mtb = el('tbody', null, mTable);
+      (b.members || []).forEach(function (m) {
+        var row = el('tr', null, mtb);
+        if (mHasPor) {
+          var td = el('td', null, row);
+          if (m.portrait) el('img', { src: m.portrait, 'class': 'rev-por', alt: m.name }, td);
+        }
+        el('td', { text: m.n }, row);
+        el('td', { 'class': 'namecell', text: m.name || '—' }, row);
+        el('td', { text: m.instrument || '—' }, row);
+        el('td', { text: m.role || '—' }, row);
+        el('td', { text: m.desc || '—' }, row);
+        el('td', { text: m.personality || '—' }, row);
+        el('td', { text: m.goal || '—' }, row);
+      });
+
+      var tTable = el('table', null, out);
+      var ttr = el('tr', null, el('thead', null, tTable));
+      ['#', 'Track', 'Lyrics'].forEach(function (h) { el('th', { text: h }, ttr); });
+      var ttb = el('tbody', null, tTable);
+      (b.tracks || []).forEach(function (t) {
+        var row = el('tr', null, ttb);
+        el('td', { text: t.n }, row);
+        el('td', { 'class': 'namecell', text: t.title || '—' }, row);
+        el('td', { 'class': 'rev-lyrics', text: t.lyrics || '—' }, row);
       });
     });
   }

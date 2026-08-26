@@ -121,6 +121,53 @@
 .dispatch-compose{display:flex; gap:10px; align-items:flex-end; margin-top:12px;}
 .dispatch-compose textarea{flex:1;}
 .hidden{display:none !important;}
+
+/* ---------- bands & albums ---------- */
+.group.bandgroup > summary{background:linear-gradient(180deg, rgba(233,176,82,.14), rgba(233,176,82,.03));}
+.group.bandgroup > summary h2{font-family:var(--f-display); font-size:1.35rem; letter-spacing:.05em;
+  color:var(--gold-bright);}
+.bandsec{margin:24px 0 4px;}
+.bandsec > h3{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.12em;
+  font-size:.78rem; color:var(--gold); margin:0 0 12px; padding-bottom:7px;
+  border-bottom:1px solid var(--line);}
+.bandfield{width:100%; background:var(--bg-3); color:var(--cream); border:1px solid var(--line-soft);
+  border-radius:var(--radius); padding:9px 10px; font-size:.97rem; font-family:var(--f-body);}
+.bandfield:focus{outline:none; border-color:var(--gold-deep);}
+textarea.bandfield{resize:vertical; line-height:1.6;}
+.bandname{width:100%; background:var(--bg-3); color:var(--gold-bright); border:1px solid var(--line-soft);
+  border-radius:var(--radius); padding:13px 15px; font-family:var(--f-display); font-size:1.5rem;
+  letter-spacing:.03em;}
+.bandname:focus{outline:none; border-color:var(--gold-deep);}
+
+.covers{display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:18px; max-width:620px;}
+.cover-box{display:flex; flex-direction:column; gap:8px;}
+.cover-label{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.1em;
+  font-size:.66rem; color:var(--muted);}
+.cover-thumb{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:var(--radius);
+  border:1px solid var(--line); background:var(--bg-3);}
+.cover-empty{width:100%; aspect-ratio:1/1; display:flex; align-items:center; justify-content:center;
+  text-align:center; padding:10px; border:1px dashed var(--line-soft); border-radius:var(--radius);
+  color:var(--muted-2); font-size:.82rem;}
+.cover-box .porbtns{justify-content:center;}
+
+.countctl{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-bottom:14px;}
+.countctl label{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.1em;
+  font-size:.66rem; color:var(--muted); margin:0;}
+.countctl select{background:var(--bg-3); color:var(--cream); border:1px solid var(--line-soft);
+  border-radius:var(--radius); padding:7px 9px; font-family:var(--f-body); font-size:.95rem;}
+.countctl select:focus{outline:none; border-color:var(--gold-deep);}
+.countctl .hint{margin:0; flex-basis:100%;}
+
+.track-row{display:grid; grid-template-columns:34px 1fr; gap:10px; align-items:center; margin:8px 0;}
+.track-num{font-family:var(--f-head); color:var(--gold); font-size:.85rem; text-align:right;}
+.lyric-block{margin:0 0 18px;}
+.lyric-head{font-family:var(--f-head); text-transform:uppercase; letter-spacing:.09em;
+  font-size:.72rem; color:var(--muted); margin:0 0 5px;}
+.lyric-head b{color:var(--gold-bright); font-weight:600;}
+.lyric-head i{color:var(--muted-2); font-style:normal;}
+.rev-cover{width:120px; height:120px; object-fit:cover; border-radius:var(--radius);
+  border:1px solid var(--line-soft);}
+.rev-lyrics{white-space:pre-wrap; color:var(--text); max-width:70ch;}
 @media (max-width:760px){
   .slot .row1{grid-template-columns:40px 1fr;}
   .slot .row2{grid-template-columns:1fr;}
@@ -177,7 +224,8 @@
   </div>
 
   <div class="toolbar">
-    <span class="prog">Complete: <b id="progTotal">0 / 70</b></span>
+    <span class="prog">Crew: <b id="progTotal">0 / 70</b></span>
+    <span class="prog" id="progBand"></span>
     <span class="savestate" id="saveState">All changes save automatically in this browser.</span>
     <span class="savestate" id="syncState"></span>
     <span class="spacer"></span>
@@ -198,6 +246,8 @@
       </div>
     </div>
   </details>
+
+  <div id="bands"></div>
 
   <div id="groups"></div>
 
