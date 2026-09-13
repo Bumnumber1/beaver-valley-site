@@ -7,6 +7,7 @@
 <meta name="description" content="A strategy guide to Beaver Valley: how blocking really works, why your feet decide whether a swing lands, talking an attacker down, staying out of jail, and how not to lose a submarine.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/guide-hits.css">
 </head>
 <body>
 
@@ -258,6 +259,41 @@
 
 <hr class="divider">
 
+<!-- ===== HITS TO KILL ===== -->
+<section class="section" id="hits">
+  <div class="wrap">
+    <div class="center reveal" style="margin-bottom:44px">
+      <span class="kicker">Ocean Operations</span>
+      <h2 class="section-title">How many hits it takes</h2>
+      <p class="section-lead" style="margin-inline:auto">Every weapon against every hull, counted in the game. Where luck decides, the cell shows the range and what it usually takes.</p>
+    </div>
+
+    <div class="hits-rules reveal">
+      <div class="hits-rule"><span class="fig">2&ndash;3</span><h4>Torpedoes kill submarines</h4><p>A torpedo that reaches a submarine takes close to half the boat, and roughly one in seven breaches the pressure hull outright.</p></div>
+      <div class="hits-rule"><span class="fig">3 at most</span><h4>Depth charges</h4><p>Inside thirty metres a charge takes a third of a submarine. Put one right on her and it takes half.</p></div>
+      <div class="hits-rule"><span class="fig">1</span><h4>A shell against an aircraft</h4><p>One shell from a ship&rsquo;s gun brings down anything that flies. So does the fourth round of a close-in gun burst.</p></div>
+      <div class="hits-rule"><span class="fig">3 in 10</span><h4>Missiles against aircraft</h4><p>Every missile or rocket that connects has a three-in-ten chance of taking the aircraft apart on the spot.</p></div>
+      <div class="hits-rule"><span class="fig">10&ndash;15</span><h4>Guns against aircraft</h4><p>Cannon and machine-gun rounds need ten to fifteen hits on any aircraft. The airliner soaks up twenty.</p></div>
+      <div class="hits-rule"><span class="fig">&frac12;</span><h4>Guns against warships</h4><p>Against a frigate or anything bigger &mdash; surfaced submarines included &mdash; a cannon round does half. You will not sink a warship with a gun.</p></div>
+    </div>
+
+    <div class="reveal" id="hits-matrix"></div>
+    <div class="hits-legend reveal">
+      <span><i style="background:rgba(197,65,42,.55)"></i>one hit</span>
+      <span><i style="background:rgba(232,128,42,.28)"></i>two or three</span>
+      <span><i style="background:rgba(159,176,102,.18)"></i>four to nine</span>
+      <span><i style="border:1px solid var(--line)"></i>ten or more</span>
+    </div>
+
+    <div class="note reveal" style="margin-top:28px">
+      <span class="ic">&#9670;</span>
+      <div><b>These are counts for the hull alone.</b> Water can finish a ship first: once half her compartments are flooded she goes under whatever her hull reads, so every number on a ship is the most it can take, not the least. The .50 cal on the small boats plays by its own rules &mdash; one round in ten gets through for a sliver of hull, so it takes about a thousand to sink anything, but a round that connects with a helicopter wrecks it.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
 <!-- ===== MODES ===== -->
 <section class="section">
   <div class="wrap">
@@ -390,5 +426,6 @@
 </footer>
 
 <script src="js/site.js"></script>
+<script src="js/guide-hits.js"></script>
 </body>
 </html>
