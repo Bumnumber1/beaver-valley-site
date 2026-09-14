@@ -38,7 +38,11 @@
 .hits-table thead .hull{background:var(--panel-hi)}
 .hits-table td.hull b{display:block; color:var(--cream); font-weight:600}
 .hits-table td.hull span{color:var(--muted); font-size:.8rem}
-.hits-table .hp{color:var(--muted); border-right:1px solid var(--line)}
+.hits-table .hp{color:var(--muted)}
+/* Top speed sits between Hull and the weapons and carries the separator; a weapon's projectile speed is its
+   header's second small line. */
+.hits-table .ts{color:var(--muted); border-right:1px solid var(--line)}
+.hits-table thead th small.spd{color:var(--muted); margin-top:2px}
 .hits-table .sep{border-left:1px solid var(--line)}
 .hits-table td.k1 {color:#fff4ec; background:rgba(197,65,42,.55); font-weight:600}
 .hits-table td.k23{color:var(--cream); background:rgba(232,128,42,.28)}
