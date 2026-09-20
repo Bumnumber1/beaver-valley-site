@@ -52,6 +52,15 @@
 .hits-table td .avg{display:block; font-size:.72rem; color:var(--muted); font-weight:400}
 .hits-table tbody tr:last-child td{border-bottom:0}
 
+/* Weapons & reach / The fleet: a plain reference table whose cells are prose, not counts. */
+.hits-table.spec td{white-space:normal; text-align:left; vertical-align:top; color:var(--muted); line-height:1.45}
+.hits-table.spec th{text-align:left}
+.hits-table.spec .hull{min-width:200px; max-width:250px; white-space:normal}
+.hits-table.spec td.hull{color:var(--cream)}
+.hits-table.spec td:nth-child(2){min-width:220px; max-width:330px}
+.hits-table.spec td:last-child{min-width:250px; max-width:400px}
+@media (max-width:720px){ .hits-table.spec .hull{min-width:136px} }
+
 .hits-legend{display:flex; flex-wrap:wrap; gap:10px 22px; margin:16px 0 0; color:var(--muted); font-size:.9rem}
 .hits-legend i{display:inline-block; width:28px; height:18px; border-radius:3px; vertical-align:-4px; margin-right:7px}
 
