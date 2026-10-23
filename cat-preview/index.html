@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Watch Mickey the cat turn, crouch, and pounce in native Unity animation previews. Mobile-friendly GIF loops.">
+<title>Mickey · Main Street animation review</title><style>
+:root{color-scheme:dark;--bg:#0c1113;--panel:#151d20;--line:#29383c;--ink:#ecede8;--muted:#a1b0b1;--accent:#e6bd84}
+*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a292b 0,var(--bg) 58%);color:var(--ink);font:16px/1.55 Segoe UI,system-ui,sans-serif}
+main{max-width:1120px;margin:auto;padding:48px 24px 32px}header{margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}
+h1{font-size:clamp(30px,5vw,49px);line-height:1.1;letter-spacing:-.035em;margin:12px 0 14px;font-weight:650}header p{max-width:760px;color:var(--muted);margin:0}
+.facts{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.facts span{border:1px solid var(--line);border-radius:30px;padding:6px 12px;font-size:13px;background:#132024}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:14px}.hero{grid-column:1/-1}
+.card a.picture{display:block;line-height:0;background:#20272a}.card img{display:block;width:100%;height:auto}.card a.picture:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+.caption{padding:18px 20px 20px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}.caption>div{min-width:0}.caption h2{font-size:20px;margin:0 0 4px;font-weight:600}.caption p{font-size:14px;color:var(--muted);margin:0}.caption>a{white-space:nowrap;font-size:13px;color:var(--accent)}
+.note{margin-top:22px;padding:20px 22px;border-left:3px solid var(--accent);background:#151d20;border-radius:0 10px 10px 0}.note p{margin:0;color:var(--muted)}.note p+p{margin-top:8px}.note strong{color:var(--ink);font-weight:600}
+a{color:var(--accent);text-underline-offset:3px}footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}nav{display:flex;flex-wrap:wrap;gap:18px}nav a{min-height:44px;display:inline-flex;align-items:center}.caption>a{min-height:44px;display:inline-flex;align-items:center}
+@media(max-width:680px){main{padding:30px 16px}.grid{grid-template-columns:1fr}.hero{grid-column:auto}.caption{padding:15px;gap:10px}.caption h2{font-size:18px}.caption>a{font-size:12px}.note{padding:16px}footer{font-size:12px}}
+@media(max-width:380px){.caption{flex-wrap:wrap}.caption>a{align-self:flex-end}}
+@media(prefers-reduced-motion:reduce){.motion-hint{display:block}}.motion-hint{margin:14px 0 0;color:var(--muted);font-size:13px}
+</style></head><body><main>
+<header><div class="eyebrow">Native Unity preview · Zoomed street review</div>
+<h1>Mickey on Main Street</h1><p>Stepping left and right turns, followed by a crouch, spring and landing on the pigeon. These loops show the actual cat animation against the saved street background.</p>
+<div class="facts"><span>12 frames per second</span><span>4½–5½ minutes between hunts</span><span>11 Unity checks passed</span></div></header>
+<section class="grid" aria-label="Mickey animation loops">
+<article class="card hero"><a class="picture" href="mickey-motion/pigeon-pounce.gif" aria-label="Open the pigeon pounce animation at full size"><img src="mickey-motion/pigeon-pounce.gif" width="960" height="540" alt="Native Unity frames of Mickey crouching, pouncing at the pigeon and landing."></a>
+<div class="caption"><div><h2>The pounce</h2><p>Crouch → lift → contact → landing</p></div><a href="mickey-motion/pigeon-pounce.gif">Open larger ↗</a></div></article>
+<article class="card"><a class="picture" href="mickey-motion/left-turn.gif" aria-label="Open the left turn animation at full size"><img loading="lazy" decoding="async" src="mickey-motion/left-turn.gif" width="960" height="540" alt="Mickey's paws animate while his heading turns left."></a>
+<div class="caption"><div><h2>Left turn</h2><p>Paws step before forward travel resumes.</p></div><a href="mickey-motion/left-turn.gif">Open larger ↗</a></div></article>
+<article class="card"><a class="picture" href="mickey-motion/right-turn.gif" aria-label="Open the right turn animation at full size"><img loading="lazy" decoding="async" src="mickey-motion/right-turn.gif" width="960" height="540" alt="Mickey's paws animate while his heading turns right."></a>
+<div class="caption"><div><h2>Right turn</h2><p>The opposite paw leads the stepping cycle.</p></div><a href="mickey-motion/right-turn.gif">Open larger ↗</a></div></article></section>
+<p class="motion-hint">Loops play automatically, with a short pause at the end. <a href="mickey-motion/contact-sheet.png">View still frames</a>.</p>
+<aside class="note"><p><strong>In the game:</strong> Mickey waits about five minutes of active time, then looks for a reachable pigeon on the ground. His walkable-floor and NPC clearance rules also apply during the hunt. Capture, death or player control stops the automatic attack.</p>
+<p><strong>For this preview:</strong> the countdown was advanced so the pounce appears immediately. These are isolated Unity renders; full campaign Play Mode was not exercised.</p></aside>
+<footer><span>Original native frames are retained for review.</span><nav aria-label="Verification files"><a href="mickey-motion-standard-tests.json">Unity checks</a><a href="mickey-motion-tests.json">Isolated checks</a><a href="mickey-motion/native-motion-frames.json">Frame receipt</a><a href="mickey-motion/contact-sheet.png">Contact sheet</a></nav></footer>
+</main></body></html>

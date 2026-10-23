@@ -1,0 +1,90 @@
+{
+  "utc": "2026-10-23T22:57:41.597588Z",
+  "scope": "Native Unity preview fixtures of the final source snapshot; full campaign Play Mode not exercised",
+  "passed": 10,
+  "failed": 0,
+  "results": [
+    {
+      "test": "DirectionChangesStepActualPawsBeforeTheRootTranslates",
+      "arguments": [
+        -1,
+        "Cat_turn_left"
+      ],
+      "passed": true,
+      "error": null,
+      "seconds": 0.039816399999835994
+    },
+    {
+      "test": "DirectionChangesStepActualPawsBeforeTheRootTranslates",
+      "arguments": [
+        1,
+        "Cat_turn_right"
+      ],
+      "passed": true,
+      "error": null,
+      "seconds": 0.012572000000091066
+    },
+    {
+      "test": "BlockedTurnReturnsToIdleAndTheNextHeadingStartsAFreshSteppingTurn",
+      "arguments": [],
+      "passed": true,
+      "error": null,
+      "seconds": 0.014471899999989546
+    },
+    {
+      "test": "PortalTransferIntoAFloorlessSceneStopsMotionAndClearsAirborneOffset",
+      "arguments": [],
+      "passed": true,
+      "error": null,
+      "seconds": 0.022568500000033964
+    },
+    {
+      "test": "HuntingWaitsAboutFiveActiveMinutesAndDoesNotAttackEarly",
+      "arguments": [],
+      "passed": true,
+      "error": null,
+      "seconds": 0.012672100000145292
+    },
+    {
+      "test": "DuePounceUsesCrouchAirAndLandingAndDealsExactlyOneContactHit",
+      "arguments": [],
+      "passed": true,
+      "error": null,
+      "seconds": 0.037336100000175065
+    },
+    {
+      "test": "ForeignSceneBirdsAndBirdsThatFleeAnActualPounceReceiveNoHit",
+      "arguments": [],
+      "passed": true,
+      "error": null,
+      "seconds": 0.035008899999866117
+    },
+    {
+      "test": "CustodyDeathOrPlayerOwnershipCancelsAnAirborneHuntWithoutDamageOrOffset",
+      "arguments": [
+        "capture"
+      ],
+      "passed": true,
+      "error": null,
+      "seconds": 0.023509099999955652
+    },
+    {
+      "test": "CustodyDeathOrPlayerOwnershipCancelsAnAirborneHuntWithoutDamageOrOffset",
+      "arguments": [
+        "death"
+      ],
+      "passed": true,
+      "error": null,
+      "seconds": 0.020017399999687768
+    },
+    {
+      "test": "CustodyDeathOrPlayerOwnershipCancelsAnAirborneHuntWithoutDamageOrOffset",
+      "arguments": [
+        "player"
+      ],
+      "passed": true,
+      "error": null,
+      "seconds": 0.017650800000410527
+    }
+  ]
+}
