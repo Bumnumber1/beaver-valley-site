@@ -1,33 +1,43 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Watch Mickey the cat turn, crouch, and pounce in native Unity animation previews. Mobile-friendly GIF loops.">
-<title>Mickey · Main Street animation review</title><style>
-:root{color-scheme:dark;--bg:#0c1113;--panel:#151d20;--line:#29383c;--ink:#ecede8;--muted:#a1b0b1;--accent:#e6bd84}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#1a292b 0,var(--bg) 58%);color:var(--ink);font:16px/1.55 Segoe UI,system-ui,sans-serif}
-main{max-width:1120px;margin:auto;padding:48px 24px 32px}header{margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);font-weight:700}
-h1{font-size:clamp(30px,5vw,49px);line-height:1.1;letter-spacing:-.035em;margin:12px 0 14px;font-weight:650}header p{max-width:760px;color:var(--muted);margin:0}
-.facts{display:flex;flex-wrap:wrap;gap:9px;margin-top:22px}.facts span{border:1px solid var(--line);border-radius:30px;padding:6px 12px;font-size:13px;background:#132024}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.card{overflow:hidden;background:var(--panel);border:1px solid var(--line);border-radius:14px}.hero{grid-column:1/-1}
-.card a.picture{display:block;line-height:0;background:#20272a}.card img{display:block;width:100%;height:auto}.card a.picture:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
-.caption{padding:18px 20px 20px;display:flex;align-items:baseline;justify-content:space-between;gap:16px}.caption>div{min-width:0}.caption h2{font-size:20px;margin:0 0 4px;font-weight:600}.caption p{font-size:14px;color:var(--muted);margin:0}.caption>a{white-space:nowrap;font-size:13px;color:var(--accent)}
-.note{margin-top:22px;padding:20px 22px;border-left:3px solid var(--accent);background:#151d20;border-radius:0 10px 10px 0}.note p{margin:0;color:var(--muted)}.note p+p{margin-top:8px}.note strong{color:var(--ink);font-weight:600}
-a{color:var(--accent);text-underline-offset:3px}footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;margin-top:26px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}nav{display:flex;flex-wrap:wrap;gap:18px}nav a{min-height:44px;display:inline-flex;align-items:center}.caption>a{min-height:44px;display:inline-flex;align-items:center}
-@media(max-width:680px){main{padding:30px 16px}.grid{grid-template-columns:1fr}.hero{grid-column:auto}.caption{padding:15px;gap:10px}.caption h2{font-size:18px}.caption>a{font-size:12px}.note{padding:16px}footer{font-size:12px}}
-@media(max-width:380px){.caption{flex-wrap:wrap}.caption>a{align-self:flex-end}}
-@media(prefers-reduced-motion:reduce){.motion-hint{display:block}}.motion-hint{margin:14px 0 0;color:var(--muted);font-size:13px}
-</style></head><body><main>
-<header><div class="eyebrow">Native Unity preview · Zoomed street review</div>
-<h1>Mickey on Main Street</h1><p>Stepping left and right turns, followed by a crouch, spring and landing on the pigeon. These loops show the actual cat animation against the saved street background.</p>
-<div class="facts"><span>12 frames per second</span><span>4½–5½ minutes between hunts</span><span>11 Unity checks passed</span></div></header>
-<section class="grid" aria-label="Mickey animation loops">
-<article class="card hero"><a class="picture" href="mickey-motion/pigeon-pounce.gif" aria-label="Open the pigeon pounce animation at full size"><img src="mickey-motion/pigeon-pounce.gif" width="960" height="540" alt="Native Unity frames of Mickey crouching, pouncing at the pigeon and landing."></a>
-<div class="caption"><div><h2>The pounce</h2><p>Crouch → lift → contact → landing</p></div><a href="mickey-motion/pigeon-pounce.gif">Open larger ↗</a></div></article>
-<article class="card"><a class="picture" href="mickey-motion/left-turn.gif" aria-label="Open the left turn animation at full size"><img loading="lazy" decoding="async" src="mickey-motion/left-turn.gif" width="960" height="540" alt="Mickey's paws animate while his heading turns left."></a>
-<div class="caption"><div><h2>Left turn</h2><p>Paws step before forward travel resumes.</p></div><a href="mickey-motion/left-turn.gif">Open larger ↗</a></div></article>
-<article class="card"><a class="picture" href="mickey-motion/right-turn.gif" aria-label="Open the right turn animation at full size"><img loading="lazy" decoding="async" src="mickey-motion/right-turn.gif" width="960" height="540" alt="Mickey's paws animate while his heading turns right."></a>
-<div class="caption"><div><h2>Right turn</h2><p>The opposite paw leads the stepping cycle.</p></div><a href="mickey-motion/right-turn.gif">Open larger ↗</a></div></article></section>
-<p class="motion-hint">Loops play automatically, with a short pause at the end. <a href="mickey-motion/contact-sheet.png">View still frames</a>.</p>
-<aside class="note"><p><strong>In the game:</strong> Mickey waits about five minutes of active time, then looks for a reachable pigeon on the ground. His walkable-floor and NPC clearance rules also apply during the hunt. Capture, death or player control stops the automatic attack.</p>
-<p><strong>For this preview:</strong> the countdown was advanced so the pounce appears immediately. These are isolated Unity renders; full campaign Play Mode was not exercised.</p></aside>
-<footer><span>Original native frames are retained for review.</span><nav aria-label="Verification files"><a href="mickey-motion-standard-tests.json">Unity checks</a><a href="mickey-motion-tests.json">Isolated checks</a><a href="mickey-motion/native-motion-frames.json">Frame receipt</a><a href="mickey-motion/contact-sheet.png">Contact sheet</a></nav></footer>
-</main></body></html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="description" content="Explore Mickey the furry cat in 3D. Rotate to any angle, zoom in, and play all 24 animations on your phone or computer.">
+  <title>Mickey · Furry cat 3D preview</title>
+  <style>
+    :root{color-scheme:dark;--bg:#11191e;--panel:#1b2830;--line:#3b515e;--ink:#e7edf0;--muted:#aebec8;--accent:#ffd38a;font:16px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
+    *{box-sizing:border-box}body{margin:0}header,main,footer{max-width:1420px;margin:auto;padding:20px}header{padding-bottom:8px}h1{font-size:clamp(1.5rem,4vw,2rem);line-height:1.15;margin:4px 0 12px}h2{font-size:1.05rem;margin:0 0 12px}p{margin:8px 0}.eyebrow{color:var(--accent);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650}.muted{color:var(--muted)}
+    .layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}.stage,.controls{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px}
+    model-viewer{display:block;width:100%;height:56vh;min-height:340px;background:radial-gradient(#617481,#27353e);border-radius:8px;touch-action:none;--progress-bar-color:#ffd38a}
+    label{display:block;margin:14px 0 6px}select,button,input{font:inherit}select,button{min-height:44px;background:#2b4050;color:#eef7fb;border:1px solid #6a8798;border-radius:7px;padding:9px}select{width:100%;min-width:0;text-overflow:ellipsis}button{cursor:pointer}button:disabled,select:disabled,input:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+    input[type=range]{display:block;width:100%;min-height:32px;margin:0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.row button{flex:1}.clip-select{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px}.clip-select button{padding:8px;font-size:1.2rem}.inline{display:flex;align-items:center;gap:10px}.inline input{width:22px;height:22px;margin:0}.status{min-height:2.8em;margin:10px 0 0;color:#e5cf9d;font-size:.88rem}.error{color:#ffb7aa}.clock{font-variant-numeric:tabular-nums;font-size:.88rem;color:var(--muted)}.small{font-size:.85rem}a{color:#a4dcff}details{margin-top:18px}summary{cursor:pointer;padding:8px 0}.clips{font-size:.82rem;color:var(--muted);padding-left:20px}.clips li{margin:5px 0}footer{color:var(--muted);font-size:.8rem;padding-top:8px;padding-bottom:30px}.camera-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.camera-grid button{padding:8px}.camera-grid button:last-child{grid-column:1/-1}
+    @media(max-width:850px){header,main,footer{padding:16px}header{padding-bottom:2px}.layout{grid-template-columns:1fr}.stage,.controls{padding:12px}model-viewer{height:43vh;height:43svh;min-height:250px;max-height:480px}.status{min-height:0}.controls{order:2}.clip-select{gap:6px}.row button{padding:9px 6px}label{margin-top:12px}header .muted{font-size:.92rem}}
+    @media(max-width:360px){header,main,footer{padding:12px}.stage,.controls{padding:10px}model-viewer{min-height:225px}.clip-select{grid-template-columns:40px minmax(0,1fr) 40px;gap:4px}.clip-select button{min-width:40px;padding:6px}select{font-size:.9rem}}
+  </style>
+  <script type="module" src="./viewer.js"></script>
+</head>
+<body>
+<header><div class="eyebrow">Interactive 3D · Furry model · 24 animations</div><h1>Mickey the cat</h1><p class="muted">Drag to look from any angle. Pinch or use the buttons to zoom. Choose an animation below.</p></header>
+<main><div class="layout">
+  <section class="stage" aria-label="Interactive cat and animation controls">
+    <model-viewer id="cat" camera-controls interaction-prompt="none" touch-action="none" min-camera-orbit="auto 0deg .12m" max-camera-orbit="auto 180deg auto" camera-orbit="145deg 70deg 120%" camera-target="auto auto auto" animation-crossfade-duration="0" shadow-intensity="0.65" exposure="1" environment-image="neutral" alt="Mickey, the furry black cat, in an interactive 3D view"></model-viewer>
+    <p id="status" class="status" role="status">Preparing the 3D viewer…</p>
+    <label for="animation">Animation <span id="count" class="muted small"></span></label>
+    <div class="clip-select"><button id="previous" aria-label="Previous animation" title="Previous animation" disabled>‹</button><select id="animation" disabled><option>Loading animations…</option></select><button id="next" aria-label="Next animation" title="Next animation" disabled>›</button></div>
+    <div class="row"><button id="play" disabled>Play</button><button id="pause" disabled>Pause</button><button id="restart" disabled>Restart</button></div>
+    <label class="inline small"><input id="auto-cycle" type="checkbox" disabled> Cycle through animations</label>
+    <label for="seek" class="small">Animation position <span id="clock" class="clock">0.00 / 0.00 s</span></label><input id="seek" type="range" min="0" max="1" step="0.01" value="0" disabled>
+  </section>
+  <aside class="controls" aria-label="Camera and playback settings">
+    <h2>Look around</h2>
+    <div class="camera-grid"><button data-view="front" disabled>Front</button><button data-view="back" disabled>Back</button><button data-view="left" disabled>Left side</button><button data-view="right" disabled>Right side</button><button data-view="top" disabled>Above</button><button data-view="below" disabled>Below</button><button data-view="head" disabled>Face close-up</button></div>
+    <div class="row"><button id="zoom-in" disabled>Zoom in</button><button id="zoom-out" disabled>Zoom out</button></div><div class="row"><button id="reset-camera" disabled>Reset camera</button></div>
+    <label for="speed">Playback speed <output id="speed-label">1.00×</output></label><input id="speed" type="range" min="0.1" max="2" step="0.05" value="1" disabled>
+    <label class="inline"><input id="loop" type="checkbox" checked disabled> Loop animation</label>
+    <details><summary>All animations</summary><ol id="clips" class="clips"></ol></details>
+    <noscript><p>Enable JavaScript to load the interactive model.</p></noscript>
+  </aside>
+</div></main>
+<footer>The furry model and its 24 exported animations. <a href="./vendor/LICENSE.model-viewer.txt">model-viewer license</a> · <a href="./vendor/LICENSE.meshoptimizer.txt">Meshoptimizer license</a></footer>
+</body></html>
