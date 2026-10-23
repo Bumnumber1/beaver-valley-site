@@ -1,4 +1,4 @@
-import './vendor/model-viewer-4.2.0.min.js';
+import {loadModelBlob} from './model-loader.js';
 
 const $ = id => document.getElementById(id);
 const viewer = $('cat');
@@ -8,6 +8,8 @@ const labels = {Cat_idle_breathe:'Idle / breathe',Cat_wake:'Wake up',Cat_walk:'W
 let loaded = false;
 let selection = 0;
 let seeking = false;
+let modelObjectURL = null;
+function releaseDownload(){if(modelObjectURL){URL.revokeObjectURL(modelObjectURL);modelObjectURL=null;}}
 const status = (text, error=false) => {$('status').textContent=text;$('status').classList.toggle('error',error);};
 const enable = () => {for(const element of document.querySelectorAll('button,select,input'))element.disabled=!loaded;};
 function play(){if(loaded)viewer.play({repetitions:$('auto-cycle').checked?1:$('loop').checked?Infinity:1});}
@@ -33,8 +35,9 @@ function camera(name){
 }
 
 viewer.addEventListener('progress',event=>{const progress=event.detail?.totalProgress;if(!loaded&&Number.isFinite(progress))status(`Loading furry 3D model… ${Math.round(progress*100)}%`);});
-viewer.addEventListener('error',()=>{loaded=false;enable();status('The 3D model could not load. Please reload the page and try again.',true);});
+viewer.addEventListener('error',()=>{releaseDownload();loaded=false;enable();status('The 3D model could not load. Please reload the page and try again.',true);});
 viewer.addEventListener('load',async()=>{
+  releaseDownload();
   const names=[...viewer.availableAnimations];
   loaded=true;animation.replaceChildren();$('clips').replaceChildren();
   for(const name of names){animation.add(new Option(labels[name]||name.replace(/^Cat_/, '').replaceAll('_',' '),name));const li=document.createElement('li');li.textContent=labels[name]||name.replace(/^Cat_/, '').replaceAll('_',' ');$('clips').append(li);}
@@ -53,29 +56,18 @@ for(const id of ['loop','auto-cycle'])$(id).addEventListener('change',()=>{if(!v
 $('reset-camera').addEventListener('click',resetCamera);$('zoom-in').addEventListener('click',()=>zoom(.8));$('zoom-out').addEventListener('click',()=>zoom(1.25));
 for(const button of document.querySelectorAll('[data-view]'))button.addEventListener('click',()=>camera(button.dataset.view));
 function frame(){if(loaded){const duration=Number.isFinite(viewer.duration)?viewer.duration:0,time=Number.isFinite(viewer.currentTime)?viewer.currentTime:0;seek.max=String(Math.max(.01,duration));if(document.activeElement!==seek)seek.value=String(time);$('clock').textContent=`${time.toFixed(2)} / ${duration.toFixed(2)} s · ${viewer.paused?'Paused':'Playing'}`;}requestAnimationFrame(frame);}
-await customElements.whenDefined('model-viewer');
-customElements.get('model-viewer').meshoptDecoderLocation=new URL('./vendor/meshopt_decoder.js',import.meta.url).href;
-frame();
-try{
-  const metadata=await fetch('./model.json');
+async function initialize(){
+  await import('./vendor/model-viewer-4.2.0.min.js');
+  await customElements.whenDefined('model-viewer');
+  customElements.get('model-viewer').meshoptDecoderLocation=new URL('./vendor/meshopt_decoder.js',import.meta.url).href;
+  frame();
+  const metadata=await fetch('./model.json?v=safari-1');
   if(!metadata.ok)throw new Error('Model manifest unavailable');
   const model=await metadata.json();
   status(`Downloading furry 3D model (${(model.bytes/1048576).toFixed(1)} MiB)…`);
-  if(model.compression==='gzip'){
-    const response=await fetch(new URL(model.url,location.href));
-    if(!response.ok)throw new Error('Model download unavailable');
-    let received=0;
-    const progress=new TransformStream({transform(chunk,controller){received+=chunk.byteLength;status(`Downloading furry 3D model… ${Math.min(100,Math.round(received/model.bytes*100))}%`);controller.enqueue(chunk);}});
-    let blob;
-    if('DecompressionStream' in window){
-      const stream=response.body.pipeThrough(progress).pipeThrough(new DecompressionStream('gzip'));
-      blob=await new Response(stream,{headers:{'Content-Type':'model/gltf-binary'}}).blob();
-    }else{
-      const {gunzipSync}=await import('./vendor/fflate.js');
-      const bytes=new Uint8Array(await new Response(response.body.pipeThrough(progress)).arrayBuffer());
-      blob=new Blob([gunzipSync(bytes)],{type:'model/gltf-binary'});
-    }
-    status('Preparing the furry model and animations…');
-    viewer.src=URL.createObjectURL(blob);
-  }else viewer.src=new URL(model.url,location.href).href;
-}catch(error){status('The model files could not load. Please reload the page and try again.',true);console.error(error);}
+  const blob=await loadModelBlob(new URL(model.url,location.href),model,(received,total)=>status(`Downloading furry 3D model… ${Math.min(100,Math.round(received/total*100))}%`));
+  status('Preparing the furry model and animations…');
+  modelObjectURL=URL.createObjectURL(blob);
+  viewer.src=modelObjectURL;
+}
+initialize().catch(error=>{releaseDownload();status('The model files could not load. Please reload the page and try again.',true);console.error(error);});

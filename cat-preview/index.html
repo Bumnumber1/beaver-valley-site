@@ -13,9 +13,16 @@
     label{display:block;margin:14px 0 6px}select,button,input{font:inherit}select,button{min-height:44px;background:#2b4050;color:#eef7fb;border:1px solid #6a8798;border-radius:7px;padding:9px}select{width:100%;min-width:0;text-overflow:ellipsis}button{cursor:pointer}button:disabled,select:disabled,input:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
     input[type=range]{display:block;width:100%;min-height:32px;margin:0}.row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.row button{flex:1}.clip-select{display:grid;grid-template-columns:44px minmax(0,1fr) 44px;gap:8px}.clip-select button{padding:8px;font-size:1.2rem}.inline{display:flex;align-items:center;gap:10px}.inline input{width:22px;height:22px;margin:0}.status{min-height:2.8em;margin:10px 0 0;color:#e5cf9d;font-size:.88rem}.error{color:#ffb7aa}.clock{font-variant-numeric:tabular-nums;font-size:.88rem;color:var(--muted)}.small{font-size:.85rem}a{color:#a4dcff}details{margin-top:18px}summary{cursor:pointer;padding:8px 0}.clips{font-size:.82rem;color:var(--muted);padding-left:20px}.clips li{margin:5px 0}footer{color:var(--muted);font-size:.8rem;padding-top:8px;padding-bottom:30px}.camera-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}.camera-grid button{padding:8px}.camera-grid button:last-child{grid-column:1/-1}
     @media(max-width:850px){header,main,footer{padding:16px}header{padding-bottom:2px}.layout{grid-template-columns:1fr}.stage,.controls{padding:12px}model-viewer{height:43vh;height:43svh;min-height:250px;max-height:480px}.status{min-height:0}.controls{order:2}.clip-select{gap:6px}.row button{padding:9px 6px}label{margin-top:12px}header .muted{font-size:.92rem}}
-    @media(max-width:360px){header,main,footer{padding:12px}.stage,.controls{padding:10px}model-viewer{min-height:225px}.clip-select{grid-template-columns:40px minmax(0,1fr) 40px;gap:4px}.clip-select button{min-width:40px;padding:6px}select{font-size:.9rem}}
+    @media(max-width:360px){header,main,footer{padding:12px}.stage,.controls{padding:10px}model-viewer{min-height:225px}.clip-select{grid-template-columns:40px minmax(0,1fr) 40px;gap:4px}.clip-select button{min-width:40px;padding:6px}select{font-size:1rem}}
   </style>
-  <script type="module" src="./viewer.js"></script>
+  <style>
+    header,main,footer{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+    header{padding-top:max(20px,env(safe-area-inset-top))}
+    footer{padding-bottom:max(30px,env(safe-area-inset-bottom))}
+    @media(max-width:850px){header,main,footer{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}header{padding-top:max(16px,env(safe-area-inset-top))}}
+    @media(max-width:360px){header,main,footer{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}header{padding-top:max(12px,env(safe-area-inset-top))}}
+  </style>
+  <script type="module" src="./viewer.js?v=safari-1"></script>
 </head>
 <body>
 <header><div class="eyebrow">Interactive 3D · Furry model · 24 animations</div><h1>Mickey the cat</h1><p class="muted">Drag to look from any angle. Pinch or use the buttons to zoom. Choose an animation below.</p></header>
