@@ -9,9 +9,21 @@ let loaded = false;
 let selection = 0;
 let seeking = false;
 let modelObjectURL = null;
+let loadStage = 'viewer startup';
+let loadTimer = null;
+let slowLoading = false;
+let loadFailed = false;
 function releaseDownload(){if(modelObjectURL){URL.revokeObjectURL(modelObjectURL);modelObjectURL=null;}}
-const status = (text, error=false) => {$('status').textContent=text;$('status').classList.toggle('error',error);};
-const enable = () => {for(const element of document.querySelectorAll('button,select,input'))element.disabled=!loaded;};
+const status = (text, error=false) => {if(loadFailed&&!error)return;$('status').textContent=text+(!loaded&&slowLoading&&!error?` Still loading; stage: ${loadStage}.`:'');$('status').classList.toggle('error',error);};
+const enable = () => {for(const element of document.querySelectorAll('button,select,input'))if(element.id!=='reload-viewer')element.disabled=!loaded;};
+function failLoading(error, message){
+  clearTimeout(loadTimer);
+  releaseDownload();loaded=false;loadFailed=true;enable();
+  const detail=(typeof error==='string'?error:error&&typeof error.message==='string'?error.message:'No error detail was provided.').slice(0,300);
+  $('load-failure').textContent=`Stage: ${loadStage}. ${detail}`;
+  $('load-help').hidden=false;
+  status(message,true);
+}
 function play(){if(loaded)viewer.play({repetitions:$('auto-cycle').checked?1:$('loop').checked?Infinity:1});}
 function seekTo(time){const speed=viewer.timeScale;seeking=true;try{viewer.timeScale=1;viewer.currentTime=time;}finally{viewer.timeScale=speed;seeking=false;}}
 async function choose(name, playing=true){
@@ -35,8 +47,10 @@ function camera(name){
 }
 
 viewer.addEventListener('progress',event=>{const progress=event.detail?.totalProgress;if(!loaded&&Number.isFinite(progress))status(`Loading furry 3D model… ${Math.round(progress*100)}%`);});
-viewer.addEventListener('error',()=>{releaseDownload();loaded=false;enable();status('The 3D model could not load. Please reload the page and try again.',true);});
+viewer.addEventListener('error',event=>{const type=event.detail?.type;failLoading(type?`Viewer error: ${type}.`:event.detail?.sourceError||'The viewer could not prepare the model.','The 3D model could not load. Details below may help identify the problem.');});
 viewer.addEventListener('load',async()=>{
+  clearTimeout(loadTimer);slowLoading=false;
+  loadFailed=false;$('load-help').hidden=true;loadStage='interactive 3D viewer';
   releaseDownload();
   const names=[...viewer.availableAnimations];
   loaded=true;animation.replaceChildren();$('clips').replaceChildren();
@@ -54,20 +68,32 @@ seek.addEventListener('input',()=>{if(loaded){viewer.pause();seekTo(Number(seek.
 $('speed').addEventListener('input',()=>{viewer.timeScale=Number($('speed').value);$('speed-label').value=viewer.timeScale.toFixed(2)+'×';});
 for(const id of ['loop','auto-cycle'])$(id).addEventListener('change',()=>{if(!viewer.paused){const time=viewer.currentTime;viewer.pause();play();seekTo(time);}});
 $('reset-camera').addEventListener('click',resetCamera);$('zoom-in').addEventListener('click',()=>zoom(.8));$('zoom-out').addEventListener('click',()=>zoom(1.25));
+$('reload-viewer').addEventListener('click',()=>location.reload());
 for(const button of document.querySelectorAll('[data-view]'))button.addEventListener('click',()=>camera(button.dataset.view));
 function frame(){if(loaded){const duration=Number.isFinite(viewer.duration)?viewer.duration:0,time=Number.isFinite(viewer.currentTime)?viewer.currentTime:0;seek.max=String(Math.max(.01,duration));if(document.activeElement!==seek)seek.value=String(time);$('clock').textContent=`${time.toFixed(2)} / ${duration.toFixed(2)} s · ${viewer.paused?'Paused':'Playing'}`;}requestAnimationFrame(frame);}
 async function initialize(){
+  loadTimer=setTimeout(()=>{if(!loaded&&!loadFailed){slowLoading=true;status('The 3D viewer is taking longer than expected.');}},90000);
   await import('./vendor/model-viewer-4.2.0.min.js');
   await customElements.whenDefined('model-viewer');
   customElements.get('model-viewer').meshoptDecoderLocation=new URL('./vendor/meshopt_decoder.js',import.meta.url).href;
   frame();
-  const metadata=await fetch('./model.json?v=safari-1');
+  loadStage='model manifest';
+  const metadata=await fetch('./model.json?v=phone-2');
   if(!metadata.ok)throw new Error('Model manifest unavailable');
   const model=await metadata.json();
+  const modelURL=new URL(model.url,location.href);
+  if(model.compression!=='gzip'){
+    loadStage='3D model download and preparation';
+    status(`Loading furry 3D model (${(model.bytes/1048576).toFixed(1)} MiB)…`);
+    viewer.src=modelURL.href;
+    return;
+  }
+  loadStage='model download and unpacking';
   status(`Downloading furry 3D model (${(model.bytes/1048576).toFixed(1)} MiB)…`);
-  const blob=await loadModelBlob(new URL(model.url,location.href),model,(received,total)=>status(`Downloading furry 3D model… ${Math.min(100,Math.round(received/total*100))}%`));
+  const blob=await loadModelBlob(modelURL,model,(received,total)=>status(`Downloading furry 3D model… ${Math.min(100,Math.round(received/total*100))}%`));
+  loadStage='3D model preparation';
   status('Preparing the furry model and animations…');
   modelObjectURL=URL.createObjectURL(blob);
   viewer.src=modelObjectURL;
 }
-initialize().catch(error=>{releaseDownload();status('The model files could not load. Please reload the page and try again.',true);console.error(error);});
+initialize().catch(error=>{failLoading(error,'The model files could not load. Details below may help identify the problem.');console.error(error);});

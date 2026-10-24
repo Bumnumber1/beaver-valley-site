@@ -22,7 +22,16 @@
     @media(max-width:850px){header,main,footer{padding-left:max(16px,env(safe-area-inset-left));padding-right:max(16px,env(safe-area-inset-right))}header{padding-top:max(16px,env(safe-area-inset-top))}}
     @media(max-width:360px){header,main,footer{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}header{padding-top:max(12px,env(safe-area-inset-top))}}
   </style>
-  <script type="module" src="./viewer.js?v=safari-1"></script>
+  <script type="module">
+    import('./viewer.js?v=phone-2').catch(error=>{
+      const status=document.getElementById('status');
+      status.textContent='The 3D viewer could not start. Details below may help identify the problem.';
+      status.classList.add('error');
+      document.getElementById('load-failure').textContent='Stage: viewer startup. '+String(error.message||error).slice(0,300);
+      document.getElementById('load-help').hidden=false;
+      document.getElementById('reload-viewer').addEventListener('click',()=>location.reload());
+    });
+  </script>
 </head>
 <body>
 <header><div class="eyebrow">Interactive 3D · Furry model · 24 animations</div><h1>Mickey the cat</h1><p class="muted">Drag to look from any angle. Pinch or use the buttons to zoom. Choose an animation below.</p></header>
@@ -30,6 +39,7 @@
   <section class="stage" aria-label="Interactive cat and animation controls">
     <model-viewer id="cat" camera-controls interaction-prompt="none" touch-action="none" min-camera-orbit="auto 0deg .12m" max-camera-orbit="auto 180deg auto" camera-orbit="145deg 70deg 120%" camera-target="auto auto auto" animation-crossfade-duration="0" shadow-intensity="0.65" exposure="1" environment-image="neutral" alt="Mickey, the furry black cat, in an interactive 3D view"></model-viewer>
     <p id="status" class="status" role="status">Preparing the 3D viewer…</p>
+    <div id="load-help" hidden><p id="load-failure" class="small error"></p><button id="reload-viewer" type="button">Reload viewer</button></div>
     <label for="animation">Animation <span id="count" class="muted small"></span></label>
     <div class="clip-select"><button id="previous" aria-label="Previous animation" title="Previous animation" disabled>‹</button><select id="animation" disabled><option>Loading animations…</option></select><button id="next" aria-label="Next animation" title="Next animation" disabled>›</button></div>
     <div class="row"><button id="play" disabled>Play</button><button id="pause" disabled>Pause</button><button id="restart" disabled>Restart</button></div>
