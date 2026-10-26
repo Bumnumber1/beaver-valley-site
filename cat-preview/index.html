@@ -8,6 +8,7 @@
   <style>
     :root{color-scheme:dark;--bg:#11191e;--panel:#1b2830;--line:#3b515e;--ink:#e7edf0;--muted:#aebec8;--accent:#ffd38a;font:16px/1.45 system-ui,sans-serif;background:var(--bg);color:var(--ink)}
     *{box-sizing:border-box}body{margin:0}header,main,footer{max-width:1420px;margin:auto;padding:20px}header{padding-bottom:8px}h1{font-size:clamp(1.5rem,4vw,2rem);line-height:1.15;margin:4px 0 12px}h2{font-size:1.05rem;margin:0 0 12px}p{margin:8px 0}.eyebrow{color:var(--accent);font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-weight:650}.muted{color:var(--muted)}
+    .music-bar{display:flex;align-items:center;flex-wrap:wrap;gap:10px 16px;margin-top:18px;padding:14px 16px;border:1px solid var(--line);border-radius:12px;background:var(--panel)}.music-heading{flex:1 1 190px;min-width:0}.music-heading label{margin:0;color:var(--accent);font-weight:650}.music-heading p{margin:3px 0 0;font-size:.82rem}.music-bar select{flex:1 1 210px;width:auto}.music-bar button{flex:0 0 142px}.music-status{flex-basis:100%;margin:0;font-size:.82rem;color:var(--muted)}
     .layout{display:grid;grid-template-columns:minmax(0,1fr) 310px;gap:18px;align-items:start}.stage,.controls{min-width:0;border:1px solid var(--line);border-radius:12px;background:var(--panel);padding:16px}
     model-viewer{display:block;width:100%;height:56vh;min-height:340px;background:radial-gradient(#617481,#27353e);border-radius:8px;touch-action:none;--progress-bar-color:#ffd38a}
     label{display:block;margin:14px 0 6px}select,button,input{font:inherit}select,button{min-height:44px;background:#2b4050;color:#eef7fb;border:1px solid #6a8798;border-radius:7px;padding:9px}select{width:100%;min-width:0;text-overflow:ellipsis}button{cursor:pointer}button:disabled,select:disabled,input:disabled{opacity:.4;cursor:default}button:focus-visible,select:focus-visible,input:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
@@ -23,7 +24,7 @@
     @media(max-width:360px){header,main,footer{padding-left:max(12px,env(safe-area-inset-left));padding-right:max(12px,env(safe-area-inset-right))}header{padding-top:max(12px,env(safe-area-inset-top))}}
   </style>
   <script type="module">
-    import('./viewer.js?v=phone-2').catch(error=>{
+    import('./viewer.js?v=mickey-radio-1').catch(error=>{
       const status=document.getElementById('status');
       status.textContent='The 3D viewer could not start. Details below may help identify the problem.';
       status.classList.add('error');
@@ -32,9 +33,24 @@
       document.getElementById('reload-viewer').addEventListener('click',()=>location.reload());
     });
   </script>
+  <script src="./music.js?v=mickey-radio-1" defer></script>
 </head>
 <body>
-<header><div class="eyebrow">Interactive 3D · Furry model · 24 animations</div><h1>Mickey the cat</h1><p class="muted">Drag to look from any angle. Pinch or use the buttons to zoom. Choose an animation below.</p></header>
+<header><div class="eyebrow">Interactive 3D · Furry model · 24 animations</div><h1>Mickey the cat</h1><p class="muted">Drag to look from any angle. Pinch or use the buttons to zoom. Choose an animation below.</p>
+  <section id="music-controls" class="music-bar" aria-label="Music controls">
+    <div class="music-heading"><label for="music-track">Mickey radio</label><p class="muted">The Sandy Shores soundtrack · All 5 tracks</p></div>
+    <select id="music-track" aria-describedby="music-status">
+      <option value="0">Mickey</option>
+      <option value="1">Mickey (1)</option>
+      <option value="2">Mickey (2)</option>
+      <option value="3">Mickey (4)</option>
+      <option value="4">Mickey's Plan</option>
+    </select>
+    <button id="music-toggle" type="button" aria-controls="music-audio">Play music</button>
+    <p id="music-status" class="music-status" role="status">All 5 tracks play in order, then the playlist repeats.</p>
+    <audio id="music-audio" preload="metadata"></audio>
+  </section>
+</header>
 <main><div class="layout">
   <section class="stage" aria-label="Interactive cat and animation controls">
     <model-viewer id="cat" camera-controls interaction-prompt="none" touch-action="none" min-camera-orbit="auto 0deg .12m" max-camera-orbit="auto 180deg auto" camera-orbit="145deg 70deg 120%" camera-target="auto auto auto" animation-crossfade-duration="0" shadow-intensity="0.65" exposure="1" environment-image="neutral" alt="Mickey, the furry black cat, in an interactive 3D view"></model-viewer>

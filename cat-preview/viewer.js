@@ -15,7 +15,7 @@ let slowLoading = false;
 let loadFailed = false;
 function releaseDownload(){if(modelObjectURL){URL.revokeObjectURL(modelObjectURL);modelObjectURL=null;}}
 const status = (text, error=false) => {if(loadFailed&&!error)return;$('status').textContent=text+(!loaded&&slowLoading&&!error?` Still loading; stage: ${loadStage}.`:'');$('status').classList.toggle('error',error);};
-const enable = () => {for(const element of document.querySelectorAll('button,select,input'))if(element.id!=='reload-viewer')element.disabled=!loaded;};
+const enable = () => {for(const element of document.querySelectorAll('.stage button,.stage select,.stage input,.controls button,.controls select,.controls input'))if(element.id!=='reload-viewer')element.disabled=!loaded;};
 function failLoading(error, message){
   clearTimeout(loadTimer);
   releaseDownload();loaded=false;loadFailed=true;enable();
