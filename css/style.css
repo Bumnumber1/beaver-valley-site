@@ -221,6 +221,7 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .hook:hover{transform:translateY(-4px); border-color:rgba(233,176,82,.4); box-shadow:var(--shadow)}
 .hook:hover::before{opacity:1}
 .hook .num{font-family:var(--f-display); color:var(--gold-deep); font-size:1.5rem; opacity:.6}
+.hook h3{font-family:var(--f-head); font-size:1.22rem; line-height:1.2; margin:.35em 0 0; color:var(--cream)}
 .hook p{margin:.5em 0 0; color:var(--cream); font-size:1.05rem; font-weight:500; line-height:1.35}
 
 /* ---------- Card grid (modes / world) ---------- */
@@ -315,7 +316,7 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .rm-card.in_progress{border-left-color:var(--green-core)}
 .rm-card.planned{border-left-color:var(--gold)}
 .rm-card.vision{border-left-color:var(--olive-deep)}
-.rm-card h4{font-family:var(--f-head); font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:1.16rem; color:var(--cream); margin-bottom:.5em}
+.rm-card h3{font-family:var(--f-head); font-weight:600; text-transform:uppercase; letter-spacing:.04em; font-size:1.16rem; color:var(--cream); margin-bottom:.5em}
 .rm-card p{margin:0; color:var(--muted); font-size:1rem}
 
 /* ---------- Donate ---------- */
