@@ -551,8 +551,6 @@ dialog.lightbox[open] { display: flex; }
 dialog.lightbox .lb-close { background: transparent; border: 0; }
 dialog.lightbox img { max-height: calc(100dvh - 105px); }
 dialog.lightbox .lb-cap { padding-inline: 1.2rem; }
-dialog.lightbox .lb-context { display: inline-block; margin-top: .4rem; color: var(--gold-bright); text-decoration: underline; text-underline-offset: .2em; }
-dialog.lightbox .lb-context[hidden] { display: none; }
 dialog.lightbox.lb-portrait { flex-direction: column; gap: 1.25rem; }
 dialog.lightbox.lb-portrait img { width: min(55vw, 14rem); max-height: 56dvh; object-fit: contain; background: #102830; }
 dialog.lightbox.lb-portrait .lb-cap { position: static; }
