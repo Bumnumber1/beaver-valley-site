@@ -46,33 +46,64 @@
     }, { passive: true });
   }
 
-  /* ---- Lightbox for screenshots ---- */
+  /* ---- Lightbox for screenshots and cast photos ---- */
   var lb = document.createElement('div');
   lb.className = 'lightbox';
-  lb.innerHTML = '<span class="lb-close" aria-label="Close">&times;</span><img alt=""><div class="lb-cap"></div>';
+  lb.setAttribute('role', 'dialog');
+  lb.setAttribute('aria-modal', 'true');
+  lb.setAttribute('aria-label', 'Expanded image');
+  lb.innerHTML = '<button class="lb-close" type="button" aria-label="Close image">&times;</button><img alt=""><div class="lb-cap"></div>';
   document.body.appendChild(lb);
+  var lbClose = lb.querySelector('.lb-close');
   var lbImg = lb.querySelector('img');
   var lbCap = lb.querySelector('.lb-cap');
+  var opener;
+  var bodyOverflow;
 
-  function openLb(src, cap) {
+  function openLb(src, cap, trigger) {
+    opener = trigger;
+    bodyOverflow = document.body.style.overflow;
+    lbImg.alt = cap || '';
     lbImg.src = src;
     lbCap.textContent = cap || '';
     lb.classList.add('on');
     document.body.style.overflow = 'hidden';
+    lbClose.focus();
   }
   function closeLb() {
+    if (!lb.classList.contains('on')) return;
     lb.classList.remove('on');
-    document.body.style.overflow = '';
+    document.body.style.overflow = bodyOverflow;
+    if (opener) opener.focus({ preventScroll: true });
   }
-  document.querySelectorAll('.zoomable').forEach(function (el) {
-    el.addEventListener('click', function () {
-      var img = el.tagName === 'IMG' ? el : el.querySelector('img');
-      if (!img) return;
-      openLb(img.getAttribute('src'), el.getAttribute('data-cap') || img.getAttribute('alt'));
+  document.querySelectorAll('.screen-link').forEach(function (link) {
+    link.addEventListener('click', function (e) {
+      if (e.defaultPrevented || e.ctrlKey || e.metaKey || e.shiftKey || e.altKey) return;
+      e.preventDefault();
+      var img = link.querySelector('img');
+      var figure = link.closest('figure');
+      var caption = link.getAttribute('data-cap') || (figure && figure.getAttribute('data-cap'));
+      openLb(link.href, caption || img.alt, link);
     });
   });
-  lb.addEventListener('click', closeLb);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+  document.querySelectorAll('.zoomable').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      if (e.target.closest('a')) return;
+      var link = el.querySelector('.screen-link');
+      if (link) { link.click(); return; }
+      var img = el.tagName === 'IMG' ? el : el.querySelector('img');
+      if (!img) return;
+      openLb(img.currentSrc || img.src, el.getAttribute('data-cap') || img.alt, null);
+    });
+  });
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb || e.target === lbClose) closeLb();
+  });
+  document.addEventListener('keydown', function (e) {
+    if (!lb.classList.contains('on')) return;
+    if (e.key === 'Escape') closeLb();
+    if (e.key === 'Tab') { e.preventDefault(); lbClose.focus(); }
+  });
 
   /* ---- Pull-quote rotator ---- */
   var stage = document.querySelector('.quote-stage');

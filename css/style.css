@@ -390,6 +390,15 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .lightbox .lb-close{position:absolute; top:24px; right:30px; color:var(--cream); font-size:2rem; cursor:pointer; line-height:1; opacity:.7}
 .lightbox .lb-close:hover{opacity:1}
 .zoomable{cursor:zoom-in}
+.screen-link{display:block; cursor:zoom-in}
+.screen-link:focus-visible{outline:2px solid var(--amber); outline-offset:-3px}
+.screen-link img{display:block}
+.card-img .screen-link,.gtile .screen-link,.castcard .por .screen-link{height:100%}
+.card-img::after,.card-tag{pointer-events:none}
+.card-img img[alt="The full band beside the live drum chart"]{object-fit:contain; background:#100e0b}
+.screenshot-pair{display:grid; gap:14px}
+.lightbox .lb-close{border:0; padding:4px 8px; background:transparent}
+
 
 /* ---------- Reveal on scroll ---------- */
 .reveal{opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease), transform .8s var(--ease)}
