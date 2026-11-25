@@ -462,6 +462,22 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 .chip .k{color:var(--gold); font-size:.72rem; letter-spacing:.14em; display:block; margin-bottom:2px}
 .chip.tv .k{color:var(--olive)}
 
+/* Fleet directory */
+.fleet-jump{display:flex; flex-wrap:wrap; gap:10px; margin-top:20px}
+.fleet-section{padding:44px 0; scroll-margin-top:74px}
+.fleet-section + .fleet-section{border-top:1px solid var(--line)}
+.fleet-section .section-title{margin-bottom:22px}
+.fleet-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr)); gap:20px}
+.fleet-photo{margin:0}
+.fleet-photo img{width:100%; height:auto; display:block}
+.fleet-card{scroll-margin-top:80px}
+.fleet-card .fleet-role{margin:.25em 0 .8em; color:var(--muted)}
+.fleet-stats,.fleet-details{padding:0; margin:0; list-style:none; font-size:.9rem}
+.fleet-stats{display:flex; flex-wrap:wrap; gap:6px 13px; padding-block:8px; margin-bottom:10px; border-block:1px solid var(--line)}
+.fleet-stats b,.fleet-details b{color:var(--cream)}
+.fleet-details{color:var(--muted); display:grid; gap:5px}
+#hits{scroll-margin-top:56px}
+
 /* ---------- Responsive ---------- */
 @media (max-width:960px){
   .split,.feature,.feature.rev,.dualcol,.grid-3,.grid-2,.tiers,.steps{grid-template-columns:1fr}
@@ -473,20 +489,22 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
   .gallery{grid-template-columns:repeat(2,1fr)}
   .todo{columns:2}
 }
-@media (max-width:720px){
-  body{font-size:16px}
+@media (max-width:1120px){
   .nav{padding:14px 20px}
   .nav.scrolled{padding:10px 20px}
   .nav-links{
     position:fixed; inset:64px 0 auto 0; flex-direction:column; gap:0; align-items:stretch;
     background:rgba(13,11,8,.98); backdrop-filter:blur(14px); border-bottom:1px solid var(--line);
-    padding:12px 20px 22px; transform:translateY(-140%); transition:transform .35s var(--ease); box-shadow:var(--shadow);
+    padding:12px 20px 22px; max-height:calc(100dvh - 64px); overflow-y:auto; transform:translateY(-140%); transition:transform .35s var(--ease); box-shadow:var(--shadow);
   }
   .nav-links.open{transform:none}
   .nav-links a{padding:14px 8px; border-bottom:1px solid var(--line-soft)}
   .nav-links a.active::after{display:none}
   .nav-cta{margin:12px 8px 0}
   .nav-toggle{display:flex}
+}
+@media (max-width:720px){
+  body{font-size:16px}
   .footer-grid{grid-template-columns:1fr}
   .hero-inner{padding-bottom:12vh}
   .wrap{padding:0 20px}

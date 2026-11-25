@@ -7,8 +7,8 @@
 <title>Field Guide — How to Survive Beaver Valley</title>
 <meta content="Explore Beaver Valley’s current characters, locations, modes and gameplay systems." name="description"/>
 <link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E" rel="icon"/>
-<link href="css/style.css?v=20261125" rel="stylesheet"/>
-<link href="css/guide-hits.css" rel="stylesheet"/>
+<link href="css/style.css?v=fleet-20261125" rel="stylesheet"/>
+<link href="css/guide-hits.css?v=missile-counts" rel="stylesheet"/>
 </head>
 <body>
 <nav class="nav">
@@ -19,6 +19,7 @@
 <li><a href="features.html">Features</a></li>
 <li><a href="world.html">The World</a></li>
 <li><a href="characters.html">Cast</a></li>
+<li><a href="fleet.html">Fleet</a></li>
 <li><a class="active" href="guide.html">Guide</a></li>
 <li><a href="roadmap.html">Roadmap</a></li>
 <li><a href="donate.html">Support</a></li>
@@ -31,6 +32,7 @@
 <span class="kicker">Field guide</span>
 <h1>How to Survive Beaver Valley</h1>
 <p>Nothing here is on rails, so nothing here will stop and explain itself. These are the rules the town actually runs on — the ones that decide whether your swing lands, whether the man in front of you pulls a knife or a chair, and whether you walk out of the scene or wake up in a cell.</p>
+<div class="fleet-jump"><a class="btn btn-primary" href="#hits">Weapon hit charts →</a><a class="btn btn-ghost" href="fleet.html">Browse the Fleet →</a></div>
 </div>
 </header>
 <!-- ===== SIX THINGS ===== -->
@@ -286,8 +288,16 @@
 <div class="wrap">
 <div class="center reveal" style="margin-bottom:44px">
 <span class="kicker">Ocean Operations</span>
-<h2 class="section-title">Ranges, hits and top speeds</h2>
-<p class="section-lead" style="margin-inline:auto">Compare selected weapon ranges and nominal hull estimates in the existing tabs. The Fleet tab lists 65 vessels, aircraft and distinct fittings, including working boats and merchant traffic.</p>
+<h2 class="section-title">Weapon hit charts</h2>
+<p class="section-lead" style="margin-inline:auto">Compare estimated direct hits from torpedoes, missiles and guns. Scroll across the tables to see every weapon. For vessel specifications, <a href="fleet.html">open the Fleet directory</a>.</p>
+</div>
+<div class="reveal" id="hits-matrix"></div>
+<div class="hits-legend reveal">
+<span><i style="background:rgba(197,65,42,.55)"></i>one hit</span>
+<span><i style="background:rgba(232,128,42,.28)"></i>two or three</span>
+<span><i style="background:rgba(159,176,102,.18)"></i>four to nine</span>
+<span><i style="border:1px solid var(--line)"></i>ten or more</span>
+<span>Projectile speeds in metres per second. Vessel speeds in knots.</span>
 </div>
 <div class="hits-rules reveal">
 <div class="hits-rule"><span class="fig">Torpedoes</span><h4>Heavyweight and lightweight hits</h4><p>The current base hull damage against surface ships is 95 for a heavyweight and 60 for a lightweight. Flooding and the point of impact affect the rest of the result.</p></div>
@@ -297,17 +307,9 @@
 <div class="hits-rule"><span class="fig">Naval gun</span><h4>The target has to be hit</h4><p>Main-gun fire uses ballistic shots. A direct hit and a near miss are resolved differently.</p></div>
 <div class="hits-rule"><span class="fig">Air combat</span><h4>Missile effects depend on the airframe</h4><p>Aircraft have their own damage and critical-hit rules. Check the available missiles and target class.</p></div>
 </div>
-<div class="reveal" id="hits-matrix"></div>
-<div class="hits-legend reveal">
-<span><i style="background:rgba(197,65,42,.55)"></i>one hit</span>
-<span><i style="background:rgba(232,128,42,.28)"></i>two or three</span>
-<span><i style="background:rgba(159,176,102,.18)"></i>four to nine</span>
-<span><i style="border:1px solid var(--line)"></i>ten or more</span>
-<span>Speeds: projectiles in metres per second, hulls in knots</span>
-</div>
 <div class="note reveal" style="margin-top:28px">
 <span class="ic">◆</span>
-<div>The table estimates damage to the hull. Flooding, fire and system failure follow their own rules and can change the result during play.</div>
+<div>The charts give in-game direct-hit estimates at full hull or airframe integrity. Fire, flooding, critical hits and disabled systems can change the outcome.</div>
 </div>
 <div class="note reveal" style="margin-top:14px">
 <span class="ic">◆</span>
@@ -446,6 +448,7 @@
 <li><a href="features.html">What’s Built</a></li>
 <li><a href="world.html">The World</a></li>
 <li><a href="characters.html">The Cast</a></li>
+<li><a href="fleet.html">Fleet</a></li>
 <li><a href="guide.html">Field Guide</a></li>
 <li><a href="roadmap.html">Roadmap</a></li>
 <li><a href="donate.html">Support</a></li>
@@ -467,6 +470,6 @@
 </div>
 </footer>
 <script src="js/site.js?v=20261125"></script>
-<script src="js/guide-current-build.js"></script>
+<script src="js/guide-current-build.js?v=missile-counts"></script>
 </body>
 </html>

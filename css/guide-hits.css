@@ -1,9 +1,9 @@
 /* ---------- Field Guide: how many hits it takes (2026-09-13) ----------
    Built on style.css's tokens (charcoal, gold, olive, blood, ember; Anton / Oswald / Barlow).
-   Loaded only by guide.html. Data and tab behaviour live in js/guide-hits.js. */
+   Loaded only by guide.html. Data and tab behaviour live in js/guide-current-build.js. */
 
 /* Six rules: three across on desktop (3 + 3, no orphan row), two on tablets, one on phones. */
-.hits-rules{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:0 0 40px}
+.hits-rules{display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin:30px 0 0}
 @media (max-width:960px){ .hits-rules{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:560px){ .hits-rules{grid-template-columns:1fr} }
 .hits-rule{background:var(--panel); border:1px solid var(--line); border-radius:6px; padding:20px 22px}
@@ -25,6 +25,7 @@
 .hits-cap{color:var(--muted); font-size:1rem; margin:0 0 14px; max-width:78ch}
 .hits-cap b{color:var(--cream)}
 
+.hits-scroll:focus-visible{outline:2px solid var(--gold-bright); outline-offset:3px}
 .hits-scroll{overflow-x:auto; border:1px solid var(--line); border-radius:6px; background:var(--panel)}
 .hits-table{border-collapse:separate; border-spacing:0; min-width:100%; font-variant-numeric:tabular-nums; font-size:.92rem}
 .hits-table th,.hits-table td{padding:9px 11px; border-bottom:1px solid var(--line-soft); white-space:nowrap; text-align:center}
@@ -66,6 +67,6 @@
 
 @media (max-width:720px){
   .hits-table{font-size:.84rem}
-  .hits-table .hull{min-width:156px}
+  .hits-table .hull{min-width:126px; max-width:150px}
   .hits-tab{padding:9px 12px; letter-spacing:.08em}
 }
