@@ -51,25 +51,34 @@
   var lb = document.createElement('dialog');
   lb.className = 'lightbox';
   lb.setAttribute('aria-label', 'Full gameplay screenshot');
-  lb.innerHTML = '<button type="button" class="lb-close" aria-label="Close screenshot">&times;</button><img alt=""><div class="lb-cap"></div>';
+  lb.innerHTML = '<button type="button" class="lb-close" aria-label="Close image">&times;</button><img alt=""><div class="lb-cap"><div class="lb-caption"></div><a class="lb-context" hidden>View the in-game frame</a></div>';
   document.body.appendChild(lb);
   var opener;
   var previousOverflow;
   var fullImage = lb.querySelector('img');
-  var caption = lb.querySelector('.lb-cap');
+  var caption = lb.querySelector('.lb-caption');
+  var contextLink = lb.querySelector('.lb-context');
 
   function openFrame(el) {
     var img = el.matches('img') ? el : el.querySelector('img');
     if (!img) return;
     opener = el;
-    fullImage.src = el.dataset.full || img.currentSrc || img.src;
-    fullImage.alt = img.alt;
-    caption.textContent = el.dataset.cap || img.alt;
+    var context = el.dataset.context;
+    var label = el.dataset.cap || img.alt;
+    fullImage.src = el.dataset.full || (el.matches('a[href]') ? el.href : img.currentSrc || img.src);
+    fullImage.alt = context ? label : img.alt;
+    caption.textContent = label;
+    contextLink.hidden = !context;
+    if (context) contextLink.href = context;
+    else contextLink.removeAttribute('href');
+    lb.classList.toggle('lb-portrait', !!context);
+    lb.setAttribute('aria-label', context ? 'Cast portrait' : 'Full gameplay screenshot');
     previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
     lb.showModal();
   }
   document.querySelectorAll('.zoomable').forEach(function (el) {
+    if (typeof lb.showModal !== 'function') return;
     if (!el.matches('button, a[href]')) {
       el.tabIndex = 0;
       el.setAttribute('role', 'button');
@@ -80,7 +89,13 @@
         }
       });
     }
-    el.addEventListener('click', function () { openFrame(el); });
+    el.addEventListener('click', function (event) {
+      if (el.matches('a[href]')) {
+        if (event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+        event.preventDefault();
+      }
+      openFrame(el);
+    });
   });
   lb.addEventListener('click', function (event) {
     if (event.target === lb || event.target.closest('.lb-close')) lb.close();

@@ -496,11 +496,24 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 }
 .btn-staff:hover{color:var(--gold-bright); border-color:var(--gold-deep);}
 
+/* Main menu title artwork */
+.title-hero { align-items: center; min-height: clamp(35rem, 88svh, 57rem); isolation: isolate; }
+.title-hero-art { position: absolute; inset: 0; z-index: -1; }
+.title-hero-art img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center 63%; }
+.title-hero-art::after {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at center, rgba(12,10,8,.68), transparent 76%),
+    linear-gradient(180deg, rgba(12,10,8,.22), transparent 25%, rgba(12,10,8,.23) 70%, var(--bg) 100%);
+}
+.title-hero .hero-inner { text-align: center; padding: clamp(6rem, 15svh, 9rem) 24px clamp(4.5rem, 10svh, 6rem); }
+.title-wordmark { margin: 0 auto 1.4rem; width: min(100%, clamp(18rem, 41vw, 29rem)); }
+.title-wordmark img { display: block; width: 100%; height: auto; filter: drop-shadow(0 3px 16px #100e0b); }
+.title-hero .hero-pitch { margin: 0 auto 1.75rem; text-wrap: balance; }
+.title-hero .hero-actions { justify-content: center; }
+.title-hero .btn-ghost { background: rgba(14,12,10,.72); }
+.title-hero .btn-ghost:hover { background: var(--bg); }
+
 /* Gameplay photography and the public world atlas */
-.live-hero .hero-bg img { object-position: center; }
-.live-hero .hero-bg::after { background: linear-gradient(0deg, #100e0b 0%, rgba(16,14,11,.65) 18%, transparent 65%), linear-gradient(90deg, rgba(8,7,6,.55), transparent 70%); }
-.home-wordmark { font: 400 clamp(4.1rem, 9vw, 8rem)/.94 var(--f-display); text-transform: uppercase; margin: 0 0 .28em; letter-spacing: -.015em; text-shadow: 0 4px 25px #14110c; }
-.home-wordmark span { color: #bfce84; }
 .feature-intro { border-bottom: 1px solid var(--line-soft); }
 .feature-intro .section-title, .atlas-district .section-title { margin-bottom: .45em; }
 .text-link { display: inline-block; margin-top: 1em; color: var(--gold-bright); font-weight: 600; }
@@ -529,8 +542,7 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
 }
 @media(max-width:720px) {
   .btn-lg { max-width: 100%; padding-inline: clamp(12px, 5vw, 32px); white-space: normal; text-align: center; }
-  .live-hero { min-height: 84svh; }
-  .live-hero .hero-inner { padding-bottom: 42px; }
+  .title-hero-art img { object-position: 55% 60%; }
   .feature-intro { padding-block: 48px; }
   .atlas-district { padding-top: 38px; }
 }
@@ -539,4 +551,9 @@ dialog.lightbox[open] { display: flex; }
 dialog.lightbox .lb-close { background: transparent; border: 0; }
 dialog.lightbox img { max-height: calc(100dvh - 105px); }
 dialog.lightbox .lb-cap { padding-inline: 1.2rem; }
+dialog.lightbox .lb-context { display: inline-block; margin-top: .4rem; color: var(--gold-bright); text-decoration: underline; text-underline-offset: .2em; }
+dialog.lightbox .lb-context[hidden] { display: none; }
+dialog.lightbox.lb-portrait { flex-direction: column; gap: 1.25rem; }
+dialog.lightbox.lb-portrait img { width: min(55vw, 14rem); max-height: 56dvh; object-fit: contain; background: #102830; }
+dialog.lightbox.lb-portrait .lb-cap { position: static; }
 @media(max-width:720px) { dialog.lightbox { padding: 10px; } }
