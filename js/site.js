@@ -16,11 +16,12 @@
   onScroll();
 
   if (toggle && links) {
+    toggle.setAttribute('aria-expanded', 'false');
     toggle.addEventListener('click', function () {
-      links.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(links.classList.toggle('open')));
     });
     links.querySelectorAll('a').forEach(function (a) {
-      a.addEventListener('click', function () { links.classList.remove('open'); });
+      a.addEventListener('click', function () { links.classList.remove('open'); toggle.setAttribute('aria-expanded', 'false'); });
     });
   }
 
@@ -47,32 +48,47 @@
   }
 
   /* ---- Lightbox for screenshots ---- */
-  var lb = document.createElement('div');
+  var lb = document.createElement('dialog');
   lb.className = 'lightbox';
-  lb.innerHTML = '<span class="lb-close" aria-label="Close">&times;</span><img alt=""><div class="lb-cap"></div>';
+  lb.setAttribute('aria-label', 'Full gameplay screenshot');
+  lb.innerHTML = '<button type="button" class="lb-close" aria-label="Close screenshot">&times;</button><img alt=""><div class="lb-cap"></div>';
   document.body.appendChild(lb);
-  var lbImg = lb.querySelector('img');
-  var lbCap = lb.querySelector('.lb-cap');
+  var opener;
+  var previousOverflow;
+  var fullImage = lb.querySelector('img');
+  var caption = lb.querySelector('.lb-cap');
 
-  function openLb(src, cap) {
-    lbImg.src = src;
-    lbCap.textContent = cap || '';
-    lb.classList.add('on');
+  function openFrame(el) {
+    var img = el.matches('img') ? el : el.querySelector('img');
+    if (!img) return;
+    opener = el;
+    fullImage.src = el.dataset.full || img.currentSrc || img.src;
+    fullImage.alt = img.alt;
+    caption.textContent = el.dataset.cap || img.alt;
+    previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
-  }
-  function closeLb() {
-    lb.classList.remove('on');
-    document.body.style.overflow = '';
+    lb.showModal();
   }
   document.querySelectorAll('.zoomable').forEach(function (el) {
-    el.addEventListener('click', function () {
-      var img = el.tagName === 'IMG' ? el : el.querySelector('img');
-      if (!img) return;
-      openLb(img.getAttribute('src'), el.getAttribute('data-cap') || img.getAttribute('alt'));
-    });
+    if (!el.matches('button, a[href]')) {
+      el.tabIndex = 0;
+      el.setAttribute('role', 'button');
+      el.addEventListener('keydown', function (event) {
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          openFrame(el);
+        }
+      });
+    }
+    el.addEventListener('click', function () { openFrame(el); });
   });
-  lb.addEventListener('click', closeLb);
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
+  lb.addEventListener('click', function (event) {
+    if (event.target === lb || event.target.closest('.lb-close')) lb.close();
+  });
+  lb.addEventListener('close', function () {
+    document.body.style.overflow = previousOverflow;
+    if (opener) opener.focus({preventScroll: true});
+  });
 
   /* ---- Pull-quote rotator ---- */
   var stage = document.querySelector('.quote-stage');

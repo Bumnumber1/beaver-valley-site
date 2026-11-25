@@ -495,3 +495,48 @@ h1,h2,h3,h4{color:var(--cream); margin:0 0 .5em; line-height:1.05; font-weight:7
   padding:6px 12px; text-decoration:none; transition:color .2s, border-color .2s;
 }
 .btn-staff:hover{color:var(--gold-bright); border-color:var(--gold-deep);}
+
+/* Gameplay photography and the public world atlas */
+.live-hero .hero-bg img { object-position: center; }
+.live-hero .hero-bg::after { background: linear-gradient(0deg, #100e0b 0%, rgba(16,14,11,.65) 18%, transparent 65%), linear-gradient(90deg, rgba(8,7,6,.55), transparent 70%); }
+.home-wordmark { font: 400 clamp(4.1rem, 9vw, 8rem)/.94 var(--f-display); text-transform: uppercase; margin: 0 0 .28em; letter-spacing: -.015em; text-shadow: 0 4px 25px #14110c; }
+.home-wordmark span { color: #bfce84; }
+.feature-intro { border-bottom: 1px solid var(--line-soft); }
+.feature-intro .section-title, .atlas-district .section-title { margin-bottom: .45em; }
+.text-link { display: inline-block; margin-top: 1em; color: var(--gold-bright); font-weight: 600; }
+.game-frame, .atlas-photo { margin: 0; min-width: 0; background: #16130f; border: 1px solid var(--line); border-radius: 5px; overflow: hidden; }
+.game-frame img { width: 100%; }
+.game-frame figcaption, .atlas-photo figcaption { padding: .7em .95em; color: var(--cream); }
+.game-frame figcaption { font-size: .9rem; }
+.mode-directory, .atlas-grid { display: grid; gap: 20px; margin: 1.7rem 0; grid-template-columns: repeat(auto-fit, minmax(min(100%, 275px), 1fr)); }
+.mode-directory article { padding: 1.2rem 0; border-top: 1px solid var(--line); }
+.mode-directory h3 { font: 500 1.4rem var(--f-head); margin: 0 0 .4em; }
+.mode-directory p { margin: 0; }
+.atlas { padding-bottom: 65px; }
+.atlas-index { padding: 20px 0; border-bottom: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 6px 20px; }
+.atlas-index a { font-size: .98rem; }
+.atlas-district { padding-top: 58px; scroll-margin-top: 65px; }
+.atlas-district .section-lead { max-width: 75ch; }
+.atlas-photo img { display: block; width: 100%; aspect-ratio: 2.38; object-fit: contain; background: #0d0b08; }
+.atlas-photo[id] { scroll-margin-top: 80px; }
+.atlas-photo figcaption { font-family: var(--f-head); letter-spacing: .035em; }
+.zoomable { cursor: zoom-in; }
+.zoomable:focus-visible, .atlas-index a:focus-visible { outline: 3px solid var(--gold-bright); outline-offset: 3px; }
+.nav-links { gap: 2px; }
+@media (min-width:721px) and (max-width:1080px) {
+  .nav, .nav.scrolled { padding-inline: 16px; }
+  .nav-links a { padding-inline: 7px; font-size: .78rem; letter-spacing: .075em; }
+}
+@media(max-width:720px) {
+  .btn-lg { max-width: 100%; padding-inline: clamp(12px, 5vw, 32px); white-space: normal; text-align: center; }
+  .live-hero { min-height: 84svh; }
+  .live-hero .hero-inner { padding-bottom: 42px; }
+  .feature-intro { padding-block: 48px; }
+  .atlas-district { padding-top: 38px; }
+}
+dialog.lightbox { margin: 0; width: 100%; height: 100%; max-width: none; max-height: none; border: 0; }
+dialog.lightbox[open] { display: flex; }
+dialog.lightbox .lb-close { background: transparent; border: 0; }
+dialog.lightbox img { max-height: calc(100dvh - 105px); }
+dialog.lightbox .lb-cap { padding-inline: 1.2rem; }
+@media(max-width:720px) { dialog.lightbox { padding: 10px; } }

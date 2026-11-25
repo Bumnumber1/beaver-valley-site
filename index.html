@@ -3,341 +3,155 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Beaver Valley — A Town of 250 AI Souls</title>
-<meta name="description" content="Beaver Valley is a grimy dystopian-satire CRPG / beat-em-up hybrid where ~250 characters each have a mind of their own — thinking, talking in their own voices, and causing problems whether you're watching or not.">
+<title>Beaver Valley | The town, the band and the fleet</title>
+<meta name="description" content="Explore Beaver Valley’s town simulation, playable music, local combat, murder investigation and Ocean Operations.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<nav class="nav">
-  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
-    <li><a href="index.html" class="active">The Valley</a></li>
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo"><span class="paw" aria-hidden="true">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="main-navigation">
+    <li><a href="index.html" class="active" aria-current="page">The Valley</a></li>
     <li><a href="features.html">Features</a></li>
-    <li><a href="world.html">The World</a></li>
+    <li><a href="naval.html">Naval Combat</a></li>
+    <li><a href="world.html">World</a></li>
     <li><a href="characters.html">Cast</a></li>
     <li><a href="guide.html">Guide</a></li>
     <li><a href="roadmap.html">Roadmap</a></li>
     <li><a href="donate.html">Support</a></li>
-    <li><a class="btn btn-primary nav-cta" href="donate.html">Fund the Chaos</a></li>
   </ul>
 </nav>
-
-<!-- ===== HERO ===== -->
-<header class="hero">
-  <div class="hero-bg"><img src="images/brand/hero-key-art.jpg" alt="Beaver Valley key art: a smog-belching FoundryStop refinery, the ASS DAMN dam, attack choppers and a glowing Core orb at dusk"></div>
-  <h1 style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Beaver Valley</h1>
-  <div class="hero-inner">
-    <p class="hero-tagline">Systemic CRPG &times; Physics Beat-em-up</p>
-    <p class="hero-pitch">A grimy dystopian town where roughly <b>250 characters each have a mind of their own</b> &mdash; they think, argue in their own voices, and start fights, lawsuits and telethons whether you&rsquo;re watching or not.</p>
-    <div class="hero-actions">
-      <a class="btn btn-primary btn-lg" href="features.html">See What&rsquo;s Built &rarr;</a>
-      <a class="btn btn-ghost btn-lg" href="#what">What Is Beaver Valley?</a>
-    </div>
-  </div>
-  <div class="scroll-hint">Scroll &darr;</div>
+<header class="hero live-hero">
+<div class="hero-bg"><img src="images/play/gp-bestiary-beaver.webp" alt="The Beaver Eater in the street outside the gun shop, with townspeople and combat health bars visible" fetchpriority="high"></div>
+<div class="hero-inner">
+<p class="hero-tagline">Story Mode</p>
+<h1 class="home-wordmark">Beaver <span>Valley</span></h1>
+<p class="hero-pitch">Pick someone who lives here. Walk their streets, join their band, or take their ship to sea.</p>
+<div class="hero-actions"><a class="btn btn-primary" href="features.html">Explore the features</a><a class="btn btn-ghost" href="naval.html">Naval combat</a></div></div>
 </header>
-
-<!-- ===== MARQUEE (long; ~10 min loop) ===== -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span class="mq-quote">&ldquo;Better than Grand Theft Auto 6&rdquo; &mdash; Someone</span><span>~250 characters with a mind of their own</span><span>550+ hand-built scenes</span><span>596 catalogued locations</span><span>42 factions</span><span>108 world events</span><span>0 scripted lines of dialogue</span><span>150+ weapons &amp; items</span><span>6 shotgun shell types</span><span>12 destructible body parts</span><span>44 unique combat voices</span><span>an 8&times;8 inventory on every soul</span><span>19 tickers on the Beaver Valley Exchange</span><span>9 martial-arts belts</span><span>a 5-role starship crew</span><span>a casino: blackjack, roulette, slots &amp; poker</span><span>three playable arcade cabinets at James&rsquo;s Barcade</span><span>up to 4 players in War</span><span>13 frontline maps</span><span>~150 things a character can decide to do</span><span>26 activities on the town&rsquo;s daily clock</span><span>nobody dies off-screen</span><span>infinite endings</span><span>one ending drops a new Beaver Machine album</span><span>one ending unlocks a whole new mode</span><span>FoundryStop: power to the greedy</span><span>the dam is called ASS DAMN</span><span>Beaver Ministries: send all your money</span><span>the Beaver Meal &mdash; $9.99</span><span>Beaver Valley: it&rsquo;s not great</span><span>the hosts drink until they pass out on air</span><span>real bands play real songs</span><span>Beaver Machine, the house band</span><span>Stone City Orchestra</span><span>Voluntary Mother Earth</span><span>CuntPuncher, imported from Britain</span><span>E$$E M &amp; Poppa Capp</span><span>D3@DH0R$3</span><span>TV: Dumpster Talk</span><span>TV: Homeless in Denton</span><span>TV: Put It In Your Mouth</span><span>TV: Namasensei&rsquo;s Japanese Lessons</span><span>Twitch chat can walk into the story</span><span>a silent AI jury that can hang the innocent</span><span>the repo men will empty your inventory</span><span>crimes must actually be witnessed</span><span>paint the floor with blood, oil, acid &amp; sewage</span><span>oil ignites, acid melts, sewage neutralizes</span><span>four tiers of drunk</span><span>a one-use time machine in the sewers</span><span>an ancient alien beaver civilization</span><span>a monster called the Beaver Eater</span><span>colonize Mars &mdash; or lose it</span><span>ghosts, exorcisms &amp; the occasional botched resurrection</span><span>a crowd of 40 Beethovens at a rock show</span><span>Police Chief: Jesse Ventura</span><span>built by one person</span><span>every voice is a distinct voice</span><span>harpoon someone and reel them in</span><span>a flaming mop</span><span>a rocket launcher that redecorates</span><span>talk to the town with your own voice</span><span>soldiers roll a random name &amp; backstory at spawn</span><span>100+ hand-written personalities</span><span>a sewer network under every district</span><span>break out of jail</span><span>get patched up, then billed</span><span>a 29-step military rank ladder</span><span>the garrison salutes you once you outrank them</span><span>nine buildings you can walk into at the FOB</span><span>103 places with their own filmed demolition</span><span>call in a Tomahawk</span><span>the rubble stays where it falls</span><span>enemies who surrender can be turned</span><span>General Asshat has objectives for you</span><span>172 collectible character cards</span><span>116 outfits at Mike&rsquo;s Threads</span><span>a theatre with four plays</span><span>sit in the audience &amp; heckle</span><span>run the theatre lighting board yourself</span><span>Miyamoto sells the tickets</span><span>an airline with a first class and a cage</span><span>do not fly economy</span><span>a grenade ends the whole aircraft</span><span>parachute into the ocean, wait for rescue</span><span>fly to Moscow, walk to the Kremlin</span><span>your death is permanent</span><span>come back as somebody else</span><span>a submarine with 15 compartments and a deck</span><span>seven sea theatres, fifty kilometres across</span><span>twelve platforms you can take the helm of</span><span>or command the Russian fleet instead</span><span>sail the boat home into the pen</span><span>an airliner with 143 souls crosses the chart</span><span>shoot down the missile that&rsquo;s coming at you</span><span>the ferry still runs the 06:40</span><span>22 rooms of federal detention</span><span>a snake, a drone &amp; the Beaver Eater</span><span>the American Security Services</span><span>give the frigate her orders out loud</span><span>&ldquo;come right to zero nine zero&rdquo;</span><span>ten sailors who answer you by name</span><span>a hundred named sailors crewing the fleet</span><span>the Russians have a wardroom too</span><span>every compartment floods on its own</span><span>watch the damage party patch the hole</span><span>seal the door and the water stops</span><span>a trench 10,900 metres deep</span><span>something enormous lives at the bottom of it</span><span>fourteen species in the water</span><span>fill the hold, sell the catch on the quay</span><span>land a helicopter on a moving deck</span><span>40 drones ordered off the chart</span><span>the TV studio has a surface-to-air missile</span><span>shell the street you drink on</span><span>strangers start the conversation now</span><span>they remember what you did to them</span><span>the submarine carries a nuclear Tomahawk</span><span>five kilometres of blast radius</span><span>the shockwave arrives when it arrives</span><span>a nuke can be shot down in flight</span><span>the rubble is still there when you walk in</span><span>both navies have an aircraft carrier</span><span>order your whole fleet from one screen</span><span>land a jet on a moving deck</span><span>grapple a ship and board it</span><span>the crew you capture become your crew</span><span>post a prisoner as your cook</span><span>write your own naval battle and save it</span><span>win conditions for both sides</span><span>a real strait, from real shoreline data</span><span>a Harpoon reaches twenty kilometres</span><span>guns were never going to sink her</span><span>surface a holed boat or she floods</span><span>every hull takes spoken orders now</span>
-    <span class="mq-quote">&ldquo;Better than Grand Theft Auto 6&rdquo; &mdash; Someone</span><span>~250 characters with a mind of their own</span><span>550+ hand-built scenes</span><span>596 catalogued locations</span><span>42 factions</span><span>108 world events</span><span>0 scripted lines of dialogue</span><span>150+ weapons &amp; items</span><span>6 shotgun shell types</span><span>12 destructible body parts</span><span>44 unique combat voices</span><span>an 8&times;8 inventory on every soul</span><span>19 tickers on the Beaver Valley Exchange</span><span>9 martial-arts belts</span><span>a 5-role starship crew</span><span>a casino: blackjack, roulette, slots &amp; poker</span><span>three playable arcade cabinets at James&rsquo;s Barcade</span><span>up to 4 players in War</span><span>13 frontline maps</span><span>~150 things a character can decide to do</span><span>26 activities on the town&rsquo;s daily clock</span><span>nobody dies off-screen</span><span>infinite endings</span><span>one ending drops a new Beaver Machine album</span><span>one ending unlocks a whole new mode</span><span>FoundryStop: power to the greedy</span><span>the dam is called ASS DAMN</span><span>Beaver Ministries: send all your money</span><span>the Beaver Meal &mdash; $9.99</span><span>Beaver Valley: it&rsquo;s not great</span><span>the hosts drink until they pass out on air</span><span>real bands play real songs</span><span>Beaver Machine, the house band</span><span>Stone City Orchestra</span><span>Voluntary Mother Earth</span><span>CuntPuncher, imported from Britain</span><span>E$$E M &amp; Poppa Capp</span><span>D3@DH0R$3</span><span>TV: Dumpster Talk</span><span>TV: Homeless in Denton</span><span>TV: Put It In Your Mouth</span><span>TV: Namasensei&rsquo;s Japanese Lessons</span><span>Twitch chat can walk into the story</span><span>a silent AI jury that can hang the innocent</span><span>the repo men will empty your inventory</span><span>crimes must actually be witnessed</span><span>paint the floor with blood, oil, acid &amp; sewage</span><span>oil ignites, acid melts, sewage neutralizes</span><span>four tiers of drunk</span><span>a one-use time machine in the sewers</span><span>an ancient alien beaver civilization</span><span>a monster called the Beaver Eater</span><span>colonize Mars &mdash; or lose it</span><span>ghosts, exorcisms &amp; the occasional botched resurrection</span><span>a crowd of 40 Beethovens at a rock show</span><span>Police Chief: Jesse Ventura</span><span>built by one person</span><span>every voice is a distinct voice</span><span>harpoon someone and reel them in</span><span>a flaming mop</span><span>a rocket launcher that redecorates</span><span>talk to the town with your own voice</span><span>soldiers roll a random name &amp; backstory at spawn</span><span>100+ hand-written personalities</span><span>a sewer network under every district</span><span>break out of jail</span><span>get patched up, then billed</span><span>a 29-step military rank ladder</span><span>the garrison salutes you once you outrank them</span><span>nine buildings you can walk into at the FOB</span><span>103 places with their own filmed demolition</span><span>call in a Tomahawk</span><span>the rubble stays where it falls</span><span>enemies who surrender can be turned</span><span>General Asshat has objectives for you</span><span>172 collectible character cards</span><span>116 outfits at Mike&rsquo;s Threads</span><span>a theatre with four plays</span><span>sit in the audience &amp; heckle</span><span>run the theatre lighting board yourself</span><span>Miyamoto sells the tickets</span><span>an airline with a first class and a cage</span><span>do not fly economy</span><span>a grenade ends the whole aircraft</span><span>parachute into the ocean, wait for rescue</span><span>fly to Moscow, walk to the Kremlin</span><span>your death is permanent</span><span>come back as somebody else</span><span>a submarine with 15 compartments and a deck</span><span>seven sea theatres, fifty kilometres across</span><span>twelve platforms you can take the helm of</span><span>or command the Russian fleet instead</span><span>sail the boat home into the pen</span><span>an airliner with 143 souls crosses the chart</span><span>shoot down the missile that&rsquo;s coming at you</span><span>the ferry still runs the 06:40</span><span>22 rooms of federal detention</span><span>a snake, a drone &amp; the Beaver Eater</span><span>the American Security Services</span><span>give the frigate her orders out loud</span><span>&ldquo;come right to zero nine zero&rdquo;</span><span>ten sailors who answer you by name</span><span>a hundred named sailors crewing the fleet</span><span>the Russians have a wardroom too</span><span>every compartment floods on its own</span><span>watch the damage party patch the hole</span><span>seal the door and the water stops</span><span>a trench 10,900 metres deep</span><span>something enormous lives at the bottom of it</span><span>fourteen species in the water</span><span>fill the hold, sell the catch on the quay</span><span>land a helicopter on a moving deck</span><span>40 drones ordered off the chart</span><span>the TV studio has a surface-to-air missile</span><span>shell the street you drink on</span><span>strangers start the conversation now</span><span>they remember what you did to them</span><span>the submarine carries a nuclear Tomahawk</span><span>five kilometres of blast radius</span><span>the shockwave arrives when it arrives</span><span>a nuke can be shot down in flight</span><span>the rubble is still there when you walk in</span><span>both navies have an aircraft carrier</span><span>order your whole fleet from one screen</span><span>land a jet on a moving deck</span><span>grapple a ship and board it</span><span>the crew you capture become your crew</span><span>post a prisoner as your cook</span><span>write your own naval battle and save it</span><span>win conditions for both sides</span><span>a real strait, from real shoreline data</span><span>a Harpoon reaches twenty kilometres</span><span>guns were never going to sink her</span><span>surface a holed boat or she floods</span><span>every hull takes spoken orders now</span>
-  </div>
-</div>
-
-<!-- ===== WHAT IS IT ===== -->
-<section class="section" id="what">
-  <div class="wrap split">
-    <div class="reveal">
-      <span class="kicker">What is Beaver Valley?</span>
-      <h2 class="section-title">A town that talks back</h2>
-      <div class="prose">
-        <p>Beaver Valley is a Unity 2D CRPG / beat-em-up hybrid &mdash; <em>&ldquo;without the inconsequential beating&rdquo;</em> &mdash; set in a smog-choked town whose refinery is named <b>FOUNDRYSTOP</b> and whose dam is, without irony, labelled <b>ASS DAMN</b>. On the surface it&rsquo;s a side-scroller with brutal ragdoll physics, limb destruction, real blocking, and an arsenal of gleefully stupid weapons. Underneath, it&rsquo;s a living town.</p>
-        <p>The hook is the cast. Around <b>250 named characters</b> each have a mind of their own: they pursue their own goals, hold real conversations, react to what you do to them <em>by name</em>, and decide for themselves whether to fight you, flee, join your party, or call the cops. Every one speaks in their own distinct voice, and nobody is reading from a script &mdash; because there isn&rsquo;t one.</p>
-        <p>It&rsquo;s one persistent world where consequences stick: buildings collapse and stay collapsed, no character dies off-screen, and almost every playthrough ends differently. Push the town all the way to salvation or all the way to ruin and the <b>two extremes pay out for real</b> &mdash; one unlocks a brand-new Beaver Machine album, the other unlocks an entirely new mode.</p>
-      </div>
-    </div>
-    <figure class="media media-frame reveal d2 zoomable" data-cap="Joe Biden vs Donald Trump — a real in-engine duel with per-limb health bars.">
-      <img src="images/gameplay/gp-combat-biden-trump.jpg" alt="Joe Biden fights Donald Trump with katanas in a dojo, per-limb health cards on screen">
-      <figcaption class="cap"><b>In-engine:</b> Biden vs Trump &mdash; per-limb health</figcaption>
-    </figure>
-  </div>
+<main id="what">
+<section class="section feature-intro" id="env-city-center">
+<div class="wrap split"><div><span class="kicker">Story Mode</span>
+<h2 class="section-title">A day in the Valley</h2>
+<div class="prose">
+<p>Beaver Valley is a satirical role-playing game with side-scrolling, physics-driven fights. On the street, lining up your feet matters as much as reaching your opponent. A fight can carry through a doorway, and a witness can turn a scuffle into a police case.</p>
+<p>The town has a two-hour timetable. A resident can leave work, visit a public venue and head home through the same doors you use. Recruit someone and their place in your party takes precedence over their routine. At home you can use a personal stash or rest to pass time and recover health.</p></div><a class="text-link" href="world.html">Tour the town →</a></div>
+<figure class="game-frame zoomable" data-cap="Beaver Valley City Center in Story Mode."><img src="images/play/env-city-center.webp" alt="Beaver Valley City Center in Story Mode." loading="lazy" decoding="async"><figcaption>Beaver Valley City Center in Story Mode.</figcaption>
+</figure></div>
 </section>
-
-<hr class="divider">
-
-<!-- ===== HOOKS ===== -->
-<section class="section">
-  <div class="wrap">
-    <div class="center reveal" style="margin-bottom:52px">
-      <span class="kicker">Why it&rsquo;s different</span>
-      <h2 class="section-title">Seven reasons it shouldn&rsquo;t work &mdash; and does</h2>
-    </div>
-    <div class="hooks">
-      <div class="hook reveal"><div class="num">01</div><p>~250 characters, each with a mind of its own that thinks, talks, and acts.</p></div>
-      <div class="hook reveal d1"><div class="num">02</div><p>Every character has their own distinct voice &mdash; and no scripted dialogue, ever.</p></div>
-      <div class="hook reveal d2"><div class="num">03</div><p>Brutal, physics-driven, limb-shredding combat. Real blocking, no dodging.</p></div>
-      <div class="hook reveal"><div class="num">04</div><p>A whole satirical town with conflicting goals that runs with or without you.</p></div>
-      <div class="hook reveal d1"><div class="num">05</div><p>Twitch chat can walk into the story and change it live.</p></div>
-      <div class="hook reveal d2"><div class="num">06</div><p>Dozens of ways to spend a night &mdash; see the list below. Court, war, starship, telethon, bands, jailbreaks&hellip;</p></div>
-      <div class="hook reveal d3"><div class="num">07</div><p>Infinite endings &mdash; and the two extremes hand you real-world rewards.</p></div>
-    </div>
-  </div>
+<section class="section feature-intro" id="music">
+<div class="wrap split rev"><div><span class="kicker">Music & performance</span>
+<h2 class="section-title">Beaver Machine Live</h2>
+<div class="prose">
+<p>Choose vocals, guitar, bass or drums. All four parts use a four-lane note highway, with taps, sustained notes and a combo multiplier. Start with a single song, then try a full set. The songbook also accepts your own music.</p>
+<p>The game scores timing, accuracy and the notes you hold. Play from the main menu, or take a band member’s part at the bar. In the venue, the musicians and audience share the screen with your chart.</p></div><a class="text-link" href="features.html#rhythm">Play the rhythm game →</a></div>
+<figure class="game-frame zoomable" data-cap="Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)” with a 30-note streak."><img src="images/play/gp-band-drums.webp" alt="Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)” with a 30-note streak." loading="lazy" decoding="async"><figcaption>Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)” with a 30-note streak.</figcaption>
+</figure></div>
 </section>
-
-<!-- ===== THINGS TO DO ===== -->
-<section class="section" style="background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)">
-  <div class="wrap">
-    <div class="center reveal" style="margin-bottom:44px">
-      <span class="kicker">A hundred ways to cause a problem</span>
-      <h2 class="section-title">Endless things to do</h2>
-      <p class="section-lead" style="margin-inline:auto">This is a sandbox, not a corridor. A partial list of what a single evening in the Valley can turn into:</p>
-    </div>
-    <ul class="todo reveal">
-      <li><b>Hold court</b> &mdash; as judge, defendant, or lawyer</li>
-      <li><b>Launch a starship</b> and command the bridge by voice</li>
-      <li><b>Go to war</b> with a 4-player squad</li>
-      <li><b>Host a drunk telethon</b> for your Twitch chat</li>
-      <li><b>Rob the bank</b> &mdash; or take out a loan you can&rsquo;t repay</li>
-      <li><b>Get arrested</b> and stand trial</li>
-      <li><b>Break out of jail</b></li>
-      <li><b>Serve your sentence</b> on a working cell block</li>
-      <li><b>Start a bar fight</b></li>
-      <li><b>Join or start a band</b> and play a real set</li>
-      <li><b>Sit in on a TV taping</b></li>
-      <li><b>Earn all nine martial-arts belts</b></li>
-      <li><b>Enter a tournament</b></li>
-      <li><b>Recruit a party</b> of AI souls</li>
-      <li><b>Hand someone a weapon</b> and see what they do</li>
-      <li><b>Exorcise a ghost</b></li>
-      <li><b>Raise the dead</b> (results may vary)</li>
-      <li><b>Dig up an ancient beaver</b></li>
-      <li><b>Travel through time</b> and rewrite the town</li>
-      <li><b>Colonize Mars</b></li>
-      <li><b>Preach at the megachurch</b></li>
-      <li><b>Play the stock market</b></li>
-      <li><b>Get patched up at the hospital</b> &mdash; then dodge the bill</li>
-      <li><b>Talk your way back into reality</b> with your own voice</li>
-      <li><b>Take a submarine to sea</b> &mdash; then bring it home into the pen</li>
-      <li><b>Shoot down a missile</b> before it reaches your hull</li>
-      <li><b>Con a frigate by voice</b> &mdash; and have the crew answer you</li>
-      <li><b>Fight a flood</b> compartment by compartment</li>
-      <li><b>Go looking in the trench</b> for whatever took the last boat</li>
-      <li><b>Fill a fishing hold</b> and sell it on the quay</li>
-      <li><b>Land a helicopter</b> on a ship doing fourteen knots</li>
-      <li><b>Use the nuclear Tomahawk</b> &mdash; and live inside the five-kilometre circle</li>
-      <li class="finale"><b>Save every soul</b> &mdash; unlock a new album</li>
-      <li class="finale"><b>Delete every soul</b> &mdash; unlock a new mode</li>
-      <li class="finale"><b>&hellip;or anything in between</b></li>
-    </ul>
-    <div class="center reveal" style="margin-top:42px">
-      <p class="section-lead" style="margin:0 auto 18px">Most of that will kill you the first time. There is a guide to why.</p>
-      <a class="btn btn-ghost btn-lg" href="guide.html">Read the Field Guide &rarr;</a>
-    </div>
-  </div>
+<section class="section feature-intro" id="gp-navy-underway">
+<div class="wrap split"><div><span class="kicker">Ocean Operations</span>
+<h2 class="section-title">Naval combat</h2>
+<div class="prose">
+<p>In The Last Ferry, the passenger ship is the objective. Pick a side and the available commands change with the mission. On a bridge, you can follow reported contacts on the chart, give another friendly vessel an order or switch to a shipboard station.</p>
+<p>Other operations put you in a submarine or on a carrier. Aircraft, boarding parties and damage-control crews each have jobs to do. The mission editor lets you set starting forces and decide what counts as a win.</p></div><a class="text-link" href="naval.html#vessel-directory">Compare all 65 vessels, aircraft and fittings →</a></div>
+<figure class="game-frame zoomable" data-cap="The Weasel frigate making way in The Last Ferry."><img src="images/play/gp-navy-underway.webp" alt="The Weasel frigate making way in The Last Ferry." loading="lazy" decoding="async"><figcaption>The Weasel frigate making way in The Last Ferry.</figcaption>
+</figure></div>
 </section>
-
-<hr class="divider">
-
-<!-- ===== MODES ===== -->
-<section class="section">
-  <div class="wrap">
-    <div class="center reveal" style="margin-bottom:52px">
-      <span class="kicker">The same engine, eleven ways</span>
-      <h2 class="section-title">Modes</h2>
-      <p class="section-lead" style="margin-inline:auto">Self-contained games that run standalone <em>and</em> inside the living town.</p>
-    </div>
-    <figure class="media media-frame reveal zoomable" data-cap="The actual in-game main menu &mdash; eleven entries, every one of them built." style="max-width:940px;margin:0 auto 42px">
-      <img src="images/gameplay/gp-menu.jpg" alt="The Beaver Valley main menu with mode selection" loading="lazy">
-      <figcaption class="cap"><b>In-engine:</b> the real mode-select menu</figcaption>
-    </figure>
-    <div class="grid grid-3">
-      <div class="card reveal"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/env/env-city-center.jpg" alt="Beaver Valley city center at night" loading="lazy"></div><div class="card-body"><h3>Story / Free-Roam</h3><p>Be any of ~250 souls and roam the whole town while it lives its own day around you.</p></div></div>
-      <div class="card reveal d1"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-court-trial.jpg" alt="Beaver Valley municipal court trial in session" loading="lazy"></div><div class="card-body"><h3>Court Trial</h3><p>A full trial with an AI jury that genuinely decides. The innocent can hang.</p></div></div>
-      <div class="card reveal d2"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-war-fuel-depot.jpg" alt="War mode fuel depot battlefield" loading="lazy"></div><div class="card-body"><h3>War</h3><p>Parachute in for up to 4-player squad warfare across thirteen frontline maps &mdash; then walk off the field into your own forward base, with a rank that rises every time you win.</p></div></div>
-      <div class="card reveal"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-starship.jpg" alt="Starship bridge command with five-role crew and system HUD" loading="lazy"></div><div class="card-body"><h3>Starship Command</h3><p>A timer-free bridge sim: five crew roles, voice orders, and a hull that rips open.</p></div></div>
-      <div class="card reveal d1"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/env/env-tv-studio.jpg" alt="Broadcast studio set" loading="lazy"></div><div class="card-body"><h3>Telethon</h3><p>Your live Twitch chat becomes cast and combatants. Subs trigger the chaos.</p></div></div>
-      <div class="card reveal d2"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-combat-biden-trump.jpg" alt="VS mode duel" loading="lazy"></div><div class="card-body"><h3>VS Arena</h3><p>Pick any two of the cast and throw them in the ring &mdash; full weapons, health bars, last one standing. Human or AI on either side.</p></div></div>
-      <div class="card reveal"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/env/env-dojo.jpg" alt="Namasensei's Dojo interior" loading="lazy"></div><div class="card-body"><h3>Namasensei&rsquo;s Dojo</h3><p>Not a brawl &mdash; a martial-arts <em>campaign</em>. Fight bare-handed, earn belts, climb tournaments, and here death doesn&rsquo;t stick.</p></div></div>
-      <div class="card reveal d1"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-slap-board.jpg" alt="The Beaver Slap card game board" loading="lazy"></div><div class="card-body"><h3>Beaver Slap</h3><p>A collectible card game with a card for all 172 souls &mdash; a 5&times;5 board, a deck workshop, and replays you can step through.</p></div></div>
-      <div class="card reveal d2"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/env/env-casino-poker.jpg" alt="The casino poker room" loading="lazy"></div><div class="card-body"><h3>Poker</h3><p>Hot-seat Texas hold&rsquo;em: up to four humans in any of seven chairs, your own buy-in and blinds, against opponents who talk back.</p></div></div>
-      <div class="card reveal"><div class="card-img"><span class="card-tag live">Playable</span><img src="images/gameplay/gp-navy-surfaced.jpg" alt="A surfaced submarine at dusk off the Beaver Valley coast" loading="lazy"></div><div class="card-body"><h3>Ocean Operations</h3><p>Choose the operation, choose a side, choose a captain out of the cast, and take one of twelve platforms to sea &mdash; fifty kilometres of charted water a side, a carrier and a whole fleet that answer you, a crew who take your orders out loud, and a pen under the town to bring her home to.</p></div></div>
-      <div class="card reveal d1"><div class="card-img"><span class="card-tag soon">Coming Soon</span><img src="images/env/env-murder-house.jpg" alt="Murder mystery mansion" loading="lazy"></div><div class="card-body"><h3>Murder Mystery</h3><p>A whodunit where the suspects are AI souls who each remember it differently. The nineteen-room mansion and its four secret passages are already built.</p></div></div>
-    </div>
-  </div>
+<section class="section section--tight modes-list">
+<div class="wrap">
+<h2 class="section-title">From the main menu</h2>
+<div class="mode-directory">
+<article class="mode-entry">
+<h3><a href="features.html#town">Story Mode</a></h3>
+<p>Choose a resident and explore on foot. Homes, jobs, travel, recruitment and encounters share the same world.</p>
+<figure class="game-frame zoomable" data-cap="At the counter inside McDoogles"><img src="images/play/env-mcdoogles.webp" alt="At the counter inside McDoogles" loading="lazy" decoding="async"><figcaption>At the counter inside McDoogles</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#fighting">VS Mode</a></h3>
+<p>Set up opposing fighters with human or AI control and take them into an arena.</p>
+<figure class="game-frame zoomable" data-cap="Two fighters in the dojo arena"><img src="images/play/gp-versus-2.webp" alt="Two fighters in the dojo arena" loading="lazy" decoding="async"><figcaption>Two fighters in the dojo arena</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#operations">War</a></h3>
+<p>Assemble a squad, choose a battlefield and return to the Grand FOB for supplies, treatment and the next assignment.</p>
+<figure class="game-frame zoomable" data-cap="Parachute deployment over the river crossing"><img src="images/play/gp-war-front.webp" alt="Parachute deployment over the river crossing" loading="lazy" decoding="async"><figcaption>Parachute deployment over the river crossing</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#law">Court Mode</a></h3>
+<p>Choose a cast for a trial. Testimony, arguments and the jury’s decision play out in court.</p>
+<figure class="game-frame zoomable" data-cap="The court hearing a littering case"><img src="images/play/gp-court-trial.webp" alt="The court hearing a littering case" loading="lazy" decoding="async"><figcaption>The court hearing a littering case</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#cases">Murder Mystery</a></h3>
+<p>Investigate a death at Bellweather House. Examine physical evidence, talk to suspects and compare their accounts in your notebook.</p>
+<figure class="game-frame zoomable" data-cap="The investigation at Bellweather House"><img src="images/play/gp-mystery-foyer.webp" alt="The investigation at Bellweather House" loading="lazy" decoding="async"><figcaption>The investigation at Bellweather House</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#shows">Telethon</a></h3>
+<p>Run a debate show with speaking hosts. Connecting Twitch brings live chat into the broadcast.</p>
+<figure class="game-frame zoomable" data-cap="Trump and Biden on the Telethon set"><img src="images/play/gp-telethon-call-live.webp" alt="Trump and Biden on the Telethon set" loading="lazy" decoding="async"><figcaption>Trump and Biden on the Telethon set</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#slap">Beaver Slap</a></h3>
+<p>Build a deck and play for control of spaces on the board with character, item and location cards.</p>
+<figure class="game-frame zoomable" data-cap="Cards in play on the Beaver Slap board"><img src="images/play/gp-slap-board.webp" alt="Cards in play on the Beaver Slap board" loading="lazy" decoding="async"><figcaption>Cards in play on the Beaver Slap board</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#cards">Poker</a></h3>
+<p>Choose the players, buy-in and blinds for a game of Texas hold’em with human or computer-controlled seats.</p>
+<figure class="game-frame zoomable" data-cap="A hand of Texas hold’em at the casino"><img src="images/play/gp-poker-hand.webp" alt="A hand of Texas hold’em at the casino" loading="lazy" decoding="async"><figcaption>A hand of Texas hold’em at the casino</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="naval.html">Ocean Operations</a></h3>
+<p>Choose a mission, side and available command, or build a scenario in the mission editor.</p>
+<figure class="game-frame zoomable" data-cap="Fleet Command in The Last Ferry"><img src="images/play/gp-fleet-command.webp" alt="Fleet Command in The Last Ferry" loading="lazy" decoding="async"><figcaption>Fleet Command in The Last Ferry</figcaption>
+</figure>
+</article>
+<article class="mode-entry">
+<h3><a href="features.html#rhythm">Beaver Machine Live</a></h3>
+<p>Play a four-lane chart for vocals, guitar, bass or drums. Choose your difficulty and take a song or set onstage.</p>
+<figure class="game-frame zoomable" data-cap="Choosing a song from the Beaver Machine Live library"><img src="images/play/gp-rhythm-library.webp" alt="Choosing a song from the Beaver Machine Live library" loading="lazy" decoding="async"><figcaption>Choosing a song from the Beaver Machine Live library</figcaption>
+</figure>
+</article></div>
+<p class="section-lead">Once in town, you can also train at Namasensei’s dojo, play the cabinets at James’s Barcade, catch a theatre performance, or join a show at the UNSE Club.</p></div>
 </section>
-
-<!-- ===== MUSIC & TV ===== -->
-<section class="section" style="background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)">
-  <div class="wrap split">
-    <figure class="media media-frame reveal zoomable" data-cap="Beaver Machine on stage at their bar, under the lights.">
-      <img src="images/gameplay/gp-bar-live.jpg" alt="The band Beaver Machine playing on the lit bar stage with patrons" loading="lazy">
-      <figcaption class="cap"><b>In-engine:</b> a live set at Beaver Machine&rsquo;s Bar</figcaption>
-    </figure>
-    <div class="reveal d1">
-      <span class="kicker">It&rsquo;s also a variety show</span>
-      <h2 class="section-title">Live music &amp; a crossover cast</h2>
-      <div class="prose">
-        <p>The Valley has a whole entertainment industry. Real bands play <b>real songs</b> on stage &mdash; drummers hit on the beat, guitarists strum in time &mdash; and crowds and soldiers break into synchronized dance routines and formations.</p>
-        <p>And the cast itself is a crossover: many characters are pulled from an existing universe of shows, all living in the Valley now.</p>
-      </div>
-      <p class="kicker" style="margin:26px 0 6px; color:var(--olive)">The bands</p>
-      <div class="chips">
-        <span class="chip"><span class="k">House band</span>Beaver Machine</span>
-        <span class="chip"><span class="k">Classical</span>Stone City Orchestra</span>
-        <span class="chip"><span class="k">Folk-cult</span>Voluntary Mother Earth</span>
-        <span class="chip"><span class="k">Imported (UK)</span>CuntPuncher</span>
-        <span class="chip"><span class="k">Hip-hop</span>E$$E M &amp; Poppa Capp</span>
-        <span class="chip"><span class="k">Hyperpop</span>D3@DH0R$3</span>
-      </div>
-      <p class="kicker" style="margin:26px 0 6px">Characters pulled from</p>
-      <div class="chips">
-        <span class="chip tv"><span class="k">Talk show</span>Dumpster Talk</span>
-        <span class="chip tv"><span class="k">Reality</span>Homeless in Denton</span>
-        <span class="chip tv"><span class="k">Cooking</span>Put It In Your Mouth</span>
-        <span class="chip tv"><span class="k">Japanese lessons</span>Namasensei&rsquo;s</span>
-      </div>
-    </div>
-  </div>
+<section class="section feature-intro" id="gp-mystery-notebook">
+<div class="wrap split rev"><div><span class="kicker">Bellweather House</span>
+<h2 class="section-title">A case you can investigate</h2>
+<div class="prose">
+<p>The investigator enters after the opening crime. Guests know different things about the people and rooms they saw. Keep track of their statements, the body and the physical evidence before naming a suspect.</p></div><a class="text-link" href="guide.html">Read the field guide →</a></div>
+<figure class="game-frame zoomable" data-cap="The case notebook at Bellweather House."><img src="images/play/gp-mystery-notebook.webp" alt="The case notebook at Bellweather House." loading="lazy" decoding="async"><figcaption>The case notebook at Bellweather House.</figcaption>
+</figure></div>
 </section>
-
-<hr class="divider">
-
-<!-- ===== WORLD GALLERY TEASER ===== -->
-<section class="section">
-  <div class="wrap">
-    <div class="center reveal" style="margin-bottom:52px">
-      <span class="kicker">One town, every kind of hell</span>
-      <h2 class="section-title">The Valley, block by block</h2>
-      <p class="section-lead" style="margin-inline:auto">550+ hand-built scenes across 596 locations. Here are a few &mdash; every sign means it.</p>
-    </div>
-    <div class="gallery">
-      <figure class="gtile wide reveal zoomable" data-cap="FoundryStop — 'Power to the Greedy.' The town's refinery and pawn-everything trade post.">
-        <img src="images/env/env-foundrystop.jpg" alt="FoundryStop refinery at night" loading="lazy">
-        <figcaption><b>FoundryStop</b><span>Power to the greedy</span></figcaption>
-      </figure>
-      <figure class="gtile reveal d1 zoomable" data-cap="Beaver Ministries — the megachurch on a graveyard hill.">
-        <img src="images/env/env-megachurch.jpg" alt="Beaver Ministries megachurch" loading="lazy">
-        <figcaption><b>Beaver Ministries</b><span>Send all your money</span></figcaption>
-      </figure>
-      <figure class="gtile reveal zoomable" data-cap="McDoogles — the Beaver Meal, $9.99.">
-        <img src="images/env/env-mcdoogles.jpg" alt="McDoogles fast food interior" loading="lazy">
-        <figcaption><b>McDoogles</b><span>The Beaver Meal, $9.99</span></figcaption>
-      </figure>
-      <figure class="gtile reveal d1 zoomable" data-cap="Dumpster Talk 'N Studio — the town's TV station, broadcast from a brick dump.">
-        <img src="images/env/env-dumpster-talk.jpg" alt="Dumpster Talk TV studio" loading="lazy">
-        <figcaption><b>Dumpster Talk</b><span>Live from a dumpster</span></figcaption>
-      </figure>
-      <figure class="gtile wide reveal d2 zoomable" data-cap="ASS DAMN — the militarized dam that blocks all the water.">
-        <img src="images/env/env-assdamn.jpg" alt="The ASS DAMN dam" loading="lazy">
-        <figcaption><b>ASS DAMN</b><span>It blocks the water. And the jokes write themselves.</span></figcaption>
-      </figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Valley Hospital — they patch you up and bill you either way.">
-        <img src="images/env/env-hospital.jpg" alt="Beaver Valley hospital reception" loading="lazy">
-        <figcaption><b>The Hospital</b><span>They&rsquo;ll bill you either way</span></figcaption>
-      </figure>
-      <figure class="gtile reveal d2 zoomable" data-cap="Iron Mike's Clothing Shop — get fitted by the champ.">
-        <img src="images/env/env-clothing.jpg" alt="Iron Mike's Clothing Shop interior" loading="lazy">
-        <figcaption><b>Iron Mike&rsquo;s Clothing Shop</b><span>Get fitted by the champ</span></figcaption>
-      </figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Valley from the water — that arch at the foot of the skyline is the submarine pen.">
-        <img src="images/gameplay/gp-navy-coast.jpg" alt="The Beaver Valley skyline seen from the sea at dusk" loading="lazy">
-        <figcaption><b>The Coast</b><span>Fifty kilometres of it, in every direction</span></figcaption>
-      </figure>
-      <figure class="gtile reveal d1 zoomable" data-cap="The submarine pen — sail in surfaced and step off underneath the town.">
-        <img src="images/env/env-sub-pen-dock.jpg" alt="The underground submarine pen dock beneath Beaver Valley" loading="lazy">
-        <figcaption><b>The Submarine Pen</b><span>Home port, under the town</span></figcaption>
-      </figure>
-    </div>
-    <div class="center" style="margin-top:40px">
-      <a class="btn btn-primary btn-lg" href="world.html">Tour the whole world &rarr;</a>
-      <p class="gallery-count">45+ locations and counting</p>
-    </div>
-  </div>
+<section class="section section--tight">
+<div class="wrap">
+<h2 class="section-title">Meet the town</h2>
+<p class="section-lead">Find the townspeople, officers, performers and ships’ crews in the cast directory. The specialist categories make it easier to find a particular role.</p>
+<div class="hero-actions"><a class="btn btn-ghost" href="characters.html">Meet the cast</a><a class="btn btn-ghost" href="donate.html">Support the game</a></div></div>
 </section>
-
-<!-- ===== INVESTORS / GAMERS ===== -->
-<section class="section" style="background:linear-gradient(180deg,rgba(0,0,0,.35),transparent)">
-  <div class="wrap">
-    <div class="dualcol">
-      <div class="col invest reveal">
-        <div class="icon">&#128200;</div>
-        <h3>For Investors</h3>
-        <p>Beaver Valley sits at the intersection of the two biggest forces in interactive entertainment: generative AI and the live-streaming creator economy. Because its ~250 characters are AI-driven with individual voices, the content is genuinely emergent &mdash; every playthrough authors its own feuds, trials and disasters, so replayability scales without hand-written content bloat. That unscripted, voice-acted drama is exactly the clippable material that fuels Twitch and short-form virality, and the built-in integration turns an audience into a participant. Most of the hard part is already done: an unusually deep systems foundation and a full 250-soul cast, built and running today, that keeps getting better as AI improves. It is a category bet on the AI-native game &mdash; and the engine is already running.</p>
-      </div>
-      <div class="col gamer reveal d1">
-        <div class="icon">&#127918;</div>
-        <h3>For Gamers</h3>
-        <p>This is a town that talks back. Punch someone in the street and the bystanders don&rsquo;t just flinch &mdash; they gossip about you by name, take sides, call the cops, or decide you&rsquo;re exactly the kind of maniac they want in their party. Combat is chunky and physics-driven: ragdolls, dismemberment, real weapon-vs-weapon blocking, and an arsenal from flails and nunchucks to harpoon guns, tranquilizer rifles, mops, rocket launchers and throwable landmines. You can be any of the ~250 characters, each with their own agenda and voice, and the world keeps churning around you. It&rsquo;s emergent chaos with a body count and a laugh track &mdash; and it reacts to everything you do.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PULL QUOTES ===== -->
-<section class="section quotes">
-  <div class="wrap">
-    <div class="quote-stage">
-      <blockquote class="quote on"><p>&ldquo;It&rsquo;s a beat-em-up without the inconsequential beating.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;The dam is labelled ASS DAMN. That is the least of your problems.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;No one dies off-screen. We made sure you&rsquo;d have to watch.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;250 souls. One town. No scripts.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;Save the town, get an album. End the town, unlock a mode.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;The talk show is live, the hosts are drunk, and the AI is not scripted.&rdquo;</p></blockquote>
-      <blockquote class="quote"><p>&ldquo;Infinite endings. Two of them pay out in the real world.&rdquo;</p></blockquote>
-    </div>
-    <div class="quote-dots" aria-hidden="true"></div>
-  </div>
-</section>
-
-<!-- ===== CTA BAND ===== -->
-<section class="cta-band">
-  <div class="bg"><img src="images/env/env-foundrystop.jpg" alt=""></div>
-  <div class="inner">
-    <span class="kicker" style="justify-content:center">Get your name in the smog</span>
-    <h2>Put yourself in the Valley</h2>
-    <p>Land in the credits &mdash; or get a character with your face and a mind of its own, walking the mainline game forever.</p>
-    <a class="btn btn-primary btn-lg" href="donate.html">Support the Valley &rarr;</a>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
+</main>
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
-        <p>A grimy dystopian-satire town where ~250 characters each have a mind of their own. A one-developer game by Jeremy Thorn &mdash; who, fittingly, is also the man who built the world from the inside.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="index.html">The Valley</a></li>
-          <li><a href="features.html">What&rsquo;s Built</a></li>
-          <li><a href="world.html">The World</a></li>
-          <li><a href="characters.html">The Cast</a></li>
-          <li><a href="guide.html">Field Guide</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="donate.html">Support</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get Involved</h5>
-        <ul>
-          <li><a href="donate.html">Get in the credits</a></li>
-          <li><a href="donate.html">Become a character</a></li>
-          <li><a href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip on Streamlabs &rarr;</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
-      <span class="sat">No beavers were harmed. The Beaver Eater cannot say the same.</span>
-    </div>
+<div class="footer-grid">
+    <div>
+<div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
+<p>A satirical role-playing game by Jeremy Thorn.</p></div>
+    <div>
+<h5>Explore</h5><ul><li><a href="index.html">The Valley</a></li><li><a href="features.html">Features</a></li><li><a href="naval.html">Naval Combat</a></li><li><a href="world.html">World</a></li><li><a href="characters.html">Cast</a></li><li><a href="guide.html">Guide</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+    <div>
+<h5>Get involved</h5><ul><li><a href="donate.html">Support the game</a></li><li><a href="donate.html#tiers">Character and credit tiers</a></li></ul></div>
   </div>
+<div class="footer-bottom">© <span id="year">2026</span> Beaver Valley</div></div>
 </footer>
 
 <script src="js/site.js"></script>

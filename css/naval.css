@@ -1,0 +1,40 @@
+.naval-contents { display: flex; flex-wrap: wrap; gap: .3rem 1.25rem; padding-block: .8rem; border-bottom: 1px solid var(--line); }
+.naval-contents a { padding: .35rem 0; color: var(--gold); text-decoration: underline; text-underline-offset: .2em; }
+.naval-frame { margin: 1.5rem 0; }
+.naval-frame a { display: block; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+.naval-frame img { display: block; width: 100%; height: auto; }
+.naval-frame figcaption { margin-top: .5rem; color: var(--muted); font-size: .94rem; }
+.naval-photos { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.5rem; }
+.naval-photos .naval-frame { min-width: 0; }
+@media (max-width: 740px) {
+  .naval-photos { grid-template-columns: 1fr; gap: 0; }
+  .naval-photos .naval-frame { margin-bottom: .3rem; }
+}
+
+
+.ship-definitions, .ship-land { max-width: 77ch; margin: 1rem 0; color: var(--muted); }
+.ship-topics { display: flex; flex-wrap: wrap; gap: .3rem 1.3rem; margin: 1.4rem 0 2.4rem; }
+.ship-topics a { color: var(--gold); padding-block: .35rem; text-decoration: underline; text-underline-offset: .2em; }
+.ship-group { margin: 2.6rem 0; scroll-margin-top: 6rem; }
+.ship-group > h3 { font: 600 clamp(1.55rem,3vw,2.15rem) var(--f-head); color: var(--cream); margin: 0 0 1rem; }
+.ship-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(min(100%,18rem),1fr)); gap: 1rem; }
+.ship-entry { min-width: 0; border: 1px solid var(--line); border-radius: var(--radius); background: var(--panel); overflow: hidden; scroll-margin-top: 6rem; }
+.ship-entry-body { padding: 1.05rem 1.15rem 1.15rem; }
+.ship-entry h4 { color: var(--cream); font: 600 1.4rem/1.2 var(--f-head); margin: 0 0 .25rem; }
+.ship-entry .ship-role { margin: 0 0 .85rem; color: var(--gold); }
+.ship-entry dl { margin: 0 0 .75rem; }
+.ship-entry dl > div { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 0 .5rem; padding-block: .24rem; border-top: 1px solid var(--line); }
+.ship-entry dt, .ship-entry dd, .ship-entry p { font-size: .96rem; line-height: 1.45; }
+.ship-entry dt { color: var(--muted); }
+.ship-entry dd { margin: 0; font-weight: 600; color: var(--cream); }
+.ship-entry p { margin: .5rem 0 0; }
+.ship-entry .ship-access { color: var(--muted); margin: .8rem 0 0; }
+.ship-photo, .ship-photo img { display: block; width: 100%; height: auto; }
+.ship-photo:focus-visible { outline: 2px solid var(--gold); outline-offset: -3px; }
+
+
+.ship-search { margin: 1.5rem 0 .5rem; max-width: 32rem; }
+.ship-search label { display: block; font-weight: 600; margin: 0 0 .4rem; color: var(--cream); }
+.ship-search input { display: block; width: 100%; font: inherit; color: var(--cream); background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: .6rem .85rem; }
+.ship-search input:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.ship-search p { min-height: 1.5em; color: var(--muted); margin-top: .4rem; }

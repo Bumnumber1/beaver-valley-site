@@ -11,23 +11,23 @@
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo"><span class="paw" aria-hidden="true">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="main-navigation">
     <li><a href="index.html">The Valley</a></li>
     <li><a href="features.html">Features</a></li>
-    <li><a href="world.html">The World</a></li>
+    <li><a href="naval.html">Naval Combat</a></li>
+    <li><a href="world.html">World</a></li>
     <li><a href="characters.html">Cast</a></li>
     <li><a href="guide.html">Guide</a></li>
     <li><a href="roadmap.html">Roadmap</a></li>
-    <li><a href="donate.html" class="active">Support</a></li>
-    <li><a class="btn btn-primary nav-cta" href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip Now</a></li>
+    <li><a href="donate.html" class="active" aria-current="page">Support</a></li>
   </ul>
 </nav>
 
 <header class="page-head">
-  <div class="bg"><img src="images/env/env-bar-stage.jpg" alt=""></div>
+  <div class="bg"><img src="images/play/gp-bar-audience.webp" alt=""></div>
   <div class="wrap inner">
     <span class="kicker">Support the game</span>
     <h1>Get in the Valley</h1>
@@ -75,7 +75,7 @@
         <div class="tier-ic">&#129504;</div>
         <h3>Become a Character</h3>
         <div class="amount">Suggested $100+ <span>/ name your amount</span></div>
-        <p class="blurb">I build a character in your likeness &mdash; with a mind of its own &mdash; and drop it into the living cast to roam, talk, scheme and brawl alongside the other ~250.</p>
+        <p class="blurb">I build a character in your likeness &mdash; with a mind of its own &mdash; and drop it into the living cast to roam, talk, scheme and brawl alongside the town’s residents.</p>
         <ul class="perks">
           <li><b>A copy of the game</b> when it releases.</li>
           <li><b>A custom character in your likeness</b>, hand-rigged into the game.</li>
@@ -158,15 +158,15 @@
       </details>
       <details class="reveal">
         <summary>What&rsquo;s the difference between &ldquo;Become a Character&rdquo; and &ldquo;Canon&rdquo;?</summary>
-        <p><b>Become a Character</b> puts a version of you into the living cast &mdash; a full citizen of the Valley who roams, talks and fights with a mind of its own, but lives in the background like the rest of the ~250. <b>Canon</b> goes much further: your character is written into the <em>main story</em> with its own arc, real relationships with the existing cast, a cloned voice, and an actual hand in how a playthrough can end. One lives in the world; the other helps shape it.</p>
+        <p><b>Become a Character</b> puts a version of you into the living cast &mdash; a full citizen of the Valley who roams, talks and fights with a mind of its own, and can have a place in the town’s day-to-day life. <b>Canon</b> goes much further: your character is written into the <em>main story</em> with its own arc, real relationships with the existing cast, a cloned voice, and an actual hand in how a playthrough can end. One lives in the world; the other helps shape it.</p>
       </details>
       <details class="reveal">
         <summary>What does &ldquo;a character with a mind of its own&rdquo; mean?</summary>
-        <p>Every named character in Beaver Valley thinks for itself &mdash; its own personality, goals, and reactions &mdash; and speaks in its own voice. Your character gets the same treatment: built in your likeness, given a personality you help design, and set loose to make its own decisions in the game.</p>
+        <p>Characters can have authored personalities, routines and relationships. Speaking roles can respond using their assigned voices. For this tier, you help design the character’s personality and decide whether to supply a voice sample.</p>
       </details>
       <details class="reveal">
         <summary>Can my character be a villain? Can it die?</summary>
-        <p>Absolutely, and absolutely. You can steer your character toward hero, menace, or lovable disaster. And yes &mdash; this is Beaver Valley, so it can get dismembered in the street. The upside: nobody dies off-screen, so you&rsquo;ll be there to see it. (Death here is also rarely permanent.)</p>
+        <p>Yes. You can propose a hero, a villain or someone between the two. Story Mode combat can injure or kill residents, including a character based on you.</p>
       </details>
       <details class="reveal">
         <summary>How do I claim my tier after tipping?</summary>
@@ -186,7 +186,7 @@
 
 <!-- ===== CTA ===== -->
 <section class="cta-band">
-  <div class="bg"><img src="images/env/env-foundrystop.jpg" alt=""></div>
+  <div class="bg"><img src="images/play/env-foundrystop.webp" alt=""></div>
   <div class="inner">
     <span class="kicker" style="justify-content:center">One tip, one character</span>
     <h2>See you in the smog</h2>
@@ -196,38 +196,11 @@
 </section>
 
 <footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
-        <p>A grimy dystopian-satire town where ~250 characters each have a mind of their own. A one-developer game by Jeremy Thorn.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="index.html">The Valley</a></li>
-          <li><a href="features.html">What&rsquo;s Built</a></li>
-          <li><a href="world.html">The World</a></li>
-          <li><a href="characters.html">The Cast</a></li>
-          <li><a href="guide.html">Field Guide</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="donate.html">Support</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get Involved</h5>
-        <ul>
-          <li><a href="donate.html">Get in the credits</a></li>
-          <li><a href="donate.html">Become a character</a></li>
-          <li><a href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip on Streamlabs &rarr;</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
-      <span class="sat">No beavers were harmed. The Beaver Eater cannot say the same.</span>
-    </div>
-  </div>
+  <div class="wrap"><div class="footer-grid">
+    <div><div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div><p>A satirical role-playing game by Jeremy Thorn.</p></div>
+    <div><h5>Explore</h5><ul><li><a href="index.html">The Valley</a></li><li><a href="features.html">Features</a></li><li><a href="naval.html">Naval Combat</a></li><li><a href="world.html">World</a></li><li><a href="characters.html">Cast</a></li><li><a href="guide.html">Guide</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+    <div><h5>Get involved</h5><ul><li><a href="donate.html">Support the game</a></li><li><a href="donate.html#tiers">Character and credit tiers</a></li></ul></div>
+  </div><div class="footer-bottom">© <span id="year">2026</span> Beaver Valley</div></div>
 </footer>
 
 <script src="js/site.js"></script>

@@ -3,277 +3,344 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>The World — Beaver Valley, Block by Block</title>
-<meta name="description" content="A tour of Beaver Valley: 550+ hand-built scenes across 596 locations — downtown, the casino and theatre, the courts and jail, a federal detention centre, the sewers, the wider world, the war and its forward base, and a coastline with a submarine pen under it.">
+<title>World atlas | Beaver Valley</title>
+<meta name="description" content="Visit Beaver Valley’s businesses, homes, music venues, aircraft, ports and ships in the game’s world atlas.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-
-<nav class="nav">
-  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo"><span class="paw" aria-hidden="true">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="main-navigation">
     <li><a href="index.html">The Valley</a></li>
     <li><a href="features.html">Features</a></li>
-    <li><a href="world.html" class="active">The World</a></li>
+    <li><a href="naval.html">Naval Combat</a></li>
+    <li><a href="world.html" class="active" aria-current="page">World</a></li>
     <li><a href="characters.html">Cast</a></li>
     <li><a href="guide.html">Guide</a></li>
     <li><a href="roadmap.html">Roadmap</a></li>
     <li><a href="donate.html">Support</a></li>
-    <li><a class="btn btn-primary nav-cta" href="donate.html">Fund the Chaos</a></li>
   </ul>
 </nav>
-
 <header class="page-head">
-  <div class="bg"><img src="images/env/env-city-center.jpg" alt=""></div>
-  <div class="wrap inner">
-    <span class="kicker">One town, every kind of hell</span>
-    <h1>The World, Block by Block</h1>
-    <p>Beaver Valley is over 550 hand-built scenes stitched into one continuous, state-preserving world &mdash; 596 catalogued locations and counting. Here&rsquo;s a walk through it. Every sign means it. Click any shot to enlarge.</p>
-  </div>
+<div class="bg"><img src="images/play/env-city-center.webp" alt="" fetchpriority="high"></div>
+<div class="wrap inner"><span class="kicker">World atlas</span>
+<h1>The world, block by block</h1>
+<p>Follow the streets into homes, venues, detention wings and ships. Select a photograph to inspect the full gameplay frame.</p></div>
 </header>
-
-<section class="section">
-  <div class="wrap">
-
-    <!-- DOWNTOWN -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">Downtown &amp; commerce</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Where the money moves</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="City Center — the dead heart of the Valley."><img src="images/env/env-city-center.jpg" alt="City Center" loading="lazy"><figcaption><b>City Center</b><span>Wet neon, colder people</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="FoundryStop — buy, sell, pawn your soul."><img src="images/env/env-foundrystop.jpg" alt="FoundryStop" loading="lazy"><figcaption><b>FoundryStop</b><span>Power to the greedy</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="McDoogles — the lunch rush is real."><img src="images/env/env-mcdoogles.jpg" alt="McDoogles" loading="lazy"><figcaption><b>McDoogles</b><span>The Beaver Meal, $9.99</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Bank — loans, checks, and a vault the repo men can't reach."><img src="images/env/env-bank.jpg" alt="The Bank" loading="lazy"><figcaption><b>The Bank</b><span>Bounce a check, meet the repo men</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Gun Shop — the balance regulator of the whole town."><img src="images/env/env-gunshop.jpg" alt="The Gun Shop" loading="lazy"><figcaption><b>The Gun Shop</b><span>Run by the world&rsquo;s creator</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Iron Mike's Clothing Shop — get fitted by the champ. The tailor's tougher than the fitting-room mirror."><img src="images/env/env-clothing.jpg" alt="Iron Mike's Clothing Shop interior" loading="lazy"><figcaption><b>Iron Mike&rsquo;s Clothing Shop</b><span>Get fitted by the champ</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Hospital — they patch you up and bill you either way."><img src="images/env/env-hospital.jpg" alt="The Hospital" loading="lazy"><figcaption><b>The Hospital</b><span>They&rsquo;ll bill you either way</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Luxury Apartments — for the few who made it."><img src="images/env/env-luxury.jpg" alt="Luxury Apartments" loading="lazy"><figcaption><b>Luxury Apartments</b><span>And the ones robbing them</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Luxury Rooftop — the best view of a town not worth looking at."><img src="images/env/env-rooftop.jpg" alt="Luxury Rooftop" loading="lazy"><figcaption><b>Luxury Rooftop</b><span>The best view of the worst place</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Slums — where most of the 250 actually live."><img src="images/env/env-slums.jpg" alt="The Slums" loading="lazy"><figcaption><b>The Slums</b><span>Where most souls actually live</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Trap House — business is booming. So is the backyard."><img src="images/env/env-traphouse.jpg" alt="The Trap House" loading="lazy"><figcaption><b>The Trap House</b><span>Business is booming</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="Beaver Valley Casino — the house always wins, and the house is the family."><img src="images/env/env-casino.jpg" alt="Beaver Valley Casino" loading="lazy"><figcaption><b>Beaver Valley Casino</b><span>Don Alder&rsquo;s crew runs the floor</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Poker Room — high stakes, low lifes, and a pit boss who settles debts by hand."><img src="images/env/env-casino-poker.jpg" alt="Casino Poker Room" loading="lazy"><figcaption><b>The Poker Room</b><span>The pit boss is watching</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Pawn Shop — everything's for sale, especially the things that aren't yours."><img src="images/env/env-pawnshop.jpg" alt="Pawn Shop" loading="lazy"><figcaption><b>The Pawn Shop</b><span>Buy back your own stuff</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The casino floor — blackjack, roulette, slots, and a poker room in the back."><img src="images/gameplay/gp-casino-floor.jpg" alt="The Beaver Valley Casino gaming floor in game" loading="lazy"><figcaption><b>The Casino Floor</b><span>Four working games, one crime family</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Post Office — Postmaster Josh sorts the mail nobody sends."><img src="images/env/env-postoffice.jpg" alt="Beaver Valley Post Office interior" loading="lazy"><figcaption><b>The Post Office</b><span>Postmaster Josh presiding</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Valley Fire Department — twenty percent chance they show up at all."><img src="images/env/env-firedept.jpg" alt="Beaver Valley Fire Department interior" loading="lazy"><figcaption><b>Fire Department</b><span>Smokey the Beaver is on call</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Recruitment Office — sign here, ship out, come back changed."><img src="images/env/env-recruitment.jpg" alt="Recruitment office interior" loading="lazy"><figcaption><b>Recruitment Office</b><span>Enlist today</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The Residences — the elevator will take you to any of eight apartments, or the roof."><img src="images/gameplay/gp-elevator.jpg" alt="The luxury apartment elevator floor menu" loading="lazy"><figcaption><b>The Residences</b><span>Eight apartments, one roof, all agents</span></figcaption></figure>
-    </div>
-
-    <!-- LAW & ORDER -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">Law &amp; order</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Crime, court &amp; consequence</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="Courthouse Street — justice, a rocket, and a lot of parking tickets."><img src="images/env/env-courthouse-street.jpg" alt="Courthouse Street" loading="lazy"><figcaption><b>Courthouse Street</b><span>Justice, and a rocket</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Police Department — Chief Ventura's house."><img src="images/env/env-police.jpg" alt="Police Department" loading="lazy"><figcaption><b>Police Department</b><span>Chief Ventura presiding</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Jail — chow, yard, lights-out. You'll serve every minute."><img src="images/env/env-jail.jpg" alt="The Jail" loading="lazy"><figcaption><b>The Jail</b><span>You&rsquo;ll serve every minute</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Holding Cell — where you wait for a jury that already hates you."><img src="images/env/env-holdingcell.jpg" alt="Holding Cell" loading="lazy"><figcaption><b>Holding Cell</b><span>The jury already hates you</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Chow Hall — the food is a crime. Report it to a guard."><img src="images/env/env-chowhall.jpg" alt="Jail Chow Hall" loading="lazy"><figcaption><b>The Chow Hall</b><span>The food is a crime</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Execution Field — the end of the appeals process."><img src="images/env/env-execution.jpg" alt="Execution Field" loading="lazy"><figcaption><b>Execution Field</b><span>End of the appeals process</span></figcaption></figure>
-    </div>
-
-    <!-- THE AGENCY -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">The federal boot</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">American Security Services</h2></div>
-    <p class="section-lead reveal" style="max-width:70ch;margin:-8px 0 26px">Out past the farmland, at the edge of the map, the American Security Services keeps a detention centre. Twenty-two rooms, thirteen agents on shift, twenty-four cell doors, and no clear reason why any of it is here.</p>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="The yard — the only sky the detainees get."><img src="images/env/env-ass-yard.jpg" alt="A.S.S. Detention Center exercise yard" loading="lazy"><figcaption><b>The Yard</b><span>The only sky they get</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="A.S.S. Detention Center — the front doors. Federal, spotless, and wrong."><img src="images/env/env-ass-entrance.jpg" alt="A.S.S. Detention Center entrance" loading="lazy"><figcaption><b>Detention Center</b><span>Spotless, and wrong</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Intake — hand over everything you're carrying. You'll get some of it back."><img src="images/env/env-ass-intake.jpg" alt="A.S.S. detention intake hall" loading="lazy"><figcaption><b>Intake</b><span>Hand over everything</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The cell block — six holding wings, four cells each, and you can work the doors."><img src="images/env/env-ass-hallway.jpg" alt="A.S.S. cell block hallway with numbered doors" loading="lazy"><figcaption><b>Cell Block</b><span>Twenty-four doors, all operable</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="High-tech holding — for the detainees they're serious about."><img src="images/env/env-ass-cellblock.jpg" alt="High-tech holding cells" loading="lazy"><figcaption><b>High-Tech Holding</b><span>For the serious cases</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The chow hall — federal cuisine."><img src="images/env/env-ass-chow.jpg" alt="A.S.S. detention chow hall" loading="lazy"><figcaption><b>Chow Hall</b><span>Federal cuisine</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The showers — no curtain, no privacy, no comment."><img src="images/env/env-ass-showers.jpg" alt="A.S.S. detention showers" loading="lazy"><figcaption><b>The Showers</b><span>No curtain, no comment</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The infirmary — where they fix what the guards did."><img src="images/env/env-ass-infirmary.jpg" alt="A.S.S. detention infirmary" loading="lazy"><figcaption><b>Infirmary</b><span>Fixing what the guards did</span></figcaption></figure>
-    </div>
-
-    <!-- FAITH & DEATH -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">Faith, death &amp; the beyond</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Salvation, for a small fee</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile reveal zoomable" data-cap="Beaver Ministries — send all your money. The Reverend insists."><img src="images/env/env-megachurch.jpg" alt="Beaver Ministries" loading="lazy"><figcaption><b>Beaver Ministries</b><span>Send all your money</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Church — smaller congregation, same collection plate."><img src="images/env/env-church.jpg" alt="Beaver Church" loading="lazy"><figcaption><b>Beaver Church</b><span>Same collection plate</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Graveyard — nobody dies off-screen. Some don't stay dead."><img src="images/env/env-graveyard.jpg" alt="The Graveyard" loading="lazy"><figcaption><b>The Graveyard</b><span>Some don&rsquo;t stay dead</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Kitchen Crypt — there's a crypt under the kitchen. Don't ask."><img src="images/env/env-crypt.jpg" alt="Kitchen Crypt" loading="lazy"><figcaption><b>Kitchen Crypt</b><span>Don&rsquo;t ask why it&rsquo;s here</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Path to the Crypt — it only goes one way, and it goes down."><img src="images/env/env-crypt-path.jpg" alt="Path to the Crypt" loading="lazy"><figcaption><b>Path to the Crypt</b><span>It only goes down</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="GhostCrushers HQ — who you gonna call? These four, unfortunately."><img src="images/env/env-ghostcrushers.jpg" alt="GhostCrushers HQ" loading="lazy"><figcaption><b>GhostCrushers HQ</b><span>Who you gonna call?</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Cloning Lab — death is a temporary inconvenience here."><img src="images/env/env-cloning.jpg" alt="The Cloning Lab" loading="lazy"><figcaption><b>The Cloning Lab</b><span>Death is temporary here</span></figcaption></figure>
-    </div>
-
-    <!-- STAGE & SCREEN -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">Stage &amp; screen</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">The entertainment industry</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile reveal zoomable" data-cap="Beaver Machine's Bar — live music, cold drinks, warm blood."><img src="images/env/env-bar-stage.jpg" alt="Beaver Machine's Bar" loading="lazy"><figcaption><b>Beaver Machine&rsquo;s Bar</b><span>Live music, warm blood</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="James's Barcade — three playable retro cabinets and a bar, run by a man who hates every game he owns."><img src="images/env/env-barcade.jpg" alt="James's Barcade interior" loading="lazy"><figcaption><b>James&rsquo;s Barcade</b><span>Three real games and a stiff drink</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Machine House — where the house band rehearses and feuds."><img src="images/env/env-bandhouse.jpg" alt="Beaver Machine House" loading="lazy"><figcaption><b>Beaver Machine House</b><span>Rehearsals and feuds</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Dumpster Talk Studio — broadcasting from a brick dump."><img src="images/env/env-tv-studio.jpg" alt="Dumpster Talk Studio" loading="lazy"><figcaption><b>Dumpster Talk Studio</b><span>On the air</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Dumpster Talk 'N Studio — the exterior. The dumpster is canon."><img src="images/env/env-dumpster-talk.jpg" alt="Dumpster Talk exterior" loading="lazy"><figcaption><b>Dumpster Talk</b><span>The dumpster is canon</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Debate Stage — two podiums, one mic, zero winners."><img src="images/env/env-debatestage.jpg" alt="The Debate Stage" loading="lazy"><figcaption><b>The Debate Stage</b><span>Zero winners</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Colosseum — for when a courtroom isn't dramatic enough."><img src="images/env/env-colosseum.jpg" alt="The Colosseum" loading="lazy"><figcaption><b>The Colosseum</b><span>Trial by combat, upgraded</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Namasensei's Dojo — belts, tournaments, and death that doesn't stick."><img src="images/env/env-dojo.jpg" alt="Namasensei's Dojo" loading="lazy"><figcaption><b>Namasensei&rsquo;s Dojo</b><span>Death doesn&rsquo;t stick</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="Beaver Valley Theatre — curtain up on one of five interchangeable sets. You can sit in the audience, or run the lights."><img src="images/gameplay/gp-theatre-show.jpg" alt="The Beaver Valley Theatre auditorium with the curtain open" loading="lazy"><figcaption><b>Beaver Valley Theatre</b><span>Four plays, and a lighting board you can steal</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The house, before the show — twenty-two seats and a heckler box."><img src="images/gameplay/gp-theatre-house.jpg" alt="The theatre auditorium with the curtain closed" loading="lazy"><figcaption><b>The House</b><span>Twenty-two seats, one heckler box</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Theatre Lobby — Miyamoto works the ticket booth. Follow the red carpet."><img src="images/env/env-theatre-lobby.jpg" alt="Theatre lobby with ticket booth" loading="lazy"><figcaption><b>Theatre Lobby</b><span>Miyamoto&rsquo;s ticket booth</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="A spotlight special, called from the lighting board. You can do this yourself, mid-performance."><img src="images/gameplay/gp-theatre-spot.jpg" alt="A spotlight special on the theatre stage" loading="lazy"><figcaption><b>Centre Special</b><span>Yours to call, mid-scene</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The theatre entrance on the City Center strip — three doors under the marquee."><img src="images/env/env-theatre-entrance.jpg" alt="The theatre entrance on the City Center strip" loading="lazy"><figcaption><b>Under the Marquee</b><span>Three doors on the strip</span></figcaption></figure>
-    </div>
-
-    <!-- UNDERGROUND & WEIRD -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">The underground &amp; the weird</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">What&rsquo;s beneath it all</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile reveal zoomable" data-cap="The Sewers — a whole network under every district. And a time machine."><img src="images/env/env-sewers.jpg" alt="The Sewers" loading="lazy"><figcaption><b>The Sewers</b><span>Under every district</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Beaver Eater's Lair — something ancient is hungry down here."><img src="images/env/env-beavereater.jpg" alt="The Beaver Eater's Lair" loading="lazy"><figcaption><b>The Beaver Eater&rsquo;s Lair</b><span>Something is hungry</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Dig Site — digging up a civilization older than the town."><img src="images/env/env-digsite.jpg" alt="Beaver Dig Site" loading="lazy"><figcaption><b>Beaver Dig Site</b><span>An older civilization</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Dam Interior — the beavers built better than the humans."><img src="images/env/env-dam.jpg" alt="Beaver Dam Interior" loading="lazy"><figcaption><b>The Beaver Dam</b><span>They built better than us</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="ASS DAMN — the militarized dam that blocks all the water."><img src="images/env/env-assdamn.jpg" alt="ASS DAMN" loading="lazy"><figcaption><b>ASS DAMN</b><span>It blocks the water. The name blocks nothing.</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Murder Mansion — nineteen rooms, everyone's a suspect. Even the furniture."><img src="images/env/env-murder-house.jpg" alt="The Murder Mansion" loading="lazy"><figcaption><b>The Murder Mansion</b><span>Nineteen rooms, every one a suspect</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Secret Room — four hidden passages connect the mansion: a bookcase, an attic hatch, a service wall, and a dumbwaiter you crawl through."><img src="images/env/env-murder-secret.jpg" alt="A hidden room in the Murder Mansion" loading="lazy"><figcaption><b>The Secret Room</b><span>Push the bookcase and see</span></figcaption></figure>
-    </div>
-
-    <!-- THE BESTIARY -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">Not everything is a person</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">What lives down there</h2></div>
-    <p class="section-lead reveal" style="max-width:70ch;margin:-8px 0 26px">Three of the Valley&rsquo;s residents don&rsquo;t talk, negotiate or call the police. They&rsquo;re built like bosses &mdash; multiple phases, real attack sets, and a health bar that has to be earned down.</p>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile reveal zoomable" data-cap="The Beaver Eater — three phases: charges, tail whips, a jump slam, a burrow, a corrosive spit, and a grab that swallows you whole."><img src="images/gameplay/bestiary-beaver-eater.jpg" alt="The Beaver Eater rearing up" loading="lazy"><figcaption><b>The Beaver Eater</b><span>Three phases, one appetite</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The snake — asleep in the Valley until it isn't. Venom bites, tail whips and a fast chase."><img src="images/gameplay/bestiary-snake.jpg" alt="A coiled snake rearing to strike" loading="lazy"><figcaption><b>The Snake</b><span>Asleep, for now</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The attack drone — missile volleys and a ramming dive. It can lose its guns and keep coming."><img src="images/gameplay/bestiary-drone.jpg" alt="An armed quadcopter attack drone in flight" loading="lazy"><figcaption><b>The Attack Drone</b><span>Loses its guns, keeps coming</span></figcaption></figure>
-    </div>
-
-    <!-- WIDER WORLD -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">The wider world</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">There&rsquo;s a flight out</h2></div>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="Beaver Valley Airport — departures to places that also hate you."><img src="images/env/env-airport.jpg" alt="Beaver Valley Airport" loading="lazy"><figcaption><b>Beaver Valley Airport</b><span>Departures to worse places</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Hangar — where Beaver Valley Air keeps the aircraft you're about to regret boarding."><img src="images/env/env-hangar.jpg" alt="Beaver Valley Air hangar" loading="lazy"><figcaption><b>The Hangar</b><span>Beaver Valley Air</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="First class — leather, a window, and a drink. Worth every dollar."><img src="images/env/env-bva-1stclass.jpg" alt="First class cabin interior" loading="lazy"><figcaption><b>First Class</b><span>Worth every dollar</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The cockpit — you can walk in here mid-flight. Please don't."><img src="images/env/env-bva-cockpit.jpg" alt="Aircraft cockpit interior" loading="lazy"><figcaption><b>The Cockpit</b><span>Walk in mid-flight</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The cargo hold — there's a parachute down here somewhere."><img src="images/env/env-bva-cargo.jpg" alt="Aircraft cargo hold interior" loading="lazy"><figcaption><b>Cargo Hold</b><span>There&rsquo;s a parachute in here</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="Pennsylvania Avenue — the approach to the White House."><img src="images/env/env-whitehouse-ave.jpg" alt="Pennsylvania Avenue approach to the White House" loading="lazy"><figcaption><b>Pennsylvania Avenue</b><span>The long walk in</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Oval Office — where the buck stops, then keeps going."><img src="images/env/env-oval-office.jpg" alt="The Oval Office" loading="lazy"><figcaption><b>The Oval Office</b><span>The buck keeps going</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Russia Airport — arrivals hall. Comrade."><img src="images/env/env-russia.jpg" alt="Russia Airport" loading="lazy"><figcaption><b>Russia Airport</b><span>Arrivals, comrade</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Moscow arrivals — a long transit hall and a car waiting at the end of it."><img src="images/env/env-moscow-arrivals.jpg" alt="Moscow airport arrivals transit hall" loading="lazy"><figcaption><b>Moscow Arrivals</b><span>A car is waiting</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The river approach to the Kremlin — twelve scenes from here to the office at the end."><img src="images/env/env-kremlin-river.jpg" alt="Moscow Kremlin river approach" loading="lazy"><figcaption><b>Kremlin River Approach</b><span>Twelve scenes to the office</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Kremlin — foreign policy, Beaver Valley style."><img src="images/env/env-kremlin.jpg" alt="The Kremlin" loading="lazy"><figcaption><b>The Kremlin</b><span>Foreign policy</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Putin's Office — the far end of the Russian route."><img src="images/gameplay/gp-putin-office.jpg" alt="Putin's office interior" loading="lazy"><figcaption><b>Putin&rsquo;s Office</b><span>End of the line</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Farmland — cows, crops, and the occasional shallow grave."><img src="images/env/env-farmland.jpg" alt="The Farmland" loading="lazy"><figcaption><b>The Farmland</b><span>Cows and shallow graves</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Beaver Forest — the trees remember. The beavers definitely do."><img src="images/env/env-forest.jpg" alt="Beaver Forest" loading="lazy"><figcaption><b>Beaver Forest</b><span>The trees remember</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Cabin in the Woods — nothing bad has ever happened here. Probably."><img src="images/env/env-cabin.jpg" alt="Cabin in the Woods" loading="lazy"><figcaption><b>Cabin in the Woods</b><span>Nothing bad, probably</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Suspension Bridge — a long way down, structurally speaking."><img src="images/env/env-bridge.jpg" alt="The Suspension Bridge" loading="lazy"><figcaption><b>The Suspension Bridge</b><span>A long way down</span></figcaption></figure>
-    </div>
-
-    <!-- WAR & SPACE -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">War &amp; space</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">The far ends of the map</h2></div>
-    <div class="gallery">
-      <figure class="gtile wide reveal zoomable" data-cap="The Battlefront — up to four players, one muddy hill, no survivors."><img src="images/env/env-war-panorama.jpg" alt="The Battlefront" loading="lazy"><figcaption><b>The Battlefront</b><span>One muddy hill, no survivors</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Winter trenches — thirteen frontline maps, and this is the cold one."><img src="images/env/env-war-winter.jpg" alt="Winter snow trenches battlefield" loading="lazy"><figcaption><b>Winter Trenches</b><span>The cold one</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The burning battlefield — one dead tree left standing."><img src="images/env/env-war-burning.jpg" alt="Burning battlefield with a dead tree" loading="lazy"><figcaption><b>Burning Battlefield</b><span>One dead tree left</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The fortified hill bunker — hold this and the map is yours."><img src="images/env/env-war-bunker.jpg" alt="Fortified hill bunker battlefield" loading="lazy"><figcaption><b>Fortified Hill</b><span>Hold it and the map is yours</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Muddy ridge, overcast — nobody's idea of high ground."><img src="images/env/env-war-ridge.jpg" alt="Muddy ridge battlefield under overcast sky" loading="lazy"><figcaption><b>Muddy Ridge</b><span>Nobody&rsquo;s high ground</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Launch Pad — next stop: orbit, or a very large crater."><img src="images/env/env-starship.jpg" alt="The Launch Pad" loading="lazy"><figcaption><b>The Launch Pad</b><span>Orbit, or a large crater</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The Russian launch complex — the other way to get off this planet."><img src="images/env/env-starship-complex.jpg" alt="Russian starship launch complex at sunset" loading="lazy"><figcaption><b>Launch Complex</b><span>The other way off the planet</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Mars — the final colony. Or the final mistake."><img src="images/env/env-mars.jpg" alt="Mars" loading="lazy"><figcaption><b>Mars</b><span>The final colony, or mistake</span></figcaption></figure>
-    </div>
-
-    <!-- THE FOB -->
-    <div class="reveal" style="margin:64px 0 24px"><span class="kicker">Between battles</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">The Grand FOB</h2></div>
-    <p class="section-lead reveal" style="max-width:70ch;margin:-8px 0 26px">Win a battle and you walk off the field into your own forward operating base &mdash; a camp with a living garrison and nine buildings you can go inside. Every one of them does something.</p>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="The Grand FOB — watchtowers, a helipad, roads, and eighteen soldiers who live here."><img src="images/gameplay/gp-fob-hub.jpg" alt="The Grand Forward Operating Base from above" loading="lazy"><figcaption><b>The Camp</b><span>Eighteen soldiers live here</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The intel briefing room — a thirty-by-thirty war board. Gold diamonds are your orders."><img src="images/gameplay/gp-fob-intel.jpg" alt="The FOB intelligence war map" loading="lazy"><figcaption><b>Intel Briefing</b><span>Pick your next war</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The armory — buy it, then hand it to a squadmate. It's still theirs next battle."><img src="images/gameplay/gp-fob-armory.jpg" alt="The FOB armory interior" loading="lazy"><figcaption><b>The Armory</b><span>Arm your squad</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The infirmary — wounded squadmates stay out of the fight until they're treated."><img src="images/gameplay/gp-fob-infirmary.jpg" alt="The FOB infirmary with occupied beds" loading="lazy"><figcaption><b>Infirmary</b><span>Four beds, and a waiting list</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The mess hall — one free ration a day. Eat it now or pack it."><img src="images/gameplay/gp-fob-messhall.jpg" alt="The FOB mess hall" loading="lazy"><figcaption><b>Mess Hall</b><span>One free ration a day</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The barracks — sleep here to advance the campaign day and heal. Twice, then they want you working."><img src="images/gameplay/gp-fob-barracks.jpg" alt="The FOB barracks bunks" loading="lazy"><figcaption><b>Barracks</b><span>Sleep it off, once or twice</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The detention block — surrendered enemies. Debrief them, or turn them."><img src="images/gameplay/gp-fob-detention.jpg" alt="The FOB detention block cells" loading="lazy"><figcaption><b>Detention</b><span>Debrief, or recruit</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The comms bunker — buy a missile strike, an artillery box, or a bombing run."><img src="images/gameplay/gp-fob-comms.jpg" alt="The FOB communications bunker" loading="lazy"><figcaption><b>Comms Bunker</b><span>Order the airstrike</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The quartermaster's tent — everything you dragged off the last battlefield."><img src="images/gameplay/gp-fob-quartermaster.jpg" alt="The FOB quartermaster's tent" loading="lazy"><figcaption><b>Quartermaster</b><span>Your looted depot</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="General Asshat's HQ — he has objectives for you, and he wants a debrief after."><img src="images/gameplay/gp-fob-hq.jpg" alt="The FOB general's headquarters" loading="lazy"><figcaption><b>General HQ</b><span>General Asshat has plans</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="And it can all be taken off you — twenty-nine buildings, each with its own filmed demolition."><img src="images/gameplay/gp-fob-burn.jpg" alt="A building at the FOB burning after a strike" loading="lazy"><figcaption><b>Or It Burns</b><span>The wreck stays where it falls</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="After the strike — charred frames and a debris field you can walk across."><img src="images/gameplay/gp-fob-aftermath.jpg" alt="The aftermath of the FOB destruction" loading="lazy"><figcaption><b>Aftermath</b><span>Permanent</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The brig — for soldiers who refuse a direct order."><img src="images/env/env-fob-brig.jpg" alt="The FOB brig" loading="lazy"><figcaption><b>The Brig</b><span>For refusing an order</span></figcaption></figure>
-    </div>
-
-    <!-- THE BOAT -->
-    <div class="reveal" style="margin-bottom:24px"><span class="kicker">The Valley has a coast</span><h2 class="section-title" style="font-size:clamp(1.6rem,4vw,2.4rem)">Below the waterline</h2></div>
-    <p class="section-lead reveal" style="max-width:70ch;margin:-8px 0 26px">Off the eastern edge of town there is fifty kilometres of open sea in every direction, and it is the same world: the skyline on the shore is Beaver Valley, and the arch cut into the headland below it is the submarine pen. A Los Angeles-class boat lives there — fifteen compartments and a surfaced deck — along with a frigate, a destroyer, an aircraft carrier, a ferry, a trawler and a working quay for each. Every hull out there is manned by named characters, every one of them takes her orders out loud, and past the shelf the bottom drops into a trench eleven thousand metres deep with something living in it. Sail her home and you step off onto a dock inside the Valley — and that is one theatre of seven, a real strait among them.</p>
-    <div class="gallery" style="margin-bottom:64px">
-      <figure class="gtile wide reveal zoomable" data-cap="Beaver Valley from the water — that arch at the foot of the skyline is the submarine pen."><img src="images/gameplay/gp-navy-coast.jpg" alt="Beaver Valley from the water at dusk, with the pen's tunnel mouth cut into the headland" loading="lazy"><figcaption><b>The Coast Is the Town</b><span>The pen is under it</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Underway on the surface in fifty kilometres of charted water — and you are not the only thing in it."><img src="images/gameplay/gp-navy-fleet.jpg" alt="The submarine underway on the surface under an overcast sky, leaving a wake" loading="lazy"><figcaption><b>The Operating Area</b><span>50 km across, and seven of them</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Surfaced at dusk. The ferry keeps its own schedule and does not care about you."><img src="images/gameplay/gp-navy-surfaced.jpg" alt="A surfaced submarine at dusk with a ferry on the horizon" loading="lazy"><figcaption><b>On the Surface</b><span>Seen, and seeing</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Down where it is quiet — hulls overhead, and a decision to make about each one."><img src="images/gameplay/gp-navy-submerged.jpg" alt="An underwater view of a submarine with surface ships overhead" loading="lazy"><figcaption><b>Below</b><span>Where it's quiet</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The naval chart — soundings in metres, north up, and everything anybody has fired on it."><img src="images/env/env-navy-chart.jpg" alt="The expanded naval operations chart of the Beaver Valley approaches" loading="lazy"><figcaption><b>The Chart</b><span>Beaver Valley approaches</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The nuclear round going off. Five kilometres of blast radius, and the flash lights the sea for tens of kilometres more."><img src="images/gameplay/gp-nuclear-flash.jpg" alt="A nuclear detonation lighting the whole sea, the surfaced submarine in the middle of it" loading="lazy"><figcaption><b>The Nuke</b><span>Five kilometres of blast radius</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Vessel select — twelve platforms and three aircraft rosters, each one handing you back to a different walkable place."><img src="images/gameplay/gp-vessel-select.jpg" alt="The Ocean Operations vessel select screen showing the platform grid and the aircraft rosters" loading="lazy"><figcaption><b>Pick a Platform</b><span>Twelve of them, and an air wing</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Or take the other side of the operation — seven Russian hulls, each with its own crew and its own bridge."><img src="images/gameplay/gp-vessel-select-russian.jpg" alt="The Russian Navy half of the Ocean Operations vessel select screen" loading="lazy"><figcaption><b>The Other Navy</b><span>Playable, hull for hull</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="Fleet Command — every friendly hull, the chart, and that unit's own helm, sensors, weapons and boats, without leaving your bridge."><img src="images/gameplay/gp-fleet-command.jpg" alt="The Fleet Command screen with the friendly unit roster, chart and per-unit controls" loading="lazy"><figcaption><b>Fleet Command</b><span>One screen, the whole side</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The mission library — pick the operation and the side before you pick the boat, or write your own."><img src="images/gameplay/gp-mission-library.jpg" alt="The Ocean Operations mission library with a briefing and chart" loading="lazy"><figcaption><b>The Mission Library</b><span>And an editor to add to it</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Fifty kilometres of the Hormuz narrows, traced from published shoreline and seabed data."><img src="images/gameplay/gp-mission-editor.jpg" alt="The Ocean Operations mission editor showing the Straight of Booze chart" loading="lazy"><figcaption><b>The Strait</b><span>A real place, measured</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="They surrendered. Now they follow whoever led the boarding party, and the ship is yours."><img src="images/gameplay/gp-boarding-surrender.jpg" alt="Surrendered crew on a captured ship's bridge" loading="lazy"><figcaption><b>Boarded</b><span>The ship changes hands</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Crew posts on a captured ferry — give the survivors duties and compartments, and keep their names."><img src="images/gameplay/gp-crew-posts.jpg" alt="The crew posts screen on a captured ferry" loading="lazy"><figcaption><b>Crew Posts</b><span>Two cooks, if you like</span></figcaption></figure>
-      <figure class="gtile wide reveal zoomable" data-cap="The pen — sail in surfaced and shallow, and step off onto the quay underneath the town."><img src="images/env/env-sub-pen-dock.jpg" alt="The submarine pen's underground dock inside the sewers" loading="lazy"><figcaption><b>The Submarine Pen</b><span>Home port, under the Valley</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The submarine harbour — an empty berth, until you bring something back to put in it."><img src="images/env/env-sub-harbor.jpg" alt="The submarine harbour quay with an empty berth" loading="lazy"><figcaption><b>Submarine Harbor</b><span>An empty berth</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The naval quay — walk down it and up the frigate's brow."><img src="images/env/env-frigate-quay.jpg" alt="The naval quay where the frigate ties up" loading="lazy"><figcaption><b>The Naval Quay</b><span>Where the frigate ties up</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The frigate's bridge — one of sixteen spaces aboard her, all of them walkable."><img src="images/env/env-frigate-bridge.jpg" alt="The frigate's bridge interior with the helm and chart table" loading="lazy"><figcaption><b>Frigate Bridge</b><span>Sixteen spaces aboard</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The watch, closed up. Ten named sailors crew her, and they answer the orders you say out loud."><img src="images/gameplay/gp-frigate-bridge-crew.jpg" alt="Officers standing watch on the frigate's bridge with the sea outside" loading="lazy"><figcaption><b>The Watch</b><span>Ten sailors who answer you</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The flight deck at night — the helicopter goes off the back, and getting it home again is the hard part."><img src="images/gameplay/gp-frigate-deck-night.jpg" alt="The frigate's flight deck at night with the hangar door forward" loading="lazy"><figcaption><b>Flight Deck</b><span>A pad doing 14 knots</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="BV-114 on the grounds — harpoon forward, net drum aft, and a hold to fill before the harbour will pay you."><img src="images/gameplay/gp-fishing-boat.jpg" alt="The Muskrat class fishing boat working at sea" loading="lazy"><figcaption><b>The Muskrat</b><span>Not everything out here is grey</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The ferry's passenger lounge. Somebody has to run the 06:40."><img src="images/env/env-ferry-lounge.jpg" alt="The passenger lounge aboard the Beaver Valley ferry" loading="lazy"><figcaption><b>The Ferry</b><span>Somebody runs the 06:40</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The exterior deck — the only part of the boat with weather."><img src="images/env/env-sub-deck.jpg" alt="The submarine's exterior deck on the surface" loading="lazy"><figcaption><b>Exterior Deck</b><span>The only part with weather</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The control room — periscope, chart table, and the order to surface."><img src="images/env/env-sub-control.jpg" alt="Submarine control room interior" loading="lazy"><figcaption><b>Control Room</b><span>Periscope and chart table</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The torpedo room — four tubes, loaded."><img src="images/env/env-sub-torpedo.jpg" alt="Submarine torpedo room with tubes and torpedoes" loading="lazy"><figcaption><b>Torpedo Room</b><span>Four tubes, loaded</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="VLS access — twelve cells and the fire-control panel that opens them."><img src="images/env/env-sub-vls.jpg" alt="Submarine vertical launch system access" loading="lazy"><figcaption><b>VLS Access</b><span>Twelve cells</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="Sonar — the only eyes the boat has when it's down."><img src="images/env/env-sub-sonar.jpg" alt="Submarine sonar room" loading="lazy"><figcaption><b>Sonar Room</b><span>The only eyes down there</span></figcaption></figure>
-      <figure class="gtile reveal zoomable" data-cap="The engine room — aft end of a very long walk."><img src="images/env/env-sub-engine.jpg" alt="Submarine engine room" loading="lazy"><figcaption><b>Engine Room</b><span>Aft end of a long walk</span></figcaption></figure>
-    </div>
-
-    <div class="note reveal" style="margin-top:56px">
-      <span class="ic">&#9670;</span>
-      <div><b>And this is a fraction of it.</b> The full game spans 550+ scenes across 596 catalogued locations &mdash; apartment blocks, sewer junctions, back rooms, airplane cabins, a twelve-scene Kremlin approach, and district after district not pictured here. The Valley is bigger than it looks, and it&rsquo;s all hand-built.</div>
-    </div>
-
-  </div>
+<main class="wrap atlas">
+<nav class="atlas-index" aria-label="World districts"><a href="#town">Downtown &amp; commerce</a><a href="#housing">Places to live</a><a href="#law">Law &amp; custody</a><a href="#underground">The graveyard &amp; the underground</a><a href="#entertainment">Venues &amp; shows</a><a href="#travel">Air &amp; ground travel</a><a href="#war">War &amp; the forward base</a><a href="#naval">Harbors &amp; ships</a></nav>
+<section class="atlas-district" id="town"><span class="kicker">Downtown &amp; commerce</span>
+<h2 class="section-title">Shops and city streets</h2>
+<p class="section-lead">FoundryStop, McDoogles and the casino occupy different parts of town. Walk inside the shops to reach their counters. The casino’s poker room has its own table and a separate main-menu setup for a custom game.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley in Story Mode."><img src="images/play/town-street.webp" alt="Beaver Valley" loading="lazy" decoding="async"><figcaption>Beaver Valley</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="City Center in Story Mode."><img src="images/play/env-city-center.webp" alt="City Center" loading="lazy" decoding="async"><figcaption>City Center</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="FoundryStop in Story Mode."><img src="images/play/env-foundrystop.webp" alt="FoundryStop" loading="lazy" decoding="async"><figcaption>FoundryStop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Inside McDoogles in Story Mode."><img src="images/play/env-mcdoogles.webp" alt="Inside McDoogles" loading="lazy" decoding="async"><figcaption>Inside McDoogles</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Tyrone’s Grocery in Story Mode."><img src="images/play/env-grocery.webp" alt="Tyrone’s Grocery" loading="lazy" decoding="async"><figcaption>Tyrone’s Grocery</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Bank in Story Mode."><img src="images/play/env-bank.webp" alt="Beaver Valley Bank" loading="lazy" decoding="async"><figcaption>Beaver Valley Bank</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Gun Shop in Story Mode."><img src="images/play/env-gunshop.webp" alt="Gun Shop" loading="lazy" decoding="async"><figcaption>Gun Shop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Iron Mike’s Clothing Shop in Story Mode."><img src="images/play/env-clothing.webp" alt="Iron Mike’s Clothing Shop" loading="lazy" decoding="async"><figcaption>Iron Mike’s Clothing Shop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Hospital Triage in Story Mode."><img src="images/play/env-hospital.webp" alt="Hospital Triage" loading="lazy" decoding="async"><figcaption>Hospital Triage</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Casino in Story Mode."><img src="images/play/env-casino.webp" alt="Beaver Valley Casino" loading="lazy" decoding="async"><figcaption>Beaver Valley Casino</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Casino Poker Room in Story Mode."><img src="images/play/env-casino-poker.webp" alt="Beaver Valley Casino Poker Room" loading="lazy" decoding="async"><figcaption>Beaver Valley Casino Poker Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Pawn Shop in Story Mode."><img src="images/play/env-pawnshop.webp" alt="Pawn Shop" loading="lazy" decoding="async"><figcaption>Pawn Shop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Post Office in Story Mode."><img src="images/play/env-postoffice.webp" alt="Beaver Valley Post Office" loading="lazy" decoding="async"><figcaption>Beaver Valley Post Office</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Fire Department Interior in Story Mode."><img src="images/play/env-firedept.webp" alt="Beaver Valley Fire Department Interior" loading="lazy" decoding="async"><figcaption>Beaver Valley Fire Department Interior</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Recruitment Interior in Story Mode."><img src="images/play/env-recruitment.webp" alt="Recruitment Interior" loading="lazy" decoding="async"><figcaption>Recruitment Interior</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="A dealt hand in the casino poker room"><img src="images/play/gp-poker-hand.webp" alt="A dealt hand in the casino poker room" loading="lazy" decoding="async"><figcaption>A dealt hand in the casino poker room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Jeremy lands a sword strike on Smokey the Beaver"><img src="images/play/gp-boulevard-fight-1.webp" alt="Jeremy lands a sword strike on Smokey the Beaver" loading="lazy" decoding="async"><figcaption>Jeremy lands a sword strike on Smokey the Beaver</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The Beaver Eater outside the gun shop"><img src="images/play/gp-bestiary-beaver.webp" alt="The Beaver Eater outside the gun shop" loading="lazy" decoding="async"><figcaption>The Beaver Eater outside the gun shop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Checking stock prices at Beaver Valley Bank"><img src="images/play/gp-counter-bank.webp" alt="Checking stock prices at Beaver Valley Bank" loading="lazy" decoding="async"><figcaption>Checking stock prices at Beaver Valley Bank</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Delivering a sealed parcel to the municipal court"><img src="images/play/gp-postal-parcel.webp" alt="Delivering a sealed parcel to the municipal court" loading="lazy" decoding="async"><figcaption>Delivering a sealed parcel to the municipal court</figcaption>
+</figure></div>
 </section>
-
-<section class="cta-band">
-  <div class="bg"><img src="images/env/env-foundrystop.jpg" alt=""></div>
-  <div class="inner">
-    <span class="kicker" style="justify-content:center">Room for one more</span>
-    <h2>Put yourself on the map</h2>
-    <p>Get a character with your face and a mind of its own, living somewhere in all of this.</p>
-    <a class="btn btn-primary btn-lg" href="donate.html">Support the Valley &rarr;</a>
-  </div>
+<section class="atlas-district" id="housing"><span class="kicker">Places to live</span>
+<h2 class="section-title">Homes above and below the skyline</h2>
+<p class="section-lead">A resident’s home can be different from the place they start the day. The Dumpster Talk host and ByteBinge have separate homes off the same landing. A home stash carries items across visits. In the slums, sleeping bags and stash spots serve the same household needs. General cooking is still in development.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Luxury Exterior in Story Mode."><img src="images/play/env-luxury.webp" alt="Luxury Exterior" loading="lazy" decoding="async"><figcaption>Luxury Exterior</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Luxury Rooftop in Story Mode."><img src="images/play/env-rooftop.webp" alt="Luxury Rooftop" loading="lazy" decoding="async"><figcaption>Luxury Rooftop</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Slums 1 in Story Mode."><img src="images/play/env-slums.webp" alt="Slums 1" loading="lazy" decoding="async"><figcaption>Slums 1</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The studio host’s apartment in Story Mode."><img src="images/play/env-player-home.webp" alt="The studio host’s apartment" loading="lazy" decoding="async"><figcaption>The studio host’s apartment</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Slum Apartment 201 in Story Mode."><img src="images/play/env-shabby-home.webp" alt="Slum Apartment 201" loading="lazy" decoding="async"><figcaption>Slum Apartment 201</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ByteBinge’s Game Room in Story Mode."><img src="images/play/env-mickey.webp" alt="ByteBinge’s Game Room" loading="lazy" decoding="async"><figcaption>ByteBinge’s Game Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Trap House Exterior in Story Mode."><img src="images/play/env-traphouse.webp" alt="Trap House Exterior" loading="lazy" decoding="async"><figcaption>Trap House Exterior</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Jeremy opens the stash in Slum Apartment 201"><img src="images/play/gp-home-stash.webp" alt="Jeremy opens the stash in Slum Apartment 201" loading="lazy" decoding="async"><figcaption>Jeremy opens the stash in Slum Apartment 201</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Choosing a floor at the Luxury Apartment landing"><img src="images/play/gp-elevator.webp" alt="Choosing a floor at the Luxury Apartment landing" loading="lazy" decoding="async"><figcaption>Choosing a floor at the Luxury Apartment landing</figcaption>
+</figure></div>
 </section>
+<section class="atlas-district" id="law"><span class="kicker">Law &amp; custody</span>
+<h2 class="section-title">From the precinct to the cell block</h2>
+<p class="section-lead">Chief Jesse Ventura and intake officer Biden start at the police station. Other officers have patrol, home or helicopter assignments. Municipal custody and the American Security Services detention complex are separate places. The latter has its own intake, holding wings and support rooms.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Police Station in Story Mode."><img src="images/play/env-police.webp" alt="Beaver Valley Police Station" loading="lazy" decoding="async"><figcaption>Beaver Valley Police Station</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Municipal Court exterior in Story Mode."><img src="images/play/env-courthouse.webp" alt="Municipal Court exterior" loading="lazy" decoding="async"><figcaption>Municipal Court exterior</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Jail in Story Mode."><img src="images/play/env-jail.webp" alt="Beaver Valley Jail" loading="lazy" decoding="async"><figcaption>Beaver Valley Jail</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Jail Chow Hall in Story Mode."><img src="images/play/env-chowhall.webp" alt="Jail Chow Hall" loading="lazy" decoding="async"><figcaption>Jail Chow Hall</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Front Doors in Story Mode."><img src="images/play/env-ass-entrance.webp" alt="ASS Detention Front Doors" loading="lazy" decoding="async"><figcaption>ASS Detention Front Doors</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Yard in Story Mode."><img src="images/play/env-ass-yard.webp" alt="ASS Detention Yard" loading="lazy" decoding="async"><figcaption>ASS Detention Yard</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Intake in Story Mode."><img src="images/play/env-ass-intake.webp" alt="ASS Detention Intake" loading="lazy" decoding="async"><figcaption>ASS Detention Intake</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Cell Block Hallway in Story Mode."><img src="images/play/env-ass-hallway.webp" alt="ASS Detention Cell Block Hallway" loading="lazy" decoding="async"><figcaption>ASS Detention Cell Block Hallway</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Holding Cells in Story Mode."><img src="images/play/env-det-holding.webp" alt="ASS Detention Holding Cells" loading="lazy" decoding="async"><figcaption>ASS Detention Holding Cells</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Showers in Story Mode."><img src="images/play/env-ass-showers.webp" alt="ASS Detention Showers" loading="lazy" decoding="async"><figcaption>ASS Detention Showers</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Chow Hall in Story Mode."><img src="images/play/env-ass-chow.webp" alt="ASS Detention Chow Hall" loading="lazy" decoding="async"><figcaption>ASS Detention Chow Hall</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Infirmary in Story Mode."><img src="images/play/env-ass-infirmary.webp" alt="ASS Detention Infirmary" loading="lazy" decoding="async"><figcaption>ASS Detention Infirmary</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS DAMN High Tech Cellblock in Story Mode."><img src="images/play/env-ass-cellblock.webp" alt="ASS DAMN High Tech Cellblock" loading="lazy" decoding="async"><figcaption>ASS DAMN High Tech Cellblock</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="A littering case comes before the court"><img src="images/play/gp-court-trial.webp" alt="A littering case comes before the court" loading="lazy" decoding="async"><figcaption>A littering case comes before the court</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="underground"><span class="kicker">The graveyard &amp; the underground</span>
+<h2 class="section-title">From the church to the crypt</h2>
+<p class="section-lead">The Kitchen Crypt is home to the Zombie Chefs. Completing the shrimp recipe can send Tyrone across town. Eating The Delicacy at the graveyard starts a performance there. The chefs are silent, and surviving unrecruited performers can remain in the graveyard afterward. Beneath the surface, the sewer routes pass through their own rooms, channels and hazards.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Church in Story Mode."><img src="images/play/env-church.webp" alt="Beaver Valley Church" loading="lazy" decoding="async"><figcaption>Beaver Valley Church</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Graveyard in Story Mode."><img src="images/play/env-graveyard.webp" alt="Beaver Valley Graveyard" loading="lazy" decoding="async"><figcaption>Beaver Valley Graveyard</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Kitchen Crypt in Story Mode."><img src="images/play/env-crypt-path.webp" alt="Kitchen Crypt" loading="lazy" decoding="async"><figcaption>Kitchen Crypt</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Kitchen Crypt Inside in Story Mode."><img src="images/play/env-crypt.webp" alt="Kitchen Crypt Inside" loading="lazy" decoding="async"><figcaption>Kitchen Crypt Inside</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="GhostCrushers HQ in Story Mode."><img src="images/play/env-ghostcrushers.webp" alt="GhostCrushers HQ" loading="lazy" decoding="async"><figcaption>GhostCrushers HQ</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Sewer Under Unse in Story Mode."><img src="images/play/env-sewers.webp" alt="Sewer Under Unse" loading="lazy" decoding="async"><figcaption>Sewer Under Unse</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Dig Site in Story Mode."><img src="images/play/env-digsite.webp" alt="Beaver Dig Site" loading="lazy" decoding="async"><figcaption>Beaver Dig Site</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS DAMN Main Entrance in Story Mode."><img src="images/play/env-assdamn.webp" alt="ASS DAMN Main Entrance" loading="lazy" decoding="async"><figcaption>ASS DAMN Main Entrance</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Secret Beaver Lodge in Story Mode."><img src="images/play/env-secret-lodge.webp" alt="Secret Beaver Lodge" loading="lazy" decoding="async"><figcaption>Secret Beaver Lodge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="SEAL Team K HQ in Story Mode."><img src="images/play/env-seal-hq.webp" alt="SEAL Team K HQ" loading="lazy" decoding="async"><figcaption>SEAL Team K HQ</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The equipment locker at GhostCrushers headquarters"><img src="images/play/gp-ghost-locker.webp" alt="The equipment locker at GhostCrushers headquarters" loading="lazy" decoding="async"><figcaption>The equipment locker at GhostCrushers headquarters</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Setting a year offset in the time machine chamber"><img src="images/play/gp-time-console.webp" alt="Setting a year offset in the time machine chamber" loading="lazy" decoding="async"><figcaption>Setting a year offset in the time machine chamber</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="A small alligator swims near the waterfall under UNSE"><img src="images/play/gp-bestiary-alligator.webp" alt="A small alligator swims near the waterfall under UNSE" loading="lazy" decoding="async"><figcaption>A small alligator swims near the waterfall under UNSE</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="entertainment"><span class="kicker">Venues &amp; shows</span>
+<h2 class="section-title">On stage and behind the scenes</h2>
+<p class="section-lead">At James’s Barcade, Beaver Valley Pinball shares the room with Sewer Pipe, Oregon River and Sewer Beaver. The theatre has a lobby, audience seating and a lighting booth. The bar is both a Story Mode venue and a place for eligible Beaver Machine members to play a set.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Beaver Machine’s Bar in Story Mode."><img src="images/play/gp-bar-audience.webp" alt="Beaver Machine’s Bar" loading="lazy" decoding="async"><figcaption>Beaver Machine’s Bar</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="James’s Barcade in Story Mode."><img src="images/play/env-barcade.webp" alt="James’s Barcade" loading="lazy" decoding="async"><figcaption>James’s Barcade</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="UNSE Club in Story Mode."><img src="images/play/env-unse.webp" alt="UNSE Club" loading="lazy" decoding="async"><figcaption>UNSE Club</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Machine Rehearsal Space in Story Mode."><img src="images/play/env-bandhouse.webp" alt="Beaver Machine Rehearsal Space" loading="lazy" decoding="async"><figcaption>Beaver Machine Rehearsal Space</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Dumpster Talk Studio in Story Mode."><img src="images/play/env-tv-studio.webp" alt="Dumpster Talk Studio" loading="lazy" decoding="async"><figcaption>Dumpster Talk Studio</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Outside Dumpster Talk in Story Mode."><img src="images/play/env-dumpster-talk.webp" alt="Outside Dumpster Talk" loading="lazy" decoding="async"><figcaption>Outside Dumpster Talk</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Namasensei’s Dojo in Story Mode."><img src="images/play/env-dojo.webp" alt="Namasensei’s Dojo" loading="lazy" decoding="async"><figcaption>Namasensei’s Dojo</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Theatre Lobby in Story Mode."><img src="images/play/env-theatre-lobby.webp" alt="Beaver Valley Theatre Lobby" loading="lazy" decoding="async"><figcaption>Beaver Valley Theatre Lobby</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Theatre in Story Mode."><img src="images/play/gp-theatre-house.webp" alt="Beaver Valley Theatre" loading="lazy" decoding="async"><figcaption>Beaver Valley Theatre</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Murder Mystery mansion in Story Mode."><img src="images/play/env-murder-house.webp" alt="Murder Mystery mansion" loading="lazy" decoding="async"><figcaption>Murder Mystery mansion</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Mansion secret room in Story Mode."><img src="images/play/env-murder-secret.webp" alt="Mansion secret room" loading="lazy" decoding="async"><figcaption>Mansion secret room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Ancient Dam pinball at James’s Barcade"><img src="images/play/gp-pinball.webp" alt="Ancient Dam pinball at James’s Barcade" loading="lazy" decoding="async"><figcaption>Ancient Dam pinball at James’s Barcade</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Homeless in Denton screens behind the theatre cast"><img src="images/play/gp-theatre-second.webp" alt="Homeless in Denton screens behind the theatre cast" loading="lazy" decoding="async"><figcaption>Homeless in Denton screens behind the theatre cast</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Opening Beaver Machine’s songbook at the bar"><img src="images/play/gp-rhythm-library.webp" alt="Opening Beaver Machine’s songbook at the bar" loading="lazy" decoding="async"><figcaption>Opening Beaver Machine’s songbook at the bar</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The investigator’s case notebook at Bellweather House"><img src="images/play/gp-mystery-notebook.webp" alt="The investigator’s case notebook at Bellweather House" loading="lazy" decoding="async"><figcaption>The investigator’s case notebook at Bellweather House</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="travel"><span class="kicker">Air &amp; ground travel</span>
+<h2 class="section-title">From Beaver Valley to Moscow</h2>
+<p class="section-lead">Beaver Valley Air has separate passenger, cargo and cockpit spaces. The Washington and Moscow destinations have their own arrival scenes. Sandy Shores opens through its own campaign progression.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Airport in Story Mode."><img src="images/play/env-airport.webp" alt="Beaver Valley Airport" loading="lazy" decoding="async"><figcaption>Beaver Valley Airport</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Airport Hangar in Story Mode."><img src="images/play/env-hangar.webp" alt="Beaver Valley Airport Hangar" loading="lazy" decoding="async"><figcaption>Beaver Valley Airport Hangar</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Air · First Class in Story Mode."><img src="images/play/env-bva-1stclass.webp" alt="Beaver Valley Air · First Class" loading="lazy" decoding="async"><figcaption>Beaver Valley Air · First Class</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Air · Cockpit in Story Mode."><img src="images/play/env-bva-cockpit.webp" alt="Beaver Valley Air · Cockpit" loading="lazy" decoding="async"><figcaption>Beaver Valley Air · Cockpit</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Beaver Valley Air · Cargo Hold in Story Mode."><img src="images/play/env-bva-cargo.webp" alt="Beaver Valley Air · Cargo Hold" loading="lazy" decoding="async"><figcaption>Beaver Valley Air · Cargo Hold</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="White House Pennsylvania Avenue in Story Mode."><img src="images/play/env-whitehouse-ave.webp" alt="White House Pennsylvania Avenue" loading="lazy" decoding="async"><figcaption>White House Pennsylvania Avenue</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Oval Office in Story Mode."><img src="images/play/env-oval-office.webp" alt="Oval Office" loading="lazy" decoding="async"><figcaption>Oval Office</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Russia Airport in Story Mode."><img src="images/play/env-russia.webp" alt="Russia Airport" loading="lazy" decoding="async"><figcaption>Russia Airport</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Moscow Airport Arrivals in Story Mode."><img src="images/play/env-moscow-arrivals.webp" alt="Moscow Airport Arrivals" loading="lazy" decoding="async"><figcaption>Moscow Airport Arrivals</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Moscow Kremlin River Approach in Story Mode."><img src="images/play/env-kremlin-river.webp" alt="Moscow Kremlin River Approach" loading="lazy" decoding="async"><figcaption>Moscow Kremlin River Approach</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Kremlin Grand Hall in Story Mode."><img src="images/play/env-kremlin.webp" alt="Kremlin Grand Hall" loading="lazy" decoding="async"><figcaption>Kremlin Grand Hall</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Putin’s Office in Story Mode."><img src="images/play/gp-putin-office.webp" alt="Putin’s Office" loading="lazy" decoding="async"><figcaption>Putin’s Office</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="ASS Detention Farmland Edge in Story Mode."><img src="images/play/env-farmland.webp" alt="ASS Detention Farmland Edge" loading="lazy" decoding="async"><figcaption>ASS Detention Farmland Edge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Suspension Bridge in Story Mode."><img src="images/play/env-bridge.webp" alt="Suspension Bridge" loading="lazy" decoding="async"><figcaption>Suspension Bridge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Sandy Shores Port Office Exterior in Story Mode."><img src="images/play/env-sandy.webp" alt="Sandy Shores Port Office Exterior" loading="lazy" decoding="async"><figcaption>Sandy Shores Port Office Exterior</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="war"><span class="kicker">War &amp; the forward base</span>
+<h2 class="section-title">The front and the Grand FOB</h2>
+<p class="section-lead">War takes the squad out of the base and onto battlefields with different terrain. Back at the FOB, the briefing room, armory, infirmary, detention block and quartermaster each have a distinct job.</p>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="War · Grand Battlefront."><img src="images/play/env-war-panorama.webp" alt="War · Grand Battlefront" loading="lazy" decoding="async"><figcaption>War · Grand Battlefront</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="War · Winter Snow Trenches."><img src="images/play/env-war-winter.webp" alt="War · Winter Snow Trenches" loading="lazy" decoding="async"><figcaption>War · Winter Snow Trenches</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="War · Burning Battlefield."><img src="images/play/env-war-burning.webp" alt="War · Burning Battlefield" loading="lazy" decoding="async"><figcaption>War · Burning Battlefield</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="War · Fortified Hill Bunker."><img src="images/play/env-war-bunker.webp" alt="War · Fortified Hill Bunker" loading="lazy" decoding="async"><figcaption>War · Fortified Hill Bunker</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="War · Muddy Ridge."><img src="images/play/env-war-ridge.webp" alt="War · Muddy Ridge" loading="lazy" decoding="async"><figcaption>War · Muddy Ridge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The Grand FOB in Story Mode."><img src="images/play/gp-fob-hub.webp" alt="The Grand FOB" loading="lazy" decoding="async"><figcaption>The Grand FOB</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Intelligence Briefing Room in Story Mode."><img src="images/play/gp-fob-intel.webp" alt="Grand FOB Intelligence Briefing Room" loading="lazy" decoding="async"><figcaption>Grand FOB Intelligence Briefing Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Armory in Story Mode."><img src="images/play/gp-fob-armory.webp" alt="Grand FOB Armory" loading="lazy" decoding="async"><figcaption>Grand FOB Armory</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Infirmary in Story Mode."><img src="images/play/gp-fob-infirmary.webp" alt="Grand FOB Infirmary" loading="lazy" decoding="async"><figcaption>Grand FOB Infirmary</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Mess Hall in Story Mode."><img src="images/play/gp-fob-messhall.webp" alt="Grand FOB Mess Hall" loading="lazy" decoding="async"><figcaption>Grand FOB Mess Hall</figcaption>
+</figure>
+<figure id="fob-barracks" class="atlas-photo zoomable" data-cap="Jeremy stands by the duty bunk in the Grand FOB barracks."><img src="images/play/gp-fob-barracks-fixed.webp" alt="Jeremy and the duty attendant in the aisle between barracks bunks" loading="lazy" decoding="async"><figcaption>The duty bunk inside the Grand FOB barracks</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Detention Interrogation Block in Story Mode."><img src="images/play/gp-fob-detention.webp" alt="Grand FOB Detention Interrogation Block" loading="lazy" decoding="async"><figcaption>Grand FOB Detention Interrogation Block</figcaption>
+</figure>
+<figure id="fob-comms" class="atlas-photo zoomable" data-cap="Jeremy can coordinate support at the Grand FOB communications board."><img src="images/play/gp-fob-comms-fixed.webp" alt="Jeremy at the communications station with the campaign map on the wall" loading="lazy" decoding="async"><figcaption>The support station in the Grand FOB communications room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB Quartermaster&#x27;s Tent in Story Mode."><img src="images/play/gp-fob-quartermaster.webp" alt="Grand FOB Quartermaster&#x27;s Tent" loading="lazy" decoding="async"><figcaption>Grand FOB Quartermaster&#x27;s Tent</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Grand FOB General HQ in Story Mode."><img src="images/play/gp-fob-hq.webp" alt="Grand FOB General HQ" loading="lazy" decoding="async"><figcaption>Grand FOB General HQ</figcaption>
+</figure>
 
+
+<figure class="atlas-photo zoomable" data-cap="An incoming strike hits the Grand FOB"><img src="images/play/gp-fob-impact-4.webp" alt="An incoming strike hits the Grand FOB" loading="lazy" decoding="async"><figcaption>An incoming strike hits the Grand FOB</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Parachuting into the river crossing"><img src="images/play/gp-war-front.webp" alt="Parachuting into the river crossing" loading="lazy" decoding="async"><figcaption>Parachuting into the river crossing</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="naval"><span class="kicker">Harbors &amp; ships</span>
+<h2 class="section-title">Walk aboard the fleet</h2>
+<p class="section-lead">The ocean chart and the rooms aboard a vessel are different views of the voyage. A frigate has a bridge and a flight deck. A submarine has a control room, sonar room and engineering spaces. Civilian ships have their own interiors, including the ferry passenger lounge and the Muskrat’s working deck.</p><a class="text-link" href="naval.html#vessel-directory">See vessel photos and stats →</a>
+<div class="atlas-grid">
+<figure class="atlas-photo zoomable" data-cap="Civilian Watercraft Emporium in Story Mode."><img src="images/play/env-watercraft.webp" alt="Civilian Watercraft Emporium" loading="lazy" decoding="async"><figcaption>Civilian Watercraft Emporium</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Sewer Submarine Dock in Story Mode."><img src="images/play/env-sub-pen-dock.webp" alt="Sewer Submarine Dock" loading="lazy" decoding="async"><figcaption>Sewer Submarine Dock</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Naval Harbor in Story Mode."><img src="images/play/env-sub-harbor.webp" alt="Naval Harbor" loading="lazy" decoding="async"><figcaption>Naval Harbor</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Frigate Naval Harbor in Story Mode."><img src="images/play/env-frigate-quay.webp" alt="Frigate Naval Harbor" loading="lazy" decoding="async"><figcaption>Frigate Naval Harbor</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Frigate Bridge in Story Mode."><img src="images/play/env-frigate-bridge.webp" alt="Frigate Bridge" loading="lazy" decoding="async"><figcaption>Frigate Bridge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Ferry Main Passenger Lounge in Story Mode."><img src="images/play/env-ferry-lounge.webp" alt="Ferry Main Passenger Lounge" loading="lazy" decoding="async"><figcaption>Ferry Main Passenger Lounge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine Exterior Deck in Story Mode."><img src="images/play/env-sub-deck.webp" alt="LA Submarine Exterior Deck" loading="lazy" decoding="async"><figcaption>LA Submarine Exterior Deck</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine Control Room in Story Mode."><img src="images/play/env-sub-control.webp" alt="LA Submarine Control Room" loading="lazy" decoding="async"><figcaption>LA Submarine Control Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine Torpedo Room in Story Mode."><img src="images/play/env-sub-torpedo.webp" alt="LA Submarine Torpedo Room" loading="lazy" decoding="async"><figcaption>LA Submarine Torpedo Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine VLS Access in Story Mode."><img src="images/play/env-sub-vls.webp" alt="LA Submarine VLS Access" loading="lazy" decoding="async"><figcaption>LA Submarine VLS Access</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine Sonar Room in Story Mode."><img src="images/play/env-sub-sonar.webp" alt="LA Submarine Sonar Room" loading="lazy" decoding="async"><figcaption>LA Submarine Sonar Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="LA Submarine Engine Room in Story Mode."><img src="images/play/env-sub-engine.webp" alt="LA Submarine Engine Room" loading="lazy" decoding="async"><figcaption>LA Submarine Engine Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The Muskrat’s Deck in Story Mode."><img src="images/play/env-boat-deck.webp" alt="The Muskrat’s Deck" loading="lazy" decoding="async"><figcaption>The Muskrat’s Deck</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Otter Submarine Control Room in Story Mode."><img src="images/play/env-otter-bridge.webp" alt="Otter Submarine Control Room" loading="lazy" decoding="async"><figcaption>Otter Submarine Control Room</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Kodiak Carrier Hangar in Story Mode."><img src="images/play/env-kodiak-hangar.webp" alt="Kodiak Carrier Hangar" loading="lazy" decoding="async"><figcaption>Kodiak Carrier Hangar</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Kodiak Carrier Bridge in Story Mode."><img src="images/play/env-carrier-bridge.webp" alt="Kodiak Carrier Bridge" loading="lazy" decoding="async"><figcaption>Kodiak Carrier Bridge</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The tactical chart during The Last Ferry"><img src="images/play/gp-navy-chart.webp" alt="The tactical chart during The Last Ferry" loading="lazy" decoding="async"><figcaption>The tactical chart during The Last Ferry</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Assigning the boarding team aboard the Weasel"><img src="images/play/gp-rhib-board.webp" alt="Assigning the boarding team aboard the Weasel" loading="lazy" decoding="async"><figcaption>Assigning the boarding team aboard the Weasel</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The Weasel frigate makes way offshore"><img src="images/play/gp-navy-underway.webp" alt="The Weasel frigate makes way offshore" loading="lazy" decoding="async"><figcaption>The Weasel frigate makes way offshore</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="The Beaver submerged during Quiet Water"><img src="images/play/gp-beaver-submerged.webp" alt="The Beaver submerged during Quiet Water" loading="lazy" decoding="async"><figcaption>The Beaver submerged during Quiet Water</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="An incoming missile warning aboard the Weasel"><img src="images/play/gp-navy-exercise-impact.webp" alt="An incoming missile warning aboard the Weasel" loading="lazy" decoding="async"><figcaption>An incoming missile warning aboard the Weasel</figcaption>
+</figure>
+<figure class="atlas-photo zoomable" data-cap="Reviewing the Weasel’s crew posts from the bridge"><img src="images/play/gp-shipboard-posts.webp" alt="Reviewing the Weasel’s crew posts from the bridge" loading="lazy" decoding="async"><figcaption>Reviewing the Weasel’s crew posts from the bridge</figcaption>
+</figure></div>
+</section>
+<section class="atlas-district" id="world-design">
+<h2 class="section-title">Beyond the atlas</h2>
+<p class="section-lead">The design also describes a megachurch for Beaver Ministries and a cloning laboratory. Both currently appear as location records. The development roadmap covers the broader story plans.</p>
+<a class="text-link" href="roadmap.html">Read the roadmap →</a>
+</section>
+</main>
 <footer class="footer">
   <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
-        <p>A grimy dystopian-satire town where ~250 characters each have a mind of their own. A one-developer game by Jeremy Thorn.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="index.html">The Valley</a></li>
-          <li><a href="features.html">What&rsquo;s Built</a></li>
-          <li><a href="world.html">The World</a></li>
-          <li><a href="characters.html">The Cast</a></li>
-          <li><a href="guide.html">Field Guide</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="donate.html">Support</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get Involved</h5>
-        <ul>
-          <li><a href="donate.html">Get in the credits</a></li>
-          <li><a href="donate.html">Become a character</a></li>
-          <li><a href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip on Streamlabs &rarr;</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
-      <span class="sat">No beavers were harmed. The Beaver Eater cannot say the same.</span>
-    </div>
+<div class="footer-grid">
+    <div>
+<div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
+<p>A satirical role-playing game by Jeremy Thorn.</p></div>
+    <div>
+<h5>Explore</h5><ul><li><a href="index.html">The Valley</a></li><li><a href="features.html">Features</a></li><li><a href="naval.html">Naval Combat</a></li><li><a href="world.html">World</a></li><li><a href="characters.html">Cast</a></li><li><a href="guide.html">Guide</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+    <div>
+<h5>Get involved</h5><ul><li><a href="donate.html">Support the game</a></li><li><a href="donate.html#tiers">Character and credit tiers</a></li></ul></div>
   </div>
+<div class="footer-bottom">© <span id="year">2026</span> Beaver Valley</div></div>
 </footer>
 
 <script src="js/site.js"></script>

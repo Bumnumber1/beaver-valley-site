@@ -4,179 +4,97 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Roadmap — Beaver Valley</title>
-<meta name="description" content="Where Beaver Valley is headed: the living town, live band performances, the war campaign and the naval simulation off the coast now; Murder Mystery, federal charges and Battle of the Bands next; a consequence-driven campaign, time travel, Mars and the supernatural on the horizon.">
+<meta name="description" content="What you can play in Beaver Valley now and the longer-term plans for the town, music, federal escalation and story campaign.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<nav class="nav">
-  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
-  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-  <ul class="nav-links">
+<nav class="nav" aria-label="Main navigation">
+  <a href="index.html" class="nav-logo"><span class="paw" aria-hidden="true">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
+  <ul class="nav-links" id="main-navigation">
     <li><a href="index.html">The Valley</a></li>
     <li><a href="features.html">Features</a></li>
-    <li><a href="world.html">The World</a></li>
+    <li><a href="naval.html">Naval Combat</a></li>
+    <li><a href="world.html">World</a></li>
     <li><a href="characters.html">Cast</a></li>
     <li><a href="guide.html">Guide</a></li>
-    <li><a href="roadmap.html" class="active">Roadmap</a></li>
+    <li><a href="roadmap.html" class="active" aria-current="page">Roadmap</a></li>
     <li><a href="donate.html">Support</a></li>
-    <li><a class="btn btn-primary nav-cta" href="donate.html">Fund the Chaos</a></li>
   </ul>
 </nav>
 
 <header class="page-head">
-  <div class="bg"><img src="images/env/env-starship.jpg" alt=""></div>
+  <div class="bg"><img src="images/play/gp-bar-audience.webp" alt=""></div>
   <div class="wrap inner">
     <span class="kicker">Where it&rsquo;s going</span>
     <h1>Roadmap</h1>
-    <p>The engine and its systems already run. What&rsquo;s ahead is welding them into one persistent world you can save &mdash; or end. Here&rsquo;s the honest order of operations.</p>
+    <p>Start with the systems you can play today. Further down are the town events and campaign branches described in the design. Those ideas have no announced release dates.</p>
   </div>
 </header>
 
 <section class="section">
   <div class="wrap">
 
-    <!-- IN PROGRESS -->
-    <div class="phase reveal">
+    <div class="phase">
       <div class="phase-head">
-        <span class="phase-badge in_progress"><span class="dot"></span>In Progress</span>
-        <h2 class="phase-title">Building now</h2>
-        <span class="phase-line"></span>
+        <span class="phase-badge in_progress"><span class="dot"></span>In the game</span>
+        <h2 class="phase-title">Play these now</h2><span class="phase-line"></span>
       </div>
       <div class="roadmap-grid">
-        <div class="rm-card in_progress">
-          <h4>The Living Town of Beaver Valley</h4>
-          <p>Stitching the contained modes into one persistent, breathing town where all ~250 AI characters keep real daily schedules &mdash; clocking in to jobs, drinking at the bar, serving jail sentences, running up debt, getting patched up at the hospital. The bank, repo men, jail routines, hospital staff, fire department and NPC economy are already wired in, along with a police force that splits into on-duty patrols and off-duty civilians who go home in their own clothes. The world keeps living whether or not you&rsquo;re watching; the work now is stretching its clock past two hours so a full day plays out.</p>
-        </div>
-        <div class="rm-card in_progress">
-          <h4>Live Band Performances</h4>
-          <p>The town&rsquo;s bands actually play music: real tracks are split into instrument stems so drummers hit on the beat and guitarists strum in time, bringing venues like Beaver Machine&rsquo;s Bar to life. Five of their songs are now fully choreographed &mdash; pyro cues, band moves and a crowd that jumps on the beat. Work continues on perfecting the musicians&rsquo; hand animation so every performance looks as good as it sounds.</p>
-        </div>
-        <div class="rm-card in_progress">
-          <h4>The War Campaign</h4>
-          <p>The battles and the base are built: four-player squad warfare across thirteen fronts, ranks and promotions, a forward operating base with nine buildings you can walk into, bought airstrikes, and prisoners you can turn. What&rsquo;s next is the campaign that strings them together &mdash; a war map where the ground you take on one front actually stays taken.</p>
-        </div>
-        <div class="rm-card in_progress">
-          <h4>Ocean Operations</h4>
-          <p>The sea off the Valley is its own entry on the main menu, and it has stopped being one boat in one box. It opens on a <b>mission library</b> now: pick the operation, pick which side of the war you are on, pick a captain out of the cast, pick one of twelve platforms &mdash; attack submarine, frigate, destroyer, aircraft carrier, patrol cutter, rigid-hull raider, fishing trawler, ferry, waste tanker, heavy-lift ship, airliner or experimental fighter &mdash; and put to sea in fifty kilometres of charted water, one theatre of seven. Take the other side and you command the Russian fleet instead, hull for hull. Both navies have a carrier and an air wing, and one key opens Fleet Command, where every friendly ship answers you down to its own helm, sensors, boats and magazines. Ships flood and burn one room at a time with a damage party you can go and watch. You can board a ship, take it by force, and post the survivors as your own crew. There is an editor to write your own battles with win conditions for both sides, and one operation is a real strait built from published shoreline and seabed data. Sail home into the pen cut under the headland and you step off onto a walkable dock. What is left is the walk inland: giving the fleet orders that come from the town, with consequences that come back to it.</p>
-        </div>
+        <article class="rm-card in_progress"><h4>Bellweather House</h4><p>Murder Mystery opens from the main menu. Investigate Walter’s death, interview the guests, inspect the weapon and bring together the evidence in your notebook.</p></article>
+        <article class="rm-card in_progress"><h4>Beaver Machine Live</h4><p>Play the guitar, bass, drum or vocal chart on a song, choose a difficulty and review the score. The library also accepts imported music. In town you can visit the band’s bar and the UNSE club.</p></article>
+        <article class="rm-card in_progress"><h4>Town routines and housing</h4><p>The two-hour world timetable includes public visits, work and travel home. Residences have personal storage and rest spots. Rest can restore health as world time passes.</p></article>
+        <article class="rm-card in_progress"><h4>War and Ocean Operations</h4><p>The Grand FOB intelligence map already issues missions and records battle results. At sea, the mission library, fleet command, carrier air wings and damage-control stations are part of Ocean Operations.</p></article>
       </div>
     </div>
 
-    <!-- PLANNED -->
-    <div class="phase reveal">
+    <div class="phase">
       <div class="phase-head">
-        <span class="phase-badge planned"><span class="dot"></span>Planned</span>
-        <h2 class="phase-title">Committed next</h2>
-        <span class="phase-line"></span>
+        <span class="phase-badge planned"><span class="dot"></span>Design plans</span>
+        <h2 class="phase-title">What the design calls for</h2><span class="phase-line"></span>
       </div>
       <div class="roadmap-grid">
-        <div class="rm-card planned">
-          <h4>Murder Mystery Mode</h4>
-          <p>The next standalone simulation &mdash; and the last mode still marked &ldquo;Coming Soon&rdquo; on the menu: a whodunit where the town&rsquo;s AI characters become the suspects, witnesses, and victims. You crack the case by questioning souls who each genuinely remember their own version of what happened. The mansion itself is finished &mdash; nineteen connected rooms and four secret passages, including a bookcase that swings open and a dumbwaiter you crawl through.</p>
-        </div>
-        <div class="rm-card planned">
-          <h4>The Federal Problem</h4>
-          <p>The American Security Services has twenty-five agents, a duty roster and a twenty-two-room detention centre out past the farmland, all standing and staffed. Next comes the reason to end up in it: federal charges that escalate past the local police, an intake that actually processes you, and a way out the other side.</p>
-        </div>
-        <div class="rm-card planned">
-          <h4>Battle of the Bands</h4>
-          <p>A citywide musical showdown pitting Beaver Machine against the Stone City Orchestra and Trump&rsquo;s imported British rivals. Each act performs a solo set before a chaotic all-at-once finale, with the outcome tipping the balance of cultural power in the valley.</p>
-        </div>
-        <div class="rm-card planned">
-          <h4>Expanded Item &amp; Inventory Library</h4>
-          <p>An ever-growing arsenal of weapons, consumables and absurd junk &mdash; past 150 items now, with wearables, a wardrobe of 116 outfits, and a starting kit for every character in the game. Planned Twitch channel-point integration will let viewers drop items directly into the chaos.</p>
-        </div>
+        <article class="rm-card planned"><h4>Cooking at home</h4><p>Homes have a place to cook, from apartment kitchens to barrel fires in slum housing. General household cooking is deferred. The specific Put It In Your Mouth shrimp recipe already has a separate quest.</p></article>
+        <article class="rm-card planned"><h4>Battle of the Bands</h4><p>The proposed town event brings Beaver Machine, the Stone City Orchestra and CuntPuncher together. The design calls for individual sets and a group finale, with the venue depending on what has happened in town.</p></article>
+        <article class="rm-card planned"><h4>Federal escalation</h4><p>The A.S.S. already has agents, duty assignments and a detention facility. The larger story design connects surveillance, detentions and conflict with the local police to the town’s political situation.</p></article>
+        <article class="rm-card planned"><h4>More ways to affect the world</h4><p>The design follows individual ambitions and faction goals across town. It calls for wider consequences from who survives, which institutions remain standing and which alliances the player builds.</p></article>
       </div>
     </div>
 
-    <!-- VISION -->
-    <div class="phase reveal">
+    <div class="phase">
       <div class="phase-head">
-        <span class="phase-badge vision"><span class="dot"></span>Vision</span>
-        <h2 class="phase-title">The bigger ambition</h2>
-        <span class="phase-line"></span>
+        <span class="phase-badge vision"><span class="dot"></span>Longer-term story</span>
+        <h2 class="phase-title">Where the story could go</h2><span class="phase-line"></span>
       </div>
       <div class="roadmap-grid">
-        <div class="rm-card vision">
-          <h4>Full Story Campaign &amp; Infinite Endings</h4>
-          <p>A systemic single-world campaign where destruction is permanent and no soul ever dies off-screen. Your choices steer the whole town across a spectrum of outcomes &mdash; almost every run ends differently. And the two extremes pay out in the real world: one releases a brand-new Beaver Machine album as a digital asset, the other unlocks an entirely new game mode.</p>
-        </div>
-        <div class="rm-card vision">
-          <h4>Time Travel &amp; the Beaver Eater</h4>
-          <p>A one-use time machine hidden in the sewers, an ancient extraterrestrial beaver civilization, and a monstrous Beaver Eater whose fate in the past rewrites the entire present-day town. Undo its original attack and whole districts of the city simply never came to exist. The creature itself is already built and fightable &mdash; three escalating phases of it &mdash; along with the snake and the attack drone.</p>
-        </div>
-        <div class="rm-card vision">
-          <h4>Space, Mars &amp; the Planetkiller</h4>
-          <p>Starship Mode grows into a true endgame: launch a five-station crew to colonize Mars for humanity&rsquo;s survival, or watch a stolen planetkiller warhead&rsquo;s transport spiral into catastrophe. Survival, permanent orbit-lock, and planet-ending disaster are all on the table.</p>
-        </div>
-        <div class="rm-card vision">
-          <h4>The World State Formatter</h4>
-          <p>A hidden runtime authority that governs every AI soul and can break the fourth wall &mdash; distorting the UI and audio after time travel and forcing you to talk your way back into reality with your actual voice. The final arbiter of where it all lands.</p>
-        </div>
-        <div class="rm-card vision">
-          <h4>Supernatural Life &amp; Death Systems</h4>
-          <p>A full metaphysical layer of ghosts, exorcisms, once-per-game seances, cloning, and raisable zombie armies. The Reverend can pull souls from bodies and reinsert them &mdash; but a botched resurrection creates a warped, uncontrollable Abomination, because in Beaver Valley death is rarely the end.</p>
-        </div>
-        <div class="rm-card vision">
-          <h4>&ldquo;Beaver Tech&rdquo; &amp; Behavioral Change</h4>
-          <p>Unlockable alien beaver technology that applies psychological effects to the town&rsquo;s AI characters &mdash; genuinely shifting how they behave and how they interact with the world and each other. It opens up ways to change minds and resolve conflicts that have nothing to do with violence, and it&rsquo;s central to steering the Valley somewhere new.</p>
-        </div>
+        <article class="rm-card vision"><h4>The ancient dam</h4><p>The archaeologist can already screen a reconstruction of the Valley’s origins. The proposed campaign branch lets an intervention in the past change the dam, FoundryStop and the modern town.</p></article>
+        <article class="rm-card vision"><h4>The supernatural</h4><p>Ghost-hunting equipment and the Zombie Chefs have their own in-game systems. Broader ideas include séances, resurrection and the ability to raise characters outside the chef roster.</p></article>
+        <article class="rm-card vision"><h4>Beaver Tech</h4><p>The design calls for ancient technology that changes how characters respond to others. It connects a future Beaver Tech market to restoring the dam and gives players more ways to resolve conflicts through influence.</p></article>
+        <article class="rm-card vision"><h4>The World State Formatter</h4><p>The design describes an encounter with a force that responds to changes in the timeline. The proposed outcome depends on what a player says and what has happened to the Valley.</p></article>
+        <article class="rm-card vision"><h4>Two campaign endings</h4><p>In one proposed ending, all souls survive and Trump and Putin are imprisoned or reformed. Beaver Machine premieres a new album on the White House lawn. In the other branch, eliminating every soul brings the player before the World State Formatter.</p></article>
       </div>
-    </div>
-
-    <div class="note reveal" style="margin-top:20px">
-      <span class="ic">&#9888;</span>
-      <div><b>Roadmaps are promises made in smog.</b> Order and scope can shift as the town demands. What ships when it&rsquo;s ready &mdash; and in Beaver Valley, &ldquo;ready&rdquo; is doing a lot of heavy lifting.</div>
     </div>
 
   </div>
 </section>
 
 <section class="cta-band">
-  <div class="bg"><img src="images/env/env-megachurch.jpg" alt=""></div>
+  <div class="bg"><img src="images/play/env-theatre-lobby.webp" alt=""></div>
   <div class="inner">
-    <span class="kicker" style="justify-content:center">Help decide what ships</span>
-    <h2>Buy a soul into the world</h2>
-    <p>Supporters get in the credits &mdash; or get a character built in their likeness, with a live AI soul, walking the mainline game.</p>
+    <span class="kicker">Support</span><h2>Support Beaver Valley</h2>
+    <p>See the project’s support options and how to get in touch.</p>
     <a class="btn btn-primary btn-lg" href="donate.html">Support the Valley &rarr;</a>
   </div>
 </section>
 
 <footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-      <div>
-        <div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
-        <p>A grimy dystopian-satire town where ~250 characters each have a mind of their own. A one-developer game by Jeremy Thorn.</p>
-      </div>
-      <div>
-        <h5>Explore</h5>
-        <ul>
-          <li><a href="index.html">The Valley</a></li>
-          <li><a href="features.html">What&rsquo;s Built</a></li>
-          <li><a href="world.html">The World</a></li>
-          <li><a href="characters.html">The Cast</a></li>
-          <li><a href="guide.html">Field Guide</a></li>
-          <li><a href="roadmap.html">Roadmap</a></li>
-          <li><a href="donate.html">Support</a></li>
-        </ul>
-      </div>
-      <div>
-        <h5>Get Involved</h5>
-        <ul>
-          <li><a href="donate.html">Get in the credits</a></li>
-          <li><a href="donate.html">Become a character</a></li>
-          <li><a href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip on Streamlabs &rarr;</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
-      <span class="sat">No beavers were harmed. The Beaver Eater cannot say the same.</span>
-    </div>
-  </div>
+  <div class="wrap"><div class="footer-grid">
+    <div><div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div><p>A satirical role-playing game by Jeremy Thorn.</p></div>
+    <div><h5>Explore</h5><ul><li><a href="index.html">The Valley</a></li><li><a href="features.html">Features</a></li><li><a href="naval.html">Naval Combat</a></li><li><a href="world.html">World</a></li><li><a href="characters.html">Cast</a></li><li><a href="guide.html">Guide</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
+    <div><h5>Get involved</h5><ul><li><a href="donate.html">Support the game</a></li><li><a href="donate.html#tiers">Character and credit tiers</a></li></ul></div>
+  </div><div class="footer-bottom">© <span id="year">2026</span> Beaver Valley</div></div>
 </footer>
 
 <script src="js/site.js"></script>
