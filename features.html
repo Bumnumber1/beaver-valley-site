@@ -3,423 +3,1149 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Features — Beaver Valley</title>
-<meta name="description" content="Explore Story Mode, the Bellweather House mystery, Beaver Machine Live, combat, couch co-op, town services, Beaver Slap and the game’s other playable modes.">
+<title>Features — Beaver Valley (Already Built)</title>
+<meta name="description" content="Everything already built and running in Beaver Valley: 250 thinking characters with their own voices, live bands and TV shows, an AI-jury courtroom, a working economy, physics combat, a war campaign, a theatre, a card game, an airline, a naval combat simulation off the town’s own coast with a hundred-odd named sailors crewing it, a frigate that takes spoken orders, and 550+ scenes.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='11' fill='%23100e0b'/%3E%3Ctext x='32' y='46' font-family='Arial Black,sans-serif' font-size='36' font-weight='900' text-anchor='middle' fill='%23e9b04e'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<nav class="nav" aria-label="Main navigation">
-  <a href="index.html" class="nav-logo"><span class="paw" aria-hidden="true">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
-  <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-controls="main-navigation" aria-expanded="false"><span></span><span></span><span></span></button>
-  <ul class="nav-links" id="main-navigation">
+<nav class="nav">
+  <a href="index.html" class="nav-logo"><span class="paw">&#9670;</span>BEAVER<span class="vly">VALLEY</span></a>
+  <button class="nav-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+  <ul class="nav-links">
     <li><a href="index.html">The Valley</a></li>
-    <li><a href="features.html" class="active" aria-current="page">Features</a></li>
-    <li><a href="naval.html">Naval Combat</a></li>
-    <li><a href="world.html">World</a></li>
+    <li><a href="features.html" class="active">Features</a></li>
+    <li><a href="world.html">The World</a></li>
     <li><a href="characters.html">Cast</a></li>
     <li><a href="guide.html">Guide</a></li>
     <li><a href="roadmap.html">Roadmap</a></li>
     <li><a href="donate.html">Support</a></li>
+    <li><a class="btn btn-primary nav-cta" href="donate.html">Fund the Chaos</a></li>
   </ul>
 </nav>
 
 <header class="page-head">
-  <div class="bg"><img src="images/play/gp-bar-audience.webp" alt=""></div>
+  <div class="bg"><img src="images/env/env-war-panorama.jpg" alt=""></div>
   <div class="wrap inner">
-    <span class="kicker">Game features</span>
-    <h1>What you can play</h1>
-    <p>Follow a resident home, take the stand in court, investigate a murder or take the band onstage. Each section describes what you can do and where to find it.</p>
+    <span class="kicker">Already built &amp; running</span>
+    <h1>What&rsquo;s Built</h1>
+    <p>Not a wishlist. Every system below is implemented and running in-engine today &mdash; the screenshots are real captures, and the environment art is the game&rsquo;s actual scenery.</p>
   </div>
 </header>
 
 <div class="wrap">
 
-  <nav class="chips" aria-label="Feature topics" style="margin-top:24px;gap:8px">
-    <a class="chip" href="#town">Town life</a><a class="chip" href="#fighting">Combat</a>
-    <a class="chip" href="#rhythm">Music &amp; shows</a><a class="chip" href="#cards">Games</a>
-    <a class="chip" href="#cases">Investigations</a><a class="chip" href="#bestiary">Bestiary</a>
-    <a class="chip" href="#postal">Postal deliveries</a><a class="chip" href="#frontier">Travel</a><a class="chip" href="#sandy">Sandy Shores</a>
-    <a class="chip" href="#operations">Operations</a><a class="chip" href="#ocean">Naval combat</a>
-  </nav>
-
-  <article class="feature" id="town">
-    <div class="feature-text">
-      <span class="feature-num">Life in Story Mode</span>
-      <h2 class="section-title">Who you meet depends on the hour</h2>
-      <p class="desc">Follow someone through town and their destination tells you something about them. A market visit, a patrol beat and a watch aboard ship each have a place in the timetable.</p>
-      <figure class="game-frame zoomable" data-cap="A player and other characters on a Beaver Valley street." style="margin:18px 0 0">
-        <img src="images/play/town-street.webp" alt="A player and other characters on a Beaver Valley street." loading="lazy">
-        <figcaption class="cap">A player and other characters on a Beaver Valley street.</figcaption>
-      </figure>
+  <!-- 01 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Every named character on the street is thinking for itself.">
+      <img src="images/gameplay/gp-street-police-speech.jpg" alt="A named character speaking on the street, a police officer nearby" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> a soul speaking its mind</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">01 / The Cast</div>
+      <h3>250 Thinking Souls</h3>
+      <p class="tagline">Every one of ~250 townsfolk has a mind of its own.</p>
+      <p class="desc">Beaver Valley is populated by roughly 250 named characters, and almost every one thinks for itself. Each has a distinct personality, private goals, allegiances, and relationships &mdash; and reacts to where it is, what&rsquo;s happening, and what you just did. The whole cast improvises in-character, every single time, instead of reading canned lines.</p>
+      <ul class="bullets">
+        <li><b>100+ hand-written personalities</b> across a roster of ~250 named characters.</li>
+        <li><b>Real memory of the moment</b> &mdash; who&rsquo;s nearby, what they&rsquo;re doing, and what just happened feeds every reaction.</li>
+        <li><b>They never repeat themselves</b> &mdash; even a character&rsquo;s signature lines come out fresh.</li>
+        <li><b>Crowds get their own people too</b> &mdash; background fighters roll a random name, temperament, and backstory on the spot.</li>
+        <li><b>Unfiltered and in-character</b> &mdash; they talk like who they are, not like a help desk.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Who goes where.</b> The two-hour schedule assigns 391 identities to activities, journeys and group events. Citizens travel between public venues and their homes. Sailors on watch, people in custody and companions can have duties that take priority.</li>
-        <li><b>At home.</b> A resident can start a shift somewhere other than home. Personal stashes keep deposited items across visits. Rest advances the world and heals surviving body parts. In local co-op, all living players must be ready before time speeds up.</li>
-        <li><b>Across town.</b> Enter shops, apartments, the station and the sewers through their connecting doors. A fight can follow you through a doorway. Elevators and other physical doors still have their own entry conditions.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="cast">
-    <div class="feature-text">
-      <span class="feature-num">Characters &amp; local co-op</span>
-      <h2 class="section-title">Pick a face, bring a friend</h2>
-      <p class="desc">Story and Versus share a searchable character roster. Browse citizens, soldiers, Slamfest wrestlers, naval crews, Zombie Chefs, police, A.S.S. agents and the Alder crime family.</p>
-      <figure class="game-frame zoomable" data-cap="Story character selection, with category tabs and a grid of individual portraits." style="margin:18px 0 0">
-        <img src="images/play/gp-charselect.webp" alt="Story character selection, with category tabs and a grid of individual portraits." loading="lazy">
-        <figcaption class="cap">Story character selection, with category tabs and a grid of individual portraits.</figcaption>
-      </figure>
+  <!-- 02 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The town runs its own day whether or not you show up.">
+      <img src="images/env/env-courthouse-street.jpg" alt="Beaver Valley courthouse street at night" loading="lazy">
+      <figcaption class="cap">Beaver Valley &mdash; Courthouse Street</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">02 / Simulation</div>
+      <h3>A Living Town That Runs Itself</h3>
+      <p class="tagline">Wander in and the streets are already alive &mdash; on a schedule, in conversation, and never the same twice.</p>
+      <p class="desc">The town keeps a daily clock, and everyone keeps a routine. Characters walk real routes between venues, settle into whatever they came to do, and gather for events. They strike up conversations with each other, react to violence and death around them, and &mdash; if you speak up &mdash; answer you out loud, in character. Because it all grows out of their own choices, <b>no two visits play out the same way</b>.</p>
+      <ul class="bullets">
+        <li><b>Different every single time</b> &mdash; the day unfolds from the characters&rsquo; own decisions, so the town you walk into is never the town you left.</li>
+        <li><b>A daily routine for every soul</b> &mdash; jobs, meals, the bar, church, the McDoogles lunch rush &mdash; that you can watch cross the streets.</li>
+        <li><b>They actually do things</b> &mdash; sit, eat, drink, work out, dance, stand guard &mdash; instead of standing frozen.</li>
+        <li><b>Characters talk to each other</b> unprompted, and rotate who&rsquo;s talking so it never gets stale.</li>
+        <li><b>Witnesses react to a killing</b> &mdash; they gather at the body, take it in, and the gossip changes.</li>
+        <li><b>Talk to the town</b> &mdash; speak into your mic and the nearest character genuinely answers.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Character select.</b> Choose a character for each participating local player. Inspect a character’s appearance, change individual body pieces and colours, or equip a saved outfit. Story supports up to four local player slots.</li>
-        <li><b>Conversation.</b> Address someone nearby using the game’s voice input. Speaking characters draw on their identity and the current situation. Authored shows and story moments also use recorded dialogue. Zombie Chefs stay silent.</li>
-        <li><b>Companions.</b> Residents can call out to someone nearby. Address a companion directly, ask an eligible resident to join, issue party orders and take followers through connected doors. An item you give someone changes hands. Companions can fight, lose equipment, take injuries and be detained.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="economy">
-    <div class="feature-text">
-      <span class="feature-num">Money &amp; belongings</span>
-      <h2 class="section-title">A wallet, a bank account and an overdue bill</h2>
-      <p class="desc">Shop stock, your bag and your wallet are separate. Paying a cashier, trading with another character and putting something in home storage each move the actual item or money.</p>
-      <figure class="game-frame zoomable" data-cap="The Stocks tab at Beaver Valley Bank lists shares alongside the player’s wallet and savings." style="margin:18px 0 0"><img src="images/play/gp-counter-bank.webp" alt="The Stocks tab at Beaver Valley Bank lists shares alongside the player’s wallet and savings." loading="lazy"><figcaption class="cap">The Stocks tab at Beaver Valley Bank lists shares alongside the player’s wallet and savings.</figcaption></figure>
+  <!-- 03 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Characters don't just talk — they pick things up, hand them over, and fight.">
+      <img src="images/gameplay/gp-street-chaos.jpg" alt="A street strewn with weapons and characters after a fight" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> decisions become actions</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">03 / Agency</div>
+      <h3>Souls That Act</h3>
+      <p class="tagline">Characters don&rsquo;t just talk &mdash; they reach into the world and do things.</p>
+      <p class="desc">A character&rsquo;s decisions play out physically, through the same movement, combat and interaction systems you use. Deciding to grab a weapon, join your party, hand you an item, flee, or start a conversation with someone across the room all actually happen on screen &mdash; not as a menu, but as behavior.</p>
+      <ul class="bullets">
+        <li><b>Attack, block, pick up, throw, shoot, follow, retreat, give, search</b> &mdash; and more &mdash; all decided by the character.</li>
+        <li><b>They understand what you mean</b> &mdash; ask for &ldquo;a boomstick&rdquo; or &ldquo;something to fight with&rdquo; and they find it.</li>
+        <li><b>They&rsquo;ll join &mdash; or turn on &mdash; you</b> and coach you toward their goals, or their own.</li>
+        <li><b>Hidden secrets to uncover</b> by searching the right place at the right time.</li>
+        <li><b>Nobody games the system</b> &mdash; a defendant can&rsquo;t just declare itself innocent, and a bystander can&rsquo;t order the police.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>At the bank.</b> Deposit savings, keep physical items in the vault, apply for a credit card or take a cash advance. The exchange lists nineteen tickers, including FoundryStop, McDoogles and UNSE. Buying or selling shares changes your wallet balance. Using someone else’s credit card for an advance can trigger a theft report.</li>
-        <li><b>Debt collection.</b> Unpaid balances can lead to a demand for payment, repossession and a civil case. The hospital can bill for treatment. Replacing a limb and buying a new outfit both cost money.</li>
-        <li><b>Clothes and gear.</b> Preview outfits at the clothing shop. Wearables occupy inventory and can be taken off again. Uniformed identities can have separate on-duty and off-duty appearances.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="equipment">
-    <div class="feature-text"><span class="feature-num">Shops &amp; loadouts</span>
-      <h2 class="section-title">What goes in your bag</h2><p class="desc">Guns, clothes, consumables and utility items can all belong to a character. A loadout can include something worn, something held and supplies kept in the bag.</p>
-      <figure class="game-frame zoomable" data-cap="Iron Mike’s catalogue previews a gas mask and lists the other wearables on sale." style="margin:18px 0 0"><img src="images/play/gp-counter-shop.webp" alt="Iron Mike’s catalogue previews a gas mask and lists the other wearables on sale." loading="lazy"><figcaption class="cap">Iron Mike’s catalogue previews a gas mask and lists the other wearables on sale.</figcaption></figure>
+  <!-- 04 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="A bridge crew talking over each other — every line spoken aloud, in a different voice.">
+      <img src="images/gameplay/gp-starship.jpg" alt="Starship bridge crew mid-conversation with a speech bubble, five distinct characters" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> everyone has a voice</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">04 / Voices</div>
+      <h3>Everyone Speaks &mdash; In Their Own Voice</h3>
+      <p class="tagline">No scripted dialogue, and no two characters sound alike.</p>
+      <p class="desc">Characters don&rsquo;t just generate words &mdash; they say them out loud, each in their own distinct, recognizable voice, with speech bubbles to match. Dozens of individual voices span the cast, from original creations to uncanny satirical impressions, and the conversation flows naturally from one speaker to the next.</p>
+      <ul class="bullets">
+        <li><b>Every character has its own voice</b> &mdash; dozens of them, assigned per character.</li>
+        <li><b>44 distinct voices</b> just for the war-front soldiers, on top of the main cast.</li>
+        <li><b>Conversations stay in order and on time</b>, so exchanges land like real back-and-forth.</li>
+        <li><b>Instant reactions</b> cover the beat before a full reply lands, so nobody stands there mute.</li>
+        <li><b>You can talk back</b> &mdash; the game listens to your actual voice.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>At the gun shop.</b> Compatible weapons can switch between ammunition effects such as buckshot, slug, incendiary and corrosive rounds. Ghost-only ammunition has its own effect. The ammo display distinguishes buckshot, slug, incendiary, explosive, corrosive, brown and ghost-only effects.</li>
-      <li><b>At the clothing shop.</b> Preview an outfit on the current character before buying. A purchase places a wearable in their inventory. Equip or remove it later and take it through doors with you.</li>
-      <li><b>Consumables.</b> Intoxication builds as characters drink. Poisoning, fire and other status effects have their own symptoms and treatments. Alcohol can impair movement and make a character vomit or pass out.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="hospital">
-    <div class="feature-text"><span class="feature-num">The county hospital</span>
-      <h2 class="section-title">Come in with the injury you took</h2>
-      <p class="desc">The triage desk offers different services for wounds, ailments and lost limbs. A medical evacuation, a visit to the counter and resting at home have different outcomes.</p>
-      <figure class="game-frame zoomable" data-cap="At reception, Cutty’s list shows $30 wound treatment alongside care for ailments and replacement limbs." style="margin:18px 0 0"><img src="images/play/gp-counter-hospital.webp" alt="At reception, Cutty’s list shows $30 wound treatment alongside care for ailments and replacement limbs." loading="lazy"><figcaption class="cap">At reception, Cutty’s list shows $30 wound treatment alongside care for ailments and replacement limbs.</figcaption></figure>
+  <!-- 05 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Beaver Machine on stage at the bar, under the lights.">
+      <img src="images/gameplay/gp-bar-live.jpg" alt="The band Beaver Machine playing on the lit bar stage with patrons watching" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> a live set at the bar</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">05 / Music</div>
+      <h3>Live Bands &amp; Real Music</h3>
+      <p class="tagline">Real songs, played by real bands, in real time.</p>
+      <p class="desc">The Valley has a whole music scene. Bands take the stage and perform actual tracks &mdash; the drummer hits on the beat, the guitarists strum and fret in time &mdash; not a looping backing track behind a frozen sprite. Six rival acts, each with its own sound and its own following, fight over the town&rsquo;s cultural soul.</p>
+      <ul class="bullets">
+        <li><b>Beaver Machine</b> &mdash; the town&rsquo;s house band, headlining the bar.</li>
+        <li><b>Stone City Orchestra</b> &mdash; the old-world classical establishment.</li>
+        <li><b>Voluntary Mother Earth</b>, <b>E$$E M &amp; Poppa Capp</b> and <b>D3@DH0R$3</b> &mdash; the counter-culture, the hip-hop underground, and the hyperpop.</li>
+        <li><b>CuntPuncher</b> &mdash; the imported British rivals nobody asked for.</li>
+        <li><b>Every performance plays live</b>, musicians actually playing along &mdash; and the crowd takes it to the dance floor.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>Treatment.</b> Staff can mend injured body parts, fit a cast or treat conditions such as acid burns. Plastic and cybernetic replacement limbs are available for missing parts.</li>
-      <li><b>Emergency care.</b> The emergency dispatch system can send a crew to a patient. Ground and air response have their own boarding and transport behaviour. Medical custody can keep a patient in care.</li>
-      <li><b>The morgue.</b> A body can be examined for a cause of death or cremated for an urn. A permanent Story casualty remains recorded when a player takes a new identity.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="law">
-    <div class="feature-text">
-      <span class="feature-num">Police, court &amp; detention</span>
-      <h2 class="section-title">From the street to the witness stand</h2>
-      <p class="desc">Jesse Ventura starts at the police station as chief, with Biden on intake. Other officers begin on patrol, at home or with the helicopter crew. Where the nearest officer is changes how an incident unfolds.</p>
-      <figure class="game-frame zoomable" data-cap="Judge, jurors and counsel take their places in the trial arena." style="margin:18px 0 0">
-        <img src="images/play/gp-court-trial.webp" alt="Judge, jurors and counsel take their places in the trial arena." loading="lazy">
-        <figcaption class="cap">Judge, jurors and counsel take their places in the trial arena.</figcaption>
-      </figure>
+  <!-- 06 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Dumpster Talk studio — one of the town's several TV productions.">
+      <img src="images/env/env-tv-studio.jpg" alt="A TV talk-show studio set" loading="lazy">
+      <figcaption class="cap">On set at Dumpster Talk</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">06 / Crossover</div>
+      <h3>A Crossover Cast &amp; the Twitch Telethon</h3>
+      <p class="tagline">The characters come from a whole universe of shows &mdash; and your stream chat can join them.</p>
+      <p class="desc">Beaver Valley didn&rsquo;t dream up its cast from nothing. Many of its characters are pulled from an existing body of work &mdash; the people from Dumpster Talk, Homeless in Denton, Put It In Your Mouth, and Namasensei&rsquo;s Japanese Lessons all wound up living in the Valley. And in Telethon mode, the game plugs into a live Twitch stream so your own audience becomes cast and combatants.</p>
+      <ul class="bullets">
+        <li><b>Characters from Dumpster Talk</b> &mdash; the talk show, which also gets filmed inside the game.</li>
+        <li><b>Characters from Homeless in Denton</b>, the reality series.</li>
+        <li><b>Characters from Put It In Your Mouth</b>, the cooking show.</li>
+        <li><b>Namasensei himself</b>, from Namasensei&rsquo;s Japanese Lessons, runs the dojo.</li>
+        <li><b>Live Twitch integration</b> in Telethon mode turns your audience into participants, and the chaos survives scene changes.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Police response.</b> Witnesses can report an incident, and officers can act on what they see themselves. Dispatch, pursuit, arrest and booking connect the street to the station. Walking into another room leaves the incident active.</li>
-        <li><b>Court.</b> Play a custom case from Court Mode or attend a Story trial. The courtroom assigns a judge, counsel, defendants, witnesses and jurors. Examination, argument, deliberation and sentencing have different roles for the people in the room.</li>
-        <li><b>Custody.</b> A jailed character has a cell and a routine that includes meals, yard time and rest. Leaving custody without release can trigger an escape report. A.S.S. agents have their own duty roster and detention facility. Medical custody, police booking and ordinary travel each have different release conditions.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="ass">
-    <div class="feature-text"><span class="feature-num">American Security Services</span>
-      <h2 class="section-title">Inside the detention centre</h2><p class="desc">The federal detention complex has an intake counter, holding cells, cellblock, showers, infirmary, mess and yard. Officers have duty assignments and appearances associated with their jobs.</p>
-      <figure class="game-frame zoomable" data-cap="A player in the detention centre corridor between the illuminated cells." style="margin:18px 0 0">
-        <img src="images/play/env-ass-cellblock.webp" alt="A player in the detention centre corridor between the illuminated cells." loading="lazy">
-        <figcaption class="cap">A player in the detention centre corridor between the illuminated cells.</figcaption>
-      </figure>
+  <!-- 07 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Beaver Valley Municipal Court, mid-trial, with the player presiding as Judge.">
+      <img src="images/gameplay/gp-court-trial.jpg" alt="A trial in the Beaver Valley municipal court with a Your Role: Judge banner" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> a trial in session</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">07 / Justice</div>
+      <h3>The Courtroom</h3>
+      <p class="tagline">A full trial where the jury genuinely decides &mdash; and the innocent can hang.</p>
+      <p class="desc">The courtroom is a complete trial from arraignment through opening statements, witness examination and cross, closings, deliberation, verdict and sentencing &mdash; all played out by characters speaking in their own voices. The jury votes for itself with no predetermined outcome, so verdicts aren&rsquo;t bound to the truth. You can take any role &mdash; judge, defendant, prosecutor, defense, or witness &mdash; and even command the bailiff out loud.</p>
+      <ul class="bullets">
+        <li><b>Every phase of a real trial</b>, start to finish, that always reaches a verdict.</li>
+        <li><b>A jury with a genuine opinion</b> &mdash; the guilty walk free and the innocent get convicted.</li>
+        <li><b>Play any role by voice</b> &mdash; a player judge issues spoken rulings and orders.</li>
+        <li><b>Group trials</b> &mdash; get your whole party hauled in and sentenced one by one.</li>
+        <li><b>Set up your own case</b> with any characters, saved and re-loadable.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>The duty roster.</b> Two presidential guards have White House posts. The detention roster assigns thirteen field posts from the remaining eligible agents and rotates by elapsed game time.</li>
-      <li><b>Local and federal.</b> Biden’s intake post and Chief Jesse Ventura belong to the Beaver Valley Police Department. A.S.S. has its own agents, facilities and aircraft.</li>
-      <li><b>The cellblock.</b> Doors, cells and circulation spaces are part of the facility. Its grounds, intake and living quarters can be visited as distinct rooms.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="fighting">
-    <div class="feature-text">
-      <span class="feature-num">Combat &amp; injury</span>
-      <h2 class="section-title">Fight on the same stretch of street</h2>
-      <p class="desc">Line up your feet as well as your swing. A hand, a held weapon and an opponent’s guard occupy space in the scene. Losing an arm changes what that character can carry.</p>
-      <figure class="game-frame zoomable" data-cap="Jeremy strikes Smokey the Beaver in the street. Smokey flashes red as the hit lands." style="margin:18px 0 0"><img src="images/play/gp-boulevard-fight-1.webp" alt="Jeremy strikes Smokey the Beaver in the street. Smokey flashes red as the hit lands." loading="lazy"><figcaption class="cap">Jeremy strikes Smokey the Beaver in the street. Smokey flashes red as the hit lands.</figcaption></figure>
+  <!-- 08 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Crimes are witnessed and reported — then the department comes for you.">
+      <img src="images/env/env-police.jpg" alt="The Beaver Valley police department building" loading="lazy">
+      <figcaption class="cap">Beaver Valley P.D.</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">08 / Justice</div>
+      <h3>Police, Crime &amp; Doing Time</h3>
+      <p class="tagline">Commit a crime in front of the wrong soul and the whole system comes for you.</p>
+      <p class="desc">Crimes aren&rsquo;t magically known &mdash; a witness has to actually see one and go tell an officer. Police, led by Chief Jesse Ventura, investigate, escalate by how bad it was, cuff suspects, read them their rights, and march them off to booking. Offenders get scheduled for real trials you can attend, convicts serve time on a working cell block, and jailed characters can be broken out.</p>
+      <ul class="bullets">
+        <li><b>Crimes have to be witnessed</b> and reported &mdash; from trespass all the way to murder.</li>
+        <li><b>Police that patrol, investigate, call backup, and arrest</b> &mdash; giving orders out loud.</li>
+        <li><b>Getting cuffed is physical</b> &mdash; and an ally can break you out, or you can pick the lock.</li>
+        <li><b>Get arrested yourself</b> and it sticks with you across the whole town and into court.</li>
+        <li><b>A full jail day</b> &mdash; chow, yard, visitation, lights-out &mdash; that you actually serve, or escape.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>In a fight.</b> Switch between armed combat and unarmed moves. The optional twin-stick scheme gives the right stick control over weapon movement. Shields and off-hand items provide other ways to guard.</li>
-        <li><b>Weapons and the floor.</b> Weapons can be picked up, dropped and thrown. A harpoon embeds and reels its target closer. Even a mop can pick up liquid or catch fire. Firearms use ammunition. Oil can catch fire, acid can corrode items and different fluids leave different hazards on the ground.</li>
-        <li><b>After a fight.</b> The hospital treats wounds and ailments and offers plastic or cybernetic replacement limbs. Emergency medical crews can transport patients. A permanent Story death opens selection for a surviving replacement. Versus and dojo knockouts use their own rules.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="destruction">
-    <div class="feature-text"><span class="feature-num">Environmental damage</span>
-      <h2 class="section-title">What survives a fight</h2>
-      <p class="desc">Scenery has different kinds of damage. A loose prop can shatter, a flammable object can burn, and an authored building can enter a destroyed state that changes the location on later visits.</p>
-      <figure class="game-frame zoomable" data-cap="A strike hits an emplacement at the Grand FOB." style="margin:18px 0 0"><img src="images/play/gp-fob-impact-4.webp" alt="A strike hits an emplacement at the Grand FOB." loading="lazy"><figcaption class="cap">A strike hits an emplacement at the Grand FOB.</figcaption></figure>
+  <!-- 09 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="McDoogles — the Beaver Meal, $9.99. Commerce is real, and so is the debt.">
+      <img src="images/env/env-mcdoogles.jpg" alt="McDoogles fast food interior" loading="lazy">
+      <figcaption class="cap">McDoogles &mdash; where the money goes</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">09 / Economy</div>
+      <h3>The Beaver Valley Economy</h3>
+      <p class="tagline">Money is real, debt compounds, and the repo men will come for your stuff.</p>
+      <p class="desc">Every character carries a wallet and an inventory, and they earn, shop, eat and drink even when you&rsquo;re not looking. There&rsquo;s a full bank on top &mdash; savings, a vault, credit cards, cash advances, and a stock exchange. Fall behind on your bills and a persistent debt follows you: repo men turn up to seize your best belongings, and it escalates to a civil trial and jail.</p>
+      <ul class="bullets">
+        <li><b>A wallet and inventory on every soul</b> &mdash; and their off-screen spending really moves the shops&rsquo; stock.</li>
+        <li><b>A real bank</b> &mdash; savings, a protected vault, credit cards and cash advances.</li>
+        <li><b>A stock market</b> of 19 in-world companies whose prices ride each business&rsquo;s fortunes.</li>
+        <li><b>Debt has teeth</b> &mdash; repo men, a &ldquo;pay now or lose your goods&rdquo; countdown, and a court summons.</li>
+        <li><b>A county hospital</b> that heals wounds, replaces limbs, and bills you when you&rsquo;re broke.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>Inside a room.</b> Broken props leave physical pieces. Surface fluids, including oil and acid, can interact with objects and people. Drunkenness, poison and fire have different effects and treatments.</li>
-      <li><b>Across the map.</b> The Grand FOB and designated city targets have their own destruction records. Building demolition and the resulting loss of access apply to supported structures.</li>
-      <li><b>In the air.</b> A shot that punctures the Beaver Valley Air cabin changes its pressure. A breach, oxygen supplies and an impending crash each have consequences for passengers. The flight has separate cabin and cockpit spaces.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="rhythm">
-    <div class="feature-text">
-      <span class="feature-num">Rhythm game</span>
-      <h2 class="section-title">Beaver Machine Live</h2>
-      <p class="desc">The bundled song library has 31 tracks, including Rockstar Ghost and #1 Superhit! Choose a part and play it on a four-lane note highway. The performance shares the screen with the chart, so you can see the band as you play.</p>
-      <figure class="game-frame zoomable" data-cap="Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)”, earning a 30-note streak with all four musicians onstage."><img src="images/play/gp-band-drums.webp" alt="Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)”, earning a 30-note streak with all four musicians onstage." loading="lazy"><figcaption class="cap">Jeremy plays drums on “01 Boogerlicker (feat. Chingaway)”, earning a 30-note streak with all four musicians onstage.</figcaption></figure>
+  <!-- 10 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="War Mode — a real fuel-depot battlefield you drop into with up to four players.">
+      <img src="images/gameplay/gp-war-fuel-depot.jpg" alt="War mode fuel depot battlefield, isometric" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> War Mode &mdash; Fuel Depot</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">10 / Modes</div>
+      <h3>Whole Games Within the Game</h3>
+      <p class="tagline">The same engine spins up a starship bridge, a battlefield, a dojo, a poker table and a card game.</p>
+      <p class="desc">Beyond the town, the engine launches entire standalone modes. Command a starship bridge by voice while the hull tears open around you. Drop into four-player squad warfare across thirteen maps and come home to your own base. Climb a martial-arts ladder in the dojo, sit down to hot-seat poker, play a collectible card game, or just throw any two characters into the ring and watch.</p>
+      <ul class="bullets">
+        <li><b>Starship Command</b> &mdash; a five-role crew, orders given by voice, and a ship that comes apart under fire.</li>
+        <li><b>War</b> &mdash; parachute in with up to 4 players, real squad tactics, cover, finite ammo, 13 frontline maps, ranks and a home base between battles.</li>
+        <li><b>Namasensei&rsquo;s Dojo</b> &mdash; a martial-arts <em>campaign</em>: fight bare-handed, earn nine belts, climb tournaments, and get back up when you lose a limb.</li>
+        <li><b>Poker</b> &mdash; a hot-seat table for up to four humans in any of seven chairs, with your own buy-in and blinds, against opponents who talk.</li>
+        <li><b>Beaver Slap</b> &mdash; the collectible card game, a hundred and seventy-two illustrated character cards deep.</li>
+        <li><b>Ocean Operations</b> &mdash; a mission library you can write to, either side of the war, twelve platforms, seven theatres fifty kilometres across, a crew who take spoken orders, and a nuclear round in the magazine.</li>
+        <li><b>VS Arena</b> &mdash; a no-stakes exhibition: pick any two of the cast, full weapons, health bars, last one standing.</li>
+        <li><b>Each mode is walled off</b> from the others, so nothing bleeds where it shouldn&rsquo;t.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Four parts.</b> Vocals, guitar, bass and drums have separate charts. Each offers Easy, Normal and Expert difficulty. Vocals uses lane inputs like the other parts.</li>
-        <li><b>Play a song or a set.</b> Press notes at the hit line and hold long notes to their ends. Timing earns Perfect, Great or Good judgements. A run of clean hits builds combo and multiplier. Results include score and accuracy, with personal bests stored for that song, part and difficulty.</li>
-        <li><b>Bring your own track.</b> The library can import MP3, WAV, OGG, AIF and AIFF files and generate charts for them. Timing calibration and No Fail mode are available for practice.</li>
-    </ul>
-    <div class="grid grid-3" style="grid-column:1/-1"><figure class="game-frame zoomable" data-cap="Andrew plays bass with a 30-note streak. Jeremy is seated at the drums behind him."><img src="images/play/gp-live-bass.webp" alt="Andrew plays bass with a 30-note streak. Jeremy is seated at the drums behind him." loading="lazy"><figcaption class="cap">Andrew plays bass with a 30-note streak. Jeremy is seated at the drums behind him.</figcaption></figure><figure class="game-frame zoomable" data-cap="Aki plays lead guitar as the band accompanies him onstage."><img src="images/play/gp-live-guitar.webp" alt="Aki plays lead guitar as the band accompanies him onstage." loading="lazy"><figcaption class="cap">Aki plays lead guitar as the band accompanies him onstage.</figcaption></figure><figure class="game-frame zoomable" data-cap="Max plays the four-lane vocals chart with the full band."><img src="images/play/gp-live-vocals.webp" alt="Max plays the four-lane vocals chart with the full band." loading="lazy"><figcaption class="cap">Max plays the four-lane vocals chart with the full band.</figcaption></figure></div>
-
-
   </article>
 
-  <article class="feature" id="shows">
-    <div class="feature-text">
-      <span class="feature-num">Music, television &amp; theatre</span>
-      <h2 class="section-title">Play the set or take a seat</h2>
-      <p class="desc">Beaver Machine performs at the bar. At the UNSE club the D3@DH0R$3 show has its own music and dance staging. For a playable set, open Beaver Machine Live from the main menu.</p>
-      <figure class="game-frame zoomable" data-cap="Free Chili stages the original Homeless in Denton episode in the theatre." style="margin:18px 0 0">
-        <img src="images/play/gp-theatre-second.webp" alt="Free Chili stages the original Homeless in Denton episode in the theatre." loading="lazy">
-        <figcaption class="cap">Free Chili stages the original Homeless in Denton episode in the theatre.</figcaption>
-      </figure>
+  <!-- 11 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Beaver Valley City Center — one of 550+ hand-built scenes.">
+      <img src="images/env/env-city-center.jpg" alt="The dystopian Beaver Valley city center at night" loading="lazy">
+      <figcaption class="cap">Beaver Valley &mdash; City Center</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">11 / World</div>
+      <h3>A Hand-Built World of 400+ Scenes</h3>
+      <p class="tagline">A grimy post-industrial town you can walk end to end &mdash; and it remembers what you left behind.</p>
+      <p class="desc">Beaver Valley spans over 550 hand-built scenes &mdash; city streets, slums, a sewer network beneath every district, a courthouse, jail, hospital wings, McDoogles, a bank, a casino, a theatre, gun and clothing shops, the TV studio, band houses, an airport with walkable cabin interiors, and roads that run all the way to the Kremlin. Walk through a doorway and the next place loads seamlessly while the last one waits exactly as you left it.</p>
+      <ul class="bullets">
+        <li><b>550+ hand-authored scenes</b> across 596 catalogued locations and 42 factions.</li>
+        <li><b>Seamless doorways</b> &mdash; revisit anywhere and it&rsquo;s instant, with everything right where it was.</li>
+        <li><b>Your world travels with you</b> &mdash; party, weapons, ammo, prisoners and status all come along.</li>
+        <li><b>A true beat-em-up stage</b> where everything sorts by its feet, scales with distance, and casts a shadow.</li>
+        <li><b>Built with a full editor suite</b> &mdash; the town is authored, not procedurally spat out.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Music in town.</b> At the bar, watch the drummer and guitarists follow the song. At the club, dancers move in formation. The wider cast includes the Stone City Orchestra, CuntPuncher and the Homeless in Denton duo E$E M and Poppa Capp.</li>
-        <li><b>The theatre.</b> Buy a ticket for Damlet, A Midsummer Night’s Beaver, Waiting for Godam or Free Chili. Free Chili stages the original recording of Homeless in Denton’s first episode. Take an audience seat or enter the heckler box. At the lighting board you can change the house lights, stage wash and spotlight.</li>
-        <li><b>Television and Telethon.</b> Dumpster Talk, Homeless in Denton and Put It In Your Mouth have authored appearances in the Valley. Telethon is a separate mode that can bring connected Twitch chat into the show.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="crossover">
-    <div class="feature-text"><span class="feature-num">Crossover stories</span>
-      <h2 class="section-title">The cast outside the studio</h2>
-      <p class="desc">Dumpster Talk has a set in town. Some encounters use a character’s live reply, others follow a staged exchange, and productions such as Free Chili use the original show recording.</p>
-      <figure class="game-frame zoomable" data-cap="Trump and Biden on the Bumnumba1 Telethon set." style="margin:18px 0 0"><img src="images/play/gp-telethon-call-live.webp" alt="Trump and Biden on the Bumnumba1 Telethon set." loading="lazy"><figcaption class="cap">Trump and Biden on the Bumnumba1 Telethon set.</figcaption></figure>
+  <!-- 12 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The in-game character select — pick any of the roster, or build your own.">
+      <img src="images/gameplay/gp-charselect.jpg" alt="The Beaver Valley character-select screen" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> pick your fighter</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">12 / Characters</div>
+      <h3>The Roster &amp; Customizer</h3>
+      <p class="tagline">One rig, ~250 characters &mdash; or build your own, limb by limb.</p>
+      <p class="desc">Every fighter, player or NPC, is built on one shared body so the whole cast moves consistently, and any of them can be your playable hero. Characters genuinely grip two-handed weapons with both hands. And a deep in-game customizer lets you edit every body part, with what you see in the editor matching exactly what shows up in the game.</p>
+      <ul class="bullets">
+        <li><b>~250 playable characters</b> on one shared, hand-tuned body.</li>
+        <li><b>Two-handed weapons are really held two-handed</b> &mdash; hands, elbows and grip stay locked every frame.</li>
+        <li><b>A per-limb customizer</b> with colors, and portable arm/leg &ldquo;part sets&rdquo; you can swap between characters.</li>
+        <li><b>What you build is what you get</b> &mdash; the preview matches the final character exactly.</li>
+        <li><b>Roster tools</b> to edit stats, spawn points and test a character&rsquo;s voice on the spot.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>ByteBinge.</b> Throwing a ByteBinge Coin arms it. Its landing marks where the superhero will come down. ByteBinge goes after the thrower’s aggressors, and the impact can hurt bystanders.</li>
-      <li><b>Meanwhile.</b> Campaign sequences move the action to other people and locations, including the White House, FoundryStop and the Valley’s television productions. Some sequences present a decision with different outcomes.</li>
-      <li><b>The shrimp ritual.</b> The recipe in the crypt needs Shrimp, Chef Knife, Cooking Oil and Cooking Pot. Accept the offer to send Tyrone on his journey. Eating The Delicacy in the graveyard starts the associated world event. The Zombie Chefs stay silent.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="cards">
-    <div class="feature-text">
-      <span class="feature-num">Cabinets &amp; casino</span>
-      <h2 class="section-title">Sit down at a smaller game</h2>
-      <p class="desc">James’s Barcade houses four playable cabinets. Across town the casino takes bets at its tables and machines.</p>
-      <figure class="game-frame zoomable" data-cap="The Ancient Dam pinball table in play at James’s Barcade." style="margin:18px 0 0">
-        <img src="images/play/gp-pinball.webp" alt="The Ancient Dam pinball table in play at James’s Barcade." loading="lazy">
-        <figcaption class="cap">The Ancient Dam pinball table in play at James’s Barcade.</figcaption>
-      </figure>
+  <!-- 13 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Every swing is a real collision — and what your blade touches first decides everything.">
+      <img src="images/gameplay/gp-combat-biden-trump.jpg" alt="Two characters dueling with katanas, per-limb health cards on screen" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> physics melee + per-limb HP</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">13 / Combat</div>
+      <h3>Physics Combat &amp; Reactive AI</h3>
+      <p class="tagline">Every swing is a real collision &mdash; and the AI fights you for real or performs for the crowd.</p>
+      <p class="desc">Combat is genuinely physical: your weapon is really swinging, and if it meets the enemy&rsquo;s blade before it reaches them, the blow is stopped &mdash; a true block, never a canned animation. A twin-stick option and a real off-hand slot add directional slashing and shields. And the AI knows the difference between a show and a fight: it stages dramatic clashes between characters, then turns into a real challenger the moment you pick up a controller.</p>
+      <ul class="bullets">
+        <li><b>Blocking is physical</b> &mdash; weapon meets weapon, with knockback, sparks, parries, and punishing counters.</li>
+        <li><b>Twin-stick and a real off-hand</b> &mdash; directional slashing plus a slot for a second weapon or a working shield.</li>
+        <li><b>Bare-handed fighting</b> &mdash; jabs, crosses, kicks and roundhouses when you&rsquo;re unarmed or lose an arm.</li>
+        <li><b>Two AI moods</b> &mdash; a choreographed showman for AI-vs-AI drama, a sharp opponent for you.</li>
+        <li><b>Defense is defense</b> &mdash; you block, you don&rsquo;t dodge. A deliberate design rule.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>A game at the counter.</b> Walk up to a cabinet and pay its entry price from your character’s wallet. Use the machine’s own inputs to play, then return to the room when you leave the game.</li>
-        <li><b>James’s Barcade.</b> Flush Line is a pipe puzzle, The Oregon River is a river journey and Sewer Beaver is a side-scrolling brawler. Beaver Valley Pinball adds a playable table with a plunger, flippers, missions and tilt.</li>
-        <li><b>The casino.</b> Play blackjack, roulette, slots and poker. The poker table uses Texas Hold’em betting rounds. A separate Poker entry lets you set up a table from the main menu.</li>
-    </ul>
-    <figure class="game-frame zoomable" data-cap="A dealt Texas Hold’em hand at the Beaver Valley casino." style="margin:18px 0 0"><img src="images/play/gp-poker-hand.webp" alt="A dealt Texas Hold’em hand at the Beaver Valley casino." loading="lazy"><figcaption class="cap">A dealt Texas Hold’em hand at the Beaver Valley casino.</figcaption></figure>
   </article>
 
-  <article class="feature" id="slap">
-    <div class="feature-text"><span class="feature-num">Tabletop</span>
-      <h2 class="section-title">Build a Beaver Slap deck</h2>
-      <p class="desc">Beaver Slap plays on a five-by-five board. Its 447 card designs include characters, creatures, soldiers, items and lore cards. Choose a cell, check the card’s compass and see which neighbours it will face.</p>
-      <figure class="game-frame zoomable" data-cap="A Beaver Slap match in deployment, with the board, hand and card details visible." style="margin:18px 0 0">
-        <img src="images/play/gp-slap-board.webp" alt="A Beaver Slap match in deployment, with the board, hand and card details visible." loading="lazy">
-        <figcaption class="cap">A Beaver Slap match in deployment, with the board, hand and card details visible.</figcaption>
-      </figure>
+  <!-- 14 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The gun shop — where the arsenal comes from.">
+      <img src="images/env/env-gunshop.jpg" alt="The Beaver Valley gun shop" loading="lazy">
+      <figcaption class="cap">The Gun Shop</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">14 / Weapons</div>
+      <h3>The Arsenal</h3>
+      <p class="tagline">Six shell types, a wall of shotguns, chain flails, a reeling harpoon, a lightning cannon and a shoulder-fired missile.</p>
+      <p class="desc">Guns fire real, dodgeable projectiles you feed from ammo you switch on the fly, and six shot types transform every blast &mdash; buckshot, slug, incendiary, explosive, corrosive acid, and &ldquo;brown.&rdquo; Beyond the guns is a whole cabinet of hand-crafted weapons, each its own little toy, across a catalog of more than 150 items.</p>
+      <ul class="bullets">
+        <li><b>Six shot types</b> &mdash; each with its own damage, its own after-effect, and its own colored casing.</li>
+        <li><b>A deep gun roster</b> &mdash; six shotguns, assault rifles you can flick between semi, three-round burst and full auto, a six-shot magnum, pistols, a flamethrower, even guns that spray water, acid, oil or blood.</li>
+        <li><b>Bolt-action rifles with a red laser</b> &mdash; and a .50-cal anti-materiel rifle that punches through limbs, props and metal without slowing down. You fire that one lying down.</li>
+        <li><b>Bullets bury into the scenery</b> and then detonate or set it on fire.</li>
+        <li><b>Exotic gear</b> &mdash; a harpoon that spears a limb and reels the victim in, a tranquilizer rifle, a rocket launcher, timed C4, and an arc cannon that drops people twitching for six seconds.</li>
+        <li><b>Something for the sky</b> &mdash; a shoulder-fired guided missile that locks on, boosts, and takes down what&rsquo;s circling you.</li>
+        <li><b>Toys with personality</b> &mdash; chain flails and nunchucks, gas grenades and a gas mask, a landmine, a two-handed battle-axe, a gasoline can with a book of matches, a molotov, and a flaming mop.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>Deployment and clashes.</b> Directional attack and defence values matter when two cards meet. Some abilities trigger on deployment, entering a location, moving, capturing or being defeated. Location cards can modify the cards that occupy them.</li>
-      <li><b>The collection.</b> Browse cards, inspect their abilities and put together a deck. Individual cards held in Story inventory have serial identities, so two copies of the same design are separate belongings.</li>
-      <li><b>Exhibition.</b> The main-menu game deals decks for you and offers an exhibition against the house or local two-player play. You can inspect the cards before starting the match.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="cases">
-    <div class="feature-text">
-      <span class="feature-num">Investigations &amp; story events</span>
-      <h2 class="section-title">Follow the evidence at Bellweather House</h2>
-      <p class="desc">Murder Mystery opens a playable case. Walk between rooms, examine Walter’s injuries, locate the weapon and ask guests what they witnessed. Your notebook records findings as you uncover them.</p>
-      <figure class="game-frame zoomable" data-cap="Jeremy meets a guest at the foot of the stairs in Bellweather House.">
-        <img src="images/play/gp-mystery-foyer.webp" alt="Jeremy meets a guest at the foot of the stairs in Bellweather House." loading="lazy">
-        <figcaption class="cap">Jeremy meets a guest at the foot of the stairs in Bellweather House.</figcaption>
-      </figure>
+  <!-- 15 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Nobody dies off-screen — and death isn't always the end.">
+      <img src="images/env/env-graveyard.jpg" alt="The Beaver Valley graveyard at night" loading="lazy">
+      <figcaption class="cap">The graveyard &mdash; consequences stick</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">15 / Carnage</div>
+      <h3>Gore, Fire, Liquids &amp; Status Effects</h3>
+      <p class="tagline">Twelve limbs with their own health bars, floors you can set on fire, and a town full of drunk, puking fighters.</p>
+      <p class="desc">Every character is a ragdoll with health in each limb &mdash; take off an arm and they drop their weapon, take off the head and they&rsquo;re gone. Blood and worse spray across the floor. Explosions bloom into fire; floors pool with water, oil, acid and sewage that reflect, flow and react to each other; and anyone &mdash; you included &mdash; can end up on fire, drunk, dissolving in acid, or passed out.</p>
+      <ul class="bullets">
+        <li><b>Health in all 12 body parts</b> &mdash; lose your legs and you can&rsquo;t walk, lose an arm and you can&rsquo;t hold a weapon.</li>
+        <li><b>Blood and mess that respects the stage</b>, spreading toward you and squishing toward the back.</li>
+        <li><b>Fire that spreads</b> &mdash; characters and props ignite, burn, and get doused by water.</li>
+        <li><b>Living chemistry</b> &mdash; oil catches fire, acid eats craters and neutralizes in sewage, blood drifts down running water.</li>
+        <li><b>Four tiers of drunk</b> and contagious filth &mdash; and every status effect works on the AI too, and survives scene changes.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>Test a statement.</b> Compare the accounts with the physical evidence. The weapon carries a history of who handled it and can change rooms. Examining a body alone cannot identify the murderer.</li>
-        <li><b>Question the guests.</b> The investigator can record statements in a notebook and compare them with physical evidence. Guests have their own information about the case. You can also protect people at the house as the investigation continues.</li>
-        <li><b>Local history.</b> Ask the archaeologist about the origins of Beaver Valley to see a reconstruction of the ancient dam and the Beaver Eater. A first visit to the S-Files headquarters can start a separate initiation with a playable dodge trial.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="bestiary">
-    <div class="feature-text"><span class="feature-num">Field bestiary</span>
-      <h2 class="section-title">What is hunting you?</h2>
-      <p class="desc">The sewer viper hunts along the floor. A larger snake can rise from its coils and strike, while an attack drone patrols overhead. Each changes its behaviour as the fight unfolds.</p>
-      <figure class="game-frame zoomable" data-cap="The Beaver Eater surfaces in the town street during a Story Mode encounter." style="margin:18px 0 0"><img src="images/play/gp-bestiary-beaver.webp" alt="The Beaver Eater surfaces in the town street during a Story Mode encounter." loading="lazy"><figcaption class="cap">The Beaver Eater surfaces in the town street during a Story Mode encounter.</figcaption></figure>
+  <!-- 16 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="You don't have to walk the Valley alone — build a crew.">
+      <img src="images/gameplay/gp-town-street.jpg" alt="A character on the Beaver Valley street" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> out on the street</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">16 / Companions</div>
+      <h3>Party &amp; Companions</h3>
+      <p class="tagline">Recruit a crew of souls &mdash; and carry them home when it goes wrong.</p>
+      <p class="desc">It&rsquo;s a CRPG, so you don&rsquo;t have to go it alone. Talk almost any of the ~250 into joining your party, and they&rsquo;ll follow you, fight for you, and take direction &mdash; each still thinking for itself. Knock a companion out and you can sling them over your shoulder and carry them to safety, and your whole crew travels with you from place to place.</p>
+      <ul class="bullets">
+        <li><b>Recruit companions by talking them round</b> &mdash; almost anyone in the cast can join you.</li>
+        <li><b>Followers fight at your side</b>, take weapons and items you hand them, and keep their own personality.</li>
+        <li><b>Carry a downed ally across scenes</b> instead of leaving them behind.</li>
+        <li><b>Your whole party comes with you</b> through doorways &mdash; and gets hauled into court together if you&rsquo;re arrested.</li>
+        <li><b>They&rsquo;re still their own souls</b> &mdash; loyalty isn&rsquo;t a guarantee.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>The Beaver Eater.</b> The mobile boss starts as a close-range stalker. As it loses health it gains burrows, jumps and corrosive spit, then enters a frenzy with faster movement and a grab.</li>
-      <li><b>The large snake.</b> It can wake, pursue, charge, bite, spit and tail-whip. The smaller sewer viper has its own strike and venom behaviour.</li>
-      <li><b>The attack drone.</b> The drone can fly surveillance, target an actor or sweep the battlefield. The neutral boss has missile volleys and a ramming dive and can continue fighting after losing its guns.</li>
-      <li><b>Under the street.</b> Sewer rats can leap, Blood Bats swoop, scorpions sting and spiders lay web patches. A giant spider can produce spiderlings in its boss room. The roach boss, The Thousand, changes its attacks as the encounter progresses.</li>
-      <li><b>In the water.</b> The smaller alligator under UNSE and the full-sized species can swim, pursue and bite. A confirmed jaw hold can turn into a drag or a death roll.</li>
-    </ul>
-    <div class="grid grid-3" style="grid-column:1/-1"><figure class="game-frame zoomable" data-cap="An attack drone hovers above the rooftops of Beaver Valley at night."><img src="images/play/gp-drone-profile-1.webp" alt="An attack drone hovers above the rooftops of Beaver Valley at night." loading="lazy"><figcaption class="cap">An attack drone hovers above the rooftops of Beaver Valley at night.</figcaption></figure><figure class="game-frame zoomable" data-cap="The large snake lies coiled among the people in the middle of the street during a staged encounter."><img src="images/play/gp-bestiary-snake.webp" alt="The large snake lies coiled among the people in the middle of the street during a staged encounter." loading="lazy"><figcaption class="cap">The large snake lies coiled among the people in the middle of the street during a staged encounter.</figcaption></figure><figure class="game-frame zoomable" data-cap="Under UNSE, a small alligator surfaces beside the player at the right edge of the pool."><img src="images/play/gp-bestiary-alligator.webp" alt="Under UNSE, a small alligator surfaces beside the player at the right edge of the pool." loading="lazy"><figcaption class="cap">Under UNSE, a small alligator surfaces beside the player at the right edge of the pool.</figcaption></figure></div>
-
   </article>
 
-  <article class="feature" id="ghosts">
-    <div class="feature-text"><span class="feature-num">The underground</span>
-      <h2 class="section-title">Ghost hunting and the strange shops below town</h2>
-      <p class="desc">The GhostCrushers venue and SEAL Team K’s supplies are part of the Valley’s underground world. Ghost-hunting equipment includes bait, a beam gun and a ground trap.</p>
-      <figure class="game-frame zoomable" data-cap="The GhostCrushers locker opens alongside the player’s inventory at headquarters." style="margin:18px 0 0"><img src="images/play/gp-ghost-locker.webp" alt="The GhostCrushers locker opens alongside the player’s inventory at headquarters." loading="lazy"><figcaption class="cap">The GhostCrushers locker opens alongside the player’s inventory at headquarters.</figcaption></figure>
+  <!-- 17 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Pick your player count right from the start — up to four.">
+      <img src="images/gameplay/gp-playercount.jpg" alt="The character-select screen asking how many players, one through four" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> one to four players</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">17 / Multiplayer</div>
+      <h3>Couch Co-op, Up to Four</h3>
+      <p class="tagline">Grab up to three friends and share the chaos.</p>
+      <p class="desc">Beaver Valley is built for the couch. Up to four players can drop in together &mdash; each picks a fighter from the full roster and causes problems side by side, across the town, the arena, and the battlefield. More hands just means more mayhem, and friendly fire is very much on the table.</p>
+      <ul class="bullets">
+        <li><b>1 to 4 players</b>, chosen right from the character select.</li>
+        <li><b>Everyone picks their own character</b> from the whole ~250-strong roster.</li>
+        <li><b>Play together</b> across the town, the VS arena, and the war front.</li>
+        <li><b>The AI keeps challenging all of you at once</b> &mdash; it turns competitive the moment humans join.</li>
+        <li><b>Friendly fire is on</b> &mdash; your worst enemy is on the same couch.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>Catch a ghost.</b> Settled bait attracts a nearby ghost. The beam can tether a target, while a grounded trap can draw one into its intake. A successful capture produces a collectible capsule that records the ghost’s name.</li>
-      <li><b>The time-machine chamber.</b> The chamber has a console and five marked passenger places. Its calibrated setting is a hundred years back. The game checks who is actually standing on the platform, and an incorrect setting endangers those occupants.</li>
-      <li><b>The Beaver Eater.</b> The ancient creature appears in the archaeologist’s reconstruction of the dam. In the sewers, the bestiary also includes bats, rats, roaches, spiders, snakes and alligators with different movement and attack patterns.</li>
-    </ul>
-    <figure class="game-frame zoomable" data-cap="The time-machine console reads 0100 years back, with the platform visible behind it." style="margin:18px 0 0"><img src="images/play/gp-time-console.webp" alt="The time-machine console reads 0100 years back, with the platform visible behind it." loading="lazy"><figcaption class="cap">The time-machine console reads 0100 years back, with the platform visible behind it.</figcaption></figure>
   </article>
 
-  <article class="feature" id="postal">
-    <div class="feature-text"><span class="feature-num">The postal service</span>
-      <h2 class="section-title">Follow Postmaster Josh’s round</h2>
-      <p class="desc">Josh flies a postal helicopter to a delivery stop, walks to the address and leaves an addressed package before returning to the aircraft. The route carries on across scene changes.</p>
-      <figure class="game-frame zoomable" data-cap="A sealed parcel addressed to Beaver Valley Municipal Court rests on the pavement." style="margin:18px 0 0">
-        <img src="images/play/gp-postal-parcel.webp" alt="A sealed parcel addressed to Beaver Valley Municipal Court rests on the pavement." loading="lazy">
-        <figcaption class="cap">A sealed parcel addressed to Beaver Valley Municipal Court rests on the pavement.</figcaption>
-      </figure>
+  <!-- 18 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Beaver Valley Hospital — they patch you up and bill you either way.">
+      <img src="images/env/env-hospital.jpg" alt="Beaver Valley hospital reception" loading="lazy">
+      <figcaption class="cap">Beaver Valley Hospital</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">18 / Medicine</div>
+      <h3>The Hospital &amp; Emergency Services</h3>
+      <p class="tagline">Get shot, get patched up, get billed &mdash; or get a cybernetic arm.</p>
+      <p class="desc">The Valley runs a working county hospital, staffed on its own schedule. Take enough damage and you can be treated, cured, or rebuilt &mdash; missing limbs replaced with plastic or full cybernetic ones, ailments and acid burns cured, casts applied that mend over time. Bleed out in the street and a 911 EMT can be dispatched to scrape you up. And when it&rsquo;s too late, there&rsquo;s an autopsy, a cremation, and an urn to take home.</p>
+      <ul class="bullets">
+        <li><b>Wound healing, ailment and acid-burn cures</b>, and casts that mend over time.</li>
+        <li><b>Lost a limb? Replace it</b> &mdash; plastic, or a full cybernetic upgrade.</li>
+        <li><b>Call 911</b> and an EMT is dispatched to collect the wounded.</li>
+        <li><b>Autopsy, cremation, and a keepsake urn</b> for the ones who don&rsquo;t make it.</li>
+        <li><b>Every charge billed through your debt</b> &mdash; and the fire department answers emergencies on the same logic.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>At the doorstep.</b> A parcel records its destination and intended recipient. The addressee can collect it, and opening it releases its contents into the world.</li>
-      <li><b>Taking someone’s post.</b> A package keeps its ownership when another character interacts with it. Witnesses can report theft through the same local police system that handles other incidents.</li>
-      <li><b>At the post office.</b> The town has its own postal counter. Josh’s delivery route also reaches addresses outside the immediate neighbourhood.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="frontier">
-    <div class="feature-text">
-      <span class="feature-num">The shore, the airfield &amp; the sewers</span>
-      <h2 class="section-title">Past the last streetlight</h2>
-      <p class="desc">The town extends to Beaver Valley Air, the shoreline and a network of sewers. Under town, follow the floor and watch the painted water. Some creatures can swim where a person has to jump.</p>
-      <a class="btn btn-ghost" href="naval.html#vessel-directory">Compare boats and ships &rarr;</a>
-      <figure class="game-frame zoomable" data-cap="Below the UNSE club, a player stands beside one of the sewer pools." style="margin:18px 0 0">
-        <img src="images/play/env-sewers.webp" alt="Below the UNSE club, a player stands beside one of the sewer pools." loading="lazy">
-        <figcaption class="cap">Below the UNSE club, a player stands beside one of the sewer pools.</figcaption>
-      </figure>
+  <!-- 19 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Speak into your mic and the nearest soul answers back, out loud.">
+      <img src="images/gameplay/gp-street-police-speech.jpg" alt="A character speaking in-world with a speech bubble" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the town hears you</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">19 / Voice</div>
+      <h3>Talk to the Town Out Loud</h3>
+      <p class="tagline">The game listens. Speak, and the Valley answers.</p>
+      <p class="desc">Beaver Valley doesn&rsquo;t just talk at you &mdash; it listens. Hold the talk button and speak into your mic, and the nearest character hears your actual words and answers back, in character, in its own voice. Take the stand and testify at a trial, preside as judge and hand down spoken rulings, or run your starship bridge entirely by voice.</p>
+      <ul class="bullets">
+        <li><b>Push-to-talk to any nearby soul</b> &mdash; it understands what you say and replies out loud.</li>
+        <li><b>Run a whole trial by voice</b> &mdash; testify, cross-examine, or preside as judge with spoken rulings.</li>
+        <li><b>Command the starship bridge out loud</b> &mdash; give the order, the crew carries it out.</li>
+        <li><b>Con a warship out loud</b> &mdash; the frigate takes three hundred-plus spoken orders and ten named sailors answer them; you can even feed it a Discord call and let the whole room shout at the crew.</li>
+        <li><b>Your words fold straight in</b> to the same living conversation the town is already having.</li>
+        <li><b>No menus, no dialogue wheel</b> &mdash; you just talk.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>In the water.</b> The small and full-sized alligators swim, pursue and bite. A jaw hold can become a drag. Other underground encounters include snakes and the Beaver Eater.</li>
-        <li><b>Beaver Valley Air.</b> Explore the passenger cabins or visit the cockpit. The airliner also appears in the ocean simulation. Cabin emergencies can affect the people still aboard.</li>
-        <li><b>At the Watercraft Emporium.</b> The marina sells six kinds of boat, from a single-seat sea kayak to a six-seat Dolphin speedboat. Buy a particular hull, meet companions at its berth and bring it back to the service dock for repairs. The shop also buys eligible vessels in their current condition.</li>
-    </ul>
-      <figure class="game-frame zoomable" data-cap="The sales and service counters overlook the marina at the Civilian Watercraft Emporium." style="grid-column:1/-1"><img src="images/play/env-watercraft.webp" alt="The sales and service counters overlook the marina at the Civilian Watercraft Emporium." loading="lazy"><figcaption class="cap">The sales and service counters overlook the marina at the Civilian Watercraft Emporium.</figcaption></figure>
   </article>
 
-  <article class="feature" id="sandy">
-    <div class="feature-text"><span class="feature-num">Sandy Shores</span>
-      <h2 class="section-title">A settlement that grows with its residents</h2>
-      <p class="desc">Sandy Shores has a port office and an air-service hangar. As the island gains residents it can add up to thirty houses. Population gates also determine which civic buildings can open.</p>
-      <figure class="game-frame zoomable" data-cap="The player stands on the beach outside the Sandy Shores Port Office, with its pier on the right." style="margin:18px 0 0"><img src="images/play/env-sandy.webp" alt="The player stands on the beach outside the Sandy Shores Port Office, with its pier on the right." loading="lazy"><figcaption class="cap">The player stands on the beach outside the Sandy Shores Port Office, with its pier on the right.</figcaption></figure>
+  <!-- 20 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The nightclub floor moves as one under a rig of colored lights.">
+      <img src="images/gameplay/gp-club-dance.jpg" alt="A neon nightclub with characters in a synchronized dance formation" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the club, mid-routine</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">20 / Nightlife</div>
+      <h3>The Club &amp; Synchronized Dance</h3>
+      <p class="tagline">Under the lights, the whole floor moves as one.</p>
+      <p class="desc">Beaver Valley has a nightclub, and it goes off. Step onto the floor and the crowd falls into synchronized dance routines &mdash; whole squads breaking into choreographed formations under a rig of colored spotlights, weaving, crossing and re-forming in time. It&rsquo;s a full light-and-dance show you can walk right into the middle of.</p>
+      <ul class="bullets">
+        <li><b>A neon nightclub with a moving, choreographed crowd</b> &mdash; not a static backdrop.</li>
+        <li><b>Synchronized dance formations</b> that weave, cross and re-form on the beat.</li>
+        <li><b>A full lightshow</b> of colored spotlights sweeping the floor.</li>
+        <li><b>Jump in and dance</b> in the middle of it &mdash; or just watch the chaos.</li>
+        <li><b>Part of a whole performance layer</b> tied into the town&rsquo;s live music scene.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>New facilities.</b> The jail unlocks at six residents, the hospital at ten, the bar at fifteen, the shop at twenty and the factory at thirty. An island early in its settlement can look very different from a mature one.</li>
-      <li><b>Mickey’s journey.</b> The black cat starts on the White House lawn. A campaign decision can spare him or order his capture. The transport branch uses a Fox aircraft and an actual drop before Mickey can settle on Sandy Shores.</li>
-      <li><b>Returning to the mainland.</b> Arrivals and departures depend on the craft you brought. A docked ship can be boarded again while it remains moored. Aircraft have landing and parking checks before an occupant can disembark.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="operations">
-    <div class="feature-text">
-      <span class="feature-num">War, Versus &amp; the dojo</span>
-      <h2 class="section-title">Choose your post</h2>
-      <p class="desc">War starts with a squad battle. At the Grand FOB, an intelligence map ties assignments to terrain, tracks mission results and updates who holds ground. The comms operator can schedule support before the squad deploys.</p>
-      <figure class="game-frame zoomable" data-cap="A parachute deployment over the river crossing trenches in War Mode." style="margin:18px 0 0"><img src="images/play/gp-war-front.webp" alt="A parachute deployment over the river crossing trenches in War Mode." loading="lazy"><figcaption class="cap">A parachute deployment over the river crossing trenches in War Mode.</figcaption></figure>
+  <!-- 21 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Valley runs on vice — and everyone can get as wasted as you.">
+      <img src="images/env/env-bar-stage.jpg" alt="A bar stage with warm lights" loading="lazy">
+      <figcaption class="cap">Last call at the bar</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">21 / Vices</div>
+      <h3>Booze, Drugs &amp; Bad Decisions</h3>
+      <p class="tagline">Get drunk, get high, get in trouble &mdash; and so can everyone else.</p>
+      <p class="desc">The Valley runs on vice. Drink enough and it hits in four escalating stages: your aim wanders, your walk turns to a stagger, you start throwing up, and eventually you&rsquo;re offered the sweet mercy of passing out face-down in the street. Every consumable does something, and none of it is good for you &mdash; and it all works on the AI too, so the whole town can get as wasted as you are.</p>
+      <ul class="bullets">
+        <li><b>Four escalating tiers of drunk</b> &mdash; scrambled aim, a wobbling stagger, random vomiting, and a pass-out choice.</li>
+        <li><b>A cabinet of consumables</b> &mdash; booze, drugs and worse &mdash; each with its own effect.</li>
+        <li><b>Contagious filth</b> &mdash; get covered in the wrong thing and it spreads to whoever&rsquo;s nearby.</li>
+        <li><b>Every effect works on NPCs too</b> &mdash; a bar full of drunks is a bar full of problems.</li>
+        <li><b>Status sticks</b> &mdash; you don&rsquo;t sober up just by walking through a door.</li>
+      </ul>
     </div>
-    <ul class="bullets">
-        <li><b>At the base.</b> Use the Grand FOB as a base between deployments. Your battle result can move a mission or change ownership of the sector. An individual outpost or structure may be left in ruins. A soldier advances through a 29-rank ladder in the current playthrough. Lower-ranking soldiers can salute a superior at the base.</li>
-        <li><b>At the dojo or in Versus.</b> Namasensei’s dojo runs martial-arts brackets. There are nine ranks from white to black belt, with a separate final fight for black. Versus lets people or AI take the opposing slots for a bout outside the Story casualty system.</li>
-    </ul>
   </article>
 
-  <article class="feature" id="fob">
-    <div class="feature-text"><span class="feature-num">War Mode</span>
-      <h2 class="section-title">Between battles at the Grand FOB</h2><p class="desc">After a mission the base gives the squad somewhere to recover and decide what to do next. A visit to intelligence changes what is on offer on the campaign map.</p>
-      <figure class="game-frame zoomable" data-cap="A campaign map and briefing table inside Grand FOB Intelligence." style="margin:18px 0 0"><img src="images/play/gp-fob-intel.webp" alt="A campaign map and briefing table inside Grand FOB Intelligence." loading="lazy"><figcaption class="cap">A campaign map and briefing table inside Grand FOB Intelligence.</figcaption></figure>
+  <!-- 22 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="A wall blown clean through — and it stays that way.">
+      <img src="images/gameplay/gp-destruction.jpg" alt="A courtroom wall blown open with rubble, smoke and fire" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> permanent damage</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">22 / Destruction</div>
+      <h3>Wreck It &mdash; and It Stays Wrecked</h3>
+      <p class="tagline">Blow open the walls, shatter the furniture, level the scenery. It doesn&rsquo;t reset.</p>
+      <p class="desc">Destruction here is real and permanent. Blast a hole through a wall and the hole stays. Shatter a prop and it bursts into physics chunks that settle where they land. Set the place on fire and watch it burn. Nothing politely repairs itself when you look away &mdash; the mess you make is the mess that&rsquo;s there.</p>
+      <ul class="bullets">
+        <li><b>Blow open walls and backgrounds</b> &mdash; bullets and explosives bury in, then detonate or ignite.</li>
+        <li><b>Props shatter</b> into physics-settling chunks you can kick around.</li>
+        <li><b>Fire spreads</b> across whatever will burn and leaves it scorched.</li>
+        <li><b>Damage sticks</b> &mdash; a wrecked room is wrecked for good.</li>
+        <li><b>Whole buildings have their own filmed demolition</b> &mdash; see <em>Buildings Don&rsquo;t Shatter</em> below.</li>
+        <li><b>It&rsquo;s the whole game&rsquo;s rule made physical:</b> consequences don&rsquo;t reset.</li>
+      </ul>
     </div>
-    <div><ul class="bullets">
-      <li><b>Intel and command.</b> The map displays friendly, contested and enemy ground. Select a mission at a tile, read the briefing and return after the battle to see how the result changed the map. Prisoner intelligence can reveal enemy locations.</li>
-      <li><b>Supply and recovery.</b> Visit the quartermaster, armory and mess hall between deployments. Admit wounded squad members to the infirmary. Each night at the barracks advances their care by a day and restores up to 25% of maximum health to each of your surviving limbs. After two off-duty days, command orders another mission.</li>
-      <li><b>Mission support.</b> Select an active order in the communications room. The first support package for that mission is free. Additional artillery barrages cost $500, precision missile strikes cost $750 and heavy bombing runs cost $950. Support executes after the squad arrives at the selected sector.</li>
-      <li><b>The brig.</b> Detention, interrogation, patrols and guards are part of the base. Interview a prisoner for intelligence or offer them a place on your side. General Asshat has his own objectives at headquarters.</li>
-    </ul>
-    <figure class="game-frame zoomable" data-cap="The communications board lists support choices and prices for Operation Wet Boot." style="margin:18px 0 0"><img src="images/play/gp-fob-comms-fixed-service.webp" alt="The communications board lists support choices and prices for Operation Wet Boot." loading="lazy"><figcaption class="cap">The communications board lists support choices and prices for Operation Wet Boot.</figcaption></figure></div>
   </article>
 
-  <article class="feature" id="airline">
-    <div class="feature-text"><span class="feature-num">Beaver Valley Air</span>
-      <h2 class="section-title">Board a flight out of town</h2><p class="desc">Buy a ticket, check the seat class and go through the boarding gate. First class and economy have different cabins and different journeys. A seat sold for Washington or Russia in economy can take you to the war front.</p>
-      <figure class="game-frame zoomable" data-cap="The player in a first-class cabin aboard Beaver Valley Air." style="margin:18px 0 0">
-        <img src="images/play/env-bva-1stclass.webp" alt="The player in a first-class cabin aboard Beaver Valley Air." loading="lazy">
-        <figcaption class="cap">The player in a first-class cabin aboard Beaver Valley Air.</figcaption>
-      </figure>
+  <!-- 23 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Authored scenes hand off to a cast that improvises the rest.">
+      <img src="images/env/env-dumpster-talk.jpg" alt="The Dumpster Talk studio" loading="lazy">
+      <figcaption class="cap">Where the episodes are staged</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">23 / Story</div>
+      <h3>Scripted Scenes, Unscripted Souls</h3>
+      <p class="tagline">Hand-authored moments, with branching choices and a cast that ad-libs.</p>
+      <p class="desc">On top of all the emergent chaos, Beaver Valley stages authored story beats: in-engine cutscenes that set up a scene and then hand it to the AI cast to play out in their own words. Decision points let you branch how it goes, and the same tooling assembles the in-world Dumpster Talk TV episodes from real broadcast rundowns.</p>
+      <ul class="bullets">
+        <li><b>In-engine scripted scenes</b> that direct the cast, then let them improvise the actual dialogue.</li>
+        <li><b>Branching choice points</b> that fork how a scene plays out.</li>
+        <li><b>The pipeline behind the Dumpster Talk episodes</b>, built from real show rundowns.</li>
+        <li><b>Authored structure and unscripted souls</b> in the same scene.</li>
+        <li><b>Built with a dedicated cutscene editor.</b></li>
+      </ul>
     </div>
-    <ul class="bullets">
-      <li><b>Cabin and cockpit.</b> Walk through the aircraft’s connected interiors while the flight tracks its regional route. The airport, hangar and runway are separate locations you can visit on the ground.</li>
-      <li><b>A cabin emergency.</b> A hull puncture can drop the pressure. Oxygen supplies matter to the passengers, and an onboard explosion can start a countdown to a crash in the ocean.</li>
-      <li><b>Ocean Operations.</b> The airliner also exists as an aircraft in the ocean world, where altitude, landing gear and a grounded arrival have their own rules.</li>
-    </ul>
   </article>
 
-  <section class="section section--tight" id="ocean">
-    <span class="kicker">Ocean Operations</span>
-    <h2 class="section-title">Naval combat</h2>
-    <p class="section-lead">Take command of a ship, submarine or aircraft from a mission&rsquo;s roster. Escort the Capybara ferry, hunt for the Otter submarine or put a carrier group to sea. Your side&rsquo;s sensor tracks, crew and surviving equipment determine which orders you can give.</p>
-    <p style="margin-top:24px"><a class="btn btn-primary" href="naval.html">Explore Naval Combat &rarr;</a></p>
-  </section>
+  <!-- 24 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Beaver Valley Casino floor — four games of chance, and a family that owns the odds.">
+      <img src="images/env/env-casino.jpg" alt="The Beaver Valley Casino gaming floor" loading="lazy">
+      <figcaption class="cap">The house always wins</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">24 / The House</div>
+      <h3>The Casino &amp; the Family</h3>
+      <p class="tagline">Four real games of chance &mdash; run by a crime family that would rather you lost.</p>
+      <p class="desc">The Beaver Valley Casino is a working gambling hall wired straight to the cash in your pocket. Sit down at blackjack, spin the roulette wheel, pull the slots, or take a seat in the high-stakes poker room &mdash; where the six players across the felt aren&rsquo;t scripted bots but living souls, each folding, calling, and raising through the same AI that drives the rest of the town. And the whole operation is a mob front: Don Alder&rsquo;s family owns the floor, and they do not enjoy paying out.</p>
+      <ul class="bullets">
+        <li><b>Four working games</b> &mdash; Blackjack (Dealer&rsquo;s Dam), the roulette Tail Wheel, Beaver Bonanza slots, and five-card draw poker.</li>
+        <li><b>Real money on the line</b> &mdash; every wager comes out of your own wallet, and the jackpots pay straight back in.</li>
+        <li><b>Poker against living souls</b> &mdash; six AI regulars read the table and decide each fold, call, and raise in real time.</li>
+        <li><b>The house is the mob</b> &mdash; patriarch Don Alder, pit boss Vinny Knuckles, manager Robert Silver, security chief Jimmy Broadside, and floor captain Paulie Timber work the room.</li>
+        <li><b>Win too big and you&rsquo;re a mark</b> &mdash; the family remembers whose money that used to be.</li>
+        <li><b>Poker is also its own mode</b> &mdash; take it standalone from the main menu: up to four humans hot-seating any of the seven chairs, each with their own wallet.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 25 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="James's Barcade — three fully playable retro cabinets and a working bar.">
+      <img src="images/env/env-barcade.jpg" alt="James's Barcade interior" loading="lazy">
+      <figcaption class="cap">Insert coin</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">25 / The Arcade</div>
+      <h3>James&rsquo;s Barcade</h3>
+      <p class="tagline">Three real retro games and a stiff drink &mdash; run by a man who hates every cabinet he owns.</p>
+      <p class="desc">James&rsquo;s Barcade is a neon-lit arcade-and-bar hangout, and its machines aren&rsquo;t props. Walk up to any of the three cabinets, hit the button, and you&rsquo;re playing a whole self-contained game &mdash; then step over to the counter and order a real drink. James, the barcade&rsquo;s permanently irritated owner, will happily tell you every one of his games is broken and defend them to the death anyway.</p>
+      <ul class="bullets">
+        <li><b>Flush Line</b> &mdash; a rotate-the-pipes puzzle: turn the tiles on the grid and route the sewage through every last pipe.</li>
+        <li><b>The Oregon River</b> &mdash; an Oregon-Trail-style trek that paddles a beaver colony 600 miles upriver on food, medicine, morale and dry fur.</li>
+        <li><b>Sewer Beaver</b> &mdash; a side-scrolling brawler with claw combos, tail slams, lives and a running score across four waves.</li>
+        <li><b>A working bar</b> &mdash; when someone&rsquo;s tending it, order off the real drink menu, pay cash, and take it in hand.</li>
+        <li><b>All three cabinets are fully coded</b> &mdash; not backdrops, not cutscenes. Games inside the game.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 26 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Grand FOB — your base between battles. Nine buildings you can walk into.">
+      <img src="images/gameplay/gp-fob-hub.jpg" alt="The Grand Forward Operating Base seen from above" loading="lazy">
+      <figcaption class="cap">Home, between battles</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">26 / Campaign</div>
+      <h3>The Grand FOB</h3>
+      <p class="tagline">Win the battle, walk off the field, and the war gives you somewhere to live.</p>
+      <p class="desc">Survive a battle and an extraction point opens on the battlefield &mdash; loot at your leisure, then walk out. You arrive at the Grand Forward Operating Base: a working camp with a living garrison and <b>nine buildings you can actually walk into</b>. Sleep to advance the campaign day and heal. Draw weapons from the armory and hand them to your squad. Admit your wounded to the infirmary and they stay out of the next fight until they&rsquo;re treated. Everything you carried off the field is waiting at the quartermaster&rsquo;s depot.</p>
+      <ul class="bullets">
+        <li><b>Nine enterable buildings</b> &mdash; barracks, mess hall, infirmary, armory, quartermaster, intel briefing room, comms bunker, the general&rsquo;s HQ, and the detention block.</li>
+        <li><b>You have a rank, and it rises</b> &mdash; a 29-step ladder. Every victory promotes you, and the garrison starts saluting <em>you</em> once you outrank them.</li>
+        <li><b>Take orders, or give them</b> &mdash; the camp&rsquo;s ranking soldier issues orders all day. Most comply. The ones who don&rsquo;t get marched to the brig.</li>
+        <li><b>Buy the war you want</b> &mdash; a missile strike, an artillery box, a bombing run: paid for in the comms room, delivered in the actual battle.</li>
+        <li><b>Prisoners talk</b> &mdash; enemies who surrender are taken alive. Debrief them for map intel, or turn one and he fights for you.</li>
+        <li><b>The general has plans for you</b> &mdash; General Asshat hands out campaign objectives that send you clear across the map, then wants a debrief.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 27 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Two buildings going up at once. The wrecks stay where they fall — and you can walk over them.">
+      <img src="images/gameplay/gp-fob-strike.jpg" alt="Two buildings detonating at the Grand FOB" loading="lazy">
+      <figcaption class="cap">Called in from somewhere else entirely</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">27 / Annihilation</div>
+      <h3>Buildings Don&rsquo;t Shatter. They Get Destroyed.</h3>
+      <p class="tagline">A hundred and three places have their own filmed death &mdash; ten seconds of it, each one made by hand.</p>
+      <p class="desc">Most games break a wall into triangles. Here, twenty-nine buildings and emplacements at the forward base &mdash; and seventy-four more locations across the town and the wider world &mdash; each have their own hand-made destruction sequence: the structure lifts, comes apart, burns, and settles into a wreck &mdash; and then the wreck is simply <em>there</em>, walkable, smoking, for the rest of the game. Soldiers nearby react. Anything caught in the blast takes it. Doors that led inside stop leading anywhere, because there is no inside anymore.</p>
+      <ul class="bullets">
+        <li><b>Call in a Tomahawk</b> &mdash; it flies in from off-map trailing contrail, hits what you pointed it at, and leaves a hole in the world.</li>
+        <li><b>A hundred and three unique demolitions</b> &mdash; twenty-nine at the base, seventy-four out in the world, and no two die the same way.</li>
+        <li><b>The rubble is permanent</b> &mdash; walk over it, fight on it, take cover behind it.</li>
+        <li><b>It cuts the camp off</b> &mdash; flatten the infirmary and there is no infirmary to walk into.</li>
+        <li><b>Nobody ignores it</b> &mdash; the garrison scatters, and the ones too close don&rsquo;t get up.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 28 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Curtain up at the Beaver Valley Theatre — one of five interchangeable stage sets.">
+      <img src="images/gameplay/gp-theatre-show.jpg" alt="The Beaver Valley Theatre with the curtain open on a moonlit backdrop" loading="lazy">
+      <figcaption class="cap">Beaver Valley Theatre</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">28 / Culture</div>
+      <h3>The Theatre</h3>
+      <p class="tagline">Buy a ticket, take a seat, and watch a play. Or take the lighting board and ruin one.</p>
+      <p class="desc">There is a real theatre on the strip, with a lobby, a marquee that blinks, a green room, and an auditorium you can sit down in. Miyamoto works the ticket booth and will sell you a seat to one of four productions. Then it&rsquo;s a proper show &mdash; house lights down, curtain up, backdrop set, and the piece plays out in front of you.</p>
+      <ul class="bullets">
+        <li><b>Four productions on the board</b> &mdash; including <em>Damlet</em>, <em>A Midsummer Night&rsquo;s Beaver</em> and <em>Waiting for Godam</em>, each at its own ticket price.</li>
+        <li><b>Actually sit in the audience</b> &mdash; twenty-two seats and a two-seat heckler box. Sit, watch, heckle, leave.</li>
+        <li><b>Run the room yourself</b> &mdash; take the lighting board and you own the house lights, three washes, footlight circuits, spotlight specials and a blackout shutter.</li>
+        <li><b>Work the curtain</b> &mdash; there is a lever, and it is yours to pull at the worst possible moment.</li>
+        <li><b>Five interchangeable sets</b> &mdash; the ancient dam, a town square, a rooming house, a river crossing, the moonlit dam.</li>
+        <li><b>One production is a live episode</b> &mdash; <em>Free Chili</em> is staged by the cast and improvised on the night.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 29 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Beaver Slap — a 5×5 board game played with cards of the actual cast.">
+      <img src="images/gameplay/gp-slap-board.jpg" alt="The Beaver Slap board mid-match" loading="lazy">
+      <figcaption class="cap">Your colony vs. the house</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">29 / The Card Game</div>
+      <h3>Beaver Slap</h3>
+      <p class="tagline">A whole collectible card game, and every card is somebody who lives here.</p>
+      <p class="desc">Beaver Slap is a five-by-five territory game played on an ornate board. You deploy cards, they clash, the survivors hold ground, and the defeated get stacked on someone&rsquo;s capture pile. What makes it ours: the deck is the town. <b>Every character in the game has a card</b>, illustrated from the same body they walk around in.</p>
+      <ul class="bullets">
+        <li><b>172 cards</b> &mdash; one for every soul on the roster, illustrated and statted.</li>
+        <li><b>A real board game</b> &mdash; deployment, clashes, capture piles, and a replay you can step through move by move.</li>
+        <li><b>Build a deck</b> &mdash; a workshop for sorting your collection into something that wins.</li>
+        <li><b>Cards live in your bag</b> &mdash; they take inventory space like everything else you own.</li>
+        <li><b>Play it from the main menu</b> &mdash; or find the board out in the world.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 30 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Economy class. The rescue team could not locate the passenger.">
+      <img src="images/gameplay/gp-bva-ocean.jpg" alt="Clouds over open ocean after an ejection from a Beaver Valley Air flight" loading="lazy">
+      <figcaption class="cap">Beaver Valley Air &mdash; thank you for flying</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">30 / Departures</div>
+      <h3>Beaver Valley Air</h3>
+      <p class="tagline">Buy a ticket, board a plane, fly somewhere worse. First class is lovely. Do not fly economy.</p>
+      <p class="desc">There is an airline, and it works end to end: a ticket desk, a fare table, a boarding gate, a runway, a takeoff you watch from outside, a cabin you walk around during the flight, and a landing at the other end. You can fly the Valley to Washington, to Russia, and back. First class has leather seats and a window. Economy has cages, a guard with a revolver, and a return leg that is never honoured.</p>
+      <ul class="bullets">
+        <li><b>A cabin you can walk around</b> &mdash; cockpit, first class, economy and cargo hold, with the ocean rolling past the windows.</li>
+        <li><b>Do not fire a gun on the plane</b> &mdash; misses punch holes in the hull, and the cabin starts losing pressure through every one of them.</li>
+        <li><b>Oxygen is something you either brought or didn&rsquo;t</b> &mdash; when the cabin goes, everyone without it goes under.</li>
+        <li><b>A grenade ends the aircraft</b> &mdash; hull breach, thirty seconds, and the crash takes everyone aboard with it. Permanently.</li>
+        <li><b>Get sucked out of a breach</b> &mdash; with a parachute you drift down to a raft. Without one you hit the water and hope the coast guard is bored.</li>
+        <li><b>Economy is a trafficking route</b> &mdash; you land somewhere that is not the destination on your ticket.</li>
+        <li><b>Or fly it yourself</b> &mdash; the airliner is one of the platforms on the Ocean Operations menu: same aircraft, same passengers, your hands on it.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 31 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The graveyard. Nobody here died off-screen.">
+      <img src="images/env/env-graveyard.jpg" alt="The Beaver Valley graveyard" loading="lazy">
+      <figcaption class="cap">It counts when it happens to you</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">31 / Consequence</div>
+      <h3>Your Death Is Real Too</h3>
+      <p class="tagline">The town doesn&rsquo;t reload for you. You come back as somebody else.</p>
+      <p class="desc">In the story, death is not a checkpoint. When you die, that character is gone &mdash; and the game hands you the roster to pick who you are now. Your new life starts at <em>their</em> home, not where you fell. Everything the dead one owned is banked as an estate rather than quietly deleted, so a replacement doesn&rsquo;t inherit a corpse&rsquo;s pockets by accident.</p>
+      <ul class="bullets">
+        <li><b>Dead is dead</b> &mdash; the cast list marks them out, and the world goes on without them.</li>
+        <li><b>You continue as another soul</b> &mdash; same town, same grudges, different life and different house.</li>
+        <li><b>Estates are kept, not dumped</b> &mdash; money, inventory and gear are held rather than vanished.</li>
+        <li><b>Arrest works the same way</b> &mdash; get taken into custody and someone else picks up the story while you serve it.</li>
+        <li><b>It applies to everyone</b> &mdash; the cast can be killed off for good too, and the town notices who&rsquo;s missing.</li>
+        <li><b>The world does not rearrange itself around your death</b> &mdash; nothing is reset, respawned or moved when you take over somebody new. The damage stays, the dead stay dead, and whoever you just became is standing where they already were.</li>
+        <li><b>It follows you out to sea</b> &mdash; lose the captain and you pick another one and another hull, with the operation exactly as you left it: the ships you sank are still sunk and the ones that were hunting you are still hunting.</li>
+        <li><b>A new game is a genuinely new world</b> &mdash; nothing carries over from the last one. One town, one playthrough, and whatever you did to it.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 32 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The Beaver Eater — three phases, and it does not stay in the sewers.">
+      <img src="images/gameplay/bestiary-beaver-eater.jpg" alt="The Beaver Eater rearing up with its jaws open" loading="lazy">
+      <figcaption class="cap">The Beaver Eater</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">32 / The Bestiary</div>
+      <h3>Things That Hunt You</h3>
+      <p class="tagline">Not everything in the Valley is a person with opinions. Some of it just wants to eat you.</p>
+      <p class="desc">Between the townspeople and the police there are creatures, and they&rsquo;re built like bosses: multiple phases, real attack sets, weak windows you have to earn, and health that doesn&rsquo;t politely tick down. When one of them turns up on a populated street, the townspeople do exactly what you&rsquo;d do &mdash; they scatter and scream about it.</p>
+      <ul class="bullets">
+        <li><b>The Beaver Eater</b> &mdash; three escalating phases: charges, tail whips, a jump slam, a burrow, a corrosive spit, and a grab that swallows you whole.</li>
+        <li><b>The snake</b> &mdash; sleeping in the Valley until it isn&rsquo;t: venom bites, tail whips, a coiled hiss and a fast chase.</li>
+        <li><b>The attack drone</b> &mdash; missile volleys and a ramming dive, and it can lose its guns and keep coming.</li>
+        <li><b>The abyssal serpent</b> &mdash; the one in the trench, ten thousand metres down. It does not get driven off; it takes the whole submarine with it.</li>
+        <li><b>Kaiju treatment</b> &mdash; a boss health bar, screen shake, and a civilian panic that empties the street.</li>
+        <li><b>They come apart like anything else</b> &mdash; same damage model the whole game runs on.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 33 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Mike's Threads — get fitted by the champ.">
+      <img src="images/env/env-clothing.jpg" alt="Iron Mike's clothing store interior" loading="lazy">
+      <figcaption class="cap">Mike&rsquo;s Threads</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">33 / Wardrobe</div>
+      <h3>Get Dressed</h3>
+      <p class="tagline">116 full outfits, a fitting-room mirror, and a tailor who could knock you out.</p>
+      <p class="desc">Iron Mike runs a clothing store on the strip, and clothes are real items. Browse the rack, watch each outfit go on <em>your</em> body in the fitting-room preview, buy the one you want, and it drops into your bag as a wearable. Put it on, take it off, sell it, lose it in a fight. The outfit follows you across the whole town and through every scene change.</p>
+      <ul class="bullets">
+        <li><b>116 complete outfits</b> &mdash; torso, both arms, both legs and feet, matched to your skin tone.</li>
+        <li><b>See it on before you buy it</b> &mdash; the preview dresses your actual character, not a mannequin.</li>
+        <li><b>Clothes are inventory</b> &mdash; they take up space, they can be traded, and someone can take them off your corpse.</li>
+        <li><b>Off-duty means off-duty</b> &mdash; the store stocks the plain-clothes wardrobes of all fifty officers and agents.</li>
+        <li><b>Save your own</b> &mdash; build an outfit in the customizer and store it in the wardrobe library for any character.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 34 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The A.S.S. Detention Center — twenty-two rooms of federal hospitality.">
+      <img src="images/env/env-ass-yard.jpg" alt="The exercise yard at the A.S.S. Detention Center" loading="lazy">
+      <figcaption class="cap">American Security Services</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">34 / The Agency</div>
+      <h3>The A.S.S.</h3>
+      <p class="tagline">Twenty-five federal agents, and a detention centre out past the farmland with a door for you.</p>
+      <p class="desc">The American Security Services is the Valley&rsquo;s federal problem: twenty-five named agents, each with a masked tactical face on duty and their own unmasked one off it. Early on they&rsquo;re living civilian lives in the luxury apartments and posted to the Oval Office &mdash; and then the shift starts. Past the farmland at the edge of town is their detention centre: <b>twenty-two rooms</b> you can walk into, staffed by a rotating roster of thirteen agents with shotguns.</p>
+      <ul class="bullets">
+        <li><b>Twenty-two explorable rooms</b> &mdash; intake, six holding wings, the cell block, chow hall, laundry, showers, infirmary, bunks and the yard.</li>
+        <li><b>Twenty-four cell doors you can operate</b> &mdash; from the aisle panels, which cuts both ways.</li>
+        <li><b>A duty roster that rotates</b> &mdash; thirteen agents on post at any hour, the rest off shift and out of uniform.</li>
+        <li><b>Two faces each</b> &mdash; the mask hides which agent you&rsquo;re talking to. Off duty you find out.</li>
+        <li><b>They answer to the Oval Office</b> &mdash; and the Oval Office is a place you can walk into.</li>
+        <li><b>Their helicopter is yours if you take it</b> &mdash; call the Agency chopper down in the town, climb in with whoever is following you, and fly it: twin miniguns that spend real rounds, a landing that needs real clear ground under the whole footprint, and, at height, the option of taking it out to sea or straight down into a city scene.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 35 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The frigate&rsquo;s station: helm, magazines, the boat on the davit, the boarding party, and a fifty-kilometre chart.">
+      <img src="images/gameplay/gp-navy-station.jpg" alt="The Ocean Operations fire-control station: helm orders, weapons, RHIB and boarding controls, and the naval chart" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the whole ship on one screen</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">35 / Ocean Operations</div>
+      <h3>Seven Theatres, Fifty Kilometres Across</h3>
+      <p class="tagline">Pick the operation, pick a side, pick a captain, pick a hull, and put to sea.</p>
+      <p class="desc">Ocean Operations is its own entry on the main menu, and it begins the way everything here begins &mdash; with a character. Choose the operation you are fighting, choose which side of it you are on, choose the captain running this one, choose a platform, and launch into fifty kilometres of open water with a real seabed under it: shoals that will ground you, deep water that will hide you, and the town&rsquo;s skyline sitting on the shore. There are seven of those theatres &mdash; the Valley&rsquo;s own approaches, the deep sea, Washington, Russia, the war front, Sandy Shores and the Strait &mdash; and every other ship out there is already going about its business. A Beaver Valley Air flight crosses overhead on a schedule with a hundred and forty-three people aboard. Your own navy will never touch it. The other side might. So can you.</p>
+      <ul class="bullets">
+        <li><b>Twelve platforms on the grid</b> &mdash; a nuclear attack submarine, a guided-missile frigate, a destroyer, an aircraft carrier, an armed patrol cutter, a fast rigid-hull boat, a fishing trawler, the passenger ferry, a tanker full of shit, a heavy-lift ship, an airliner and an experimental fighter &mdash; with the fighter, chopper and interceptor rosters beside them.</li>
+        <li><b>Or take the other navy</b> &mdash; choose the Russian side of an operation and the grid becomes theirs: the Kodiak carrier, the Otter submarine, the Ferret, the Marten, the Stoat, the Mink and the Wolverine.</li>
+        <li><b>A contact is nobody until you work it out</b> &mdash; a new return is just SIERRA-2 until the track is good enough to say what it is and whose side it&rsquo;s on. Once you have named it, it stays named until you lose it completely.</li>
+        <li><b>Nobody starts it</b> &mdash; every crew holds fire until the first shot goes, and then it is a war that does not stop when the first exchange does. They can sail, too: they keep off the shoals and off each other without being told to.</li>
+        <li><b>Torpedoes below, missiles above</b> &mdash; twelve cells of Tomahawk, and the boat has to surface to use them. Surfacing is also how you get found.</li>
+        <li><b>Every missile, torpedo and aircraft is on the chart</b> &mdash; but you only have an air picture while you&rsquo;re shallow enough to hold one. A running torpedo you hear at any depth.</li>
+        <li><b>Shoot down the thing coming at you</b> &mdash; an inbound missile can be designated and taken with a surface-to-air round or the close-in gun. It cuts both ways.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 36 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Beaver Valley from the water — the pen mouth is the arch cut into the headland under the towers.">
+      <img src="images/gameplay/gp-navy-coast.jpg" alt="The Beaver Valley skyline seen from the sea at dusk with the submarine pen tunnel mouth at the shoreline" loading="lazy">
+      <figcaption class="cap">Home port</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">36 / The Waterfront</div>
+      <h3>Sail It Home</h3>
+      <p class="tagline">That coastline on the chart is the town. There&rsquo;s a tunnel cut under it with a berth in it.</p>
+      <p class="desc">The sea isn&rsquo;t a separate game with a separate map. The skyline on the shore <em>is</em> Beaver Valley, the airfield up the coast belongs to the same airline you&rsquo;ve flown as a passenger, and cut into the headland below the town is an arched tunnel mouth &mdash; the submarine pen. Come in surfaced and shallow and the boat slides into it, and then you&rsquo;re out of the chair and standing on a wet quay underneath the Valley with the whole waterfront to walk.</p>
+      <ul class="bullets">
+        <li><b>The run in isn&rsquo;t a fade to black</b> &mdash; you have to be up and shallow to enter, the boat tells you so, and then it takes you in.</li>
+        <li><b>Fifty-three connected spaces on the waterfront</b> &mdash; the pen and its outlet, three quays, and three ships you can walk end to end.</li>
+        <li><b>The boat, bow to stern</b> &mdash; fifteen compartments and the exterior deck: control room, attack centre, sonar, torpedo room, missile access, reactor, galley, berthing.</li>
+        <li><b>The frigate as well</b> &mdash; sixteen spaces from the bridge to the gas-turbine room, including the hangar its helicopter flies out of.</li>
+        <li><b>And the ferry</b> &mdash; sixteen more, ticket office to vehicle deck. Somebody has to run the 06:40.</li>
+        <li><b>Every ship has somewhere to tie up</b> &mdash; the pen, the submarine mole, the naval harbour, the ferry pier. Press DOCK from anywhere in the theatre, pick a berth, and she takes herself alongside past the shoals.</li>
+        <li><b>Docking ends ashore</b> &mdash; when she is tied up you step off with your whole party into the 2D world at that port, not into a menu.</li>
+        <li><b>It works both ways</b> &mdash; cast off from the dock and you&rsquo;re back on the chart, surfaced off the mouth, pointed east.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 37 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The frigate&rsquo;s bridge with the watch closed up &mdash; and the real sea running past the windows.">
+      <img src="images/gameplay/gp-frigate-bridge-crew.jpg" alt="Officers standing watch on the frigate bridge with the chart table and the sea outside the windows" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the watch on the bridge</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">37 / Command</div>
+      <h3>Give the Order Out Loud</h3>
+      <p class="tagline">You don&rsquo;t drive a ship from a menu. You say it, and a sailor answers you.</p>
+      <p class="desc">Hold the talk button and speak like a captain. &ldquo;Come right to zero nine zero.&rdquo; &ldquo;All ahead flank.&rdquo; &ldquo;Fire two torpedoes at track eight.&rdquo; &ldquo;General quarters.&rdquo; The ship works out which station the order belongs to, and the man who holds that station reads it back in his own voice &mdash; over the intercom if he&rsquo;s three compartments away and you can&rsquo;t see him. Ten sailors crew the frigate, and each one is a character: his own rank, his own temper, his own reason for being aboard, his own way of saying &ldquo;aye&rdquo;. And it is no longer just the frigate &mdash; <b>every hull in the game takes spoken orders</b>, each with its own vocabulary: the submarine, the destroyer, the cutter and its boat, the heavy-lift ship and her submersible, the trawler, the ferry and the tanker. Where a ship genuinely cannot do a thing, she refuses in character instead of ignoring you.</p>
+      <ul class="bullets">
+        <li><b>Three hundred-plus phrasings, across every station</b> &mdash; helm, engines, weapons, sensors, the flight deck, the boat deck, rules of engagement, damage control, and the reports that come back.</li>
+        <li><b>Voice mirrors the buttons</b> &mdash; anything you can press you can say, including the boarding party, the crane and the fleet, and it goes through exactly the same machinery.</li>
+        <li><b>It speaks Navy</b> &mdash; &ldquo;zero niner zero&rdquo;, &ldquo;hard a-starboard&rdquo;, &ldquo;make turns for twelve knots&rdquo;, &ldquo;steady as she goes&rdquo;, and &ldquo;belay that&rdquo; to take the last order back.</li>
+        <li><b>It expects to be misheard</b> &mdash; a word landed wrong doesn&rsquo;t swing the rudder. The ship tells you what it thought you said and asks you to say again.</li>
+        <li><b>Refusals come with a reason</b> &mdash; the helmsman tells you there was no course in that order; the weapons officer reads you the plot when you name a contact he isn&rsquo;t holding. Ask &ldquo;what can I say&rdquo; and the ship reads you the book.</li>
+        <li><b>You can be one of the crew instead</b> &mdash; pick a sailor rather than the captain and the game opens at his post, in his compartment, with the ship under your command.</li>
+        <li><b>Or hand the ship to the room</b> &mdash; switch the input to a Discord call and every voice on that call is talking to your crew.</li>
+        <li><b>When you go quiet, the radio doesn&rsquo;t</b> &mdash; a minute of silence and something comes in: another master warning you off, or your own people with a routine report.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 38 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Hull at zero, abandon ship &mdash; and the log records what took her.">
+      <img src="images/gameplay/gp-frigate-lost.jpg" alt="The frigate station display reading hull condition zero, warship lost, abandon ship" loading="lazy">
+      <figcaption class="cap">The end of a patrol</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">38 / Damage Control</div>
+      <h3>She Floods One Room at a Time</h3>
+      <p class="tagline">A hit doesn&rsquo;t shave a percentage off a bar. It puts water in a specific room.</p>
+      <p class="desc">Every compartment keeps its own water and its own fire. A torpedo in the engine room floods the engine room, and once that room is half full the water starts through the doors into the compartments beside it. A half-flooded room loses what it does for you: the bridge is your steering, the combat centre is your sensors, the magazine is your weapons, the engine room is your speed, and the galley is dinner. Fire eats the hull until water reaches it and drowns it. If the average across the whole ship crosses half, she goes down &mdash; and everyone still aboard goes with her.</p>
+      <ul class="bullets">
+        <li><b>Order damage control and then go and watch it</b> &mdash; the nearest hands who aren&rsquo;t already busy come through the ship door by door, and you&rsquo;re told who&rsquo;s coming and how long they&rsquo;ll be.</li>
+        <li><b>They work at the actual hole</b> &mdash; not in the middle of the floor. A steel plate goes up over the breach and the weld glows while a man is on it and cools when he steps away. It stays there afterwards.</li>
+        <li><b>The work counts whether you watch or not</b> &mdash; walk in on a compartment the off-watch has half shored and they carry on from where they got to, then go back to their stations when it&rsquo;s done.</li>
+        <li><b>Seal a door and the water stops at it</b> &mdash; and stays out of everything behind it.</li>
+        <li><b>The pumps are one set of pumps</b> &mdash; they handle one breach comfortably and lose to three.</li>
+        <li><b>A wrecked radar isn&rsquo;t blindness</b> &mdash; you still have lookouts, and they can see about six kilometres.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 39 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Vessel select, having taken the Russian side of the operation: seven hulls, each with its own crew and its own bridge to return to.">
+      <img src="images/gameplay/gp-vessel-select-russian.jpg" alt="The Ocean Operations vessel select screen showing the Russian Navy's seven commandable vessels" loading="lazy">
+      <figcaption class="cap">Choose an operational platform &mdash; this is the Russian half of it</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">39 / The Fleet</div>
+      <h3>Twelve Ways to Put to Sea &mdash; on Either Side</h3>
+      <p class="tagline">And every hull out there, including the ones shooting at you, has people in it.</p>
+      <p class="desc">Pick the operation and the side, pick a captain out of the cast, then pick what you&rsquo;re taking out &mdash; and every platform on that grid is a different game. The <b>Beaver</b> class attack submarine: depth control, passive and active sonar, Mk 48 torpedoes, a Tomahawk magazine. The <b>Weasel</b> class frigate: air and surface sensors, missiles, guns, torpedoes and her own helicopter. The eleven-crew <b>Badger</b> class destroyer with her main gun, Harpoons, depth charges, a helicopter and a boarding boat. The <b>Mara</b> class aircraft carrier and her air wing. The <b>Capybara</b> ro-ro ferry and the <b>Skunk</b> class shit tanker, neither of which has a weapon on it. The <b>Rabbit</b> class patrol cutter, the <b>Muskrat</b> fishing boat, the 42-knot <b>Shrew</b> class RHIB, and FoundryStop&rsquo;s 138-metre <b>Ox</b> class heavy-lift ship with the Angler submersible on her deck. A <b>Beaver Valley Air</b> airliner, flown from the cockpit, with a crash sequence. The <b>Porcupine</b> experimental fighter and its sixteen Quill missiles. Down the right-hand side is the mission bay &mdash; the <b>Fox</b> multirole fighter with four loadouts, four independent <b>RAT</b> attack choppers, four <b>RAT</b> fast interceptors. And if you took the other side of the operation, the whole grid is Russian instead. Whatever you launch in hands you back to its own character view when you&rsquo;re done: the frigate to her bridge, the tanker to her wheelhouse, the trawler to the harbor.</p>
+      <ul class="bullets">
+        <li><b>Twelve platforms on the grid and three aircraft rosters beside it</b> &mdash; each one drops you somewhere different when you step off it.</li>
+        <li><b>The enemy fleet is playable</b> &mdash; take the Russian side and you command the Kodiak carrier, the Otter, the Ferret, the Marten, the Stoat, the Mink or the Wolverine, out of their own wardrooms.</li>
+        <li><b>A hundred-odd sailors with names</b> &mdash; the destroyer, the submarine, the tankers, the ferry, the cutter and both sides&rsquo; warships are crewed by characters with ranks, jobs, personalities and their own reasons to be aboard.</li>
+        <li><b>The other navy has a wardroom too</b> &mdash; the ships you&rsquo;re fighting aren&rsquo;t icons with a crew count attached.</li>
+        <li><b>Fly instead of sail</b> &mdash; the airliner, the fighters, the choppers and the interceptors launch off the same menu, into the same water.</li>
+        <li><b>Command ships that aren&rsquo;t yours</b> &mdash; hail a friendly and tell her to sink something, hold fire, go deep or shut her sonar down, and she does it.</li>
+        <li><b>Four sides, and they hold grudges</b> &mdash; the navy, the Agency, the Russians and the civilians. Shell a neutral boat and its whole side, and everyone friendly to it, is at war with you from that moment on.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 40 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Submerged and quiet. The bottom out here is a long way further down than the boat is allowed to go.">
+      <img src="images/gameplay/gp-navy-submerged.jpg" alt="The submarine running submerged in deep water" loading="lazy">
+      <figcaption class="cap">Deep water</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">40 / The Deep</div>
+      <h3>Something Lives Down There</h3>
+      <p class="tagline">Past the shelf the seabed opens into a trench, and the trench has a tenant.</p>
+      <p class="desc">Off the coastal shelf the bottom drops away into a trench that runs the length of the map north to south, bottoming out near <b>eleven thousand metres</b> &mdash; twenty times deeper than your boat is allowed to go. Partway down its eastern wall, on a sill about three thousand metres down, there is a hole. In front of it lie ten eras of wrecks and everything they were carrying. What comes out of the hole is enormous, and it does not get driven off: it takes the ship down with it, and the log writes what happened to you.</p>
+      <ul class="bullets">
+        <li><b>Real bathymetry, not a flat floor</b> &mdash; a shelf, basins, a meandering trench, and a chart that tells you how deep you can safely order.</li>
+        <li><b>A wreck field with a lair behind it</b> &mdash; hulls from ten different eras heaped around the mouth.</li>
+        <li><b>Fourteen kinds of animal in the water</b> &mdash; blue, humpback and sperm whales, orcas, great whites, tigers, hammerheads, a giant squid, sailfish, swordfish, and schools of sardine, herring, mackerel and tuna.</li>
+        <li><b>Each is its own creature</b> &mdash; its own depth band, cruising speed, length, how far off you can hear it, how close you have to be to say what it is, and how likely it is to come at you.</li>
+        <li><b>Some of them fight back</b> &mdash; and the biggest thing down there is on nobody&rsquo;s side.</li>
+        <li><b>You can actually go down there</b> &mdash; FoundryStop&rsquo;s heavy-lift ship carries the <b>Angler</b>, a two-seat submersible rated to eleven and a half thousand metres. One of her cranes swings it over the rail and lets go, and you fly it down through the sunlit water, the twilight zone, the midnight zone and the abyss to a seabed nothing else in the game can reach.</li>
+        <li><b>Twenty kinds of thing live on the way down</b> &mdash; sardines and turtles near the top, lanternfish, hatchetfish and krill in the twilight, an anglerfish and a gulper eel in the dark, tripod fish and snailfish deeper still, and a garden of tube worms, glowing anemones and vent chimneys on the floor. Your floodlights are the only reason you can see any of it.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 41 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The frigate&rsquo;s flight deck at night, looking forward at the hangar door.">
+      <img src="images/gameplay/gp-frigate-deck-night.jpg" alt="The frigate flight deck at night with deck lighting and the hangar door forward" loading="lazy">
+      <figcaption class="cap">Flight deck, midwatch</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">41 / Aviation</div>
+      <h3>Everything That Comes Off the Deck</h3>
+      <p class="tagline">The sea half of the game has an air force, and the deck it lands on is moving.</p>
+      <p class="desc">The frigate carries a helicopter and puts it in the air off the back of the ship. Getting one home again is a genuine problem, because the pad is a warship doing fourteen knots and it heaves. Bring a second aircraft in and the ship strikes its own helicopter below first to clear the deck &mdash; or tells you the deck is foul, because that one is already airborne. Meanwhile the Agency keeps forty airframes over the same water, and you order all of them from the chart.</p>
+      <ul class="bullets">
+        <li><b>Landing on a moving ship</b> &mdash; ride the deck down, hold station on it, and touch down; whatever is parked there gets struck below to make room.</li>
+        <li><b>Forty drones, commanded from the map</b> &mdash; waypoint routes, area searches with a drawn search ring, attack vectors onto unidentified threats, tracked attacks on identified ones, and formations you set the angle of.</li>
+        <li><b>Ten places ashore to put down</b> &mdash; the hospital roof, the fire station, a luxury tower, the airfield, the naval base, a four-pad Agency heliport, the White House, the Kremlin, the launch site &mdash; and the TV studio, which has a working surface-to-air missile with ten kilometres of reach.</li>
+        <li><b>Land, get out, walk in</b> &mdash; every pad opens onto the building underneath it.</li>
+        <li><b>And now there are two carriers</b> &mdash; a full air wing a side: four fighters and an anti-submarine helicopter each, seventy-two air-to-air and thirty-six strike reloads in the ship, five hundred and ten cannon rounds in every jet and six thousand more below decks.</li>
+        <li><b>A jet joins from astern and takes the angled deck</b> &mdash; an outer fix, an approach, exclusive clearance for the final, a go-around if somebody else owns the deck, then the arrest and the taxi to a parking spot.</li>
+        <li><b>The deck can be taken away from you</b> &mdash; flood or burn the hangar and nothing launches until it is fixed.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 42 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="BV-114 working the grounds &mdash; harpoon on the bow, net drum aft.">
+      <img src="images/gameplay/gp-fishing-boat.jpg" alt="The Muskrat class fishing boat at sea with its harpoon gun and net gear" loading="lazy">
+      <figcaption class="cap">The Muskrat &mdash; BV-114</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">42 / Working Boat</div>
+      <h3>One of the Hulls Isn&rsquo;t a Warship</h3>
+      <p class="tagline">It&rsquo;s a trawler with a harpoon on the bow and an empty hold.</p>
+      <p class="desc">Take BV-114 out of the fishing harbor, find something worth catching, spear it or net it, fill the hold, bring her back in and sell the catch on the quay. Then walk back down to the berth, take her out again, and do it properly this time. It is the same sea the warships are in &mdash; the frigate on the horizon is a real frigate, with a real crew, having a real day.</p>
+      <ul class="bullets">
+        <li><b>An electromagnetic harpoon</b> &mdash; with a designation that knows the difference between a fish and a ship, so you cannot spear a ferry by accident.</li>
+        <li><b>A hold that is worth money</b> &mdash; every species has a weight and a price per kilo, and some can only be netted, never speared.</li>
+        <li><b>Sell up and go back out</b> &mdash; the quay has a console that puts you back on the water. It is not a one-way trip any more.</li>
+        <li><b>Forty knots and a chart</b> &mdash; the same navigation the grey hulls use, minus the missiles.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 43 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="What the street looks like afterwards &mdash; this is the scene&rsquo;s new background, and you can walk down it.">
+      <img src="images/gameplay/gp-city-aftermath.jpg" alt="A Beaver Valley street after a cruise missile strike, smoking crater and rubble under the streetlights" loading="lazy">
+      <figcaption class="cap">After the strike</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">43 / Consequence</div>
+      <h3>The Town Is a Target on the Naval Chart</h3>
+      <p class="tagline">That coastline isn&rsquo;t scenery. You can shell the street you drink on.</p>
+      <p class="desc">Strategic launches used to fly off over the horizon and resolve somewhere you couldn&rsquo;t see. Now, when the target is in Beaver Valley, the round flies to an actual building standing on the actual coast and goes into it while you watch. <b>Fifty-eight separate addresses</b> in the Valley alone are on the target list &mdash; the eight buildings of the main street, one at a time (the bank, the bar, the gun shop, the sport shop, the corner store, the tenement row, the warehouse, the overpass), and then the hospital, the courthouse, the post office, the recruiting office, the airport and its hangar, all three harbours, the detention centre, the murder house, the slums, the graveyard, the dig site. Knock one down and the rest stay standing. Walk that street afterwards and the one you hit is rubble, with everything else exactly where it was.</p>
+      <ul class="bullets">
+        <li><b>Watch it the whole way</b> &mdash; the round is in the air from the cell to the roof, and the impact and the footage of the building coming down are the same moment.</li>
+        <li><b>Fifty-eight addresses in the Valley</b>, thirteen in Washington, four in the Kremlin and the forward base on top &mdash; plus a citywide option, if you&rsquo;re feeling thorough.</li>
+        <li><b>The town stands up in three dimensions</b> &mdash; the skyline you are aiming at from the sea is a real city of streets, blocks, a river, a bridge and rooftops, and each building wears the painting of the place you walk into on foot.</li>
+        <li><b>The ruin is permanent</b> &mdash; that block stays wrecked, on foot, at ground level, for the rest of the session.</li>
+        <li><b>A nuclear round has three rings</b> &mdash; inside a square kilometre the place is sealed and burning and nobody gets in or out; out to five kilometres it is ruined and lethal but still walkable; past that, untouched. The sewers survive anything short of a direct hit, which is the only reason the submarine pen is still there afterwards.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 44 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Nobody here is waiting to be talked to.">
+      <img src="images/gameplay/gp-town-street.jpg" alt="A busy Beaver Valley street with townspeople going about their business" loading="lazy">
+      <figcaption class="cap">The street, any given evening</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">44 / Conversation</div>
+      <h3>They Start It</h3>
+      <p class="tagline">You don&rsquo;t have to walk up to anybody any more. And they remember how it went.</p>
+      <p class="desc">Talking to the town got its own controls. Hold the talk button and you are speaking to the nearest person who isn&rsquo;t already with you &mdash; the one you are facing, not whoever happens to be nearest your feet. Flick a direction first and you are talking to your own people instead: all of them, one of them, or everybody in earshot. Anyone standing near a conversation can decide to join it, invited or not. And someone across the street who likes the look of you &mdash; or the blood on you &mdash; will call you over before you have said a word.</p>
+      <ul class="bullets">
+        <li><b>Four ways to open your mouth</b> &mdash; the stranger in front of you, your whole party, the one companion you&rsquo;re facing, or everyone within earshot.</li>
+        <li><b>Uninvited guests</b> &mdash; a bold enough bystander walks over and puts himself in the middle of it.</li>
+        <li><b>They hail you first</b> &mdash; carrying a weapon, covered in filth, drunk, or new in town all change how likely that is.</li>
+        <li><b>Conversations end like conversations</b> &mdash; walk off, say you&rsquo;re done, throw a punch, or bore them until they leave.</li>
+        <li><b>They remember you</b> &mdash; hitting someone costs you; handing them something buys you a little back. A character who has decided against you listens with their arms crossed.</li>
+        <li><b>And they use their hands</b> &mdash; nods, shrugs, waves, a beckon, a salute when they take an order, a shake of the head when they can&rsquo;t carry it out.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 45 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="A nuclear detonation a few kilometres off the bow, lighting the whole sea. Bottom left, the weapons officer reporting an earlier round shot down: &ldquo;one round shot down, Sir!&rdquo;">
+      <img src="images/gameplay/gp-nuclear-flash.jpg" alt="The ocean and sky lit orange by a nuclear detonation, the surfaced submarine in the middle of it" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the flash</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">45 / The Nuke</div>
+      <h3>You Are Carrying One of These</h3>
+      <p class="tagline">Five kilometres of blast radius, its own inventory, and no way to take it back.</p>
+      <p class="desc">The submarine carries a nuclear Tomahawk. It is not part of the conventional magazine and it is not a cutscene: you surface the boat, open <b>nuclear targeting</b> on the chart, put the crosshair on a map point or a live surface contact, and the chart draws you a five-kilometre ring so you can see exactly what you are about to do &mdash; including a line telling you that your own submarine is inside it. Then the round leaves the cell on a pillar of flame and flies there. When it arrives, the flash lights the sea and the sky for tens of kilometres, a mushroom stands up out of the water, and a pressure wave goes out across the ocean and kills things in the order it reaches them.</p>
+      <ul class="bullets">
+        <li><b>The wave takes seventeen seconds to cross five kilometres</b> &mdash; so the near ships burn first and the far ones watch it coming.</li>
+        <li><b>It does not know whose side you are on</b> &mdash; friendly hulls, neutral traffic and your own boat are all inside that circle if you put them there.</li>
+        <li><b>Ships die the way ships die</b> &mdash; compartment fires and crew casualties first, then the hull.</li>
+        <li><b>Over land it is an airburst</b>, twenty metres up. The skyline towers, the city detail and the airfield come down into charred rubble that is still there when you walk in later &mdash; the ruin is remembered, not re-rolled.</li>
+        <li><b>The fires burn for half an hour</b> of mission time, and the mushroom stands there for all of it.</li>
+        <li><b>On the water it raises a real wave</b> &mdash; a crest that travels out at two hundred metres a second, up to a hundred and twenty metres tall at the middle, dying away with distance and running well past the blast.</li>
+        <li><b>It can be shot down</b> &mdash; a genuine hit from air defence kills the warhead with no detonation at all, and every side prioritises a nuclear track the moment it actually sees one. That works against you as well as for you.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 46 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="Fleet Command. Every friendly hull down the left, the chart in the middle, and that unit&rsquo;s own helm, sensors, weapons and boats on the right.">
+      <img src="images/gameplay/gp-fleet-command.jpg" alt="The Fleet Command screen: friendly unit roster, the tactical chart with waypoints, and per-unit controls" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> commanding the whole side</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">46 / The Fleet Is Yours</div>
+      <h3>Both Navies Have a Carrier Now</h3>
+      <p class="tagline">You steer one ship. You command all of them.</p>
+      <p class="desc">Press <b>F9</b> at any Beaver Valley helm and the whole side opens up: every unit you own, its course, its speed, its magazines, its sensors, its boats and its aircraft. Click a ship on the chart and you get its actual controls &mdash; helm orders, radar and sonar, emissions silence, countermeasures, launch the helicopter, launch the boat, reload the tubes &mdash; without leaving your own bridge. Draw it a route, hang orders on the waypoints, and go back to work. <b>F8</b> is the same thing for the air wing, because there is now a carrier on each side: the <b>Mara</b> and the <b>Kodiak</b>, four jets and a helicopter apiece, a thousand-two-hundred-point hull and three thousand rounds of close-in ammunition.</p>
+      <ul class="bullets">
+        <li><b>Orders attach to places</b> &mdash; fire once at this waypoint, hold here and engage until that contact is gone, wait until ready, repeat every lap of the patrol. Twenty-four waypoints and ninety-six actions on a route, paused and resumed without losing the plan.</li>
+        <li><b>Escort is a real order</b> &mdash; tell a destroyer to protect the tanker and she takes station seven hundred metres off her, matches her speed, and shoots down what is aimed at her. Aircraft escort by orbiting; they will not chase more than two and a half kilometres from the thing they are guarding.</li>
+        <li><b>Quick air orders</b> &mdash; click an aircraft, click a contact, and send it: surface strike, submarine attack, intercept, gun run, reconnaissance, or a rectangle dragged on the chart to search. Helicopters sweep six-hundred-metre lanes, jets fifteen hundred.</li>
+        <li><b>They land back on a moving deck</b> &mdash; jets join from astern at an outer fix and line up on the angled deck; helicopters close in deck-local coordinates so a turning carrier cannot leave them behind. An occupied deck holds them off until it is clear.</li>
+        <li><b>Two switches decide how much they do alone</b> &mdash; friendly AI and automatic air defence, both on by default. Turn them off and nothing on your side fires without an order, including the thing that shoots down nuclear rounds.</li>
+        <li><b>Every accepted order is answered out loud</b> &mdash; by the captain of the ship you gave it to, in their own voice, by name.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 47 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The crew posts board on a ferry that used to belong to somebody else. Two of those names came aboard on the boarding party.">
+      <img src="images/gameplay/gp-crew-posts.jpg" alt="The crew posts screen on a captured ferry, assigning named people to duties and compartments" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> the ship changes hands</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">47 / Piracy</div>
+      <h3>Take the Ship Instead of Sinking It</h3>
+      <p class="tagline">Four people, two grapples and a shotgun is a different way to win a naval battle.</p>
+      <p class="desc">The rigid-hull boat on the davit is not scenery. Crew it out of the ship&rsquo;s actual company &mdash; a coxswain and up to three boarders, each issued a rifle or a shotgun from real, finite inventory &mdash; pick a ship off the chart and go and get it. The helm runs you alongside, the grapples catch on the target&rsquo;s actual hull geometry, the ropes follow both ships as they move, and the party climbs: five to twenty-two seconds depending on the freeboard and how many of you there are. Then you are standing on somebody else&rsquo;s deck.</p>
+      <ul class="bullets">
+        <li><b>The people aboard decide for themselves</b> &mdash; they argue, they resist, they run for the armoury to get a weapon, or they put their hands up. Nothing is scripted; they use the same health, weapons and ammunition every character in the game uses. Gunfire raises the alarm.</li>
+        <li><b>Surrender is a white flag and a decision</b> &mdash; they follow whoever led the boarding, and once the ship is secured they are yours.</li>
+        <li><b>Then you post them</b> &mdash; open the bridge roster and assign duties: captain, executive officer, helm, weapons, engineering, sonar, communications, damage control, cook, medic, deckhand. Two cooks in the same galley if you like. They keep their own names, faces, histories, nationalities, voices and injuries.</li>
+        <li><b>Anyone is a target</b> &mdash; enemy, neutral, or an allied hull you have simply decided you want. The ferry included.</li>
+        <li><b>Nothing refills</b> &mdash; spent ammunition stays spent, the dead stay where they fell in the rooms where it happened, and recalling the party brings home whoever is still standing.</li>
+        <li><b>Order it out loud</b> &mdash; &ldquo;assign Tiller as RHIB operator&rdquo;, &ldquo;launch RHIB to board selected ship&rdquo;, &ldquo;recall boarding party&rdquo;.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 48 -->
+  <article class="feature rev">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The mission editor: drag every hull to where you want it on a real chart, give it a course and a patrol route, write the briefing, save it.">
+      <img src="images/gameplay/gp-mission-editor.jpg" alt="The Ocean Operations mission editor with the unit list, the chart and the per-unit settings" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> build your own battle</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">48 / Operations</div>
+      <h3>Write the Battle, Then Fight It</h3>
+      <p class="tagline">Ocean Operations opens on a mission library, and you can add to it.</p>
+      <p class="desc">Every trip to sea is now an operation with a roster, a briefing and a reason. Read it, pick your side, and the hulls you may command are the ones that side actually owns. Or make your own: <b>Create New Mission</b> gives you a chart, a list of every vessel in the game, and a drag handle. Put each one where you want it, give it a course, a speed, a depth or an altitude, plot it a patrol route, set its allegiance, write the briefing that appears before launch, and save it. Built-in operations are never overwritten &mdash; <b>Edit a Copy</b> starts from one without touching it.</p>
+      <ul class="bullets">
+        <li><b>Win conditions, per side</b> &mdash; destroy a named unit, defeat a whole side&rsquo;s roster, survive for a set number of minutes, or get a ship into a circle you drew on the chart. Combine them with ALL or ANY, up to sixteen a side.</li>
+        <li><b>Both sides get objectives</b> &mdash; the briefing shows you theirs as well as yours, the live OBJECTIVES panel tracks both, and the first side to satisfy its rules wins. Same tick, both satisfied, it is a draw.</li>
+        <li><b>The objectives read the actual world</b> &mdash; a hull that is dead is dead whether or not you can see it, and progress follows you between vessels and interiors.</li>
+        <li><b>A roster decides what exists</b> &mdash; a vessel left out of the operation is genuinely not there: no chart marker, no sonar, no model, no crew.</li>
+        <li><b>Missions are files</b> &mdash; saved as JSON in your own player data, so they can be moved, kept and handed to somebody else.</li>
+      </ul>
+    </div>
+  </article>
+
+  <!-- 49 -->
+  <article class="feature">
+    <figure class="feature-media media media-frame reveal zoomable" data-cap="The mission library, with the Strait drawn from real shoreline and depth data.">
+      <img src="images/gameplay/gp-mission-library.jpg" alt="The Ocean Operations mission library showing the Straight of Booze briefing and its chart" loading="lazy">
+      <figcaption class="cap"><b>In-engine:</b> a real strait</figcaption>
+    </figure>
+    <div class="feature-text reveal d1">
+      <div class="feature-num">49 / The Strait</div>
+      <h3>Somewhere That Actually Exists</h3>
+      <p class="tagline">Fifty kilometres of the Hormuz narrows, built from published coastline and seabed data.</p>
+      <p class="desc">The <b>Straight of Booze</b> is the first operation built on a real place. Its coastline is traced from full-resolution published shoreline polygons &mdash; twenty-two of them, nearly three thousand vertices &mdash; and its land heights and water depths come from public elevation and bathymetry tiles. Southeastern Qeshm, Larak, the Quoin islets and northern Musandam are all where they should be relative to each other; a seventy-kilometre window is fitted into the fifty-kilometre playable box, so it is a faithful shape rather than a survey. Two carrier groups &mdash; missile destroyers, frigates, attack submarines and fast boats &mdash; collide around neutral shipping in confined water, with both sides weapons-free from the first second.</p>
+      <ul class="bullets">
+        <li><b>Eight commandable vessels on one side, seven on the other</b> &mdash; and the objective for each is the other side&rsquo;s carrier.</li>
+        <li><b>The water is shallow where it is shallow</b> &mdash; the submarines start at five metres because the real littoral here does not give them room, and the bottom clearance rules are the same ones the rest of the game uses.</li>
+        <li><b>Every start position was checked against the coast</b> &mdash; at fifty-metre intervals, so nothing begins the operation aground.</li>
+        <li><b>It is a fictional engagement on a real map</b> &mdash; no invented islands, no random terrain, and full attribution to the data it was built from.</li>
+      </ul>
+    </div>
+  </article>
 
 </div>
 
 <section class="cta-band">
-  <div class="bg"><img src="images/play/env-city-center.webp" alt=""></div>
+  <div class="bg"><img src="images/env/env-city-center.jpg" alt=""></div>
   <div class="inner">
-    <span class="kicker" style="justify-content:center">Explore Story Mode</span>
+    <span class="kicker" style="justify-content:center">All of this runs today</span>
     <h2>Now see the whole town</h2>
-    <p>Visit the venues, neighbourhoods and routes that connect these activities.</p>
+    <p>550+ hand-built scenes across 596 locations &mdash; take the tour.</p>
     <a class="btn btn-primary btn-lg" href="world.html">Tour the World &rarr;</a>
   </div>
 </section>
 
 <footer class="footer">
-  <div class="wrap"><div class="footer-grid">
-    <div><div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div><p>A satirical role-playing game by Jeremy Thorn.</p></div>
-    <div><h5>Explore</h5><ul><li><a href="index.html">The Valley</a></li><li><a href="features.html">Features</a></li><li><a href="naval.html">Naval Combat</a></li><li><a href="world.html">World</a></li><li><a href="characters.html">Cast</a></li><li><a href="guide.html">Guide</a></li><li><a href="roadmap.html">Roadmap</a></li></ul></div>
-    <div><h5>Get involved</h5><ul><li><a href="donate.html">Support the game</a></li><li><a href="donate.html#tiers">Character and credit tiers</a></li></ul></div>
-  </div><div class="footer-bottom">© <span id="year">2026</span> Beaver Valley</div></div>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-logo">BEAVER<span class="vly">VALLEY</span></div>
+        <p>A grimy dystopian-satire town where ~250 characters each have a mind of their own. A one-developer game by Jeremy Thorn.</p>
+      </div>
+      <div>
+        <h5>Explore</h5>
+        <ul>
+          <li><a href="index.html">The Valley</a></li>
+          <li><a href="features.html">What&rsquo;s Built</a></li>
+          <li><a href="world.html">The World</a></li>
+          <li><a href="characters.html">The Cast</a></li>
+          <li><a href="guide.html">Field Guide</a></li>
+          <li><a href="roadmap.html">Roadmap</a></li>
+          <li><a href="donate.html">Support</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Get Involved</h5>
+        <ul>
+          <li><a href="donate.html">Get in the credits</a></li>
+          <li><a href="donate.html">Become a character</a></li>
+          <li><a href="https://streamlabs.com/bumnumba1/tip" target="_blank" rel="noopener">Tip on Streamlabs &rarr;</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; <span id="year">2026</span> Beaver Valley. All souls reserved.</span>
+      <span class="sat">No beavers were harmed. The Beaver Eater cannot say the same.</span>
+    </div>
+  </div>
 </footer>
 
 <script src="js/site.js"></script>
